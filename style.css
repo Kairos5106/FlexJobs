@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.homepage-header-and-section {
+    background: url(images/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header-scrolled {
+    background: linear-gradient(135deg, #02aab0 , #00cdac);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+header .logo {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+header .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li {
+    list-style: none;
+    margin-left: 20px;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    border-radius: 20px;
+}
+
+header ul li a:hover,
+header ul li a.active {
+    background: #fff;
+    color: #2b1055;
+}
+
+#landing-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#homepage-title {
+    position: absolute;
+    color: #fff;
+    white-space: nowrap;
+    font-size: 7vw;
+    z-index: 9;
+    transition: 1s;
+}
+
+.big-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 40px;
+    border: 2px solid #fff;
+    background: #fff;
+    color: #2b1055;
+    font-size: 1.5em;
+    z-index: 9;
+    transform: translateY(100px);
+}
+
+.big-button:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Homepage description */
+section {
+    padding: 80px;
+}
+
+.section-description-center {
+    text-align: center;
+}
+
+.homepage-description h2 {
+    margin: 5px;
+}
+
+.normal-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    font-size: 1em;
+    z-index: 9;
+    text-align: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.normal-button:hover {
+    color: #fff;
+    background: rgb(40, 26, 57);
+    border: 2px solid rgb(40, 26, 57);
+}
+
+/* Feature intro */
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+section .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch; /* make all the cards to be the same height with each other */
+}
+
+section .card {
+    width: calc(100% / 3 - 30px);
+    text-align: center;
+    list-style: none;
+    background-color: #fff;
+    padding: 40px 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+section .card img {
+    height: 150px;
+    width: 150px;
+    margin-bottom: 15px;
+    align-self: center;
+}
+
+.alternate-section {
+    background-color: #edebe8;
+}
+
+section .card p {
+    margin-top: 5px;
+    flex-grow: 1;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #02aab0 , #00cdac);
+    padding: 20px 80px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    align-items: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Menu toggler */
+#menu-toggler,
+#hamburger-button {
+    display: none;
+}
+
+/* Responsiveness */
+@media (width < 980px) {
+    header {
+        position: fixed;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    header ul li {
+        list-style: none;
+        margin-left: 0;
+        padding: 0 0 15px 0;
+    }
+
+    header ul li a {
+        text-decoration: none;
+        padding: 6px 15px;
+        color: #fff;
+        border-radius: 0;
+        display: block;
+    }
+
+    header ul li a:hover,
+    header ul li a.active {
+        background: #fff;
+        color: #2b1055;
+    }
+
+    .navbar .nav-links {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        display: block;
+        background: linear-gradient(135deg, #02aab0 , #00cdac);
+        width: 250px;
+        padding-top: 30px;
+        left: -100%;
+        transition: all 0.4s ease;
+    }
+
+    #menu-toggler:checked ~ .nav-links {
+        left: 0;
+    }
+
+    .nav-links li {
+        font-size: 18px;
+    }
+
+    #hamburger-button {
+        display: block;
+        color: #fff;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    section .cards .card {
+        width: calc(100% - 15px);
+        margin: 10px;
+    }
+}
