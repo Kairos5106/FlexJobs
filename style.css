@@ -32,7 +32,7 @@ header {
     left: 0;
     right: 0;
     width: 100%;
-    padding: 0 80px;
+    padding: 20px 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,6 +44,13 @@ header .logo {
     font-weight: 700;
     text-decoration: none;
     font-size: 2em;
+}
+
+header .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
 }
 
 header .navbar ul {
@@ -58,7 +65,7 @@ header .navbar ul li {
 
 header ul li a {
     text-decoration: none;
-    padding: 20px 15px;
+    padding: 6px 15px;
     color: #fff;
     display: block;
 }
@@ -71,6 +78,7 @@ header .navbar ul li a:hover,
 header .navbar ul li a.active {
     background: #fff;
     color: #1F3051;
+    border-radius: 20px;
 }
 
 header .navbar ul li ul {
@@ -245,25 +253,20 @@ section .card p {
         z-index: 100;
     }
 
-    header ul li {
-        list-style: none;
-        margin-left: 0;
+    header .navbar ul li {
+        width: 100%;
         padding: 0 0 15px 0;
-        font-size: 18px;
     }
 
-    header ul li a {
-        text-decoration: none;
-        padding: 6px 15px;
-        color: #fff;
-        border-radius: 0;
-        display: block;
+    header .navbar ul li ul {
+        position: relative;
+        width: 100%;
     }
 
-    header ul li a:hover,
-    header ul li a.active {
-        background: #fff;
-        color: #2b1055;
+    header .navbar ul li ul li {
+        width: 100%;
+        padding: 0 0 15px 0;
+        background: #1F3051;
     }
 
     .navbar .nav-links {
