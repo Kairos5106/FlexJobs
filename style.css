@@ -22,17 +22,20 @@ body {
 }
 
 .header-scrolled {
-    background: linear-gradient(135deg, #02aab0 , #00cdac);
+    background: linear-gradient(135deg, #1F3051 , #00cdac);
 }
 
 header {
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     padding: 20px 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
+    z-index: 1000;
 }
 
 header .logo {
@@ -42,35 +45,28 @@ header .logo {
     font-size: 2em;
 }
 
-header .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
-}
-
-header ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-header ul li {
+header .navbar ul {
     list-style: none;
-    margin-left: 20px;
+}
+
+header .navbar ul li {
+    position: relative;
+    float: left;
+    margin-left: 8px;
 }
 
 header ul li a {
     text-decoration: none;
     padding: 6px 15px;
     color: #fff;
-    border-radius: 20px;
+    display: block;
 }
 
-header ul li a:hover,
-header ul li a.active {
+header .navbar ul li a:hover,
+header .navbar ul li a.active {
     background: #fff;
-    color: #2b1055;
+    color: #1F3051;
+    border-radius: 20px;
 }
 
 #landing-page {
@@ -192,7 +188,7 @@ section .card p {
 
 /* Footer */
 .footer {
-    background: linear-gradient(135deg, #02aab0 , #00cdac);
+    background: linear-gradient(135deg, #1F3051 , #00cdac);
     padding: 20px 80px;
     color: #fff;
     display: block;
@@ -227,6 +223,7 @@ section .card p {
         list-style: none;
         margin-left: 0;
         padding: 0 0 15px 0;
+        font-size: 18px;
     }
 
     header ul li a {
@@ -249,7 +246,7 @@ section .card p {
         top: 0;
         height: 100%;
         display: block;
-        background: linear-gradient(135deg, #02aab0 , #00cdac);
+        background: linear-gradient(135deg, #1F3051 , #00cdac);
         width: 250px;
         padding-top: 30px;
         left: -100%;
@@ -258,10 +255,6 @@ section .card p {
 
     #menu-toggler:checked ~ .nav-links {
         left: 0;
-    }
-
-    .nav-links li {
-        font-size: 18px;
     }
 
     #hamburger-button {
