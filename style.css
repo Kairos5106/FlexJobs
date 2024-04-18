@@ -91,7 +91,7 @@ header .navbar ul li ul {
 
 header .navbar ul li ul li {
     width: 100%;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 header .navbar ul li ul li a {
@@ -258,6 +258,10 @@ section .card p {
         padding: 0 0 15px 0;
     }
 
+    header .navbar ul li a {
+        padding: 10px 15px;
+    }
+
     header .navbar ul li ul {
         position: relative;
         width: 100%;
@@ -265,7 +269,7 @@ section .card p {
 
     header .navbar ul li ul li {
         width: 100%;
-        padding: 0 0 15px 0;
+        padding: 0 0 0 30px;
         background: #1F3051;
     }
 
