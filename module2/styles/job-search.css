@@ -14,7 +14,12 @@ body {
     min-height: 100vh;
 }
 
-/* Base header, section, footer ========================================================================== */
+body, h1, h2, h3, h4, h5, h6, p, .logo {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0;
+}
+
+/* Base header, section, footer ================================================================================================= */
 .header-scrolled {
     background: #1F3051;
 }
@@ -49,6 +54,8 @@ header .navbar {
 
 header .navbar ul {
     list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
 }
 
 header .navbar ul li {
@@ -102,6 +109,7 @@ header .navbar ul li:hover > ul {
     display: none;
 }
 
+/* Layout ========================================================================================================*/
 section {
     padding: 100px 80px 80px 80px;
 }
@@ -110,6 +118,12 @@ section {
     text-align: center;
 }
 
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+/* Button ===================================================================================================== */
 .big-button {
     text-decoration: none;
     display: inline-block;
@@ -122,8 +136,6 @@ section {
     z-index: 9;
     transform: translateY(100px);
 }
-
-/* Button ===================================================================================================== */
 
 .big-button:hover {
     color: #fff;
@@ -150,7 +162,7 @@ section {
     border: 2px solid rgb(40, 26, 57);
 }
 
-/* Footer ==================================================================================== */
+/* Footer ======================================================================================================== */
 .footer {
     background: #1F3051;
     padding: 20px 80px;
@@ -160,12 +172,39 @@ section {
     align-items: center;
 }
 
+footer p {
+    margin-bottom: 0;
+}
+
 .footer a {
     text-decoration: none;
     color: #fff;
 }
 
-/* Responsiveness ========================================================================= */
+/* Input field ========================================================================================================= */
+.input-field {
+    padding: 10px 15px 10px 50px;
+}
+
+.input-icon {
+    position: absolute;
+    padding-left: 15px;
+    color: #ccc;
+    font-size: 1.2rem;
+}
+
+
+/* Banner ============================================================================================================ */
+.banner h1 {
+    margin-top: 20px;
+}
+
+.blue-text {
+    color: #3575E2;
+}
+
+
+/* Responsiveness ===================================================================================================== */
 @media (width < 980px) {
     header {
         position: fixed;
