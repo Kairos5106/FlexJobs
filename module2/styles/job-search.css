@@ -12,6 +12,7 @@ html {
 body {
     width: 100%;
     min-height: 100vh;
+    background-color: #F7F2E7;
 }
 
 body, h1, h2, h3, h4, h5, h6, p, .logo {
@@ -162,6 +163,17 @@ section {
     border: 2px solid rgb(40, 26, 57);
 }
 
+.btn-primary {
+    background-color: #1F3051;
+    padding: 10px 15px;
+}
+
+.btn-primary:hover {
+    background-color: rgba(31, 48, 81, 0.3);
+    border: 1px solid #1F3051;
+    color: #000;
+}
+
 /* Footer ======================================================================================================== */
 .footer {
     background: #1F3051;
@@ -201,6 +213,11 @@ footer p {
 
 .blue-text {
     color: #3575E2;
+}
+
+.banner-input {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
