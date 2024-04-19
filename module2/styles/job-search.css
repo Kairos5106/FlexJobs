@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header bar on top of each webpage ========================================================================== */
+/* Base header, section, footer ========================================================================== */
 .header-scrolled {
     background: #1F3051;
 }
@@ -96,24 +96,18 @@ header .navbar ul li:hover > ul {
     display: initial;
 }
 
-/* Landing page wallpaper */
-#landing-page {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    padding: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Menu toggler */
+#menu-toggler,
+#hamburger-button {
+    display: none;
 }
 
-#homepage-title {
-    position: absolute;
-    color: #fff;
-    white-space: nowrap;
-    font-size: 7vw;
-    z-index: 9;
-    transition: 1s;
+section {
+    padding: 100px 80px 80px 80px;
+}
+
+.section-description-center {
+    text-align: center;
 }
 
 .big-button {
@@ -129,22 +123,11 @@ header .navbar ul li:hover > ul {
     transform: translateY(100px);
 }
 
+/* Button ===================================================================================================== */
+
 .big-button:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.3);
-}
-
-/* Homepage description */
-section {
-    padding: 100px 80px 80px 80px;
-}
-
-.section-description-center {
-    text-align: center;
-}
-
-.homepage-description h2 {
-    margin: 5px;
 }
 
 .normal-button {
@@ -167,7 +150,7 @@ section {
     border: 2px solid rgb(40, 26, 57);
 }
 
-/* Footer */
+/* Footer ==================================================================================== */
 .footer {
     background: #1F3051;
     padding: 20px 80px;
@@ -180,12 +163,6 @@ section {
 .footer a {
     text-decoration: none;
     color: #fff;
-}
-
-/* Menu toggler */
-#menu-toggler,
-#hamburger-button {
-    display: none;
 }
 
 /* Responsiveness ========================================================================= */
@@ -231,6 +208,10 @@ section {
         padding-top: 30px;
         left: -100%;
         transition: all 0.4s ease;
+    }
+
+    section {
+        padding: 100px 20px 80px 20px;
     }
 
     #menu-toggler:checked ~ .nav-links {
