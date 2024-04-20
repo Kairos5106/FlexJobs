@@ -41,6 +41,9 @@ function renderJobs(jobsToRender) {
         
         jobsList.innerHTML += jobCard;
     });
+
+    // Update h1 based on number of jobs fetched 
+    document.getElementById("number-of-jobs").textContent = jobsToRender.length;
 }
 
 // Calculate duration since date posted of a job
