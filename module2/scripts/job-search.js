@@ -177,7 +177,15 @@ document.addEventListener("DOMContentLoaded", () => {
             // Load jobs from localStorage if available
             const storedJobs = localStorage.getItem("jobs");
             if (storedJobs) {
-                jobs = [...jobs, ...JSON.parse(storedJobs)];
+                const parsedStoredJobs = JSON.parse(storedJobs);
+                
+                // Filter out jobs that are already in the localStorage
+                const newJobs = jobs.filter(job => {
+                    return !parsedStoredJobs.some(storedJob => storedJob.jobTitle === job.jobTitle && storedJob.companyName === job.companyName);
+                });
+
+                // Merge new jobs with stored jobs
+                jobs = [...newJobs, ...parsedStoredJobs];
             }
 
             console.log(jobs); // Log the merged jobs data
