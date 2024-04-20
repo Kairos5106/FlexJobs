@@ -6,11 +6,14 @@ let locationQuery = "";
 function renderJobs(jobsToRender) {
     const jobsList = document.querySelector(".cards");
     jobsList.innerHTML = ""; // Clear existing jobs
+
+    // Sort jobs by datePosted in descending order
+    const sortedJobs = jobsToRender.sort((a, b) => new Date(b.datePosted) - new Date(a.datePosted));
     
-    jobsToRender.forEach(job => {
+    sortedJobs.forEach(job => {
         const duration = calculateDuration(job.datePosted);
         const jobCard = `
-        <li class="card flex">
+        <li class="card-custom flex">
             <div class="job-thumbnail-col">
                 <img src="${job.companyLogo}" alt="${job.companyName} Logo">
             </div>
@@ -43,7 +46,7 @@ function renderJobs(jobsToRender) {
     });
 
     // Update h1 based on number of jobs fetched 
-    document.getElementById("number-of-jobs").textContent = jobsToRender.length;
+    document.getElementById("number-of-jobs").textContent = sortedJobs.length;
 }
 
 // Calculate duration since date posted of a job
@@ -76,9 +79,33 @@ function handleLocationInputChange(event) {
     console.log(locationQuery);
 }
 
-// Add event listener to input fields
+function handleEmploymentTypeChange(event) {
+    const selectedType = event.target.id;
+    const filteredEmploymentType = jobs.filter(job => {
+        return job.employmentType.toLowerCase() === selectedType.toLowerCase();
+    });
+    renderJobs(filteredEmploymentType);
+}
+
+function handleExperienceLevelChange(event) {
+    const selectedLevel = event.target.id;
+    const filteredExperienceLevel = jobs.filter(job => {
+        return job.experienceLevel.toLowerCase() === selectedLevel.toLowerCase();
+    });
+    renderJobs(filteredExperienceLevel);
+}
+
+// Event listeners for input fields and filter buttons
 document.getElementById("job-title").addEventListener("input", handleJobTitleInputChange);
 document.getElementById("job-location").addEventListener("input", handleLocationInputChange);
+
+document.querySelectorAll('input[name="employmentType"]').forEach(radio => {
+    radio.addEventListener('change', handleEmploymentTypeChange);
+});
+
+document.querySelectorAll('input[name="experienceLevel"]').forEach(radio => {
+    radio.addEventListener('change', handleExperienceLevelChange);
+});
 
 // When user click "button" then render the filtered jobs based on user input
 document.querySelector("form").addEventListener("submit", function(event) {

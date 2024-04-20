@@ -79,29 +79,85 @@
     </section>
 
     <!-- Section for side panel & jobs list -->
-    <section class="py-12">
+    <section class="job-search-main">
         <div class="row">
             <!-- Side panel on the left -->
-            <div class="col-md-3">
+            <div class="col-md-3 filter-panel">
                 <!-- Content for the side panel -->
                 <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Side Panel</h5>
-                        <p class="card-text">Content for the side panel goes here.</p>
+                    <!-- Side panel heading -->
+                    <div class="col-heading filters-col-heading">
+                        <h3>Filters</h3>
                     </div>
+
+                    <!-- Radio groups -->
+                    <ul class="list-group list-group-flush">
+                        <!-- Filter based on employment type -->
+                        <li class="list-group-item filter-category">
+                            <b>Employment Type</b>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="employmentType" id="Full-Time">
+                                <label class="form-check-label" for="fullTime">
+                                    Full-Time
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="employmentType" id="Part-Time">
+                                <label class="form-check-label" for="partTime">
+                                    Part-Time
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="employmentType" id="Intern">
+                                <label class="form-check-label" for="intern">
+                                    Intern
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="employmentType" id="Contract">
+                                <label class="form-check-label" for="contract">
+                                    Contract
+                                </label>
+                            </div>
+                        </li>
+
+
+                        <!-- Filter based on experience level -->
+                        <li class="list-group-item filter-category">
+                            <b>Experience Level</b>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="experienceLevel" id="entry-level">
+                                <label class="form-check-label" for="entry">
+                                    Entry
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="experienceLevel" id="mid-level">
+                                <label class="form-check-label" for="mid">
+                                    Mid
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="experienceLevel" id="senior-level">
+                                <label class="form-check-label" for="senior">
+                                    Senior
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
             <!-- Jobs list on the right -->
             <div class="col-md-9 jobs-panel">
-                <div class="number-of-jobs">
-                    <h1><span id="number-of-jobs">00</span> Jobs</h1>
+                <div class="col-heading">
+                    <h3><span id="number-of-jobs">00</span> Jobs</h3>
                 </div>
                 <!-- Content for the jobs list -->
                 <div>
                     <ul class="cards flex">
                         <!-- 1 list item is 1 job -->
-                        <li class="card flex">
+                        <li class="card-custom flex">
                             <div class="job-thumbnail-col">
                                 <img id="job-thumbnail" src="images/logo1.png" alt="jobThumbnail">
                             </div>
@@ -130,7 +186,7 @@
                             </div>
                         </li>
                         <!-- 1 list item is 1 job -->
-                        <li class="card flex">
+                        <li class="card-custom flex">
                             <div class="job-thumbnail-col">
                                 <img id="job-thumbnail" src="images/logo1.png" alt="jobThumbnail">
                             </div>

@@ -210,7 +210,6 @@ footer p {
     font-size: 1.2rem;
 }
 
-
 /* Banner ============================================================================================================ */
 .banner h1 {
     margin-top: 20px;
@@ -226,8 +225,14 @@ footer p {
 }
 
 /* Content ==================================================================================================================*/
-.number-of-jobs {
+.col-heading {
     margin-top: 10px;
+    padding-top: 10px;
+}
+
+.filters-col-heading {
+    padding-left: 16px;
+    padding-bottom: 20px;
 }
 
 .cards {
@@ -238,7 +243,7 @@ footer p {
     padding: 0;
 }
 
-.card {
+.card-custom {
     width: 100%;
     text-align: center;
     list-style: none;
@@ -253,7 +258,7 @@ footer p {
     margin: 10px 0;
 }
 
-.card img {
+.card-custom img {
     height: 150px;
     width: 150px;
     margin: 10px;
@@ -297,6 +302,12 @@ footer p {
 .word-beside-icon {
     padding-left: 20px;
 }
+
+/* Side panel ==========================================================================================================*/
+.filter-category {
+    padding: 20px 16px;
+}
+
 
 /* Responsiveness ===================================================================================================== */
 @media (width < 1000px) {
@@ -362,7 +373,7 @@ footer p {
         cursor: pointer;
     }
 
-    .card {
+    .card-custom {
         width: 100%;
         text-align: center;
         list-style: none;
