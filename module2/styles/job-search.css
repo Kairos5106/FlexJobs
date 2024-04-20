@@ -250,9 +250,10 @@ footer p {
 }
 
 .card img {
-    height: 100vh / 2;
+    height: 150px;
     width: 150px;
-    padding: 10px;
+    margin: 10px;
+    border: 1px solid #000;
 }
 
 .job-details-col {

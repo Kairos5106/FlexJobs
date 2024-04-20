@@ -3,7 +3,7 @@
         "id": 1,
         "jobTitle": "Software Engineer",
         "companyName": "TechCorp",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo1.png",
         "minSalary": "5000",
         "maxSalary": "7000",
         "jobLocation": "Bangsar South",
@@ -11,13 +11,13 @@
         "employmentType": "Full-Time",
         "skills": "JavaScript, React, Node.js",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 2,
         "jobTitle": "Data Analyst",
         "companyName": "DataTech",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo2.png",
         "minSalary": "4500",
         "maxSalary": "6500",
         "jobLocation": "Petaling Jaya",
@@ -25,13 +25,13 @@
         "employmentType": "Contract",
         "skills": "SQL, Python, Excel",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 3,
         "jobTitle": "UX Designer",
         "companyName": "DesignHub",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo3.png",
         "minSalary": "4800",
         "maxSalary": "6800",
         "jobLocation": "Kuala Lumpur",
@@ -39,13 +39,13 @@
         "employmentType": "Part-Time",
         "skills": "UI/UX Design, Adobe XD",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 4,
         "jobTitle": "Marketing Manager",
         "companyName": "MarketKing",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo1.png",
         "minSalary": "5500",
         "maxSalary": "7500",
         "jobLocation": "Subang Jaya",
@@ -53,13 +53,13 @@
         "employmentType": "Full-Time",
         "skills": "Marketing Strategy, SEO, Analytics",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 5,
         "jobTitle": "Sales Executive",
         "companyName": "SalesGenius",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo2.png",
         "minSalary": "4000",
         "maxSalary": "6000",
         "jobLocation": "Cyberjaya",
@@ -67,13 +67,13 @@
         "employmentType": "Full-Time",
         "skills": "Sales, Communication",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 6,
         "jobTitle": "Financial Analyst",
         "companyName": "FinancePlus",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo3.png",
         "minSalary": "6000",
         "maxSalary": "8000",
         "jobLocation": "Putrajaya",
@@ -81,13 +81,13 @@
         "employmentType": "Contract",
         "skills": "Financial Analysis, Excel",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 7,
         "jobTitle": "HR Manager",
         "companyName": "PeopleFirst",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo1.png",
         "minSalary": "5000",
         "maxSalary": "7000",
         "jobLocation": "Klang",
@@ -95,13 +95,13 @@
         "employmentType": "Full-Time",
         "skills": "HR Management, Recruitment",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 8,
         "jobTitle": "DevOps Engineer",
         "companyName": "DevOpsMasters",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo2.png",
         "minSalary": "5500",
         "maxSalary": "7500",
         "jobLocation": "Shah Alam",
@@ -109,13 +109,13 @@
         "employmentType": "Full-Time",
         "skills": "DevOps, AWS, CI/CD",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 9,
         "jobTitle": "Graphic Designer",
         "companyName": "DesignWave",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo3.png",
         "minSalary": "4500",
         "maxSalary": "6500",
         "jobLocation": "Damansara",
@@ -123,13 +123,13 @@
         "employmentType": "Part-Time",
         "skills": "Graphic Design, Adobe Illustrator",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 10,
         "jobTitle": "Customer Support",
         "companyName": "SupportKings",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo1.png",
         "minSalary": "3800",
         "maxSalary": "5800",
         "jobLocation": "Puchong",
@@ -137,13 +137,13 @@
         "employmentType": "Full-Time",
         "skills": "Customer Service, Communication",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 11,
         "jobTitle": "Software Engineer",
         "companyName": "TechCorp",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo2.png",
         "minSalary": "5000",
         "maxSalary": "7000",
         "jobLocation": "Bangsar South",
@@ -151,13 +151,13 @@
         "employmentType": "Full-Time",
         "skills": "JavaScript, React, Node.js",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 12,
         "jobTitle": "Data Analyst",
         "companyName": "DataTech",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo3.png",
         "minSalary": "4500",
         "maxSalary": "6500",
         "jobLocation": "Petaling Jaya",
@@ -165,13 +165,13 @@
         "employmentType": "Contract",
         "skills": "SQL, Python, Excel",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 13,
         "jobTitle": "UX Designer",
         "companyName": "DesignHub",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo3.png",
         "minSalary": "4800",
         "maxSalary": "6800",
         "jobLocation": "Kuala Lumpur",
@@ -179,13 +179,13 @@
         "employmentType": "Part-Time",
         "skills": "UI/UX Design, Adobe XD",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 14,
         "jobTitle": "Marketing Manager",
         "companyName": "MarketKing",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo2.png",
         "minSalary": "5500",
         "maxSalary": "7500",
         "jobLocation": "Subang Jaya",
@@ -193,13 +193,13 @@
         "employmentType": "Full-Time",
         "skills": "Marketing Strategy, SEO, Analytics",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 15,
         "jobTitle": "Sales Executive",
         "companyName": "SalesGenius",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo3.png",
         "minSalary": "4000",
         "maxSalary": "6000",
         "jobLocation": "Cyberjaya",
@@ -207,13 +207,13 @@
         "employmentType": "Full-Time",
         "skills": "Sales, Communication",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 16,
         "jobTitle": "Financial Analyst",
         "companyName": "FinancePlus",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo1.png",
         "minSalary": "6000",
         "maxSalary": "8000",
         "jobLocation": "Putrajaya",
@@ -221,13 +221,13 @@
         "employmentType": "Contract",
         "skills": "Financial Analysis, Excel",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 17,
         "jobTitle": "HR Manager",
         "companyName": "PeopleFirst",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo2.png",
         "minSalary": "5000",
         "maxSalary": "7000",
         "jobLocation": "Klang",
@@ -235,13 +235,13 @@
         "employmentType": "Full-Time",
         "skills": "HR Management, Recruitment",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 18,
         "jobTitle": "DevOps Engineer",
         "companyName": "DevOpsMasters",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo3.png",
         "minSalary": "5500",
         "maxSalary": "7500",
         "jobLocation": "Shah Alam",
@@ -249,13 +249,13 @@
         "employmentType": "Full-Time",
         "skills": "DevOps, AWS, CI/CD",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 19,
         "jobTitle": "Graphic Designer",
         "companyName": "DesignWave",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo1.png",
         "minSalary": "4500",
         "maxSalary": "6500",
         "jobLocation": "Damansara",
@@ -263,13 +263,13 @@
         "employmentType": "Part-Time",
         "skills": "Graphic Design, Adobe Illustrator",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     },
     {
         "id": 20,
         "jobTitle": "Customer Support",
         "companyName": "SupportKings",
-        "companyLogo": "../images/logo1.png",
+        "companyLogo": "images/logo2.png",
         "minSalary": "3800",
         "maxSalary": "5800",
         "jobLocation": "Puchong",
@@ -277,6 +277,6 @@
         "employmentType": "Full-Time",
         "skills": "Customer Service, Communication",
         "aboutTheJob": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto esse, officia facere veniam magni pariatur ullam repudiandae culpa incidunt ipsam quibusdam amet. Maiores quaerat tempore veritatis eos explicabo quos sed.",
-        "datePosted": "20-4-2024"
+        "datePosted": "2024-04-19T12:00:00.000Z"
     }
 ]
