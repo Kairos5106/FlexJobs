@@ -111,8 +111,12 @@ header .navbar ul li:hover > ul {
 }
 
 /* Layout ========================================================================================================*/
+.top-section {
+    padding: 100px 80px 40px 80px;
+}
+
 section {
-    padding: 100px 80px 80px 80px;
+    padding: 40px 80px 40px 80px;
 }
 
 .section-description-center {
@@ -182,6 +186,7 @@ section {
     display: block;
     text-align: center;
     align-items: center;
+    margin-top: 40px;
 }
 
 footer p {
@@ -220,9 +225,11 @@ footer p {
     margin-bottom: 20px;
 }
 
+/* Content ==================================================================================================================*/
+
 
 /* Responsiveness ===================================================================================================== */
-@media (width < 980px) {
+@media (width < 1000px) {
     header {
         position: fixed;
         width: 100%;
@@ -266,8 +273,12 @@ footer p {
         transition: all 0.4s ease;
     }
 
+    .top-section {
+        padding: 100px 20px 40px 20px;
+    }
+
     section {
-        padding: 100px 20px 80px 20px;
+        padding: 40px 20px 40px 20px;
     }
 
     #menu-toggler:checked ~ .nav-links {
