@@ -111,6 +111,9 @@ document.querySelectorAll('input[name="experienceLevel"]').forEach(radio => {
 document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault();
     searchJobs();
+
+    // Save new jobs to localStorage
+    localStorage.setItem("jobs", JSON.stringify(jobs));
 })
 
 function searchJobs() {
@@ -162,3 +165,26 @@ function filterLocation() {
     console.log(filteredLocations);
     renderJobs(filteredLocations);
 }
+
+// Save newly posted jobs to localStorage of browser
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("./dummy-data/jobs.json")
+        .then(res => res.json())
+        .then(data => {
+            // Assign jobs from jobs.json
+            jobs = data;
+
+            // Load jobs from localStorage if available
+            const storedJobs = localStorage.getItem("jobs");
+            if (storedJobs) {
+                jobs = [...jobs, ...JSON.parse(storedJobs)];
+            }
+
+            console.log(jobs); // Log the merged jobs data
+            renderJobs(jobs); // Render all jobs initially
+        })
+        .catch(error => {
+            console.error("Error fetching jobs:", error);
+        });
+});
+
