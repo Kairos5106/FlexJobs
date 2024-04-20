@@ -302,3 +302,35 @@ section .card p {
         margin: 10px;
     }
 }
+
+.inbox-body {
+    background-color: #F7F2E7;
+}
+
+.h1-inbox {
+    margin: 0.5em;
+    color: #24375D;
+    font-size: 3em;
+}
+
+.container-inbox {
+    margin-top: 5em;
+    display: flex;
+
+}
+
+.column-inbox {
+    flex: 0 0 33%; /* 33% width */
+    background-color: #f0f0f0;
+}
+  
+.column-message {
+    flex: 1; /* Takes up remaining width */
+    background-color: #ccc; 
+}
+
+.line {
+    width: 1px;
+    background-color: #000; /* Line color */
+  }
+  
