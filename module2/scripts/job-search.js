@@ -66,18 +66,34 @@ function calculateDuration(datePosted) {
 function handleJobTitleInputChange(event) {
     jobTitleQuery = event.target.value;
     console.log(jobTitleQuery);
-    filterJobs();
 }
 
 function handleLocationInputChange(event) {
     locationQuery = event.target.value;
     console.log(locationQuery);
-    filterLocation();
 }
 
 // Add event listener to input fields
 document.getElementById("job-title").addEventListener("input", handleJobTitleInputChange);
 document.getElementById("job-location").addEventListener("input", handleLocationInputChange);
+
+// When user click "button" then render the filtered jobs based on user input
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    searchJobs();
+})
+
+function searchJobs() {
+    const filteredJobs = jobs.filter(job => {
+        const jobTitle = job.jobTitle.toLowerCase();
+        const location = job.jobLocation.toLowerCase();
+
+        return jobTitle.includes(jobTitleQuery.toLowerCase()) && location.includes(locationQuery.toLowerCase());
+    });
+
+    console.log(filteredJobs);
+    renderJobs(filteredJobs);
+}
 
 // Jobs list dynamic
 let jobs = [];
