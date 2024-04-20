@@ -43,6 +43,7 @@ function filterJobs() {
     });
     
     console.log(filteredJobs);
+    renderJobs(filteredJobs);
 }
 
 // Function to filter jobs based on locationQuery
@@ -53,4 +54,5 @@ function filterLocation() {
     });
     
     console.log(filteredLocations);
+    renderJobs(filteredLocations);
 }

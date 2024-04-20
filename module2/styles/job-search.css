@@ -173,9 +173,9 @@ section {
 }
 
 .btn-primary:hover {
-    background-color: rgba(31, 48, 81, 0.3);
+    background-color: #3575E2;
     border: 1px solid #1F3051;
-    color: #000;
+    color: #fff;
 }
 
 /* Footer ======================================================================================================== */
@@ -226,7 +226,72 @@ footer p {
 }
 
 /* Content ==================================================================================================================*/
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0;
+}
 
+.card {
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    background-color: #fff;
+    padding: 20px 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.card img {
+    height: 100vh / 2;
+    width: 150px;
+    padding: 10px;
+}
+
+.job-details-col {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.company-name {
+    margin-bottom: 10px;
+}
+
+.job-title {
+    margin-bottom: 10px;
+}
+
+.job-small-details {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.job-small-details-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.job-small-details-item .input-icon {
+    padding: 0;
+    font-size: 1rem;
+}
+
+.word-beside-icon {
+    padding-left: 20px;
+}
 
 /* Responsiveness ===================================================================================================== */
 @media (width < 1000px) {
@@ -290,5 +355,36 @@ footer p {
         color: #fff;
         font-size: 22px;
         cursor: pointer;
+    }
+
+    .card {
+        width: 100%;
+        text-align: center;
+        list-style: none;
+        background-color: #fff;
+        padding: 20px 15px;
+        border-radius: 15px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 20px 0;
+        height: fit-content;
+    }
+
+    .job-details-col {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .job-small-details {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
     }
 }
