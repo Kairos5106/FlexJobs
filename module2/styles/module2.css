@@ -254,7 +254,7 @@ footer p {
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 10px 0;
 }
 
@@ -263,6 +263,10 @@ footer p {
     width: 150px;
     margin: 10px;
     border: 1px solid #000;
+}
+
+.job-thumbnail-col {
+    width: 170px;
 }
 
 .job-details-col {
