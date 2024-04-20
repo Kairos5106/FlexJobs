@@ -10,8 +10,11 @@ html {
 }
 
 body {
-    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
     min-height: 100vh;
+    flex-direction: column;
 }
 
 .homepage-header-and-section {
@@ -37,6 +40,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    background: #1F3051;
 }
 
 header .logo {
@@ -313,24 +317,48 @@ section .card p {
     font-size: 3em;
 }
 
-.container-inbox {
-    margin-top: 5em;
-    display: flex;
+@media (width > 980px) {
+    .h1-inbox {
+        margin-left: 1.5em;
+    }
+}
 
+.h1-message {
+    margin: 0.5em;
+    color: #24375D;
+    font-size: 3em;
+}
+
+.container-inbox {
+    display: flex;
+    margin-top: 4.5em;
+    min-height: 80vh;
 }
 
 .column-inbox {
     flex: 0 0 33%; /* 33% width */
     background-color: #f0f0f0;
+    
 }
   
 .column-message {
     flex: 1; /* Takes up remaining width */
     background-color: #ccc; 
+    text-align: center;
 }
 
 .line {
     width: 1px;
-    background-color: #000; /* Line color */
-  }
-  
+    background-color: #000000; /* Line color */
+}
+
+.message-vector {
+    margin-top: 6em;
+    width: 75px;
+    height: 75px;
+    
+}
+
+.start-conversation {
+    margin-top: 1em;
+}
