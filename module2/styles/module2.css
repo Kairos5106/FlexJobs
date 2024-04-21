@@ -112,7 +112,8 @@ header .navbar ul li:hover > ul {
 
 /* Layout ========================================================================================================*/
 .top-section {
-    padding: 100px 80px 40px 80px;
+    padding: 40px 80px 40px 80px;
+    margin-top: 90px;
 }
 
 section {
@@ -396,6 +397,31 @@ footer p {
     border: 2px solid #dc3545;
 }
 
+/* Job Details =========================================================================================================*/
+.job-details {
+    background: #fefefe;
+    padding: 30px;
+}
+
+.apply-job-button {
+    background-color: #40e0d0;
+    border: 1px solid #40e0d0;
+    color: #000;
+    margin: 15px 0;
+}
+
+.apply-job-button:hover {
+    border: 1px solid #000;
+    background: rgba(64, 224, 208, 0.8);
+    color: #000;
+}
+
+.job-small-details-jobdetails {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
 /* Responsiveness ===================================================================================================== */
 @media (width < 1000px) {
     header {
@@ -494,5 +520,10 @@ footer p {
 
     .post-a-job-tabs {
         padding-bottom: 0;
+    }
+
+    .job-small-details-jobdetails {
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 }

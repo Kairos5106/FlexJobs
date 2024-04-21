@@ -32,6 +32,9 @@ function remove(element, tag) {
 
 tagBoxInput.addEventListener("keydown", addTag);
 
+// Initialize the jobId from localStorage or default to 21
+let jobId = parseInt(localStorage.getItem("jobId")) || 21;
+
 // Append newly posted job to jobs array
 document.getElementById("post-a-job-form").addEventListener("submit", function(e) {
     e.preventDefault(); // Prevent default form submission
@@ -50,6 +53,7 @@ document.getElementById("post-a-job-form").addEventListener("submit", function(e
 
     // Create a new job object
     const newJob = {
+        id: jobId,
         userId: userId,
         jobTitle: jobTitle,
         companyName: companyName,
@@ -77,6 +81,10 @@ document.getElementById("post-a-job-form").addEventListener("submit", function(e
     let allJobs = JSON.parse(localStorage.getItem("jobs")) || [];
     allJobs.push(newJob);
     localStorage.setItem("jobs", JSON.stringify(allJobs));
+
+    // Increment the jobId for the next job
+    jobId++;
+    localStorage.setItem("jobId", jobId.toString());  // Store the updated jobId
 
     alert("Job posted successfully!");
 

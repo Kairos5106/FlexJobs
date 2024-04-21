@@ -13,7 +13,7 @@ function renderJobs(jobsToRender) {
     sortedJobs.forEach(job => {
         const duration = calculateDuration(job.datePosted);
         const jobCard = `
-        <li class="card-custom flex">
+        <li class="card-custom flex" data-job-id="${job.id}">
             <div class="job-thumbnail-col">
                 <img src="${job.companyLogo}" alt="${job.companyName} Logo">
             </div>
@@ -43,6 +43,14 @@ function renderJobs(jobsToRender) {
         </li>`;
         
         jobsList.innerHTML += jobCard;
+    });
+
+    // Event listener for when user click on one particular job card
+    document.querySelectorAll(".card-custom").forEach(card => {
+        card.addEventListener("click", function() {
+            const jobId = this.getAttribute("data-job-id");
+            window.location.href = `job-details.html?id=${jobId}`; // Navigate to job-details.html with jobId as query parameter
+        });
     });
 
     // Update h1 based on number of jobs fetched 
@@ -195,4 +203,3 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error fetching jobs:", error);
         });
 });
-
