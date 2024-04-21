@@ -23,21 +23,26 @@ function renderJobs(jobsToRender) {
     
     sortedJobs.forEach(job => {
         const duration = calculateDuration(job.datePosted);
-        const jobCard = `
-        <tr>
+        const jobCard = document.createElement('tr');
+
+        jobCard.innerHTML = `
             <th scope="row">${job.userId}</th>
             <td>${job.jobTitle}</td>
             <td>${job.companyName}</td>
-            <td>${job.minSalary}-${job.maxSalary}</td>
+            <td>${duration}</td>
             <td class="modify-job-button">
                 <button type="button" class="normal-button edit-button" id="edit-job-button">Edit</button>
             </td>
             <td class="modify-job-button">
                 <button type="button" class="normal-button delete-button" id="delete-job-button">Delete</button>
             </td>
-        </tr>`;
-        
-        jobsList.innerHTML += jobCard;
+        `;
+
+        // Add onclick event for delete button
+        const deleteButton = jobCard.querySelector('.delete-button');
+        deleteButton.addEventListener('click', () => deleteJob(job));
+
+        jobsList.appendChild(jobCard);
     });
 }
 
@@ -61,4 +66,19 @@ function calculateDuration(datePosted) {
 }
 
 // DELETE a job from jobs array
+function deleteJob(jobToDelete) {
+    let userSpecificJobs = getUserSpecificJobs();
 
+    // Filter out the job to delete
+    userSpecificJobs = userSpecificJobs.filter(job => 
+        !(job.userId === jobToDelete.userId &&
+          job.jobTitle === jobToDelete.jobTitle &&
+          job.companyName === jobToDelete.companyName)
+    );
+    
+    // Update localStorage
+    localStorage.setItem("jobs", JSON.stringify(userSpecificJobs));
+    
+    // Re-render the jobs
+    renderJobs(userSpecificJobs);
+}
