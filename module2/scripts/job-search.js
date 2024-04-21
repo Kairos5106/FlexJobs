@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 jobs = [...newJobs, ...parsedStoredJobs];
             }
 
-            console.log(jobs); // Log the merged jobs data
+            console.log("merged jobs" + jobs); // Log the merged jobs data
             renderJobs(jobs); // Render all jobs initially
         })
         .catch(error => {

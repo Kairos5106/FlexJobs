@@ -32,7 +32,7 @@ function remove(element, tag) {
 
 tagBoxInput.addEventListener("keydown", addTag);
 
-// Append newly posted job to jobs.json
+// Append newly posted job to jobs array
 document.getElementById("post-a-job-form").addEventListener("submit", function(e) {
     e.preventDefault(); // Prevent default form submission
     
@@ -46,9 +46,11 @@ document.getElementById("post-a-job-form").addEventListener("submit", function(e
     const experienceLevel = document.getElementById("experienceLevel").value;
     const aboutTheJob = document.getElementById("aboutTheJob").value;
     const skills = tags.join(", ");
+    const userId = "admin";
 
     // Create a new job object
     const newJob = {
+        userId: userId,
         jobTitle: jobTitle,
         companyName: companyName,
         minSalary: minSalary,
@@ -64,22 +66,33 @@ document.getElementById("post-a-job-form").addEventListener("submit", function(e
     const currentDate = new Date().toISOString();
     newJob.datePosted = currentDate;
 
-    // Retrieve existing jobs from localStorage
-    let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
-
-    // Add the new job to the existing jobs array
-    jobs.push(newJob);
+    // Store user-specific posted-jobs in a separate array
+    let userJobs = JSON.parse(localStorage.getItem("userJobs")) || [];
+    userJobs.push(newJob);
 
     // Store the updated jobs array back to localStorage
-    localStorage.setItem("jobs", JSON.stringify(jobs));
+    localStorage.setItem("userJobs", JSON.stringify(userJobs));
+
+    // Merge userJobs with main jobs list
+    let allJobs = JSON.parse(localStorage.getItem("jobs")) || [];
+    allJobs.push(newJob);
+    localStorage.setItem("jobs", JSON.stringify(allJobs));
 
     alert("Job posted successfully!");
 
-    // Optionally, reset the form and tags array
+    // Reset the form and tags array
     document.getElementById("post-a-job-form").reset();
     tags = [];
     tagList.innerHTML = ""; // Clear the tag list
 
 });
 
-
+// Store jobs posted by a specific user in another array
+function getUserJobs(userId) {
+    const storedJobs = localStorage.getItem("jobs");
+    if(storedJobs) {
+        const parsedJobs = JSON.parse(storedJobs);
+        return parsedJobs.filter(job => job.userId === userId);
+    }
+    return [];
+}
