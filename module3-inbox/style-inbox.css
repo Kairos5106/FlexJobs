@@ -221,8 +221,7 @@ header .navbar ul li:hover > ul {
 
 .column-inbox {
     flex: 0 0 33%; /* 33% width */
-    background-color: #f0f0f0;
-    
+    background-color: #F7F2E7;
 }
   
 .column-message {
@@ -236,6 +235,11 @@ header .navbar ul li:hover > ul {
     background-color: #000000; /* Line color */
 }
 
+.line-inbox {
+    width: 1px;
+    background-color: #000000; /* Line color */
+}
+
 .message-vector {
     margin-top: 6em;
     width: 75px;
@@ -245,4 +249,41 @@ header .navbar ul li:hover > ul {
 
 .start-conversation {
     margin-top: 1em;
+}
+
+.table-inbox {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders into a single border */
+}
+  
+.table-inbox td {
+    border-top: 1px solid #ccc; /* Add a 1px solid border to each table cell */
+    padding: 8px; /* Add some padding for better readability */
+    border-bottom: 1px solid transparent;
+}
+
+.timestamp td:first-child {
+    padding-right: 5em;
+    
+}
+
+.timestamp td {
+    border-bottom: 1px solid #ccc;
+}
+
+td:first-child {
+    padding-left: 10%;
+    border-right: 1px solid transparent; /* Add a border to separate the first and second columns in timestamp rows */
+}
+
+tr {
+    line-height: 2em;
+}
+
+.table-inbox td:first-child {
+    width: 70%; /* Adjust the percentage as needed */
+}
+
+tr:hover {
+    background-color: #F9E0AB;
 }
