@@ -1,10 +1,11 @@
-// Call getUserSpecificJobs and renderJobs when the page loads
+// When the page loads, fetch data from localStorage and render it
 document.addEventListener("DOMContentLoaded", () => {
     const userSpecificJobs = getUserSpecificJobs();
     console.log(userSpecificJobs);
     renderJobs(userSpecificJobs);
 });
 
+// Fetch data from localStorage
 function getUserSpecificJobs() {
     const storedUserJobs = localStorage.getItem("jobs");
     if (storedUserJobs) {
@@ -13,7 +14,7 @@ function getUserSpecificJobs() {
     return [];
 }
 
-// Render jobs
+// Using the fetch job data, render the jobs
 function renderJobs(jobsToRender) {
     const jobsList = document.getElementById("user-jobs-list");
     jobsList.innerHTML = ""; // Clear existing jobs
@@ -26,7 +27,7 @@ function renderJobs(jobsToRender) {
         const jobCard = document.createElement('tr');
 
         jobCard.innerHTML = `
-            <th scope="row">${job.userId}</th>
+            <td>${job.userId}</td>
             <td>${job.jobTitle}</td>
             <td>${job.companyName}</td>
             <td>${duration}</td>
@@ -38,7 +39,7 @@ function renderJobs(jobsToRender) {
             </td>
         `;
 
-        // Add onclick event for delete button
+        // Add onclick listener for delete button
         const deleteButton = jobCard.querySelector('.delete-button');
         deleteButton.addEventListener('click', () => deleteJob(job));
 
@@ -69,7 +70,7 @@ function calculateDuration(datePosted) {
 function deleteJob(jobToDelete) {
     let userSpecificJobs = getUserSpecificJobs();
 
-    // Filter out the job to delete
+    // Update the array of jobs, to exclude the job that user chose to delete
     userSpecificJobs = userSpecificJobs.filter(job => 
         !(job.userId === jobToDelete.userId &&
           job.jobTitle === jobToDelete.jobTitle &&
