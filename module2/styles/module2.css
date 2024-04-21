@@ -400,7 +400,10 @@ footer p {
 /* Job Details =========================================================================================================*/
 .job-details {
     background: #fefefe;
+    border-radius: 20px;
     padding: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
 }
 
 .apply-job-button {
@@ -419,6 +422,51 @@ footer p {
 .job-small-details-jobdetails {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.back-link-section {
+    padding: 40px 80px 0 80px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #000;
+}
+
+.back-link:hover {
+    color: #3575E2;
+    text-decoration: underline;
+}
+
+.about-company-panel {
+    background: #fefefe;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.read-more {
+    margin: 15px 0;
+    margin-top: 30px;
+}
+
+.read-more a {
+    padding: 15px;
+    background-color: #dfdfdf;
+    border-radius: 15px;
+}
+
+.about-company-content img {
+    height: 150px;
+    width: 150px;
+    margin: 15px 0;
+    border: 1px solid #000;
+}
+
+.job-details-section .row {
+    margin: 0;
+    justify-content: space-between;
 }
 
 
@@ -525,5 +573,17 @@ footer p {
     .job-small-details-jobdetails {
         margin-top: 30px;
         margin-bottom: 30px;
+    }
+
+    .back-link-section {
+        padding: 40px 20px 0 20px;
+    }
+
+    .about-company-panel {
+        background: #fefefe;
+        border-radius: 20px;
+        padding: 30px;
+        margin-top: 20px;
+        margin-left: 0;
     }
 }
