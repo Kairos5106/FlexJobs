@@ -10,10 +10,9 @@
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+    <script type="text/javascript" src="script.js"></script>
 </head>
 
 <body class="inbox-body">
@@ -84,6 +83,13 @@
                         </td>
                         <td class="timestamp">Timestamp</td>
                     </tr>
+                    <tr>
+                        <td>
+                            <p class="name">Name</p>
+                            <p class="message">Message</p>
+                        </td>
+                        <td class="timestamp">Timestamp</td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -91,11 +97,14 @@
         <div class="line"></div>
 
         <div class="column-message">
-            <img class="message-vector" src="images-inbox/message-vector.png" alt="Message vector" />
-            <p class="start-conversation">Start a conversation with employers or users</p>
+            <div class="default-display" id="default-display">
+                <img class="message-vector" src="images-inbox/message-vector.png" alt="Message vector" />
+                <p class="start-conversation">Start a conversation with employers or users</p>
 
-            <div class="message-input">
-                <textarea class="message-input" placeholder="Type your message here"></textarea>
+            </div>
+            
+            <div class="message-box" id="message-box">
+                <textarea class="message-input" placeholder="Type your message"></textarea>
                 <img class="send-vector" src="images-inbox/send-vector.png" alt="Send" />
             </div>
         </div>

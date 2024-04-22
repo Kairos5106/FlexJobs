@@ -217,12 +217,13 @@ header .navbar ul li:hover > ul {
     display: flex;
     flex-direction: row;
     margin-top: 4.5em;
-    min-height: 80vh;
+    max-height: 85vh;
 }
 
 .column-inbox {
     flex: 0 0 33%; /* 33% width */
     background-color: #F7F2E7;
+    overflow-y: auto;
 }
   
 .column-message {
@@ -306,24 +307,32 @@ tr:hover {
     padding-top: 0.5em;
 }
 
-.message-input {
-    display: flex;
+.message-box {
     margin: 0.5em;
-    min-width: 20em;
+    min-width: 85%;
     text-align: left;
+    display: none;  /* make message input and send vector disappear initially*/
+}
+
+.message-input {
+    min-width: 85%;
     resize: none;
     border-radius: 8px;
 }
 
 textarea {
     padding: 0.5em;
-    width: 70%;
-    
 }
 
 .send-vector {
-    margin-top: 1em;
+    margin-top: 0.7em;
+    margin-left: 0.5em;
     width: 2em;
     height: 2em;
     vertical-align: top;
+    cursor: pointer;
 }
+
+.selected-inbox {
+    background-color: #F9E0AB;
+  }
