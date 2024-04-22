@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Fetch data from localStorage
 function getUserSpecificJobs() {
-    const storedUserJobs = localStorage.getItem("jobs");
+    const storedUserJobs = localStorage.getItem("userJobs");
     if (storedUserJobs) {
         return JSON.parse(storedUserJobs);
     }
@@ -78,7 +78,7 @@ function deleteJob(jobToDelete) {
     );
     
     // Update localStorage
-    localStorage.setItem("jobs", JSON.stringify(userSpecificJobs));
+    localStorage.setItem("userJobs", JSON.stringify(userSpecificJobs));
     
     // Re-render the jobs
     renderJobs(userSpecificJobs);
