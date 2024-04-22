@@ -21,4 +21,30 @@ document.addEventListener('DOMContentLoaded', function () {
             
         });
     });
+
+
+    var messageInput = document.getElementById("message-input");
+    var sendIcon = document.getElementById("send-vector");
+
+    messageInput.addEventListener("input", function() {
+        if (messageInput.value.trim() !== "") {
+            sendIcon.style.display = "inline-block"; // Show the send icon
+        } else {
+            sendIcon.style.display = "none"; // Hide the send icon
+        }
+    });
+
+
+    var imageContainer = document.getElementById("image-container");
+    var inboxTable = document.getElementById("inbox-table");
+
+    inboxTable.addEventListener("click", function(event) {
+        var target = event.target.closest("tr");
+        if (target) {
+            var imageUrl = target.getAttribute("data-image");
+            if (imageUrl) {
+                imageContainer.src = imageUrl;
+            }
+        }
+    });
 });

@@ -229,7 +229,7 @@ header .navbar ul li:hover > ul {
 .column-message {
     display: flex;
     flex: 1; /* Takes up remaining width */
-    background-color: #ccc; 
+    background-color: #F7F2E7; 
     text-align: center;
     box-sizing: border-box;
     justify-content: center;
@@ -338,8 +338,17 @@ textarea {
     height: 2em;
     vertical-align: top;
     cursor: pointer;
+    display: none;
 }
 
 .selected-inbox {
     background-color: #F9E0AB;
+}
+
+.image-container {
+    display: absolute;
+    margin-left: 50%;
+    margin-top: 30%;
+    width: 250px;
+    height: 100px;
 }

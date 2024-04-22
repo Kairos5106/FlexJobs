@@ -59,7 +59,7 @@
             <h1 class="h1-inbox">Chats</h1>
             <div class="row-inbox">
                 <table class="table-inbox" id="inbox-table">
-                    <tr>
+                    <tr  class="selected-inbox">
                         <td>
                             <p class="name">Mr Ahmad</p>
                             <p class="message">Hey there! I am...</p>
@@ -103,14 +103,14 @@
 
         <div class="column-message">
             <div class="default-display" id="default-display">
-                <img class="message-vector" src="images-inbox/message-vector.png" alt="Message vector" />
-                <p class="start-conversation">Start a conversation with employers or users</p>
-
+                <!-- <img class="message-vector" src="images-inbox/message-vector.png" alt="Message vector" />
+                <p class="start-conversation">Start a conversation with employers or users</p> -->
             </div>
+            <img class="image-container" src="images-inbox\msg1.png" alt="Message container"/>
             
             <div class="message-box" id="message-box">
-                <textarea class="message-input" placeholder="Type your message"></textarea>
-                <img class="send-vector" src="images-inbox/send-vector.png" alt="Send" />
+                <textarea class="message-input" id="message-input" placeholder="Type your message"></textarea>
+                <img class="send-vector" id="send-vector" src="images-inbox/send-vector.png" alt="Send" />
             </div>
         </div>
 
