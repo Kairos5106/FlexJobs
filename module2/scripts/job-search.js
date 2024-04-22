@@ -27,7 +27,7 @@ function renderJobs(jobsToRender) {
                     </div>
                     <div class="job-small-details-item type">
                         <span class="input-icon"><i class="fa-solid fa-briefcase"></i></span>
-                        <span class="word-beside-icon">${job.employmentType}</span>
+                        <span class="word-beside-icon">${job.experienceLevel}</span>
                     </div>
                     <div class="job-small-details-item salary">
                         <span class="input-icon"><i class="fa-solid fa-dollar-sign"></i></span>

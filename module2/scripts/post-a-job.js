@@ -45,7 +45,6 @@ document.getElementById("post-a-job-form").addEventListener("submit", function(e
     const minSalary = document.getElementById("minimumSalary").value;
     const maxSalary = document.getElementById("maximumSalary").value;
     const jobLocation = document.getElementById("jobLocation").value;
-    const employmentType = document.getElementById("employmentType").value;
     const experienceLevel = document.getElementById("experienceLevel").value;
     const aboutTheJob = document.getElementById("aboutTheJob").value;
     const skills = tags.join(", ");
@@ -60,7 +59,6 @@ document.getElementById("post-a-job-form").addEventListener("submit", function(e
         minSalary: minSalary,
         maxSalary: maxSalary,
         jobLocation: jobLocation,
-        employmentType: employmentType,
         experienceLevel: experienceLevel,
         aboutTheJob: aboutTheJob,
         skills: skills

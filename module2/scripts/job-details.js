@@ -10,7 +10,7 @@ fetch(`./dummy-data/jobs.json`)
             document.getElementById("job-title").textContent = job.jobTitle;
             document.getElementById("company-name").textContent = job.companyName;
             document.getElementById("job-location").textContent = job.jobLocation;
-            document.getElementById("job-type").textContent = job.employmentType;
+            document.getElementById("job-type").textContent = job.experienceLevel;
             document.getElementById("job-salary").textContent = job.minSalary;
             document.getElementById("about-the-job").textContent = job.aboutTheJob;
 
