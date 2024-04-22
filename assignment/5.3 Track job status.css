@@ -1,0 +1,158 @@
+/* Base header, section, footer ================================================================================================= */
+.header-scrolled {
+    background: #1F3051;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: #1F3051;
+}
+
+header .logo {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+header .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
+}
+
+header .navbar ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+header .navbar ul li {
+    position: relative;
+    float: left;
+    margin-right: 10px;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    display: block;
+}
+
+header ul li i {
+    padding-left: 7px;
+}
+
+header .navbar ul li a:hover,
+header .navbar ul li a.active {
+    background: #fff;
+    color: #1F3051;
+    border-radius: 20px;
+}
+
+header .navbar ul li ul {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background: #1F3051;
+    display: none;
+}
+
+header .navbar ul li ul li {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+header .navbar ul li ul li a {
+    padding: 15px;
+}
+
+header .navbar ul li:hover > ul {
+    display: initial;
+}
+
+
+/* Menu toggler */
+#menu-toggler,
+#hamburger-button {
+    display: none;
+}
+
+.footer {
+    background: #1F3051; 
+    padding: 20px 0; 
+    color: #fff;
+    display: block;
+    text-align: center;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%; 
+}
+
+
+footer p {
+    margin-bottom: 0;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #fff;
+}
+body {
+    background-color: #F7F2E7; 
+    margin-top: 40;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    font-family: 'Poppins', sans-serif;
+}
+.container {
+    background-color: #FFF;
+    padding: 30px;
+    border-radius: 20px; 
+    margin: 20px 0; 
+    width: 800px; 
+    display: flex; 
+    align-items: center;      
+}
+.description {
+    font-size: 16px; 
+    font-weight: bold; 
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight:bold;
+}
+
+h1 {
+    color: #333;
+}
+
+.details p {
+    margin: 5px 0; 
+}
+
+
+.accepted {
+    color: green;
+}
+
+.rejected {
+    color: red;
+}
