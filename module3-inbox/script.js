@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Add the 'selected' class to the clicked row
             row.classList.add('selected-inbox');
-
+            
         });
     });
 });

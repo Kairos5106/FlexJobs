@@ -1,8 +1,10 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    color: #fff;
 }
 
 html {
@@ -189,157 +191,104 @@ header .navbar ul li:hover > ul {
     }
 }
 
-
-/* Inbox module 3 styles */
-.inbox-body {
-    background-color: #F7F2E7;
-}
-
-.h1-inbox {
-    margin: 0.5em;
-    color: #24375D;
-    font-size: 3em;
-}
-
-@media (width > 980px) {
-    .h1-inbox {
-        margin-left: 1.5em;
-    }
-}
-
-.h1-message {
-    margin: 0.5em;
-    color: #24375D;
-    font-size: 3em;
-}
-
-.container-inbox {
-    display: flex;
-    flex-direction: row;
-    margin-top: 4.5em;
-    max-height: 85vh;
-}
-
-.column-inbox {
-    flex: 0 0 33%; /* 33% width */
-    background-color: #F7F2E7;
-    overflow-y: auto;
-}
-  
-.column-message {
-    display: flex;
-    flex: 1; /* Takes up remaining width */
-    background-color: #ccc; 
-    text-align: center;
-    box-sizing: border-box;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.line {
-    width: 1px;
-    background-color: #000000; /* Line color */
-}
-
-.line-inbox {
-    width: 1px;
-    background-color: #000000; /* Line color */
-}
-
-.message-vector {
-    width: 75px;
-    height: 75px;
-}
-
-.start-conversation {
-    margin-top: 1em;
-}
-
-.table-inbox {
-    width: 100%;
-    border-collapse: collapse; /* Collapse borders into a single border */
-}
-  
-.table-inbox td {
-    border: 1px solid #ccc; /* Add a 1px solid border to each table cell */
-    padding: 8px; /* Add some padding for better readability */
-    border-right: 1px solid transparent;
-    border-left: 1px solid transparent;
-    min-width: 8em;
-}
-
-.name {
-    font-weight: 500;
-}
-
-.message {
-    font-weight: 300;
-    font-size: small;
-    padding-top: 0.5em;
-}
-
-.timestamp {
-    vertical-align: text-top;
-    border-bottom: 1px solid #ccc;
-    font-weight: 300;
-    font-size: small;
-}
-
-td:first-child {
-    padding-left: 10%;
-    border-right: 1px solid transparent; /* Add a border to separate the first and second columns in timestamp rows */
-}
-
-tr {
-    line-height: 2em;
-}
-
-.table-inbox td:first-child {
-    width: 70%; /* Adjust the percentage as needed */
-}
-
-tr:hover {
-    background-color: #F9E0AB;
-    cursor: pointer;
-}
-
-.message-box {
-    margin-left: 33.1%;
-    margin-bottom: 1.1em;
-    min-width: 55%;
-    text-align: left;
-    display: y;  /* make message input and send vector disappear initially*/
-
+section {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 66.9%;
-    padding: 10px;
-    border-top: 1px solid #000000;
-    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    background: url(images-inbox/bg-feedback.png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px) brightness(60%);
 }
 
-.message-input {
-    margin-left: 5%;
-    min-width: 80%;
-    resize: none;
-    border-radius: 8px;
+body {
+    display: flex;
+    margin-top: 5em;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 
-textarea {
-    padding: 0.5em;
+.container {
+    width: 360px;
+    background: #000;
+    box-shadow: 0 00 8px rgba(250, 250, 250, 0.6);
+    opacity: 0.8;
+    border-radius: 15px;
 }
 
-.send-vector {
-    margin-top: 0.7em;
-    margin-left: 0.5em;
-    width: 2em;
-    height: 2em;
-    vertical-align: top;
+.container form {
+    width: 100%;
+    text-align: center;
+    padding: 25px 20px;
+}
+
+form h1 {
+    padding: 10px 0;
+}
+
+form .id {
+    position: relative;
+}
+
+.id i {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+form input {
+    width: 100%;
+    height: 50px;
+    margin: 4px 0;
+    border: 1px solid #5C5C5C;
+    border-radius: 3px;
+    background-color: #181717;
+    padding: 0 15px;
+    padding-right: 45px;
+    font-size: 20px;
+}
+
+form textarea {
+    padding: 5px 15px;
+    border: 1px solid #5C5C5C;
+    border-radius: 3px;
+    background: #181717;
+    font-size: 20px;
+    width: 100%;
+    margin: 4px 0;
+}
+
+form button {
+    margin-top: 5px;
+    border: none;
+    background: #06FED0;
+    color: #222;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
     cursor: pointer;
+    border-radius: 3px;
 }
 
-.selected-inbox {
-    background-color: #F9E0AB;
+form input:focus,
+form textarea:focus {
+    border: 1px solid #06FED0;
+    color: #06FED0;
+    transition: all 0.3s ease;
+}
+
+form input:focus::placeholder,
+form textarea:focus::placeholder {
+    padding-left: 4px;
+    color: #06FED0;
+    transition: all 0.3s ease;
+}
+
+form input:focus + i {
+    color: #06FED0;
+    transition: all 0.3s ease;
 }
