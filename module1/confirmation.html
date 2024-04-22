@@ -44,37 +44,21 @@
                 <!-- Navigation links -->
                 <ul class="nav-links">
                     <li>
-                        <a href="./signup.html" role="button"><i class="bi bi-plus-square-fill me-1" style="margin-right: 5px;"></i> Sign up</a>
+                      <a href="./login.html" role="button"><i class="bi bi-door-open-fill"></i> Log in</a>
                     </li>
                 </ul>
             </nav>
         </header>
     
         <div id="landing-page">
-          <!-- Login form -->
-          <div class="container bg-light text-md-left p-4 my-5 rounded-3 col-lg-6">
-            <h1 class="display-5 fw-bold text-center">Welcome back!</h1>
-            <form action="">
-              <div class="container mt-4">
-                <div class="form-group">
-                  <label for="email"><b>Email</b></label>
-                  <input type="email" id="email" class="form-control" placeholder="Your Email" name="email" required>
-                </div>
-                <div class="form-group">
-                  <label for="password"><b>Password</b></label>
-                  <input type="password" id="password" class="form-control" placeholder="Your Password" name="password" required>
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" id="rememberStatus" class="form-check-input" name="rememberStatus">
-                  <label class="form-check-label" for="rememberStatus">Remember Me</label>
-                </div>
-                <button type="submit" class="mt-4 btn btn-primary">Log in</button>
-              </div>
-            </form>    
-            <div class="text-center mt-3">
-              <a href="./forgot.html">Forgot password?</a>  
+        <!-- Signup form -->
+        <div class="container bg-light text-md-left p-4 my-5 rounded-3 col-lg-6">
+          <h1 class="display-5 fw-bold text-center">A confirmation email has been sent to user@email.com</h1>
+          <p class="text-center">Check user@email.com to validate your registered account</p>
+          <form action="signup.php" method="post">
+              <button type="submit" class="mt-2 btn-primary">Go to login page</button>
             </div>
-          </div>
+          </form>      
         </div>
     </div>
 
