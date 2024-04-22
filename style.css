@@ -15,7 +15,7 @@ body {
 }
 
 .homepage-header-and-section {
-    background: url(images/background.png);
+    background: url(images/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -117,7 +117,7 @@ header .navbar ul li:hover > ul {
     position: absolute;
     color: #fff;
     white-space: nowrap;
-    font-size: 7vw;
+    font-size: 5vw;
     z-index: 9;
     transition: 1s;
 }
@@ -193,7 +193,7 @@ section .cards {
 }
 
 section .card {
-    width: calc(100% / 3 - 30px);
+    width: calc(100% / 4 - 30px);
     text-align: center;
     list-style: none;
     background-color: #fff;
@@ -215,9 +215,40 @@ section .card img {
     background-color: #edebe8;
 }
 
+section .card h2 {
+    margin-top: 5px;
+    flex-grow: 1;
+    color: #06FED0;
+}
+
 section .card p {
     margin-top: 5px;
     flex-grow: 1;
+    color: white;
+}
+
+#feature-jobs {
+    background-image: url(./images/feature-jobs.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+#feature-forum {
+    background-image: url(./images/feature-forum.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+#feature-inbox {
+    background-image: url(./images/feature-inbox.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+#feature-profiling {
+    background-image: url(./images/feature-profiling.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 /* Footer */
@@ -233,6 +264,14 @@ section .card p {
 .footer a {
     text-decoration: none;
     color: #fff;
+}
+
+.border iframe {
+    display: block;
+}
+
+.bg-dark{
+    background: #1F3051;
 }
 
 /* Menu toggler */
