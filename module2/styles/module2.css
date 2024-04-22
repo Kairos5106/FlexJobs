@@ -171,6 +171,7 @@ section {
 .btn-primary {
     background-color: #1F3051;
     padding: 10px 15px;
+    border: 1px solid #1F3051;
 }
 
 .btn-primary:hover {
@@ -202,6 +203,7 @@ footer p {
 /* Input field ========================================================================================================= */
 .input-field {
     padding: 10px 15px 10px 50px;
+    border-radius: 0%;
 }
 
 .input-icon {
@@ -217,7 +219,7 @@ footer p {
 }
 
 .blue-text {
-    color: #3575E2;
+    color: #3066be;
 }
 
 .banner-input {
@@ -442,7 +444,7 @@ footer p {
     background: #fefefe;
     border-radius: 20px;
     padding: 30px;
-    margin: 0;
+    margin: 0 0 0 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -453,7 +455,7 @@ footer p {
 
 .read-more a {
     padding: 15px;
-    background-color: #dfdfdf;
+    background-color: #f5f5f5;
     border-radius: 15px;
 }
 

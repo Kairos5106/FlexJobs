@@ -12,8 +12,11 @@ fetch(`./dummy-data/jobs.json`)
             document.getElementById("job-location").textContent = job.jobLocation;
             document.getElementById("job-type").textContent = job.employmentType;
             document.getElementById("job-salary").textContent = job.minSalary;
-            document.getElementById("date-posted").textContent = job.datePosted;
             document.getElementById("about-the-job").textContent = job.aboutTheJob;
+
+            // Calculate job posting duration
+            const duration = calculateDuration(job.datePosted);
+            document.getElementById("date-posted").textContent = `Posted ${duration} ago`;
 
             // Set company logo
             const companyLogo = document.getElementById("companyLogo");
@@ -24,3 +27,22 @@ fetch(`./dummy-data/jobs.json`)
     .catch(error => {
         console.error("Error fetching job details:", error);
     });
+
+// Calculate duration since date posted of a job
+function calculateDuration(datePosted) {
+    const currentDate = new Date();
+    const postedDate = new Date(datePosted);
+
+    const timeDifference = currentDate.getTime() - postedDate.getTime();
+
+    // Convert time difference to days
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    if (daysDifference === 0) {
+        return 'Today';
+    } else if (daysDifference === 1) {
+        return '1 day';
+    } else {
+        return `${daysDifference} days`;
+    }
+}
