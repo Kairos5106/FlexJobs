@@ -215,6 +215,7 @@ header .navbar ul li:hover > ul {
 
 .container-inbox {
     display: flex;
+    flex-direction: row;
     margin-top: 4.5em;
     min-height: 80vh;
 }
@@ -225,9 +226,14 @@ header .navbar ul li:hover > ul {
 }
   
 .column-message {
+    display: flex;
     flex: 1; /* Takes up remaining width */
     background-color: #ccc; 
     text-align: center;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .line {
@@ -241,10 +247,8 @@ header .navbar ul li:hover > ul {
 }
 
 .message-vector {
-    margin-top: 6em;
     width: 75px;
     height: 75px;
-    
 }
 
 .start-conversation {
@@ -257,18 +261,27 @@ header .navbar ul li:hover > ul {
 }
   
 .table-inbox td {
-    border-top: 1px solid #ccc; /* Add a 1px solid border to each table cell */
+    border: 1px solid #ccc; /* Add a 1px solid border to each table cell */
     padding: 8px; /* Add some padding for better readability */
-    border-bottom: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
+    min-width: 8em;
 }
 
-.timestamp td:first-child {
-    padding-right: 5em;
-    
+.name {
+    font-weight: 500;
 }
 
-.timestamp td {
+.message {
+    font-weight: 300;
+    font-size: small;
+}
+
+.timestamp {
+    vertical-align: text-top;
     border-bottom: 1px solid #ccc;
+    font-weight: 300;
+    font-size: small;
 }
 
 td:first-child {
@@ -286,4 +299,31 @@ tr {
 
 tr:hover {
     background-color: #F9E0AB;
+    cursor: pointer;
+}
+
+.message {
+    padding-top: 0.5em;
+}
+
+.message-input {
+    display: flex;
+    margin: 0.5em;
+    min-width: 20em;
+    text-align: left;
+    resize: none;
+    border-radius: 8px;
+}
+
+textarea {
+    padding: 0.5em;
+    width: 70%;
+    
+}
+
+.send-vector {
+    margin-top: 1em;
+    width: 2em;
+    height: 2em;
+    vertical-align: top;
 }
