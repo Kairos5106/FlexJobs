@@ -200,6 +200,10 @@ footer p {
     color: #fff;
 }
 
+.border iframe {
+    display: block;
+}
+
 /* Input field ========================================================================================================= */
 .input-field {
     padding: 10px 15px 10px 50px;
