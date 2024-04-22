@@ -235,6 +235,10 @@ section .card p {
     color: #fff;
 }
 
+.border iframe {
+    display: block;
+}
+
 /* Menu toggler */
 #menu-toggler,
 #hamburger-button {
