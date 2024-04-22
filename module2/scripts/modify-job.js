@@ -1,6 +1,7 @@
 // When the page loads, fetch data from localStorage and render it
 document.addEventListener("DOMContentLoaded", () => {
     const userSpecificJobs = getUserSpecificJobs();
+    console.log("User specific jobs: ")
     console.log(userSpecificJobs);
     renderJobs(userSpecificJobs);
 });

@@ -77,10 +77,10 @@ document.getElementById("post-a-job-form").addEventListener("submit", function(e
     // Store the updated jobs array back to localStorage
     localStorage.setItem("userJobs", JSON.stringify(userJobs));
 
-    // Merge userJobs with main jobs list
+    /*// Merge userJobs with main jobs list
     let allJobs = JSON.parse(localStorage.getItem("jobs")) || [];
     allJobs.push(newJob);
-    localStorage.setItem("jobs", JSON.stringify(allJobs));
+    localStorage.setItem("jobs", JSON.stringify(allJobs));*/
 
     // Increment the jobId for the next job
     jobId++;
@@ -94,13 +94,3 @@ document.getElementById("post-a-job-form").addEventListener("submit", function(e
     tagList.innerHTML = ""; // Clear the tag list
 
 });
-
-// Store jobs posted by a specific user in another array
-function getUserJobs(userId) {
-    const storedJobs = localStorage.getItem("jobs");
-    if(storedJobs) {
-        const parsedJobs = JSON.parse(storedJobs);
-        return parsedJobs.filter(job => job.userId === userId);
-    }
-    return [];
-}

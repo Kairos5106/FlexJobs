@@ -181,23 +181,19 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             // Assign jobs from jobs.json
             jobs = data;
+            console.log("JSON file jobs data: ")
+            console.log(jobs);
 
-            // Load jobs from localStorage if available
-            const storedJobs = localStorage.getItem("jobs");
-            if (storedJobs) {
-                const parsedStoredJobs = JSON.parse(storedJobs);
-                
-                // Filter out jobs that are already in the localStorage
-                const newJobs = jobs.filter(job => {
-                    return !parsedStoredJobs.some(storedJob => storedJob.jobTitle === job.jobTitle && storedJob.companyName === job.companyName);
-                });
-
-                // Merge new jobs with stored jobs
-                jobs = [...newJobs, ...parsedStoredJobs];
-            }
-
-            console.log("merged jobs" + jobs); // Log the merged jobs data
-            renderJobs(jobs); // Render all jobs initially
+            // Fetch user-specific jobs from localStorage
+            const storedUserJobs = JSON.parse(localStorage.getItem("userJobs")) || [];
+            
+            // Combine jobs and userJobs arrays
+            const allJobs = [...jobs, ...storedUserJobs];
+            
+            console.log("Merged jobs: ");
+            console.log(allJobs); // Log the merged jobs data
+            
+            renderJobs(allJobs); // Render all jobs
         })
         .catch(error => {
             console.error("Error fetching jobs:", error);
