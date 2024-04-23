@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var imageContainer = document.getElementById("image-container");
     var inboxTable = document.getElementById("inbox-table");
+    var width = 300;
+    var height = 150;
 
     inboxTable.addEventListener("click", function(event) {
         var target = event.target.closest("tr");
@@ -44,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
             var imageUrl = target.getAttribute("data-image");
             if (imageUrl) {
                 imageContainer.src = imageUrl;
+                imageContainer.style.width = width + "px";
+                imageContainer.style.height = height + "px";
             }
         }
     });
