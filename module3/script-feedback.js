@@ -10,4 +10,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         event.preventDefault(); // Prevent default form submission
     });
+
+    document.querySelectorAll('.star').forEach(function(star) {
+        star.addEventListener('click', function() {
+            const value = parseInt(star.getAttribute('data-value'));
+            document.querySelectorAll('.star').forEach(function(s, index) {
+                if (index < value) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+    });
 });
