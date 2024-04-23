@@ -1,5 +1,7 @@
 * {
-   
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -11,11 +13,13 @@
 
 }
 
-body{
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0%;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
 }
 
 
@@ -30,17 +34,16 @@ header {
     left: 0;
     right: 0;
     width: 100%;
-    background-color: #24375D;
+    padding: 20px 80px;
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
+    justify-content: space-between;
+    align-items: center;
     z-index: 1000;
+    background: #1F3051;
 }
 
-
 header .logo {
-    color: #06FED0;
-    padding-left: 2%;
+    color: #fff;
     font-weight: 700;
     text-decoration: none;
     font-size: 2em;
@@ -50,7 +53,7 @@ header .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100 
+    z-index: 100; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
 }
 
 header .navbar ul {
@@ -102,12 +105,36 @@ header .navbar ul li:hover > ul {
     display: initial;
 }
 
+/* Footer */
+.footer {
+    background: #1F3051;
+    padding: 20px 80px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    align-items: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.border iframe {
+    display: block;
+}
+
+.bg-dark{
+    background: #1F3051;
+}
+
 /* Menu toggler */
 #menu-toggler,
 #hamburger-button {
     display: none;
 }
 
+/* Responsiveness */
 @media (width < 980px) {
     header {
         position: fixed;
@@ -168,7 +195,6 @@ header .navbar ul li:hover > ul {
         margin: 10px;
     }
 }
-
 
 
 /* Forum Main Page*/
@@ -612,19 +638,4 @@ a.add-post-button{
     padding: 1% 1%;
     border-radius: 15px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Footer */
-.footer {
-    background: #1F3051;
-    padding: 20px 80px;
-    color: #fff;
-    display: block;
-    text-align: center;
-    align-items: center;
-}
-
-.footer a {
-    text-decoration: none;
-    color: #fff;
 }
