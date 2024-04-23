@@ -1,0 +1,239 @@
+/* Base header, section, footer ================================================================================================= */
+.header-scrolled {
+    background: #1F3051;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: #1F3051;
+}
+
+header .logo {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+header .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
+}
+
+header .navbar ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+header .navbar ul li {
+    position: relative;
+    float: left;
+    margin-right: 10px;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    display: block;
+}
+
+header ul li i {
+    padding-left: 7px;
+}
+
+header .navbar ul li a:hover,
+header .navbar ul li a.active {
+    background: #fff;
+    color: #1F3051;
+    border-radius: 20px;
+}
+
+header .navbar ul li ul {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background: #1F3051;
+    display: none;
+}
+
+header .navbar ul li ul li {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+header .navbar ul li ul li a {
+    padding: 15px;
+}
+
+header .navbar ul li:hover > ul {
+    display: initial;
+}
+
+/* Menu toggler */
+#menu-toggler,
+#hamburger-button {
+    display: none;
+}
+
+/* Footer ======================================================================================================== */
+
+.footer {
+    background: #1F3051;
+    color: #fff;
+    display: block;
+    text-align: center;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%; 
+}
+
+
+footer p {
+    margin-bottom: 0;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+body {
+    background-color:  #F7F2E7; 
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    font-family: 'Poppins', sans-serif; 
+}
+.container {
+    background-color: #FFF;
+    padding: 40px;
+    border-radius: 20px;
+    margin: 20px 0; 
+    width: 800px; 
+    height: auto;
+    display: flex; 
+    margin-top: 20px; 
+    flex-direction: column; 
+    gap: 10px; 
+    
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Round shape */
+    overflow: hidden; /* Hide overflow content */
+    margin-right: 20px;
+    position: relative; /* Add relative positioning */
+    
+}
+
+.profile-picture img {
+    position: absolute; /* Add absolute positioning */
+    top: 50%; /* Move the image vertically down by half its height */
+    left: 50%; /* Move the image horizontally right by half its width */
+    transform: translate(-50%, -50%); /* Center the image */
+    width: auto;
+    height: 100%; /* Set the height to 100% to maintain aspect ratio */
+    
+}
+
+.profile-info {
+    flex: 1; /* Take remaining space */
+}
+.profile-info p {
+    margin: 5px 0; 
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight:bold;   
+}
+.buttons {
+   margin-right:20px;
+}
+.description {
+    font-size: 16px; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+}
+.photo-holder {
+    width: 150px;
+    height: 150px;
+    border-radius: 10%; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px; /* Add margin to create space between photo and description */
+
+}
+
+.photo-holder img {
+    border-radius: 10%;
+    width: 150px; 
+    height: 150px;
+    object-fit: cover; /* Maintain aspect ratio and cover the entire space */
+}
+
+
+
+.details {
+    display: flex;
+    align-items: center;
+}
+.details p {
+    margin: 5px 0; 
+}
+
+
+.edit-button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #007bff; 
+    font-size: 1rem;
+    
+}
+.edit-button:hover {
+    color: #0056b3; 
+}
+.edit-icon {
+    margin-left: 5px; 
+}
+
+
+.add-button {
+    cursor: pointer;
+    background-color: transparent; 
+    border: none; 
+    outline: none; 
+    padding: 0; 
+    font-size: 0.6em;
+}
+
+.add-button i {
+    font-size: 1.2em; 
+    color: #007bff; 
+}
+
+.add-button:hover i {
+    color: #0056b3; 
+}
+
+
