@@ -11,7 +11,7 @@
     justify-content: center; 
     align-items: center;
     flex-direction: column; 
-    margin-bottom: 20px;
+    
 }
 
 .container {
@@ -208,25 +208,28 @@ header .navbar ul li:hover > ul {
 #hamburger-button {
     display: none;
 }
-
+/* Footer ======================================================================================================== */
 .footer {
-    position: fixed;
-    bottom: 0;
-    background: #1F3051;
-    padding: 20px 0;
-    color: #fff;
-    text-align: center;
-    width: 100%;
+  background: #1F3051;
+  padding: 20px 80px;
+  color: #fff;
+  display: block;
+  text-align: center;
+  align-items: center;
+  margin-top: 40px;
 }
 
-
 footer p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .footer a {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
+}
+
+.border iframe {
+  display: block;
 }
 
 body {

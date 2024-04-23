@@ -121,6 +121,14 @@ header .navbar ul li:hover > ul {
     color: #fff;
 }
 
+.border iframe {
+    display: block;
+}
+
+.bg-dark{
+    background: #1F3051;
+}
+
 /* Menu toggler */
 #menu-toggler,
 #hamburger-button {
@@ -306,7 +314,7 @@ tr:hover {
 
 .message-box {
     margin-left: 33.1%;
-    margin-bottom: 0.5em;
+    margin-bottom: 7.0em;
     min-width: 55%;
     text-align: left;
     display: y;  /* make message input and send vector disappear initially*/
@@ -350,6 +358,7 @@ textarea {
     display: absolute;
     margin-left: 50%;
     margin-top: 30%;
+    margin-bottom: 3em;
     width: 250px;
     height: 100px;
 }
