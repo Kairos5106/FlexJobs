@@ -3,11 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Portfolio</title>
     <link rel="stylesheet" href="5.1 portfolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+    <!-- Page title & icon -->
+    <title>FlexJobs</title>
+    <link rel="icon" href="../images/logo-sm.png" type="image/png"> <!-- logo needs to at least 32x32px or 16x16px-->
 
      <!-- Google font -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,11 +24,12 @@
      <link rel="stylesheet" href="5.1 portfolio.css">
     </head>
 
- 
-    
 <body>
-    <header class="header">
-        <h1 class="logo">FlexJobs</h1>
+    <header>
+        <div style="display: flex; align-items: center;">
+            <img src="../images/logo.png" width="30px" height="30px" style="margin-right: 10px;">
+            <h1 class="logo">FlexJobs</h1>
+        </div>
     
         <nav class="navbar">
             <!-- Hamburger menu for smaller screen -->
@@ -34,27 +37,30 @@
             <label for="menu-toggler" id="hamburger-button">
                 <i class="fa-solid fa-bars"></i>
             </label>
-    
+
             <!-- Navigation links -->
             <ul class="nav-links">
-                <li><a href="">Home</a></li>
-                <li><a href="#banner" class="active">Jobs<i class="fa-solid fa-caret-down"></i></a>
+                <li><a href="../home.html">Home</a></li>
+                <li><a href="../module2/job-search.html">Jobs<i class="fa-solid fa-caret-down"></i></a>
                     <ul>
-                        <li><a href="#banner">Search Jobs</a></li>
-                        <li><a href="post-a-job.html">Post A Job</a></li>
+                        <li><a href="../module2/job-search.html">Search Jobs</a></li>
+                        <li><a href="../module2/post-a-job.html">Post A Job</a></li>
                     </ul>
                 </li>
-                <li><a href="">Forum</a></li>
-                <li><a href="">Inbox</a></li>
-                <li> <a href="#banner" class="active">Profile<i class="fa-solid fa-caret-down"></i></a>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">Inbox</a></li>
+                <li><a href="#" class="active">Profile<i class="fa-solid fa-caret-down"></i></a>
                     <ul>
                         <li><a href="5.1 portfolio.html">Profile</a></li>
                         <li><a href="5.2 Career Access.html">Career Access Interest</a></li>
-                        <li><a href="5.3 Track job status.html">Job Applied</a></li>
-
+                        <li><a href="5.3 Track job status.html">Jobs Applied</a></li>
+                        <li><a href="../module4/payment-invoice.html">Payments</a></li>
+                        <li><a href="#">Settings</a></li>
                     </ul>
                 </li>
-                
+                <li>
+                    <a href="../module1/login.html" role="button"><i class="bi bi-door-open-fill"></i> Log in</a>
+                </li>
             </ul>
         </nav>
     </header>
