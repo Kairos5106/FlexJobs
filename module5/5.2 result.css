@@ -1,262 +1,248 @@
-*,
-*:before,
-*:after {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.main-content {
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    flex-direction: column; 
-    
-}
-
-.container {
-    height: 25em;
-    width: 25em;
-    position: relative;
-    margin-bottom: 20px; 
-    border-radius: 50%;
-    overflow: hidden;
-    animation: spin 8s infinite linear;
-}
-
-.result-container {
-    width: 100%; 
-    text-align: center; 
-}
-
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.container:before {
-  position: absolute;
-  content: "";
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  backdrop-filter: blur(2.1em);
-}
-.container:after {
-  position: absolute;
-  content: "";
-  height: 50%;
-  width: 50%;
-  background-color: #ffffff;
-  top: 25%;
-  left: 25%;
-  border-radius: 50%;
-}
-.container div {
-  position: absolute;
-  border-radius: 50%;
-  z-index: -1;
-  animation: scale-up infinite;
-}
-@keyframes scale-up {
-  50% {
-    transform: scale(1.8);
-  }
-}
-.container div:nth-child(1) {
-  height: 90%;
-  width: 100%;
-  background-color: #ff057c;
-  left: -5%;
-  top: -5%;
-  animation-duration: 2s;
-  animation-delay: 3s;
-}
-.container div:nth-child(2) {
-  height: 80%;
-  width: 70%;
-  background-color: #800f86;
-  top: 15%;
-  right: -15%;
-  animation-duration: 10s;
-  animation-delay: 7s;
-}
-.container div:nth-child(3) {
-  height: 65%;
-  width: 80%;
-  background-color: #1ba8e9;
-  bottom: -30%;
-  right: -20%;
-  animation-duration: 4s;
-  animation-delay: 2.2s;
-}
-.container div:nth-child(4) {
-  height: 50%;
-  width: 75%;
-  background-color: #34ff78;
-  bottom: -5%;
-  left: 8%;
-  animation-duration: 7s;
-  animation-delay: 6s;
-}
-.container div:nth-child(5) {
-  height: 45%;
-  width: 55%;
-  background-color: #f7fb1f;
-  top: 50%;
-  left: 0;
-  animation-duration: 2.5s;
-  animation-delay: 4s;
-}
-.container div:nth-child(6) {
-  height: 25%;
-  width: 55%;
-  background-color: #ffb326;
-  top: 45%;
-  left: -15%;
-  animation-duration: 9s;
-}
 
 /* Base header, section, footer ================================================================================================= */
 .header-scrolled {
-    background: #1F3051;
+  background: #1F3051;
 }
 
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    padding: 20px 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    background: #1F3051;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 20px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: #1F3051;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 20px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999; /* Set a higher z-index */
+  background: #1F3051;
 }
 
+
 header .logo {
-    color: #fff;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 2em;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 2em;
 }
 
 header .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
 }
 
 header .navbar ul {
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 0;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
 }
 
 header .navbar ul li {
-    position: relative;
-    float: left;
-    margin-right: 10px;
+  position: relative;
+  float: left;
+  margin-right: 10px;
 }
 
 header ul li a {
-    text-decoration: none;
-    padding: 6px 15px;
-    color: #fff;
-    display: block;
+  text-decoration: none;
+  padding: 6px 15px;
+  color: #fff;
+  display: block;
 }
 
 header ul li i {
-    padding-left: 7px;
+  padding-left: 7px;
 }
 
 header .navbar ul li a:hover,
 header .navbar ul li a.active {
-    background: #fff;
-    color: #1F3051;
-    border-radius: 20px;
+  background: #fff;
+  color: #1F3051;
+  border-radius: 20px;
 }
 
 header .navbar ul li ul {
-    position: absolute;
-    left: 0;
-    width: 200px;
-    background: #1F3051;
-    display: none;
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background: #1F3051;
+  display: none;
 }
 
 header .navbar ul li ul li {
-    width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 header .navbar ul li ul li a {
-    padding: 15px;
+  padding: 15px;
 }
 
 header .navbar ul li:hover > ul {
-    display: initial;
+  display: initial;
 }
 
 
 /* Menu toggler */
 #menu-toggler,
 #hamburger-button {
-    display: none;
+  display: none;
 }
-/* Footer ======================================================================================================== */
-.footer {
-  background: #1F3051;
-  padding: 20px 80px;
-  color: #fff;
-  display: block;
-  text-align: center;
+
+
+.main-content {
+  display: flex;
+  justify-content: center; 
   align-items: center;
-  margin-top: 40px;
+  flex-direction: column; 
+  margin-bottom: 20px;
+}
+.container {
+  height: 25em;
+  width: 25em;
+  position: relative;
+  margin-bottom: 20px; 
+  border-radius: 50%;
+  overflow: hidden;
+  animation: spin 8s infinite linear;
 }
 
-footer p {
-  margin-bottom: 0;
+.result-container {
+  width: 100%; 
+  text-align: center; 
 }
 
-.footer a {
-  text-decoration: none;
-  color: #fff;
-}
 
-.border iframe {
-  display: block;
+@keyframes spin {
+100% {
+  transform: rotate(360deg);
+}
+}
+.container:before {
+position: absolute;
+content: "";
+height: 100%;
+width: 100%;
+border-radius: 50%;
+backdrop-filter: blur(2.1em);
+}
+.container:after {
+position: absolute;
+content: "";
+height: 50%;
+width: 50%;
+background-color: #ffffff;
+top: 25%;
+left: 25%;
+border-radius: 50%;
+}
+.container div {
+position: absolute;
+border-radius: 50%;
+z-index: -1;
+animation: scale-up infinite;
+}
+@keyframes scale-up {
+50% {
+  transform: scale(1.8);
+}
+}
+.container div:nth-child(1) {
+height: 90%;
+width: 100%;
+background-color: #ff057c;
+left: -5%;
+top: -5%;
+animation-duration: 2s;
+animation-delay: 3s;
+}
+.container div:nth-child(2) {
+height: 80%;
+width: 70%;
+background-color: #800f86;
+top: 15%;
+right: -15%;
+animation-duration: 10s;
+animation-delay: 7s;
+}
+.container div:nth-child(3) {
+height: 65%;
+width: 80%;
+background-color: #1ba8e9;
+bottom: -30%;
+right: -20%;
+animation-duration: 4s;
+animation-delay: 2.2s;
+}
+.container div:nth-child(4) {
+height: 50%;
+width: 75%;
+background-color: #34ff78;
+bottom: -5%;
+left: 8%;
+animation-duration: 7s;
+animation-delay: 6s;
+}
+.container div:nth-child(5) {
+height: 45%;
+width: 55%;
+background-color: #f7fb1f;
+top: 50%;
+left: 0;
+animation-duration: 2.5s;
+animation-delay: 4s;
+}
+.container div:nth-child(6) {
+height: 25%;
+width: 55%;
+background-color: #ffb326;
+top: 45%;
+left: -15%;
+animation-duration: 9s;
+} 
+
+body {
+  margin-bottom: 0px;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    padding-top: 100px; 
-    padding-bottom: 80px; 
-
+  font-family: 'Poppins', sans-serif;
+  padding-top: 100px; 
 }
 
 h1 {
-    padding-left: 40px; 
+  padding-left: 40px; 
 }
 
 p{
-    padding-left: 40px;
+  padding-left: 40px;
 }
 
 
 .custom-paragraph {
-  margin-left: 40px;
-  margin-right: 40px;
-  padding: 30px;
-  background-color: #F7F2E7;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+margin-left: 40px;
+margin-right: 40px;
+padding: 30px;
+background-color: #F7F2E7;
+border-radius: 8px;
+margin-bottom: 15px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+font-family: 'Poppins', sans-serif;
+font-size: 16px;
+line-height: 1.6;
 }
