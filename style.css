@@ -252,13 +252,15 @@ section .card p {
 }
 
 /* Footer */
-.footer {
-    background: #1F3051;
-    padding: 20px 80px;
-    color: #fff;
-    display: block;
-    text-align: center;
-    align-items: center;
+footer {
+    padding: 40px 20px 40px 20px;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
 }
 
 .footer a {
@@ -272,6 +274,38 @@ section .card p {
 
 .bg-dark{
     background: #1F3051;
+}
+
+.footer-top-part {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.footer-bottom-part {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 70px;
+}
+
+footer .col {
+    justify-content: space-between;
+    padding: 0;
+}
+
+.copyright-statement-paragraph {
+    padding-left: 8px;
+}
+
+.social-media ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-top-part-col {
+    justify-content: center;
 }
 
 /* Menu toggler */
@@ -339,5 +373,17 @@ section .card p {
     section .cards .card {
         width: calc(100% - 15px);
         margin: 10px;
+    }
+
+    footer {
+        padding: 40px 20px 40px 20px;
+    }
+
+    .footer-top-part {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 40px;
     }
 }
