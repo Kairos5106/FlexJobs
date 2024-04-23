@@ -254,6 +254,7 @@ section .card p {
 /* Footer */
 footer {
     padding: 40px 20px 40px 20px;
+    height: 340px;
 }
 
 .footer-container {
