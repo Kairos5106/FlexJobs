@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (form.checkValidity()) {
             form.reset();
 
-            alert("Thank you for giving your feedback.");
+            alert("Thank you for giving your feedback!");
         } else {
             alert("Please fill in all required fields.");
         }
