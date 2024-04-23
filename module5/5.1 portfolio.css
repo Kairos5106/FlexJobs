@@ -88,18 +88,18 @@ header .navbar ul li:hover > ul {
     display: none;
 }
 
-/* Footer ======================================================================================================== */
 
+/* Footer ======================================================================================================== */
 .footer {
     background: #1F3051;
+    padding: 20px 80px;
     color: #fff;
     display: block;
     text-align: center;
     align-items: center;
     margin-top: 40px;
-    width: 100%; 
+    width: 100%;
 }
-
 
 footer p {
     margin-bottom: 0;
@@ -108,6 +108,15 @@ footer p {
 .footer a {
     text-decoration: none;
     color: #fff;
+}
+
+.border iframe {
+    display: block;
+}
+
+.border {
+    width: 100%;
+    overflow-x: hidden; /* Add this line to prevent horizontal overflow */
 }
 
 body {

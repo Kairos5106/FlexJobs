@@ -218,7 +218,7 @@ section .card img {
 section .card h2 {
     margin-top: 5px;
     flex-grow: 1;
-    color: #06FED0;
+    color: white;
 }
 
 section .card p {
@@ -391,4 +391,47 @@ footer .col {
         justify-content: center;
         padding: 0 40px;
     }
+
+/* Login and registration */
+input[type=email], input[type=password], input[type=text], input[type=tel]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Apply styles to the label associated with the select element */
+label[for="status"], label[for="phone"] {
+    margin-bottom: 5px;
+    display: block; /* Ensure the label is on its own line */
+    font-weight: bold;
+}
+
+button{
+  font-size: large;
+  background-color: blue;
+  color: white;
+  padding: 15px 20px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.8;
+}
+
+button:hover{
+  opacity: 1;
+}
+
+/* Apply styles to the select element */
+select {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
 }
