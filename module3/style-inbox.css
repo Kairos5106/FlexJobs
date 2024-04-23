@@ -216,8 +216,8 @@ header .navbar ul li:hover > ul {
 .container-inbox {
     display: flex;
     flex-direction: row;
-    margin-top: 4.5em;
-    max-height: 85vh;
+    max-height: 100vh;
+    margin-top: 1em;
 }
 
 .column-inbox {
@@ -306,7 +306,7 @@ tr:hover {
 
 .message-box {
     margin-left: 33.1%;
-    margin-bottom: 1.1em;
+    margin-bottom: 0.5em;
     min-width: 55%;
     text-align: left;
     display: y;  /* make message input and send vector disappear initially*/
@@ -318,6 +318,7 @@ tr:hover {
     padding: 10px;
     border-top: 1px solid #000000;
     box-sizing: border-box;
+
 }
 
 .message-input {

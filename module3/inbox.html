@@ -20,38 +20,52 @@
     <div class="homepage-header-and-section">
         <!-- Header -->
         <header>
-            <h1 class="logo">FlexJobs</h1>
-
+            <div style="display: flex; align-items: center;">
+                <img src="../images/logo.png" width="30px" height="30px" style="margin-right: 10px;">
+                <h1 class="logo">FlexJobs</h1>
+            </div>
+        
             <nav class="navbar">
                 <!-- Hamburger menu for smaller screen -->
-                <input type="checkbox" id="menu-toggler" />
+                <input type="checkbox" id="menu-toggler"/>
                 <label for="menu-toggler" id="hamburger-button">
                     <i class="fa-solid fa-bars"></i>
                 </label>
 
                 <!-- Navigation links -->
                 <ul class="nav-links">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="#">Job Postings<i class="fa-solid fa-caret-down"></i></a>
+                    <li><a href="../home.html">Home</a></li>
+                    <li><a href="../module2/job-search.html">Jobs<i class="fa-solid fa-caret-down"></i></a>
                         <ul>
-                            <li><a href="#">Search Jobs</a></li>
-                            <li><a href="#">Post A Job</a></li>
+                            <li><a href="../module2/job-search.html">Search Jobs</a></li>
+                            <li><a href="../module2/post-a-job.html">Post A Job</a></li>
                         </ul>
                     </li>
-                    <li><a href="inbox.html" class="active">Inbox</a>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#" class="active">Inbox<i class="fa-solid fa-caret-down"></i></a>
                         <ul>
                             <li><a href="inbox.html">Chat</a></li>
                             <li><a href="feedback.html">Feedback</a></li>
                         </ul>
                     </li>
-                    <li><a href="module4.html">Module4</a></li>
-                    <li><a href="module5.html">Module5</a></li>
-                    <li><a href="module6.html">Module6</a></li>
-                    <li><a href="module1.html">More</a></li>
+                    <li><a href="#">Profile<i class="fa-solid fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="../module4/payment-invoice.html">Payments</a></li>
+                            <li><a href="#">Settings</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../module1/login.html" role="button"><i class="bi bi-door-open-fill"></i> Log in</a>
+                    </li>
                 </ul>
             </nav>
         </header>
 
+        <div id="landing-page">
+            <h2 id="homepage-title">Where Talent Meets Opportunity</h2>
+            <a href="#homepage-description" class="big-button" id="learn-more">Explore</a>
+        </div>
     </div>
 
     <div class="container-inbox">
@@ -117,14 +131,14 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 by Team 20</p>
-        <p><a href="mailto:u2100667@siswa.um.edu.my">u2100667@siswa.um.edu.my</a></p>
-    </footer>
+    <div class="border">
+        <iframe src="../footer.html" frameborder="0" width="100%" height="340px" scrolling="no"></iframe>
+        <div></div>
+    </div>
 
     <script src="https://kit.fontawesome.com/dd36547fc8.js" crossorigin="anonymous"></script>
     <script>
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             var header = document.querySelector('header');
             if (window.scrollY > 0) {
                 header.classList.add('header-scrolled');

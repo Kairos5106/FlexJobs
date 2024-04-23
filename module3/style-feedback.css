@@ -20,7 +20,7 @@ body {
 }
 
 .homepage-header-and-section {
-    background: url(images/background.png);
+    background: url(images-inbox/bg-feedback.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -123,6 +123,14 @@ header .navbar ul li:hover > ul {
     color: #fff;
 }
 
+.border iframe {
+    display: block;
+}
+
+.bg-dark{
+    background: #1F3051;
+}
+
 /* Menu toggler */
 #menu-toggler,
 #hamburger-button {
@@ -193,11 +201,14 @@ header .navbar ul li:hover > ul {
 
 section {
     position: absolute;
-    height: 100%;
     width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: cover;
+
     background: url(images-inbox/bg-feedback.png);
-    background-size: cover;
-    background-position: center;
     filter: blur(2px) brightness(60%);
 }
 
@@ -209,7 +220,7 @@ body {
     justify-content: center;
 }
 
-.container {
+.container-feedback {
     width: 360px;
     background: #000;
     box-shadow: 0 00 8px rgba(250, 250, 250, 0.6);
@@ -217,7 +228,7 @@ body {
     border-radius: 15px;
 }
 
-.container form {
+.container-feedback form {
     width: 100%;
     text-align: center;
     padding: 25px 20px;
