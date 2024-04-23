@@ -114,6 +114,11 @@ footer p {
     display: block;
 }
 
+.border {
+    width: 100%;
+    overflow-x: hidden; /* Add this line to prevent horizontal overflow */
+}
+
 body {
     background-color:  #F7F2E7; 
     padding-top: 80px;

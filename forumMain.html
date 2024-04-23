@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexJobs</title>
+    <link rel="stylesheet" href="forumStyle.css">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Hamburger icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-Kw/U5YH5Q5wz0d6PTzQUPsJ+DuNhZVJO0rmOzYkMq+AYOimtSxIEtHrfP0OwCvk5gjBx2w61FxoO8Q0ICzG14A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Forum Main page -->
+    <div class="forum-header-and-section">
+        <!-- Header -->
+        <header>
+            
+            <h1 class="logo">FlexJobs</h1>
+    
+            <nav class="navbar">
+                <!-- Hamburger menu for smaller screen -->
+                <input type="checkbox" id="menu-toggler"/>
+                <label for="menu-toggler" id="hamburger-button">
+                    <i class="fa-solid fa-bars"></i>
+                </label>
+
+                <!-- Navigation links -->
+                <ul class="nav-links">
+                    <li><a href="#landing-page" class="active">Home</a></li>
+                    <li><a href="#">Job Postings<i class="fa-solid fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="#">Search Jobs</a></li>
+                            <li><a href="#">Post A Job</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="module3.html">Module3</a></li>
+                    <li><a href="module4.html">Module4</a></li>
+                    <li><a href="module5.html">Module5</a></li>
+                    <li><a href="module6.html">Module6</a></li>
+                    <li><a href="module1.html">More</a></li>
+                </ul>
+            </nav>
+            
+        </header>
+    
+        <!--Discussion Forum title-->
+        <div >
+            <h1 id = "discussion-forum-title" >Discussion Forum</h1>
+        </div>
+        
+
+        <!--Search bar and add new post button-->
+       
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="What are you looking for?">
+            <a href="newForum.html" class="add-post-button">Add New Topic</a>
+        </div>
+        
+        <div id="search-results">
+            <!-- Results will be displayed here -->
+        </div>
+
+        <!--current popular topics-->
+        <div class="topics-title">
+            <h1>Current Popular Topics</h1>
+        </div>
+            
+        <div class="recycler-view-popular-topics">
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <!-- Add more items as needed -->
+        </div>
+
+        <!--Featured topics-->
+        <div class="topics-title">
+            <h1>Featured Topics</h1>
+        </div>
+            
+        <!--For now recycler view is hard coded-->
+        <div class="recycler-view-popular-topics">
+            <div class="topics-item">
+                
+                    <div class="left">
+                        <a href="forumDetails.html" class="topics">
+                            <h1>How to be a good freelancer?</h1>
+                        </a>
+                        <h2 class="author">by <span class="username">abc123</span></h2>
+                    </div>
+                    <div class="middle">
+                        <h3 class="latestby"> Latest Post By
+                        </h3>
+                        
+                    </div>
+                    <div class="right">
+                        <h1 class="latestauthor">
+                            abc123
+                        </h1>
+                        <h1 class="latesttime">
+                            1 hour ago 
+                        </h1>
+                    </div>
+                
+            </div>
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <div class="topics-item">
+                
+                <div class="left">
+                    <a href="forumDetails.html" class="topics">
+                        <h1>How to be a good freelancer?</h1>
+                    </a>
+                    <h2 class="author">by <span class="username">abc123</span></h2>
+                </div>
+                <div class="middle">
+                    <h3 class="latestby"> Latest Post By
+                    </h3>
+                    
+                </div>
+                <div class="right">
+                    <h1 class="latestauthor">
+                        abc123
+                    </h1>
+                    <h1 class="latesttime">
+                        1 hour ago 
+                    </h1>
+                </div>
+            
+            </div>
+            <!-- Add more items as needed -->
+        </div>
+        
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 by Team 20</p>
+        <p><a href="mailto:u2100667@siswa.um.edu.my">u2100667@siswa.um.edu.my</a></p>
+    </footer>
+    
+</body>

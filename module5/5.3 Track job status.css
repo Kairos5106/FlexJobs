@@ -1,6 +1,6 @@
 body {
     background-color: #F7F2E7; 
-    margin-top: 40;
+    margin-top: 120px;
     display: flex;
     flex-direction: column; 
     justify-content: center;
@@ -21,6 +21,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    padding-bottom: 20px;
 }
 
 .card {
@@ -192,6 +193,8 @@ header .navbar ul li:hover > ul {
     text-align: center;
     align-items: center;
     margin-top: 40px;
+    width:100%;
+    overflow-x: hidden;
 }
 
 footer p {
@@ -205,4 +208,8 @@ footer p {
 
 .border iframe {
     display: block;
+}
+.border {
+    width: 100%;
+    overflow-x: hidden; /* Add this line to prevent horizontal overflow */
 }
