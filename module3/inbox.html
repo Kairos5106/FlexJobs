@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+    <link rel="stylesheet" href="style-inbox.css">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body class="inbox-body">
+    <!-- Landing page -->
+    <div class="homepage-header-and-section">
+        <!-- Header -->
+        <header>
+            <div style="display: flex; align-items: center;">
+                <img src="../images/logo.png" width="30px" height="30px" style="margin-right: 10px;">
+                <h1 class="logo">FlexJobs</h1>
+            </div>
+        
+            <nav class="navbar">
+                <!-- Hamburger menu for smaller screen -->
+                <input type="checkbox" id="menu-toggler"/>
+                <label for="menu-toggler" id="hamburger-button">
+                    <i class="fa-solid fa-bars"></i>
+                </label>
+
+                <!-- Navigation links -->
+                <ul class="nav-links">
+                    <li><a href="../home.html">Home</a></li>
+                    <li><a href="../module2/job-search.html">Jobs<i class="fa-solid fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="../module2/job-search.html">Search Jobs</a></li>
+                            <li><a href="../module2/post-a-job.html">Post A Job</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#" class="active">Inbox<i class="fa-solid fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="inbox.html">Chat</a></li>
+                            <li><a href="feedback.html">Feedback</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Profile<i class="fa-solid fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="../module4/payment-invoice.html">Payments</a></li>
+                            <li><a href="#">Settings</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../module1/login.html" role="button"><i class="bi bi-door-open-fill"></i> Log in</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="landing-page">
+            <h2 id="homepage-title">Where Talent Meets Opportunity</h2>
+            <a href="#homepage-description" class="big-button" id="learn-more">Explore</a>
+        </div>
+    </div>
+
+    <div class="container-inbox">
+        <div class="column-inbox">
+            <h1 class="h1-inbox">Chats</h1>
+            <div class="row-inbox">
+                <table class="table-inbox" id="inbox-table">
+                    <tr  class="selected-inbox">
+                        <td>
+                            <p class="name">Mr Ahmad</p>
+                            <p class="message">Hey there! I am...</p>
+                        </td>
+                        <td class="timestamp">10:34am</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p class="name">Martha</p>
+                            <p class="message">I will need someone...</p>
+                        </td>
+                        <td class="timestamp">3:31pm</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="name">Web Dev group</p>
+                            <p class="message">Does anyone here knows how...</p>
+                        </td>
+                        <td class="timestamp">11:52am</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="name">Photo shoot group</p>
+                            <p class="message">Anyone free to...</p>
+                        </td>
+                        <td class="timestamp">2:10pm</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="name">Lee Cheng</p>
+                            <p class="message">Hi, I will be assigning...</p>
+                        </td>
+                        <td class="timestamp">5:48pm</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="column-message">
+            <div class="default-display" id="default-display">
+                <!-- <img class="message-vector" src="images-inbox/message-vector.png" alt="Message vector" />
+                <p class="start-conversation">Start a conversation with employers or users</p> -->
+            </div>
+            <img class="image-container" src="images-inbox\msg1.png" alt="Message container"/>
+            
+            <div class="message-box" id="message-box">
+                <textarea class="message-input" id="message-input" placeholder="Type your message"></textarea>
+                <img class="send-vector" id="send-vector" src="images-inbox/send-vector.png" alt="Send" />
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="border">
+        <iframe src="../footer.html" frameborder="0" width="100%" height="340px" scrolling="no"></iframe>
+        <div></div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/dd36547fc8.js" crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var header = document.querySelector('header');
+            if (window.scrollY > 0) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
