@@ -280,7 +280,7 @@ footer {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 0 40px;
+    padding: 0 60px;
 }
 
 .footer-bottom-part {
@@ -301,11 +301,15 @@ footer .col {
 
 .social-media ul {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .footer-top-part-col {
     justify-content: center;
+}
+
+.contacts p {
+    margin-bottom: 5px;
 }
 
 /* Menu toggler */
