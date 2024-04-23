@@ -5,6 +5,12 @@
   margin: 0;
   box-sizing: border-box;
 }
+body {
+  font-family: 'Poppins', sans-serif;
+  padding-bottom: 0px; /* Adjust as needed */
+  margin: 0; /* Add to reset default margin */
+}
+
 
 .main-content {
     display: flex;
@@ -210,26 +216,30 @@ header .navbar ul li:hover > ul {
 }
 /* Footer ======================================================================================================== */
 .footer {
-  background: #1F3051;
-  padding: 20px 80px;
-  color: #fff;
-  display: block;
-  text-align: center;
-  align-items: center;
-  margin-top: 40px;
+    background: #1F3051;
+    padding: 20px 80px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    align-items: center;
+    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
+
 footer p {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .footer a {
-  text-decoration: none;
-  color: #fff;
+    text-decoration: none;
+    color: #fff;
 }
 
 .border iframe {
-  display: block;
+    display: block;
 }
 
 body {
