@@ -313,21 +313,21 @@ tr:hover {
 }
 
 .message-box {
-    margin-left: 33.1%;
-    margin-bottom: 7.0em;
+    /* margin-left: 33.1%;
+    margin-bottom: 7em; */
     min-width: 55%;
     text-align: left;
-    display: y;  /* make message input and send vector disappear initially*/
-
-    position: absolute;
+    /* display: y; */
+  
+    position: relative;
+    height: auto;
     bottom: 0;
     left: 0;
-    width: 66.9%;
+    width: 100%;
     padding: 10px;
     border-top: 1px solid #000000;
     box-sizing: border-box;
-
-}
+  }
 
 .message-input {
     margin-left: 5%;
@@ -357,7 +357,7 @@ textarea {
 #image-container {
     display: absolute;
     margin-left: 7%;
-    margin-top: 30%;
+    margin-top: 25%;
     margin-bottom: 3em;
     width: 300px;
     height: 150px;
