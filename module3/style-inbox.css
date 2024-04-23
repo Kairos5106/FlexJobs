@@ -238,10 +238,10 @@ header .navbar ul li:hover > ul {
     display: flex;
     flex: 1; /* Takes up remaining width */
     background-color: #F7F2E7; 
-    text-align: center;
+    text-align: left;
     box-sizing: border-box;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     flex-direction: column;
 }
 
@@ -354,11 +354,11 @@ textarea {
     background-color: #F9E0AB;
 }
 
-.image-container {
+#image-container {
     display: absolute;
-    margin-left: 50%;
+    margin-left: 7%;
     margin-top: 30%;
     margin-bottom: 3em;
-    width: 250px;
-    height: 100px;
+    width: 300px;
+    height: 150px;
 }
