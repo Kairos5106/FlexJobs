@@ -260,3 +260,73 @@ td {
 .first-column {
   padding-left: 2em !important;
 }
+/* Base header, section, footer */
+.header-scrolled {
+  background: #1F3051;
+}
+/* Menu toggler */
+#menu-toggler,
+#hamburger-button {
+    display: none;
+}
+/* Responsiveness */
+@media (width < 980px) {
+  header {
+      position: fixed;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+  }
+
+  header .navbar ul li {
+      width: 100%;
+      padding: 0 0 15px 0;
+  }
+
+  header .navbar ul li a {
+      padding: 10px 15px;
+  }
+
+  header .navbar ul li ul {
+      position: relative;
+      width: 100%;
+  }
+
+  header .navbar ul li ul li {
+      width: 100%;
+      padding: 0 0 0 30px;
+      background: #1F3051;
+  }
+
+  .navbar .nav-links {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      display: block;
+      background: #1F3051;
+      width: 250px;
+      padding-top: 30px;
+      left: -100%;
+      transition: all 0.4s ease;
+  }
+
+  #menu-toggler:checked ~ .nav-links {
+      left: 0;
+  }
+
+  #hamburger-button {
+      display: block;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+  }
+
+  section .cards .card {
+      width: calc(100% - 15px);
+      margin: 10px;
+  }
+}
