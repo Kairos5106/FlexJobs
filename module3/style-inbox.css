@@ -225,7 +225,7 @@ header .navbar ul li:hover > ul {
     display: flex;
     flex-direction: row;
     max-height: 100vh;
-    margin-top: 1em;
+    margin-top: 5em;
 }
 
 .column-inbox {
