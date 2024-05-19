@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../App.css';
 import { NavLink, Link } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,8 +13,8 @@ const Navbar = () => {
     const navItems = [
         {path: "/", title: "Home"},
         {path: "/JobSearch", title: "Jobs"},
+        {path: "/Module3Page", title: "Inbox"},
         {path: "/XXX", title: "Forum"},
-        {path: "/XXX", title: "Inbox"},
         {path: "/XXX", title: "Profile"},
     ]
 

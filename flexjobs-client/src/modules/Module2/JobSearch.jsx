@@ -4,7 +4,7 @@ import '../../App.css';
 const JobSearch = () => {
     return (
         <>
-        <div className="">This is JobSearch Page</div>
+        <div className="top-section">This is JobSearch Page</div>
         </>
     )
 }
