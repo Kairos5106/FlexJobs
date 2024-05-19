@@ -4,13 +4,14 @@ import viteLogo from '/vite.svg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import { Outlet } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <h1>FlexJobs</h1>
+    <Navbar/>
     <Outlet/>
     </>
   )

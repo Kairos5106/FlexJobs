@@ -15,7 +15,7 @@ npm install bootstrap
 
 # then put this line in component file to use bootstrap classes --> import 'bootstrap/dist/css/bootstrap.min.css';
 
-# setup react router dom in main.jsx, reference: https://reactrouter.com/en/main/start/tutorial
+# setup react router dom in main.jsx and Router.jsx, reference: https://reactrouter.com/en/main/start/tutorial
 
 # example of how is the file structure to store codes and assets of different modules of the app:
 <#
@@ -67,3 +67,8 @@ flexjobs-client/
 ├── README.md
 └── .gitignore
 #>
+
+# install font awesome
+npm install @fortawesome/fontawesome-free
+
+# to use font awesome icons in components, put this code: import '@fortawesome/fontawesome-free/css/all.min.css';

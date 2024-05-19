@@ -1,8 +1,11 @@
 import React from 'react'
+import '../../App.css';
 
 const JobSearch = () => {
     return (
-        <div>This is JobSearch Page</div>
+        <>
+        <div className="">This is JobSearch Page</div>
+        </>
     )
 }
 
