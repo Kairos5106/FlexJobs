@@ -64,3 +64,57 @@ header nav ul li a:hover,
 .top-section {
   padding: 80px;
 }
+
+/* Menu toggler */
+#menu-toggler {
+  display: none;
+}
+
+#hamburger-button {
+  display: none;
+  cursor: pointer;
+}
+
+#hamburger-button i {
+  font-size: 24px;
+  color: #fff;
+}
+
+/* Responsiveness */
+@media (max-width: 850px) {
+  header {
+    padding: 10px 20px;
+  }
+
+  .top-section {
+    padding: 80px 20px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: #1F3051;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 10px;
+    z-index: 999;
+    display: block;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  #hamburger-button {
+    display: block;
+  }
+}
