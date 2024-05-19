@@ -25,7 +25,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <a href="/" className="d-flex align-items-center logo">
                     <img src="/images/logo.png" alt="Logo" style={{ height: '40px', marginRight: '10px' }} />
-                    <span>FlexJobs</span>
+                    <span className='logo-word'>FlexJobs</span>
                 </a>
 
                 {/* Hamburger menu for smaller screen */}

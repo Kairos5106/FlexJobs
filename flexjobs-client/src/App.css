@@ -35,6 +35,10 @@ header .logo {
   font-size: 2rem;
 }
 
+.logo-word {
+  padding-bottom: 9px;
+}
+
 header nav ul li {
   list-style: none;
   margin-left: 10px;
