@@ -73,4 +73,4 @@ npm install @fortawesome/fontawesome-free
 
 # to use font awesome icons in components, put this code: import '@fortawesome/fontawesome-free/css/all.min.css';
 
-# to configure the hyperlink to your module's page, configure at Router/Router.jsx and components\Navbar.jsx
+# to configure/reconfigure the hyperlink to your module's page, configure at Router/Router.jsx and components/Navbar.jsx

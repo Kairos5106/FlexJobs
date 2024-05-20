@@ -10,12 +10,14 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    // Modules Page Navigation (in the navbar UI)
+    // Please configure/reconfigure here
     const navItems = [
         {path: "/", title: "Home"},
         {path: "/JobSearch", title: "Jobs"},
         {path: "/Module3Page", title: "Inbox"},
-        {path: "/XXX", title: "Forum"},
-        {path: "/XXX", title: "Profile"},
+        {path: "/Module6Page", title: "Forum"},
+        {path: "/Module5Page", title: "Profile"}
     ];
 
     return (
