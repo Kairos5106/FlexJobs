@@ -1,0 +1,137 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 20px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: #1F3051;
+}
+
+
+header .logo {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.logo-word {
+  padding-bottom: 9px;
+}
+
+.active{
+  background: #fff;
+  color: #1F3051;
+  border-radius: 20px;
+}
+
+/* Menu toggler */
+#menu-toggler {
+  display: none;
+}
+
+#hamburger-button {
+  display: none;
+  cursor: pointer;
+}
+
+#hamburger-button i {
+  font-size: 24px;
+  color: #fff;
+}
+
+/* Responsiveness */
+@media (max-width: 850px) {
+  header {
+    padding: 10px 20px;
+  }
+
+  .top-section {
+    padding: 80px 20px;
+  }
+
+
+  #hamburger-button {
+    display: block;
+  }
+}
+
+body {
+  background-color:  #F7F2E7; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif; 
+  padding-top: 120px;
+}
+
+header .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100; /* is the depth of the element *into* the screen, lower z-index means it's on the lower layer */
+}
+
+header .navbar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+header .navbar ul li {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+}
+
+header ul li a {
+  text-decoration: none;
+  padding: 6px 15px;
+  color: #fff;
+  display: block;
+}
+
+header ul li i {
+  padding-left: 7px;
+}
+
+header .navbar ul li a:hover,
+header .navbar ul li a.active {
+  background: #fff;
+  color: #1F3051;
+  border-radius: 20px;
+}
+
+header .navbar ul li ul {
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background: #1F3051;
+  display: none;
+}
+
+header .navbar ul li ul li {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+header .navbar ul li ul li a {
+  padding: 15px;
+}
+
+header .navbar ul li:hover > ul {
+  display: initial;
+}
