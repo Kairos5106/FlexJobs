@@ -1,0 +1,80 @@
+.job-cards { 
+   
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-left:70px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+}
+
+.card {
+    margin-top: 40px;
+    background-color: #FFF;
+    border-radius: 20px;
+    width: calc(33.33% - 20px); /* One-third of the available width with a gap of 20px */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-body p {
+    margin: 5px 0;
+}
+
+.details-button {
+    background-color: #1F3051;
+    color: #FFF;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.job-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.job-details {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.accepted-icon {
+    color: green;
+    margin-left: 5px;
+}
+
+.rejected-icon {
+    color: red;
+    margin-left: 5px;
+}
+
+
+

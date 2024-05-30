@@ -10,6 +10,7 @@ import Module5Page from "../modules/Module5/Portfolio";
 import Module6Page from "../modules/Module6/Module6Page";
 import CareerAccessInterest from "../modules/Module5/CareerAccessInterest"; 
 import Results from "../modules/Module5/Results"; 
+import JobApplied from "../modules/Module5/JobApplied";
 
 // Modules Page Navigation (the path to the page)
 // Please configure/reconfigure here
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
         { path: "/Module5Page", element: <Module5Page/> },
         { path: "/Module6Page", element: <Module6Page/> },
         {path: "/CareerAccessInterest",element:<CareerAccessInterest/>},
-        { path: "/results", element: <Results /> }
+        { path: "/results", element: <Results /> },
+        {path:"/JobApplied",element:<JobApplied/>}
 
 
       ]
