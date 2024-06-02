@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import '../App.css';
 import { NavLink, Link } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -13,23 +13,34 @@ const Navbar = () => {
     // Modules Page Navigation (in the navbar UI)
     // Please configure/reconfigure here
     const navItems = [
-        {path: "/", title: "Home"},
-        {path: "/JobSearch", title: "Jobs"},
-        {path: "/Module3Page", title: "Inbox"},
-        {path: "/Module6Page", title: "Forum"},
-        {path: "/Module5Page", title: "Profile"}
+        { path: "/", title: "Home" },
+        { path: "/JobSearch", title: "Jobs", subItems: [
+            { path: "/JobSearch", title: "Search Job" },
+            { path: "/PostJob", title: "Post A Job" }
+        ]},
+        { path: "/Module3Page", title: "Inbox", subItems: [
+            { path: "/Chat", title: "Chat" },
+            { path: "/Feedback", title: "Feedback" }
+        ]},
+        { path: "/Module6Page", title: "Forum" },
+        { path: "/Module5Page", title: "Profile", subItems: [
+            { path: "/Module5Page", title: "Portfolio" },
+            { path: "/CareerAccessInterest", title: "Career Access Interest" },
+            { path: "/JobApplied", title: "Job Applied" },
+            { path: "/Payments", title: "Payments" },
+            { path: "/Settings", title: "Settings" }
+        ]}
     ];
 
     return (
         <header>
+            {/* Logo */}
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/images/logo.png" width="30px" height="30px" style={{ marginRight: '10px' }} alt="Logo" />
+                <h1 className="logo">FlexJobs</h1>
+            </div>
+
             <nav className="navbar">
-
-                {/* Logo */}
-                <a href="/" className="d-flex align-items-center logo">
-                    <img src="/images/logo.png" alt="Logo" style={{ height: '40px', marginRight: '10px' }} />
-                    <span className='logo-word'>FlexJobs</span>
-                </a>
-
                 {/* Hamburger menu for smaller screen */}
                 <input 
                     type="checkbox" 
@@ -38,31 +49,46 @@ const Navbar = () => {
                     onChange={handleMenuToggler} 
                 />
                 <label htmlFor="menu-toggler" id="hamburger-button">
-                    <i className="fas fa-bars"></i>
+                    <i className="fa-solid fa-bars"></i>
                 </label>
 
                 {/* Navigation links */}
-                <ul className={`nav nav-links ${isMenuOpen ? 'open' : ''}`}>
-                    {navItems.map(({ path, title }) => (
+                <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+                    {navItems.map(({ path, title, subItems }) => (
                         <li key={path}>
                             <NavLink
                                 to={path}
                                 className={({ isActive }) => isActive ? "active" : ""}
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                {title}
+                                {title} {subItems && <i className="fa-solid fa-caret-down"></i>}
                             </NavLink>
+                            {subItems && (
+                                <ul>
+                                    {subItems.map(({ path, title }) => (
+                                        <li key={path}>
+                                            <NavLink
+                                                to={path}
+                                                className={({ isActive }) => isActive ? "active" : ""}
+                                                onClick={() => setIsMenuOpen(false)}
+                                            >
+                                                {title}
+                                            </NavLink>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </li>
                     ))}
                     <li>
-                        <Link to="/XX" className='nav-item'>
+                        <Link to="/login" className='nav-item'>
                             <i className="fas fa-sign-in-alt"></i> Log in
                         </Link>
                     </li>
                 </ul>
             </nav>
         </header>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
