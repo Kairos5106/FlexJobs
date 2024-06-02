@@ -165,17 +165,31 @@ header nav ul li a:hover {
 
   .nav-links li {
     margin: 10px 0;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nav-links li a,
+  .nav-links .nav-item {
+    display: block;
+    width: 100%;
+    text-align: left;
   }
 
   #hamburger-button {
     display: block;
+    position: absolute;
+    top: -2;
+    right: 10px;
   }
 
   .nav-item .dropdown-menu {
     position: relative;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 10px;
+    width: 90%;
+    border: 1px solid #000;
   }
 
   .dropdown-menu li a {
