@@ -106,6 +106,13 @@ header nav ul li a:hover {
   z-index: 999; /* Ensure it is above other elements */
 }
 
+.nav-item .dropdown-menu li a.active,
+.nav-item .dropdown-menu li a:hover {
+  background: #fff;
+  color: #1F3051;
+  width: 100%;
+}
+
 .nav-item:hover .dropdown-menu {
   display: block;
 }
