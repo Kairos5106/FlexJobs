@@ -54,6 +54,7 @@ const Navbar = () => {
 
                 {/* Navigation links */}
                 <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+                    {/* Modules navigation */}
                     {navItems.map(({ path, title, subItems }) => (
                         <li key={path}>
                             <NavLink
@@ -64,15 +65,15 @@ const Navbar = () => {
                                 {title} {subItems && <i className="fa-solid fa-caret-down"></i>}
                             </NavLink>
                             {subItems && (
-                                <ul>
-                                    {subItems.map(({ path, title }) => (
-                                        <li key={path}>
+                                <ul className="dropdown-menu">
+                                    {subItems.map(subItem => (
+                                        <li key={subItem.path}>
                                             <NavLink
-                                                to={path}
+                                                to={subItem.path}
                                                 className={({ isActive }) => isActive ? "active" : ""}
                                                 onClick={() => setIsMenuOpen(false)}
                                             >
-                                                {title}
+                                                {subItem.title}
                                             </NavLink>
                                         </li>
                                     ))}
@@ -80,6 +81,8 @@ const Navbar = () => {
                             )}
                         </li>
                     ))}
+
+                    {/* Login */}
                     <li>
                         <Link to="/login" className='nav-item'>
                             <i className="fas fa-sign-in-alt"></i> Log in

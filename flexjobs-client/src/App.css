@@ -86,11 +86,7 @@ header nav ul li a:hover,
 }
 
 /* Dropdown styles */
-.nav-item.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu {
+.nav-item .dropdown-menu {
   display: none;
   position: absolute;
   left: 0;
@@ -99,6 +95,11 @@ header nav ul li a:hover,
   padding: 0;
   margin: 0;
   list-style: none;
+  z-index: 999; /* Ensure it is above other elements */
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
 }
 
 .dropdown-menu li {
@@ -140,6 +141,7 @@ header nav ul li a:hover,
     padding-top: 10px;
     z-index: 999;
     display: block;
+    padding-left: 0;
   }
 
   .nav-links.open {
@@ -152,5 +154,16 @@ header nav ul li a:hover,
 
   #hamburger-button {
     display: block;
+  }
+
+  .nav-item .dropdown-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .dropdown-menu li a {
+    padding: 10px 20px;
   }
 }
