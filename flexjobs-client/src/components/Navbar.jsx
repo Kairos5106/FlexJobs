@@ -18,9 +18,9 @@ const Navbar = () => {
             { path: "/JobSearch", title: "Search Job" },
             { path: "/PostJob", title: "Post A Job" }
         ]},
-        { path: "/Module3Page", title: "Inbox", subItems: [
-            { path: "/Chat", title: "Chat" },
-            { path: "/Feedback", title: "Feedback" }
+        { path: "/inbox", title: "Inbox", subItems: [
+            { path: "/inbox", title: "Chat" },
+            { path: "/feedback", title: "Feedback" }
         ]},
         { path: "/Module6Page", title: "Forum" },
         { path: "/Module5Page", title: "Profile", subItems: [

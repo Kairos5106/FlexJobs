@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+
+/* Menu toggler */
+#menu-toggler,
+#hamburger-button {
+    display: none;
+}
+
+
+/* Inbox module 3 styles */
+.inbox-body {
+    background-color: #F7F2E7;
+}
+
+.h1-inbox {
+    margin: 0.5em;
+    color: #24375D;
+    font-size: 3em;
+}
+
+@media (width > 980px) {
+    .h1-inbox {
+        margin-left: 1.5em;
+    }
+}
+
+.h1-message {
+    margin: 0.5em;
+    color: #24375D;
+    font-size: 3em;
+}
+
+.container-inbox {
+    display: flex;
+    flex-direction: row;
+    max-height: 100vh;
+    margin-top: 5em;
+}
+
+.column-inbox {
+    flex: 0 0 33%; /* 33% width */
+    background-color: #F7F2E7;
+    overflow-y: auto;
+}
+  
+.column-message {
+    display: flex;
+    flex: 1; /* Takes up remaining width */
+    background-color: #F7F2E7; 
+    text-align: left;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+}
+
+.line {
+    width: 1px;
+    background-color: #000000; /* Line color */
+}
+
+.line-inbox {
+    width: 1px;
+    background-color: #000000; /* Line color */
+}
+
+.message-vector {
+    width: 75px;
+    height: 75px;
+}
+
+.start-conversation {
+    margin-top: 1em;
+}
+
+.table-inbox {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders into a single border */
+}
+  
+.table-inbox td {
+    border: 1px solid #ccc; /* Add a 1px solid border to each table cell */
+    padding: 8px; /* Add some padding for better readability */
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
+    min-width: 8em;
+}
+
+.name {
+    font-weight: 500;
+}
+
+.message {
+    font-weight: 300;
+    font-size: small;
+    padding-top: 0.5em;
+}
+
+.timestamp {
+    vertical-align: text-top;
+    border-bottom: 1px solid #ccc;
+    font-weight: 300;
+    font-size: small;
+}
+
+td:first-child {
+    padding-left: 10%;
+    border-right: 1px solid transparent; /* Add a border to separate the first and second columns in timestamp rows */
+}
+
+tr {
+    line-height: 2em;
+}
+
+.table-inbox td:first-child {
+    width: 70%; /* Adjust the percentage as needed */
+}
+
+tr:hover {
+    background-color: #F9E0AB;
+    cursor: pointer;
+}
+
+.message-box {
+    /* margin-left: 33.1%;
+    margin-bottom: 7em; */
+    min-width: 55%;
+    text-align: left;
+  
+    position: relative;
+    height: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #000000;
+    box-sizing: border-box;
+  }
+
+.message-input {
+    margin-left: 5%;
+    min-width: 80%;
+    resize: none;
+    border-radius: 8px;
+}
+
+textarea {
+    padding: 0.5em;
+}
+
+.send-vector {
+    margin-top: 0.7em;
+    margin-left: 0.5em;
+    width: 2em;
+    height: 2em;
+    vertical-align: top;
+    cursor: pointer;
+    display: none;
+}
+
+.selected-inbox {
+    background-color: #F9E0AB;
+}
+
+#image-container {
+    display: absolute;
+    margin-left: 7%;
+    margin-top: 25%;
+    margin-bottom: 3em;
+    width: 300px;
+    height: 150px;
+}
