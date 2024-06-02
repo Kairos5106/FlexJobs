@@ -5,6 +5,11 @@
   scroll-behavior: smooth;
 }
 
+body {
+  background-color:  #F7F2E7; 
+  font-family: 'Poppins', sans-serif;
+}
+
 header {
   position: fixed;
   top: 0;
