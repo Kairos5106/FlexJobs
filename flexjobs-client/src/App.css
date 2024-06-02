@@ -39,9 +39,17 @@ header .logo {
   padding-bottom: 9px;
 }
 
+.nav-links {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  justify-content: flex-end;
+}
+
 header nav ul li {
   list-style: none;
-  margin-left: 10px;
+  margin-left: 0px;
   position: relative; /* Added for dropdown positioning */
 }
 
@@ -50,11 +58,11 @@ header nav ul li a,
   text-decoration: none;
   color: #fff;
   padding: 6px 15px;
-  display: block;
+  display: inline-flex;
+  align-items: center;
 }
 
-header nav ul li a:hover,
-.nav-item:hover {
+header nav ul li a:hover {
   background: #fff;
   color: #1F3051;
   border-radius: 20px;

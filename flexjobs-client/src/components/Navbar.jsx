@@ -56,7 +56,7 @@ const Navbar = () => {
                 <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
                     {/* Modules navigation */}
                     {navItems.map(({ path, title, subItems }) => (
-                        <li key={path}>
+                        <li key={path} className="nav-item">
                             <NavLink
                                 to={path}
                                 className={({ isActive }) => isActive ? "active" : ""}
@@ -85,7 +85,7 @@ const Navbar = () => {
                     {/* Login */}
                     <li>
                         <Link to="/login" className='nav-item'>
-                            <i className="fas fa-sign-in-alt"></i> Log in
+                            <i className="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Log in
                         </Link>
                     </li>
                 </ul>
