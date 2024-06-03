@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import Banner from './Banner';
+import Card from './Card';
 
 const JobSearch = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [jobs, setJobs] = useState([]);
+    const [query, setQuery] = useState("");
 
     // Fetch data from jobs.json
     useEffect(() => {
@@ -19,8 +21,6 @@ const JobSearch = () => {
     }, []);
 
     // Handle input change in input field from banner (job title)
-    const [query, setQuery] = useState("");
-
     const handleInputChange = (event) => {
         setQuery(event.target.value);
         // for debugging
@@ -33,10 +33,10 @@ const JobSearch = () => {
 
     // Radio filtering for side panel
     const handleChange = (event) => {
-        setSelectedCategory(event.target.value)
+        setSelectedCategory(event.target.value);
     }
 
-    // Main function
+    // Main function to filter data
     const filteredData = (jobs, selected, query) => {
         let filteredJobs = jobs;
 
@@ -47,12 +47,14 @@ const JobSearch = () => {
 
         // Filter jobs based on side panel
         if(selected) {
-            filteredJobs = filteredJobs.filter({minSalary, datePosted} => (
-                parseInt(minSalary) === parseInt(selected) ||
-
+            filteredJobs = filteredJobs.filter(job => (
+                parseInt(job.minSalary) === parseInt(selected) || 
+                job.datePosted === selected
             ));
             console.log(filteredJobs);
         }
+
+        return filteredJobs.map((data, i) => <Card key={i} data={data}/>)
     }
 
     return (
