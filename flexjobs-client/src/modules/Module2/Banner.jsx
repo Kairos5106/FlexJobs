@@ -1,7 +1,7 @@
 import React from "react";
 import './Module2.css';
 
-const Banner = ({query, handleInputChange}) => {
+const Banner = ({query, locationQuery, handleInputChange, handleLocationInputChange}) => {
     return (
         <div className="section">
             {/* Title */}
@@ -34,6 +34,8 @@ const Banner = ({query, handleInputChange}) => {
                             id="job-location"
                             className="form-control input-field"
                             placeholder="Location"
+                            onChange={handleLocationInputChange}
+                            value={locationQuery}
                         />
                     </div>
 

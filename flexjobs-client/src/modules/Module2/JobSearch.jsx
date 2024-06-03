@@ -9,6 +9,7 @@ const JobSearch = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [jobs, setJobs] = useState([]);
     const [query, setQuery] = useState("");
+    const [locationQuery, setLocationQuery] = useState("");
 
     // Fetch data from jobs.json
     useEffect(() => {
@@ -29,9 +30,14 @@ const JobSearch = () => {
         console.log(event.target.value);
     };
 
-    // Filter jobs based on job title from input field
-    const filteredItems = jobs.filter((job) => job.jobTitle.toLowerCase().includes(query.toLowerCase()));
-    console.log(filteredItems);
+    // Handle input change in input field from banner (job location)
+    const handleLocationInputChange = (event) => {
+        setLocationQuery(event.target.value);
+        // for debugging
+        console.log(event.target.value);
+    };    
+
+    
 
     // Radio filtering for side panel
     const handleChange = (event) => {
@@ -39,12 +45,19 @@ const JobSearch = () => {
     }
 
     // Main function to filter data
-    const filteredData = (jobs, selected, query) => {
+    const filteredData = (jobs, selected, query, locationQuery) => {
         let filteredJobs = jobs;
 
         // Filter jobs based on input field query
         if(query) {
-            filteredJobs = filteredItems;
+            const filteredByTitle = jobs.filter((job) => job.jobTitle.toLowerCase().includes(query.toLowerCase()));
+            filteredJobs = filteredByTitle;
+        }
+
+        // Filter jobs based on input field location
+        if(locationQuery) {
+            const filteredByLocation = jobs.filter((job) => job.jobLocation.toLowerCase().includes(locationQuery.toLowerCase()));
+            filteredJobs = filteredByLocation;
         }
 
         // Filter jobs based on side panel
@@ -56,9 +69,10 @@ const JobSearch = () => {
             console.log(filteredJobs);
         }
 
+        console.log(filteredJobs);
         return filteredJobs.map((data, i) => <Card key={i} data={data}/>)
     }
-    const result = filteredData(jobs, selectedCategory, query);
+    const result = filteredData(jobs, selectedCategory, query, locationQuery);
     const jobCount = result.length;
 
     return (
@@ -66,7 +80,9 @@ const JobSearch = () => {
             {/* Banner */}
             <Banner
                 query={query}
+                locationQuery={locationQuery}
                 handleInputChange={handleInputChange}
+                handleLocationInputChange={handleLocationInputChange}
             />
 
             {/* Main content */}
