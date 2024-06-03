@@ -1,7 +1,7 @@
 import React from "react";
 import './Module2.css';
 
-const Banner = ({ jobTitle, handleJobTitleChange, jobLocation, handleJobLocationChange }) => {
+const Banner = ({query, handleInputChange}) => {
     return (
         <div className="section">
             {/* Title */}
@@ -20,8 +20,8 @@ const Banner = ({ jobTitle, handleJobTitleChange, jobLocation, handleJobLocation
                             id="job-title"
                             className="form-control input-field"
                             placeholder="What job position are you looking for?"
-                            onChange={handleJobTitleChange}
-                            value={jobTitle}
+                            onChange={handleInputChange}
+                            value={query}
                         />
                     </div>
 
@@ -34,8 +34,6 @@ const Banner = ({ jobTitle, handleJobTitleChange, jobLocation, handleJobLocation
                             id="job-location"
                             className="form-control input-field"
                             placeholder="Location"
-                            onChange={handleJobLocationChange}
-                            value={jobLocation}
                         />
                     </div>
 
