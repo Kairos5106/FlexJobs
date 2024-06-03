@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import Banner from './Banner';
 import Card from './Card';
+import Jobs from './Jobs';
+import './Module2.css';
 
 const JobSearch = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -56,6 +58,8 @@ const JobSearch = () => {
 
         return filteredJobs.map((data, i) => <Card key={i} data={data}/>)
     }
+    const result = filteredData(jobs, selectedCategory, query);
+    const jobCount = result.length;
 
     return (
         <>
@@ -65,10 +69,21 @@ const JobSearch = () => {
                 handleInputChange={handleInputChange}
             />
 
-            {/* Centre panel - jobs list */}
+            {/* Main content */}
+            <div className='section row mx-0'>
+                {/* Side panel - filters */}
+                <div className='col-md-3 filter-panel'>
+                    Filter Panel (Left)
+                    <br></br>
+                    <br></br>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nostrum ab tempora alias accusamus. Temporibus vel numquam enim officia aspernatur eaque ut vero eos aliquam atque, quas at voluptatum obcaecati.
+                </div>
 
-
-            {/* Side panel - filters */}
+                {/* Centre panel - jobs list */}
+                <div className='col jobs-panel'>
+                    <Jobs result={result} jobCount={jobCount}/> 
+                </div>
+            </div>
         </>
     );
 }
