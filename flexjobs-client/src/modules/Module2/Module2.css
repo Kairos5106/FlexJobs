@@ -1,0 +1,43 @@
+.section {
+    margin-bottom: 40px;
+}
+
+/* Search Job ------------------------------------------------------------------------------------------------------------------------------*/ 
+/* Banner */
+.banner-h1 {
+    font-size: 2.5em;
+}
+
+.blue-text {
+    color: #3575E2;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    padding-left: 15px;
+    color: #ccc;
+    font-size: 1.2rem;
+}
+
+.input-field {
+    padding: 10px 15px 10px 50px;
+}
+
+.btn-primary {
+    background-color: #1F3051;
+    padding: 10px 15px;
+    border: 1px solid #1F3051;
+}
+
+.btn-primary:hover {
+    background-color: #3575E2;
+    border: 1px solid #1F3051;
+    color: #fff;
+}
+
+/* Centre panel */

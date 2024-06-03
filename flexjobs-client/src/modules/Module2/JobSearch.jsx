@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react';
 import '../../App.css';
+import Banner from './Banner';
 
 const JobSearch = () => {
+    const [jobTitle, setJobTitle] = useState("");
+    const [jobLocation, setJobLocation] = useState("");
+
+    const handleJobTitleChange = (event) => {
+        setJobTitle(event.target.value);
+        // for debugging
+        console.log("job-title: ", event.target.value);
+    };
+
+    const handleJobLocationChange = (event) => {
+        setJobLocation(event.target.value);
+        // for debugging
+        console.log("job-location: ", event.target.value);
+    };
+
     return (
         <>
-        <div className="top-section">This is JobSearch Page</div>
+            <Banner
+                jobTitle={jobTitle}
+                handleJobTitleChange={handleJobTitleChange}
+                jobLocation={jobLocation}
+                handleJobLocationChange={handleJobLocationChange}
+            />
         </>
-    )
+    );
 }
 
-export default JobSearch
+export default JobSearch;
