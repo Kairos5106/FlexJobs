@@ -4,6 +4,7 @@ import Banner from './Banner';
 import Card from './Card';
 import Jobs from './Jobs';
 import './Module2.css';
+import SidePanel from './SidePanel';
 
 const JobSearch = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -35,9 +36,7 @@ const JobSearch = () => {
         setLocationQuery(event.target.value);
         // for debugging
         console.log(event.target.value);
-    };    
-
-    
+    };
 
     // Radio filtering for side panel
     const handleChange = (event) => {
@@ -66,7 +65,6 @@ const JobSearch = () => {
                 parseInt(job.minSalary) === parseInt(selected) || 
                 job.datePosted === selected
             ));
-            console.log(filteredJobs);
         }
 
         console.log(filteredJobs);
@@ -89,13 +87,10 @@ const JobSearch = () => {
             <div className='section row mx-0'>
                 {/* Side panel - filters */}
                 <div className='col-md-3 filter-panel'>
-                    Filter Panel (Left)
-                    <br></br>
-                    <br></br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nostrum ab tempora alias accusamus. Temporibus vel numquam enim officia aspernatur eaque ut vero eos aliquam atque, quas at voluptatum obcaecati.
+                    <SidePanel handleChange={handleChange} />
                 </div>
 
-                {/* Centre panel - jobs list */}
+                {/* Centre panel - jobs card */}
                 <div className='col jobs-panel'>
                     <Jobs result={result} jobCount={jobCount}/> 
                 </div>
