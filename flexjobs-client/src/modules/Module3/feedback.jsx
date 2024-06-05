@@ -2,7 +2,7 @@ import React from 'react'
 import './style-feedback.css';
 import './script-feedback.js';
 
-const Inbox = () => {
+const Feedback = () => {
     return (
         <div class="container-feedback">
             <form id="feedback-form">
@@ -45,4 +45,4 @@ const Inbox = () => {
     )
 }
 
-export default Inbox
+export default Feedback

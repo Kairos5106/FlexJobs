@@ -4,7 +4,8 @@ import {
 import App from "../App";
 import Home from "../modules/Module1/Home";
 import JobSearch from "../modules/Module2/JobSearch";
-import Inbox from "../modules/Module3/inbox";
+import Inbox from "../modules/Module3/Inbox";
+import Feedback from "../modules/Module3/Feedback";
 import Module4Page from "../modules/Module4/Module4Page";
 import Module5Page from "../modules/Module5/Module5Page";
 import Module6Page from "../modules/Module6/Module6Page";
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
       children: [
         { path: "/", element: <Home/> },
         { path: "/JobSearch", element: <JobSearch/> },
-        { path: "/Inbox", element: <Inbox/> },,
+        { path: "/Inbox", element: <Inbox/> },
+        { path: "/Feedback", element: <Feedback/> },
         { path: "/Module4Page", element: <Module4Page/> },
         { path: "/Module5Page", element: <Module5Page/> },
         { path: "/Module6Page", element: <Module6Page/> }
