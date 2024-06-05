@@ -1,3 +1,11 @@
+body {
+    background-color:  #F7F2E7; 
+    font-family: 'Poppins', sans-serif;
+    padding-top: 100px; /* to give space for navbar before render webpage content */
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
 .section {
     padding-bottom: 40px;
 }
@@ -218,6 +226,14 @@
 
 /* Responsive ------------------------------------------------------------------------------------------------------------------------------*/ 
 @media (width < 1000px) {
+    body {
+        background-color:  #F7F2E7; 
+        font-family: 'Poppins', sans-serif;
+        padding-top: 100px; /* to give space for navbar before render webpage content */
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
     .card-custom {
         width: 100%;
         text-align: center;

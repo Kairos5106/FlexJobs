@@ -8,7 +8,7 @@
 body {
   background-color:  #F7F2E7; 
   font-family: 'Poppins', sans-serif;
-  padding-top: 100px; /* to give space for navbar before render webpage content */
+  padding-top: 70px; /* to give space for navbar before render webpage content */
   padding-left: 80px;
   padding-right: 80px;
 }
@@ -82,10 +82,6 @@ header nav ul li a:hover {
   border-radius: 20px;
 }
 
-.top-section {
-  padding: 80px;
-}
-
 /* Menu toggler */
 #menu-toggler {
   display: none;
@@ -145,17 +141,13 @@ header nav ul li a:hover {
   body {
     background-color:  #F7F2E7; 
     font-family: 'Poppins', sans-serif;
-    padding-top: 100px; /* to give space for navbar before render webpage content */
+    padding-top: 70px; /* to give space for navbar before render webpage content */
     padding-left: 40px;
     padding-right: 40px;
   }
 
   header {
     padding: 10px 20px;
-  }
-
-  .top-section {
-    padding: 80px 20px;
   }
 
   .nav-links {
