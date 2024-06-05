@@ -137,6 +137,85 @@
 
 
 
+/* Post A Job ------------------------------------------------------------------------------------------------------------------------------*/
+.post-a-job-form {
+    padding: 20px;
+    background: rgba(204, 204, 204, 0.5);
+    border-radius: 10px;
+    box-shadow: 3px 5px 4px rgba(0, 0, 0, 0.1);
+}
+
+.job-form-row {
+    padding: 10px 0;
+}
+
+.dropdown-custom {
+    position: relative;
+}
+
+.dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    padding-right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Skills tag input */
+.skills-content ul {
+    display: flex;
+    height: fit-content;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px 5px;
+    margin: 7px 0;
+}
+
+.skills-content ul li {
+    list-style: none;
+    margin: 3px 5px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background: #f2f2f2;
+    border: 1px solid #878787;
+    display: flex;
+    align-items: center;
+}
+
+.skills-content ul li i {
+    font-size: 1rem;
+    margin: 0 0 0 8px;
+    padding: 4px 5px;
+    border-radius: 30%;
+    color: #dc3545;
+    background: #dfdfdf;
+    border: 1px solid #dc3545;
+    cursor: pointer;
+}
+
+.skills-content ul li i:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+.skills-content ul input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
 /* Responsive ------------------------------------------------------------------------------------------------------------------------------*/ 
 @media (width < 1000px) {
     .card-custom {
