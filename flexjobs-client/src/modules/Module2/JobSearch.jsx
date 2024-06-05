@@ -67,6 +67,9 @@ const JobSearch = () => {
             ));
         }
 
+        // Sort jobs based on datePosted (most recent job at top of jobs list)
+        filteredJobs.sort((a, b) => new Date(b.datePosted) - new Date(a.datePosted));
+
         console.log(filteredJobs);
         return filteredJobs.map((data, i) => <Card key={i} data={data}/>)
     }
