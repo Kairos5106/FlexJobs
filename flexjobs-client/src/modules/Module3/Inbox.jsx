@@ -4,10 +4,10 @@ import './style-inbox.css';
 const Inbox = () => {
     const [rows, setRows] = useState([
         { id: 1, name: 'Mr Ahmad', message: 'Hey there! I am...', timestamp: '10:34am', image: './images-inbox/msg1.png' },
-        { id: 2, name: 'Martha', message: 'I will need someone...', timestamp: '3:31pm', image: '../../../public/images-inbox/msg2.png' },
-        { id: 3, name: 'Web Dev group', message: 'Does anyone here knows how...', timestamp: '11:52am', image: '../../../public/images-inbox/msg3.png' },
-        { id: 4, name: 'Photo shoot group', message: 'Anyone free to...', timestamp: '2:10pm', image: '../../../public/images-inbox/msg4.png' },
-        { id: 5, name: 'Lee Cheng', message: 'Hi, I will be assigning...', timestamp: '5:48pm', image: '../../../public/images-inbox/msg5.png' }
+        { id: 2, name: 'Martha', message: 'I will need someone...', timestamp: '3:31pm', image: './images-inbox/msg2.png' },
+        { id: 3, name: 'Web Dev group', message: 'Does anyone here knows how...', timestamp: '11:52am', image: './images-inbox/msg3.png' },
+        { id: 4, name: 'Photo shoot group', message: 'Anyone free to...', timestamp: '2:10pm', image: './images-inbox/msg4.png' },
+        { id: 5, name: 'Lee Cheng', message: 'Hi, I will be assigning...', timestamp: '5:48pm', image: './images-inbox/msg5.png' }
     ]);
 
     const [selectedRowIndex, setSelectedRowIndex] = useState(null);
@@ -53,7 +53,8 @@ const Inbox = () => {
 
             <div className="column-message">
                 <div className="default-display" id="default-display" style={{ display: selectedRow ? 'none' : 'block' }}>
-                    Select a message to view
+                    <img className="message-vector" src="./images-inbox/message-vector.png" alt="Message vector" />
+                    <p className="start-conversation">Start a conversation with employers or other users</p>
                 </div>
                 <div>
                     {selectedRow && <img id="image-container" src={selectedRow.image} alt="Message container" />}

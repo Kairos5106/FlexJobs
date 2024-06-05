@@ -15,11 +15,7 @@
 }
 
 
-/* Resizing of elements */
-@media (width > 980px) {
-
-}
-
+/* Responsiveness */
 @media (max-width: 960px) {
     .h1-inbox {
         font-size: 2.5em;
@@ -30,7 +26,6 @@
 
 /* Chat column */
 .container-inbox {
-    margin-top: 0rem;
     display: flex;
     flex-direction: row;
     max-height: 100vh;
@@ -41,7 +36,7 @@
     flex: 0 0 33%; /* 33% width */
     background-color: #F7F2E7;
     max-height: 85vh;
-    padding-top: 1.5em;
+    padding-top: 1.5em;    /* More padding at the inbox column for better view */
 }
 
 .selected-inbox {
@@ -113,13 +108,12 @@ tr:hover {
 .line {
     min-height: 90vh;
     width: 1px;
-    background-color: #000000; /* Line color */
+    background-color: #818080; /* Line color */
 }
 
 
 /* Message column   */
 .column-message {
-    margin-top: 3em;
     display: flex;
     flex: 1; /* Takes up remaining width */
     background-color: #F7F2E7; 
@@ -128,6 +122,27 @@ tr:hover {
     align-items: left;
     flex-direction: column;
 }
+
+
+.default-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 0 10%;
+    padding-top: 13rem;
+}
+
+.message-vector {
+    margin-bottom: 20px;
+}
+
+.start-conversation {
+    margin: 0; 
+}
+
 
 .message-vector {
     width: 75px;
@@ -146,7 +161,7 @@ tr:hover {
     left: 0;
     width: 100%;
     padding: 10px;
-    border-top: 1px solid #000000;
+    border-top: 1px solid #818080;
     box-sizing: border-box;
   }
 

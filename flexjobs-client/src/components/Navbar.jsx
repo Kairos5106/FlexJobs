@@ -36,7 +36,7 @@ const Navbar = () => {
         <header>
             {/* Logo */}
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/images/logo.png" width="30px" height="30px" style={{ marginRight: '10px' }} alt="Logo" />
+                <img src="/images/logo.png" width="30px" height="30px" style={{ marginRight: '10px', marginBottom: '3px' }} alt="Logo" />
                 <h1 className="logo">FlexJobs</h1>
             </div>
 
