@@ -52,7 +52,7 @@ body {
 
 /* Chat column */
 .container-inbox {
-    margin-top: 4.3rem;
+    padding-top: 4.3rem;
     display: flex;
     flex-direction: row;
     max-height: 100vh;
@@ -60,7 +60,7 @@ body {
 }
 
 .column-inbox {
-    margin-top: 1rem;
+    padding-top: 1rem;
     flex: 0 0 33%; /* 33% width */
     background-color: #F7F2E7;
     max-height: 85vh;
@@ -118,7 +118,7 @@ tr:hover {
 
 /* Message column   */
 .column-message {
-    margin-top: 10em;
+    padding-top: 10em;
     display: flex;
     flex: 1; /* Takes up remaining width */
     background-color: #F7F2E7; 
