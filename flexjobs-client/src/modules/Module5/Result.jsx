@@ -5,7 +5,7 @@ import './5.2 Result.css';
 const Results = () => {
     const location = useLocation();
     const [results, setResults] = useState({});
-    const username = "username"; // Replace with actual username or get from user context
+    const username = "sample_username"; // Replace with actual username or get from user context
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);

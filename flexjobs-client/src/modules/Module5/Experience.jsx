@@ -1,52 +1,57 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import "./Education.css"; // Assuming you have an Experience.css file for styling
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function ExperienceSection() {
-  const [experienceData, setExperienceData] = useState([
-    // Sample initial data
-    {
-      id: 1,
-      position: "Software Engineer",
-      company: "ABC Company",
-      period: "2010-2014",
-      location: "Kuala Lumpur",
-    },
-   
-  ]);
-
-  // State to manage the editing status of each experience entry
+  const [experienceData, setExperienceData] = useState([]);
+  const [isAddingExperience, setIsAddingExperience] = useState(false);
   const [editExperienceId, setEditExperienceId] = useState(null);
 
-  const [isAddingExperience, setIsAddingExperience] = useState(false);
+  useEffect(() => {
+    fetchExperiences();
+  }, []);
 
-  // Function to handle adding a new experience entry
-  const addExperience = (newExperience) => {
-    setExperienceData([...experienceData, newExperience]);
-    setIsAddingExperience(false); // Hide the form after adding experience
+  const fetchExperiences = async () => {
+    const response = await fetch('http://localhost:3000/experience');
+    const data = await response.json();
+    setExperienceData(data);
   };
 
-  // Function to handle deleting an experience entry
-  const deleteExperience = (id) => {
-    setExperienceData(experienceData.filter((exp) => exp.id !== id));
+  const addExperience = async (newExperience) => {
+    await fetch('http://localhost:3000/experience', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newExperience),
+    });
+    fetchExperiences();
+    setIsAddingExperience(false);
   };
 
-  // Function to handle toggling the edit mode of an experience entry
+  const deleteExperience = async (id) => {
+    await fetch(`http://localhost:3000/experience/${id}`, {
+      method: 'DELETE',
+    });
+    fetchExperiences();
+  };
+
+  const updateExperience = async (updatedExperience) => {
+    await fetch(`http://localhost:3000/experience/${updatedExperience.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedExperience),
+    });
+    fetchExperiences();
+    setEditExperienceId(null);
+  };
+
   const toggleEditExperience = (id) => {
     setEditExperienceId(id === editExperienceId ? null : id);
   };
-
-  // Function to handle updating an experience entry
-  const updateExperience = (updatedExperience) => {
-    setExperienceData(
-      experienceData.map((exp) =>
-        exp.id === updatedExperience.id ? updatedExperience : exp
-      )
-    );
-    setEditExperienceId(null); // Exit edit mode after updating
-  };
-
   const experienceItems = experienceData.map((experience) => (
     <div key={experience.id} className="m-item">
        <div className="m-content">

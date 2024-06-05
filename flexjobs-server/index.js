@@ -32,28 +32,89 @@ async function run() {
     // Set up database
     database = client.db("flexjobs-database");
 
-    // Set up route to save results
-    app.post('/save-results', async (req, res) => {
-      try {
-        console.log('Received request to save results:', req.body);
-        const resultsCollection = database.collection("results");
-        const usersCollection = database.collection("users");
-        const { userId, results } = req.body;
+    const portfolioCollection = database.collection("portfolio");
 
-        // Find the user by ID
-        const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
-        if (!user) {
-          return res.status(404).send('User not found');
+       // Set up route to save results
+       app.post('/save-results', async (req, res) => {
+        try {
+          const resultsCollection = database.collection("result");
+          const { username, results } = req.body;
+          const newResult = { username, results, date: new Date() };
+          const result = await resultsCollection.insertOne(newResult);
+          res.status(200).send(`Result saved with ID: ${result.insertedId}`);
+        } catch (error) {
+          console.error('Error saving results:', error);
+          res.status(500).send('Error saving results');
         }
+      });
+  
 
-        // Save results linked to the user ID
-        const newResult = { userId: new ObjectId(userId), results, date: new Date() };
-        const result = await resultsCollection.insertOne(newResult);
-        console.log('Result saved with ID:', result.insertedId);
-        res.status(200).send(`Result saved with ID: ${result.insertedId}`);
+    // Create a new experience
+    app.post('/experience', async (req, res) => {
+      try {
+        const newExperience = req.body;
+        const result = await portfolioCollection.insertOne(newExperience);
+        res.status(201).send(`Experience created with ID: ${result.insertedId}`);
       } catch (error) {
-        console.error('Error saving results:', error);
-        res.status(500).send('Error saving results');
+        console.error('Error creating experience:', error);
+        res.status(500).send('Error creating experience');
+      }
+    });
+
+    // Get all experiences
+    app.get('/experience', async (req, res) => {
+      try {
+        const experiences = await portfolioCollection.find().toArray();
+        res.status(200).json(experiences);
+      } catch (error) {
+        console.error('Error fetching experiences:', error);
+        res.status(500).send('Error fetching experiences');
+      }
+    });
+
+    // Get a specific experience by ID
+    app.get('/experience/:id', async (req, res) => {
+      try {
+        const experience = await portfolioCollection.findOne({ _id: new ObjectId(req.params.id) });
+        if (!experience) {
+          return res.status(404).send('Experience not found');
+        }
+        res.status(200).json(experience);
+      } catch (error) {
+        console.error('Error fetching experience:', error);
+        res.status(500).send('Error fetching experience');
+      }
+    });
+
+    // Update an experience
+    app.put('/experience/:id', async (req, res) => {
+      try {
+        const updatedExperience = req.body;
+        const result = await portfolioCollection.updateOne(
+          { _id: new ObjectId(req.params.id) },
+          { $set: updatedExperience }
+        );
+        if (result.matchedCount === 0) {
+          return res.status(404).send('Experience not found');
+        }
+        res.status(200).send('Experience updated');
+      } catch (error) {
+        console.error('Error updating experience:', error);
+        res.status(500).send('Error updating experience');
+      }
+    });
+
+    // Delete an experience
+    app.delete('/experience/:id', async (req, res) => {
+      try {
+        const result = await portfolioCollection.deleteOne({ _id: new ObjectId(req.params.id) });
+        if (result.deletedCount === 0) {
+          return res.status(404).send('Experience not found');
+        }
+        res.status(200).send('Experience deleted');
+      } catch (error) {
+        console.error('Error deleting experience:', error);
+        res.status(500).send('Error deleting experience');
       }
     });
 
