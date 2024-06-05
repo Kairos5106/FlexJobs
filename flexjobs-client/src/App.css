@@ -8,9 +8,6 @@
 body {
   background-color:  #F7F2E7; 
   font-family: 'Poppins', sans-serif;
-  padding-top: 100px; /* to give space for navbar before render webpage content */
-  padding-left: 80px;
-  padding-right: 80px;
 }
 
 header {
@@ -142,14 +139,6 @@ header nav ul li a:hover {
 
 /* Responsiveness */
 @media (max-width: 850px) {
-  body {
-    background-color:  #F7F2E7; 
-    font-family: 'Poppins', sans-serif;
-    padding-top: 100px; /* to give space for navbar before render webpage content */
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-
   header {
     padding: 10px 20px;
   }
