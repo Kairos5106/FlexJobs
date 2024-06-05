@@ -20,7 +20,7 @@ const Navbar = () => {
         ]},
         { path: "/Inbox", title: "Inbox", subItems: [
             { path: "/Inbox", title: "Chat" },
-            { path: "/Feedback", title: "Feedback" }
+            { path: "/Feedbacks", title: "Feedback" }
         ]},
         { path: "/Module6Page", title: "Forum" },
         { path: "/Module5Page", title: "Profile", subItems: [
