@@ -1,19 +1,17 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Import ObjectId
+require('dotenv').config();
+
 const port = process.env.PORT || 3000;
-require('dotenv').config()
 
-// middleware
-app.use(express.json())
-app.use(cors())
-
+// Middleware
+app.use(express.json());
+app.use(cors());
 
 // MongoDB Setup
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/?retryWrites=true&w=majority&appName=FlexJobs`;
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -22,45 +20,51 @@ const client = new MongoClient(uri, {
   }
 });
 
+let database;
+
+// Function to connect to MongoDB and set up routes
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
+    // Connect the client to the server
     await client.connect();
+    console.log('Connected to MongoDB');
 
-    // Create database
-    const database = client.db("flexjobs-database");
-    const users = database.collection("users");
+    // Set up database
+    database = client.db("flexjobs-database");
 
-    // Create a document to insert
-    const personOne = {
-        username: "sample_username",
-        status: "admin"
-    }
+    // Set up route to save results
+    app.post('/save-results', async (req, res) => {
+      try {
+        console.log('Received request to save results:', req.body);
+        const resultsCollection = database.collection("results");
+        const usersCollection = database.collection("users");
+        const { userId, results } = req.body;
 
-    // Insert the document into the collection
-    const result = await users.insertOne(personOne);
+        // Find the user by ID
+        const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
+        if (!user) {
+          return res.status(404).send('User not found');
+        }
 
-    // Print the ID of the inserted document
-    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+        // Save results linked to the user ID
+        const newResult = { userId: new ObjectId(userId), results, date: new Date() };
+        const result = await resultsCollection.insertOne(newResult);
+        console.log('Result saved with ID:', result.insertedId);
+        res.status(200).send(`Result saved with ID: ${result.insertedId}`);
+      } catch (error) {
+        console.error('Error saving results:', error);
+        res.status(500).send('Error saving results');
+      }
+    });
 
-
-
-    
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+    // Start the server
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  } catch (err) {
+    console.error('Failed to connect to MongoDB:', err);
   }
 }
-run().catch(console.dir);
 
-
-app.get('/', (req, res) => {
-  res.send('Hello Kevin!')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// Call the run function
+run().catch(console.error);

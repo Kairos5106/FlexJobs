@@ -11,6 +11,8 @@ body {
   padding-top: 100px; /* to give space for navbar before render webpage content */
   padding-left: 80px;
   padding-right: 80px;
+  padding-bottom: 10px;
+
 }
 
 header {
