@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(cors())
 
 
-// mongoDB
+// MongoDB Setup
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/?retryWrites=true&w=majority&appName=FlexJobs`;
 
@@ -28,7 +28,23 @@ async function run() {
     await client.connect();
 
     // Create database
-    
+    const database = client.db("flexjobs-database");
+    const users = database.collection("users");
+
+    // Create a document to insert
+    const personOne = {
+        username: "sample_username",
+        status: "admin"
+    }
+
+    // Insert the document into the collection
+    const result = await users.insertOne(personOne);
+
+    // Print the ID of the inserted document
+    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+
+
+
     
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
