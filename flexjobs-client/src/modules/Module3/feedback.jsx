@@ -1,11 +1,10 @@
 import React from 'react'
 import './style-feedback.css';
-import './script-feedback.js';
 
 const Feedback = () => {
     return (
         <div className="section-feedback">
-            <section></section>
+            
             <div className="container-feedback">
                 <form id="feedback-form">
                     <h1>Feedback Form</h1>
@@ -44,6 +43,7 @@ const Feedback = () => {
                     <button id="submitButton" type="submit">Send</button>
                 </form>
             </div>
+            {/* <div className='cover-image'></div> */}
         </div>
 
     );
