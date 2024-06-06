@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Module2.css';
 import { useParams } from 'react-router-dom';
 
@@ -132,7 +133,6 @@ const JobDetails = () => {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Save changes</button>
                             <button type="button" className="btn btn-primary" id="submit-application-button" data-bs-toggle="modal" data-bs-target="#appliedPopup">Submit</button>
                         </div>
                     </div>
