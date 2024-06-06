@@ -76,6 +76,13 @@ const ApplyJob = () => {
     return (
         <div className="section apply-job">
             <div className="col-md-6" id="apply-job">
+                {/* Top Section */}
+                <div className="back-link-section">
+                    <a href="#" className="back-link" onClick={() => window.history.back()}>
+                        <i className="fa-solid fa-left-long"></i> Go Back
+                    </a>
+                </div>
+                
                 <form className="apply-job-form" id="apply-job-form" onSubmit={onSubmit}>
                     {/* Full name */}
                     <div className="row g-2 job-form-row">
