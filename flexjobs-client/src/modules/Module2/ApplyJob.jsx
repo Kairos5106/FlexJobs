@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Module2.css';
+import { useLocation } from 'react-router-dom';
 
 const ApplyJob = () => {
+    const location = useLocation();
+    const { jobId, jobTitle, companyName, jobLocation } = location.state || {};
+    console.log('Job Details:', jobId, jobTitle, companyName, jobLocation);
+
     // Construct the job application object
     const [applicationFormData, setApplicationFormData] = useState({
         fullName: '',
@@ -34,11 +39,10 @@ const ApplyJob = () => {
 
         const applicationData = { 
             ...applicationFormData,
-            jobId: job._id,
-            jobTitle: job.jobTitle,
-            companyName: job.companyName,
-            jobLocation: job.jobLocation,
-            dateApplied: new Date().toISOString()
+            jobId: jobId,
+            jobTitle: jobTitle,
+            companyName: companyName,
+            jobLocation: jobLocation
         };
 
         try {

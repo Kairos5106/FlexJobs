@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Module2.css';
-import { useParams } from 'react-router-dom';
-
 
 const JobDetails = () => {
     const {id} = useParams();
     const [job, setJob] = useState({});
+    const navigate = useNavigate();
     console.log("Job ID:", id);
 
     // Fetch and display the particular job
@@ -34,6 +33,18 @@ const JobDetails = () => {
         return `${days} days ago`;
     };
 
+    // Handle Apply Now button click
+    const handleApplyClick = () => {
+        navigate('/ApplyJob', {
+            state: {
+                jobId: job._id,
+                jobTitle: job.jobTitle,
+                companyName: job.companyName,
+                jobLocation: job.jobLocation
+            }
+        });
+    };
+
     return (
         <div>
             {/* Top Section */}
@@ -54,18 +65,9 @@ const JobDetails = () => {
                                 <h1 className="h1" id="job-title">{job.jobTitle}</h1>
 
                                 {/* Apply button */}
-                                {/* Apply button */}
-                                <Link to={{
-                                    pathname: "/ApplyJob",
-                                    state: {
-                                        jobId: job._id,
-                                        jobTitle: job.jobTitle,
-                                        companyName: job.companyName,
-                                        jobLocation: job.jobLocation
-                                    }
-                                }} className="btn btn-primary apply-job-button">
+                                <button onClick={handleApplyClick} className="btn btn-primary apply-job-button">
                                     Apply Now
-                                </Link>
+                                </button>
                             </div>
 
                             <hr />
