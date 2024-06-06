@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Module2.css';
@@ -10,6 +11,7 @@ const JobDetails = () => {
     const [job, setJob] = useState({});
     console.log("Job ID:", id);
 
+    // Fetch and display the particular job
     useEffect(() => {
         fetch(`http://localhost:3000/all-jobs/${id}`)
             .then(res => res.json())
@@ -32,58 +34,6 @@ const JobDetails = () => {
         return `${days} days ago`;
     };
 
-    // Handle form data change
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setApplicationFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-
-    // Handle file input change
-    const handleFileChange = (e) => {
-        setApplicationFormData(prevState => ({
-            ...prevState,
-            resume: e.target.files[0]
-        }));
-    };
-
-    // Construct the job application object
-    const [applicationFormData, setApplicationFormData] = useState({
-        fullName: '',
-        contactNumber: '',
-        email: '',
-        resume: '',
-    });
-
-    // Function to submit the job application
-    const onSubmit = async (e) => {
-        e.preventDefault();
-
-        const applicationData = { ...applicationFormData };
-
-        try {
-            const response = await fetch("http://localhost:3000/post-job-application", {
-                method: "POST",
-                headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify(jobData)
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                console.log("Application saved successfully:", result);
-                alert("Great job! You've applied successfully. Keep an eye on the 'Jobs Applied' section in your profile to track its status.");
-            } else {
-                console.error('Error posting application:', result);
-                alert('Error posting application: ' + result.message);
-            }
-        } catch (error) {
-            console.error('Error posting application:', error);
-            alert('Error posting application: ' + error.message);
-        }
-    };
-
     return (
         <div>
             {/* Top Section */}
@@ -104,7 +54,18 @@ const JobDetails = () => {
                                 <h1 className="h1" id="job-title">{job.jobTitle}</h1>
 
                                 {/* Apply button */}
-                                <button type="button" className="btn btn-primary apply-job-button" id="apply-job-button" data-bs-toggle="modal" data-bs-target="#applyNowPopup">Apply</button>
+                                {/* Apply button */}
+                                <Link to={{
+                                    pathname: "/ApplyJob",
+                                    state: {
+                                        jobId: job._id,
+                                        jobTitle: job.jobTitle,
+                                        companyName: job.companyName,
+                                        jobLocation: job.jobLocation
+                                    }
+                                }} className="btn btn-primary apply-job-button">
+                                    Apply Now
+                                </Link>
                             </div>
 
                             <hr />
@@ -151,41 +112,6 @@ const JobDetails = () => {
                                     <a href="https://www.google.com" className="about-company-link" target="_blank" rel="noopener noreferrer">Read More</a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Apply now pop up */}
-            <div className="modal fade" id="applyNowPopup" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="applyNowPopup" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="applyNowPopupTitle">Start Your Application</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <form className="apply-job-form" id="apply-job-form" onSubmit={onSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="fullName" className="col-form-label">Full Name:</label>
-                                    <input type="text" className="form-control" id="fullName" required value={applicationFormData.fullName} onChange={handleChange} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="contactNumber" className="col-form-label">Contact Number:</label>
-                                    <input type="text" className="form-control" id="contactNumber" required value={applicationFormData.contactNumber} onChange={handleChange} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="email" className="col-form-label">Email:</label>
-                                    <input type="email" className="form-control" id="email" required value={applicationFormData.email} onChange={handleChange} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="resume" className="col-form-label">Upload Resume:</label>
-                                    <input type="file" className="form-control" id="resume" accept=".pdf,.doc,.docx" required onChange={handleFileChange}/>
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="submit" className="btn btn-primary" id="submit-application-button">Submit</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>

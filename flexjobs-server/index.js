@@ -124,6 +124,19 @@ async function run() {
       }
     });
 
+    // Get all job application
+    app.get("/all-job-application", async (req, res) => {
+      try {
+        const jobApplications = await jobApplicationsCollection.find({}).toArray();
+        res.send(jobApplications);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
     // Module 2 ---------------------------------------------------------------------------------------------------------
 
 

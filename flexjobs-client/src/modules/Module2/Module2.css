@@ -225,8 +225,18 @@ body {
 }
 
 
+/* Apply Job ------------------------------------------------------------------------------------------------------------------------------*/
+.apply-job {
+    display: flex;
+    justify-content: center;
+}
 
-
+.apply-job-form {
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
 
 
 

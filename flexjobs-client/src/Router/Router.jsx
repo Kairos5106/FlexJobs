@@ -6,6 +6,7 @@ import Home from "../modules/Module1/Home";
 import JobSearch from "../modules/Module2/JobSearch";
 import PostJob from "../modules/Module2/PostJob";
 import JobDetails from "../modules/Module2/JobDetails";
+import ApplyJob from "../modules/Module2/ApplyJob";
 import Module3Page from "../modules/Module3/Module3Page";
 import Module4Page from "../modules/Module4/Module4Page";
 import Module5Page from "../modules/Module5/Module5Page";
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         { path: "/JobSearch", element: <JobSearch/> },
         { path: "/PostJob", element: <PostJob/> },
         { path: "/job/:id", element: <JobDetails/> },
+        { path: "/ApplyJob", element: <ApplyJob/> },
 
         // Module 3
         { path: "/Module3Page", element: <Module3Page/> },
