@@ -83,6 +83,24 @@ async function run() {
       }
     });
 
+    // Get a single job using id (to be displayed in JobDetails.jsx)
+    const { ObjectId } = require('mongodb');
+
+    app.get("/all-jobs/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const job = await jobsCollection.findOne({
+          _id: new ObjectId(id)
+        });
+        res.send(job);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
     // Module 2 ---------------------------------------------------------------------------------------------------------
 
 
