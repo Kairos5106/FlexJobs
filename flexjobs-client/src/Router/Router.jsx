@@ -5,6 +5,7 @@ import App from "../App";
 import Home from "../modules/Module1/Home";
 import JobSearch from "../modules/Module2/JobSearch";
 import PostJob from "../modules/Module2/PostJob";
+import JobDetails from "../modules/Module2/JobDetails";
 import Module3Page from "../modules/Module3/Module3Page";
 import Module4Page from "../modules/Module4/Module4Page";
 import Module5Page from "../modules/Module5/Module5Page";
@@ -18,12 +19,24 @@ const router = createBrowserRouter([
       path: "/",
       element: <App/>,
       children: [
+        // Module 1
         { path: "/", element: <Home/> },
+
+        // Module 2
         { path: "/JobSearch", element: <JobSearch/> },
         { path: "/PostJob", element: <PostJob/> },
+        { path: "/job/:id", element: <JobDetails/> },
+
+        // Module 3
         { path: "/Module3Page", element: <Module3Page/> },
+
+        // Module 4
         { path: "/Module4Page", element: <Module4Page/> },
+
+        // Module 5
         { path: "/Module5Page", element: <Module5Page/> },
+
+        // Module 6
         { path: "/Module6Page", element: <Module6Page/> }
       ]
     },
