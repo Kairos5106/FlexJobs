@@ -1,54 +1,58 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Education.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function HonorSection() {
-  const [honorData, setHonorData] = useState([
-    // Sample initial data
-    {
-      id: 1,
-      title: "Outstanding Achievement Award",
-      category: "Academic",
-      duration: "2018-2019",
-    },
-    {
-      id: 2,
-      title: "Leadership Excellence Award",
-      category: "Professional",
-      duration: "2020",
-    },
-  ]);
-
-  // State to manage the editing status of each honor entry
+  const [honorData, setHonorData] = useState([]);
+  const [isAddingHonor, setIsAddingHonor] = useState(false);
   const [editHonorId, setEditHonorId] = useState(null);
 
-  const [isAddingHonor, setIsAddingHonor] = useState(false);
+  useEffect(() => {
+    fetchHonor();
+  }, []);
 
-  // Function to handle adding a new honor entry
-  const addHonor = (newHonor) => {
-    setHonorData([...honorData, newHonor]);
-    setIsAddingHonor(false); // Hide the form after adding honor
+  const fetchHonor = async () => {
+    const response = await fetch('http://localhost:3000/honor');
+    const data = await response.json();
+    setHonorData(data);
   };
 
-  // Function to handle deleting a honor entry
-  const deleteHonor = (id) => {
-    setHonorData(honorData.filter((honor) => honor.id !== id));
+  const addHonor = async (newHonor) => {
+    await fetch('http://localhost:3000/honor', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newHonor),
+    });
+    fetchHonor();
+    setIsAddingHonor(false);
   };
 
-  // Function to handle toggling the edit mode of a honor entry
+  const deleteHonor = async (_id) => {
+    await fetch(`http://localhost:3000/honor/${_id}`, {
+      method: 'DELETE',
+    });
+    fetchHonor();
+  };
+
+  const updateHonor = async (updatedHonor) => {
+    const { _id, ...updateData } = updatedHonor;
+    console.log('Update Data:', updateData);
+    await fetch(`http://localhost:3000/honor/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    });
+    fetchHonor();
+    setEditHonorId(null);
+  };
+
   const toggleEditHonor = (id) => {
     setEditHonorId(id === editHonorId ? null : id);
-  };
-
-  // Function to handle updating a honor entry
-  const updateHonor = (updatedHonor) => {
-    setHonorData(
-      honorData.map((honor) =>
-        honor.id === updatedHonor.id ? updatedHonor : honor
-      )
-    );
-    setEditHonorId(null); // Exit edit mode after updating
   };
 
   const honorItems = honorData.map((honor) => (
@@ -61,10 +65,12 @@ function HonorSection() {
           
         />
         <div className="m-details">
-          {editHonorId === honor.id ? (
+          {editHonorId === honor._id ? (
             <EditHonorForm
               honor={honor}
               updateHonor={updateHonor}
+              cancelEdit={() => setEditHonorId(null)}
+
             />
           ) : (
             <>
@@ -75,15 +81,14 @@ function HonorSection() {
           )}
         </div>
       </div>
-      <div>
-        <button onClick={() => toggleEditHonor(honor.id)}>
-          {editHonorId === honor.id ? (
-            <button onClick={() => deleteHonor(honor.id)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-          ) : (
-            <FontAwesomeIcon icon={faEdit} />
-          )}
+       <div className="button">
+        <button onClick={() => toggleEditHonor(honor._id)}>
+          <FontAwesomeIcon icon={faEdit} />
+        </button>
+        </div>
+        <div className="button">
+        <button onClick={() => deleteHonor(honor._id)}>
+          <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
     </div>
@@ -98,7 +103,6 @@ function HonorSection() {
         </button>
       </div>
       {honorItems}
-      {/* Render AddHonorForm conditionally */}
       {isAddingHonor && (
         <AddHonorForm
           addHonor={addHonor}
@@ -109,7 +113,7 @@ function HonorSection() {
   );
 }
 
-function AddHonorForm({ addHonor }) {
+function AddHonorForm({ addHonor, onCancel  }) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [duration, setDuration] = useState("");
@@ -119,7 +123,7 @@ function AddHonorForm({ addHonor }) {
     // Basic validation
     if (!title || !category || !duration) return;
     // Call addHonor function from parent component
-    addHonor({ id: Date.now(), title, category, duration });
+    addHonor({ title, category, duration });
     // Clear input fields
     setTitle("");
     setCategory("");
@@ -146,12 +150,15 @@ function AddHonorForm({ addHonor }) {
         onChange={(e) => setDuration(e.target.value)}
         placeholder="Duration"
       />
+       <div className="button">
       <button type="submit">Add Honor</button>
+      <button type="button" onClick={onCancel}>Cancel</button>
+      </div>
     </form>
   );
 }
 
-function EditHonorForm({ honor, updateHonor }) {
+function EditHonorForm({ honor, updateHonor, cancelEdit }) {
   const [title, setTitle] = useState(honor.title);
   const [category, setCategory] = useState(honor.category);
   const [duration, setDuration] = useState(honor.duration);
@@ -184,7 +191,10 @@ function EditHonorForm({ honor, updateHonor }) {
         onChange={(e) => setDuration(e.target.value)}
         placeholder="Duration"
       />
+       <div className="button">
       <button type="submit">Update</button>
+      <button type="button" onClick={cancelEdit}>Cancel</button>
+      </div>
     </form>
   );
 }

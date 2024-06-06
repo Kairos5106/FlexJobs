@@ -1,34 +1,54 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Education.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function OrganizationSection() {
-  const [organizationData, setOrganizationData] = useState([
-    // Sample initial data
-    {
-      id: 1,
-      organization: "Universiti Malaya Accounting Society",
-      position: "Secretary",
-      duration: "2005-2006",
-      description: "Handling incoming and outgoing correspondence on behalf of the club, including emails, letters, and other forms of communication."
-    },
-  ]);
-
-  // State to manage the editing status of each organization entry
+  const [organizationData, setOrganizationData] = useState([]);
+  const [isAddingOrganization, setIsAddingOrganization] = useState(false);
   const [editOrganizationId, setEditOrganizationId] = useState(null);
 
-  const [isAddingOrganization, setIsAddingOrganization] = useState(false);
+  useEffect(() => {
+    fetchOrganization();
+  }, []);
 
-  // Function to handle adding a new organization entry
-  const addOrganization = (newOrganization) => {
-    setOrganizationData([...organizationData, newOrganization]);
-    setIsAddingOrganization(false); // Hide the form after adding organization
+  const fetchOrganization = async () => {
+    const response = await fetch('http://localhost:3000/organization');
+    const data = await response.json();
+    setOrganizationData(data);
   };
 
-  // Function to handle deleting an organization entry
-  const deleteOrganization = (id) => {
-    setOrganizationData(organizationData.filter((org) => org.id !== id));
+  const addOrganization = async (newOrganization) => {
+    await fetch('http://localhost:3000/organization', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newOrganization),
+    });
+    fetchOrganization();
+    setIsAddingOrganization(false);
+  };
+
+  const deleteOrganization = async (_id) => {
+    await fetch(`http://localhost:3000/organization/${_id}`, {
+      method: 'DELETE',
+    });
+    fetchOrganization();
+  };
+
+  const  updateOrganization = async (updatedOrganization) => {
+    const { _id, ...updateData } = updatedOrganization;
+    console.log('Update Data:', updateData);
+    await fetch(`http://localhost:3000/organization/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    });
+    fetchOrganization();
+    setEditOrganizationId(null);
   };
 
   // Function to handle toggling the edit mode of an organization entry
@@ -36,45 +56,36 @@ function OrganizationSection() {
     setEditOrganizationId(id === editOrganizationId ? null : id);
   };
 
-  // Function to handle updating an organization entry
-  const updateOrganization = (updatedOrganization) => {
-    setOrganizationData(
-      organizationData.map((org) =>
-        org.id === updatedOrganization.id ? updatedOrganization : org
-      )
-    );
-    setEditOrganizationId(null); // Exit edit mode after updating
-  };
+
 
   const organizationItems = organizationData.map((organization) => (
-    <li key={organization.id} className="m-item">
+    <li key={organization._id} className="m-item">
       <div className="m-detail">
-          {editOrganizationId === organization.id ? (
+          {editOrganizationId === organization._id ? (
             <EditOrganizationForm
               organization={organization}
               updateOrganization={updateOrganization}
+              cancelEdit={() => setEditOrganizationId(null)}
+
             />
           ) : (
             <>
               <p><strong>{organization.organization}</strong></p>
               <p>{organization.position}</p>
               <p>{organization.duration}</p>
-              
                 <li>{organization.description}</li>
               
             </>
           )}
          </div>
-        <div>
-          <button onClick={() => toggleEditOrganization(organization.id)}>
-            {editOrganizationId === organization.id ? (
-              <button onClick={() => deleteOrganization(organization.id)}>
-                <FontAwesomeIcon icon={faTrash} />
-              </button>
-            ) : (
-              <FontAwesomeIcon icon={faEdit} />
-            )}
-          </button>
+         <div className="button">
+        <button onClick={() => toggleEditOrganization(organization._id)}>
+          <FontAwesomeIcon icon={faEdit} />
+        </button>
+  
+        <button onClick={() => deleteOrganization(organization._id)}>
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
         </div>
      
     </li>
@@ -90,9 +101,7 @@ function OrganizationSection() {
       </div>
     
         {organizationItems}
-      
-      {/* Render AddOrganizationForm conditionally */}
-      {isAddingOrganization && (
+        {isAddingOrganization && (
         <AddOrganizationForm
           addOrganization={addOrganization}
           onCancel={() => setIsAddingOrganization(false)}
@@ -102,7 +111,7 @@ function OrganizationSection() {
   );
 }
 
-function AddOrganizationForm({ addOrganization }) {
+function AddOrganizationForm({ addOrganization, onCancel }) {
   const [organization, setOrganization] = useState("");
   const [position, setPosition] = useState("");
   const [duration, setDuration] = useState("");
@@ -113,7 +122,7 @@ function AddOrganizationForm({ addOrganization }) {
     // Basic validation
     if (!organization || !position || !duration || !description) return;
     // Call addOrganization function from parent component
-    addOrganization({ id: Date.now(), organization, position, duration, description });
+    addOrganization({ organization, position, duration, description });
     // Clear input fields
     setOrganization("");
     setPosition("");
@@ -146,12 +155,15 @@ function AddOrganizationForm({ addOrganization }) {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
       ></textarea>
+      <div className="button">
       <button type="submit">Add Organization</button>
+      <button type="button" onClick={onCancel}>Cancel</button>
+      </div>
     </form>
   );
 }
 
-function EditOrganizationForm({ organization, updateOrganization }) {
+function EditOrganizationForm({ organization, updateOrganization,cancelEdit }) {
   const [orgName, setOrgName] = useState(organization.organization);
   const [position, setPosition] = useState(organization.position);
   const [duration, setDuration] = useState(organization.duration);
@@ -190,7 +202,10 @@ function EditOrganizationForm({ organization, updateOrganization }) {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
       ></textarea>
+       <div className="button">
       <button type="submit">Update</button>
+      <button type="button" onClick={cancelEdit}>Cancel</button>
+      </div>
     </form>
   );
 }

@@ -1,60 +1,71 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
 import "./Education.css"; 
 
 
 function SkillSection() {
-  const [skillData, setSkillData] = useState([
-    {
-      id: 1,
-      skillName: "JavaScript",
-    },
-    {
-      id: 2,
-      skillName: "React",
-    },
-  ]);
-
-  // State to manage the editing status of each skill entry
+  const [skillData, setSkillData] = useState([]);
+  const [isAddingSkill, setIsAddingSkill] = useState(false);
   const [editSkillId, setEditSkillId] = useState(null);
 
-  const [isAddingSkill, setIsAddingSkill] = useState(false);
+  useEffect(() => {
+    fetchSkill();
+  }, []);
 
-  // Function to handle adding a new skill entry
-  const addSkill = (newSkill) => {
-    setSkillData([...skillData, newSkill]);
-    setIsAddingSkill(false); // Hide the form after adding skill
+  const fetchSkill = async () => {
+    const response = await fetch('http://localhost:3000/skill');
+    const data = await response.json();
+    setSkillData(data);
   };
 
-  // Function to handle deleting a skill entry
-  const deleteSkill = (id) => {
-    setSkillData(skillData.filter((skill) => skill.id !== id));
+  const addSkill = async (newSkill) => {
+    await fetch('http://localhost:3000/skill', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newSkill),
+    });
+    fetchSkill();
+    setIsAddingSkill(false);
   };
 
-  // Function to handle toggling the edit mode of a skill entry
+  const deleteSkill = async (_id) => {
+    await fetch(`http://localhost:3000/skill/${_id}`, {
+      method: 'DELETE',
+    });
+    fetchSkill();
+  };
+
+  const updateSkill = async (updatedSkill) => {
+    const { _id, ...updateData } = updatedSkill;
+    console.log('Update Data:', updateData);
+    await fetch(`http://localhost:3000/skill/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    });
+    fetchSkill();
+    setEditSkillId(null);
+  };
+
   const toggleEditSkill = (id) => {
     setEditSkillId(id === editSkillId ? null : id);
   };
 
-  // Function to handle updating a skill entry
-  const updateSkill = (updatedSkill) => {
-    setSkillData(
-      skillData.map((skill) =>
-        skill.id === updatedSkill.id ? updatedSkill : skill
-      )
-    );
-    setEditSkillId(null); // Exit edit mode after updating
-  };
-
   const skillItems = skillData.map((skill) => (
-    <div key={skill.id} className="m-item">
+    <div key={skill._id} className="m-item">
       <div className="m-content">
         <div className="m-details">
-          {editSkillId === skill.id ? (
+          {editSkillId === skill._id ? (
             <EditSkillForm
               skill={skill}
               updateSkill={updateSkill}
+              cancelEdit={() => setEditSkillId(null)}
+
             />
           ) : (            <>
               <li className="skill-name">{skill.skillName}</li>
@@ -62,15 +73,14 @@ function SkillSection() {
           )}
         </div>
       </div>
-      <div>
-        <button onClick={() => toggleEditSkill(skill.id)}>
-          {editSkillId === skill.id ? (
-            <button onClick={() => deleteSkill(skill.id)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-          ) : (
-            <FontAwesomeIcon icon={faEdit} />
-          )}
+      <div className="button">
+        <button onClick={() => toggleEditSkill(skill._id)}>
+          <FontAwesomeIcon icon={faEdit} />
+        </button>
+        </div>
+        <div className="button">
+        <button onClick={() => deleteSkill(skill._id)}>
+          <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
     </div>
@@ -95,7 +105,7 @@ function SkillSection() {
   );
 }
 
-function AddSkillForm({ addSkill }) {
+function AddSkillForm({ addSkill, onCancel }) {
   const [skillName, setSkillName] = useState("");
 
   const handleSubmit = (e) => {
@@ -103,7 +113,7 @@ function AddSkillForm({ addSkill }) {
     // Basic validation
     if (!skillName) return;
     // Call addSkill function from parent component
-    addSkill({ id: Date.now(), skillName });
+    addSkill({skillName });
     // Clear input fields
     setSkillName("");
   };
@@ -116,12 +126,15 @@ function AddSkillForm({ addSkill }) {
         onChange={(e) => setSkillName(e.target.value)}
         placeholder="Skill Name"
       />
+       <div className="button">
       <button type="submit">Add Skill</button>
+      <button type="button" onClick={onCancel}>Cancel</button>
+      </div>
     </form>
   );
 }
 
-function EditSkillForm({ skill, updateSkill }) {
+function EditSkillForm({ skill, updateSkill,cancelEdit }) {
   const [skillName, setSkillName] = useState(skill.skillName);
 
   const handleSubmit = (e) => {
@@ -140,7 +153,10 @@ function EditSkillForm({ skill, updateSkill }) {
         onChange={(e) => setSkillName(e.target.value)}
         placeholder="Skill Name"
       />
+      <div className="button">
       <button type="submit">Update</button>
+      <button type="button" onClick={cancelEdit}>Cancel</button>
+      </div>
     </form>
   );
 }

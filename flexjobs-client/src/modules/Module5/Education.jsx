@@ -1,52 +1,62 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Education.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function EducationSection() {
-  const [educationData, setEducationData] = useState([
-    // Sample initial data
-    {
-      id: 1,
-      institution: "University A",
-      degree: "Bachelor of Science",
-      dates: "2010-2014",
-    },
-  ]);
-
-  // State to manage the editing status of each education entry
+  const [educationData, setEducationData] = useState([]);
+  const [isAddingEducation, setIsAddingEducation] = useState(false);
   const [editEducationId, setEditEducationId] = useState(null);
 
-  const [isAddingEducation, setIsAddingEducation] = useState(false);
+  useEffect(() => {
+    fetchEducation();
+  }, []);
 
-  // Function to handle adding a new education entry
-  const addEducation = (newEducation) => {
-    setEducationData([...educationData, newEducation]);
-    setIsAddingEducation(false); // Hide the form after adding education
+  const fetchEducation = async () => {
+    const response = await fetch('http://localhost:3000/education');
+    const data = await response.json();
+    setEducationData(data);
   };
 
-  // Function to handle deleting an education entry
-  const deleteEducation = (id) => {
-    setEducationData(educationData.filter((edu) => edu.id !== id));
+  const addEducation = async (newEducation) => {
+    await fetch('http://localhost:3000/education', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newEducation),
+    });
+    fetchEducation();
+    setIsAddingEducation(false);
   };
 
-  // Function to handle toggling the edit mode of an education entry
+  const deleteEducation = async (_id) => {
+    await fetch(`http://localhost:3000/education/${_id}`, {
+      method: 'DELETE',
+    });
+    fetchEducation();
+  };
+
+  const updateEducation = async (updatedEducation) => {
+    const { _id, ...updateData } = updatedEducation;
+    console.log('Update Data:', updateData);
+    await fetch(`http://localhost:3000/education/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    });
+    fetchEducation();
+    setEditEducationId(null);
+  };
+
   const toggleEditEducation = (id) => {
     setEditEducationId(id === editEducationId ? null : id);
   };
 
-  // Function to handle updating an education entry
-  const updateEducation = (updatedEducation) => {
-    setEducationData(
-      educationData.map((edu) =>
-        edu.id === updatedEducation.id ? updatedEducation : edu
-      )
-    );
-    setEditEducationId(null); // Exit edit mode after updating
-  };
-
   const educationItems = educationData.map((education) => (
-    <div key={education.id} className="m-item">
+    <div key={education._id} className="m-item">
       <div className="m-content">
         <img
           src="./images/uni.jpg"
@@ -55,31 +65,31 @@ function EducationSection() {
 
         />
         <div className="m-details">
-          {editEducationId === education.id ? (
+          {editEducationId === education._id ? (
             <EditEducationForm
               education={education}
               updateEducation={updateEducation}
+              cancelEdit={() => setEditEducationId(null)}
             />
           ) : (
             <>
-              <p>{education.institution}</p>
-              <p>{education.degree}</p>
-              <p>{education.dates}</p>
+              <p>Institution: {education.institution}</p>
+              <p>Study Level/Course Name: {education.degree}</p>
+              <p>Dates: {education.dates}</p>
             </>
           )}
         </div>
       </div>
-      <div>
-        <button onClick={() => toggleEditEducation(education.id)}>
-          {editEducationId === education.id ? (
-            <button onClick={() => deleteEducation(education.id)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-
-          ) : (
-            <FontAwesomeIcon icon={faEdit} />
-          )}
+      <div className="button">
+      <button onClick={() => toggleEditEducation(education._id)}>
+          <FontAwesomeIcon icon={faEdit} />
         </button>
+        </div>
+        <div className="button">
+        <button onClick={() => deleteEducation(education._id)}>
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
+
       </div>
     </div>
   ));
@@ -100,14 +110,11 @@ function EducationSection() {
           onCancel={() => setIsAddingEducation(false)}
         />
       )}
-      {/* Button to toggle add education form */}
-
     </div>
-
   );
 }
 
-function AddEducationForm({ addEducation }) {
+function AddEducationForm({ addEducation, onCancel }) {
   const [institution, setInstitution] = useState("");
   const [degree, setDegree] = useState("");
   const [dates, setDates] = useState("");
@@ -117,7 +124,7 @@ function AddEducationForm({ addEducation }) {
     // Basic validation
     if (!institution || !degree || !dates) return;
     // Call addEducation function from parent component
-    addEducation({ id: Date.now(), institution, degree, dates });
+    addEducation({institution, degree, dates });
     // Clear input fields
     setInstitution("");
     setDegree("");
@@ -144,12 +151,15 @@ function AddEducationForm({ addEducation }) {
         onChange={(e) => setDates(e.target.value)}
         placeholder="Dates"
       />
+      <div className="button">
       <button type="submit">Add Education</button>
+      <button type="button" onClick={onCancel}>Cancel</button>
+      </div>
     </form>
   );
 }
 
-function EditEducationForm({ education, updateEducation }) {
+function EditEducationForm({ education, updateEducation, cancelEdit  }) {
   const [institution, setInstitution] = useState(education.institution);
   const [degree, setDegree] = useState(education.degree);
   const [dates, setDates] = useState(education.dates);
@@ -182,7 +192,10 @@ function EditEducationForm({ education, updateEducation }) {
         onChange={(e) => setDates(e.target.value)}
         placeholder="Dates"
       />
+      <div className="button">
       <button type="submit">Update</button>
+      <button type="button" onClick={cancelEdit}>Cancel</button>
+      </div>
     </form>
   );
 }
