@@ -56,6 +56,13 @@ const ApplyJob = () => {
             if (response.ok) {
                 console.log("Application saved successfully:", result);
                 alert("Great job! You've applied successfully. Keep an eye on the 'Jobs Applied' section in your profile to track its status.");
+                // Clear form 
+                setApplicationFormData({
+                    fullName: '',
+                    contactNumber: '',
+                    email: '',
+                    resume: null,
+                });
             } else {
                 console.error('Error posting application:', result);
                 alert('Error posting application: ' + result.message);
