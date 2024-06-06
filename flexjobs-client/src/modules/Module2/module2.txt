@@ -1,0 +1,14 @@
+Features
+
+1. Search job
+    - jobs list displayed in order of most recent at the top
+    - retrieve data from both jobs.json and database
+    - filter based on position, location, salary, experienceLevel
+
+2. Apply job
+    - 
+
+3. Post job
+    - tags tokens
+    - alert and form reset upon successfully posting the newly added job to database
+    - input type verification
