@@ -101,6 +101,29 @@ async function run() {
       }
     });
 
+    // Apply for job
+    const jobApplicationsCollection = database.collection("jobApplications");
+    app.post("/post-job-application", async (req, res) => {
+      const body = req.body;
+      body.createdAt = new Date();
+      try {
+        const insertApplication = await jobApplicationsCollection.insertOne(body);
+        if (insertApplication.insertedId) {
+          return res.status(200).send(insertApplication);
+        } else {
+          return res.status(404).send({
+            message: "Cannot insert. Try again later.",
+            status: false
+          });
+        }
+      } catch (error) {
+        return res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
     // Module 2 ---------------------------------------------------------------------------------------------------------
 
 

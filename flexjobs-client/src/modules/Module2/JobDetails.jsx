@@ -32,6 +32,58 @@ const JobDetails = () => {
         return `${days} days ago`;
     };
 
+    // Handle form data change
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setApplicationFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    // Handle file input change
+    const handleFileChange = (e) => {
+        setApplicationFormData(prevState => ({
+            ...prevState,
+            resume: e.target.files[0]
+        }));
+    };
+
+    // Construct the job application object
+    const [applicationFormData, setApplicationFormData] = useState({
+        fullName: '',
+        contactNumber: '',
+        email: '',
+        resume: '',
+    });
+
+    // Function to submit the job application
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        const applicationData = { ...applicationFormData };
+
+        try {
+            const response = await fetch("http://localhost:3000/post-job-application", {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify(jobData)
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                console.log("Application saved successfully:", result);
+                alert("Great job! You've applied successfully. Keep an eye on the 'Jobs Applied' section in your profile to track its status.");
+            } else {
+                console.error('Error posting application:', result);
+                alert('Error posting application: ' + result.message);
+            }
+        } catch (error) {
+            console.error('Error posting application:', error);
+            alert('Error posting application: ' + error.message);
+        }
+    };
+
     return (
         <div>
             {/* Top Section */}
@@ -113,44 +165,27 @@ const JobDetails = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form>
+                            <form className="apply-job-form" id="apply-job-form" onSubmit={onSubmit}>
                                 <div className="mb-3">
-                                    <label htmlFor="full-name" className="col-form-label">Full Name:</label>
-                                    <input type="text" className="form-control" id="full-name" required />
+                                    <label htmlFor="fullName" className="col-form-label">Full Name:</label>
+                                    <input type="text" className="form-control" id="fullName" required value={applicationFormData.fullName} onChange={handleChange} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="contact-number" className="col-form-label">Contact Number:</label>
-                                    <input type="text" className="form-control" id="contact-number" required />
+                                    <label htmlFor="contactNumber" className="col-form-label">Contact Number:</label>
+                                    <input type="text" className="form-control" id="contactNumber" required value={applicationFormData.contactNumber} onChange={handleChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="col-form-label">Email:</label>
-                                    <input type="email" className="form-control" id="email" required />
+                                    <input type="email" className="form-control" id="email" required value={applicationFormData.email} onChange={handleChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="resume" className="col-form-label">Upload Resume:</label>
-                                    <input type="file" className="form-control" id="resume" accept=".pdf,.doc,.docx" required />
+                                    <input type="file" className="form-control" id="resume" accept=".pdf,.doc,.docx" required onChange={handleFileChange}/>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="submit" className="btn btn-primary" id="submit-application-button">Submit</button>
                                 </div>
                             </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" id="submit-application-button" data-bs-toggle="modal" data-bs-target="#appliedPopup">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Application submitted pop up */}
-            <div className="modal fade" id="appliedPopup" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="appliedPopup" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="appliedPopupTitle">Application Submitted Successfully!</h1>
-                        </div>
-                        <div className="modal-body">
-                            <p>Great job! You've applied successfully. Keep an eye on your 'My Applications' in your profile to track its status.</p>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
                         </div>
                     </div>
                 </div>
