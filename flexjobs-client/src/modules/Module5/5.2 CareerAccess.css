@@ -1,0 +1,118 @@
+.titlecontainer{
+    height:fit-content;
+    margin-left:  200px;
+    margin-right:  200px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-weight: bold;   
+}
+
+h2 {
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: auto;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.submit-btn-container {
+    margin-top: 20px;
+    margin-right: 250px;
+    display: flex;
+    justify-content: flex-end;  
+    padding-bottom: 20px; 
+}
+
+#submit-btn {
+    background-color: #04AA6D; 
+    border-radius: 20px; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+   
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#submit-btn:hover {
+    background-color: #1F3051;
+}
+
+
+#results {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+
+/* Question ================================================================================================= */
+#questions-container {
+    background: linear-gradient(to right, #F7F2E7,  #ffdf9b); 
+    padding: 20px;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+.question-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #f6866a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 126, 95, 0.5);
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+
+.question-container:hover {
+    background-color: #f6866a;
+    transition: background-color 0.3s ease;
+}
+
+.question-container input[type="checkbox"] {
+    margin-right: 10px; 
+}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../App.css';
 import Banner from './Banner';
 import Card from './Card';
 import Jobs from './Jobs';
@@ -12,16 +11,23 @@ const JobSearch = () => {
     const [query, setQuery] = useState("");
     const [locationQuery, setLocationQuery] = useState("");
 
-    // Fetch data from jobs.json
+    // Fetch data from jobs.json and http://localhost:3000/all-jobs
     useEffect(() => {
-        fetch("jobs.json")
-            .then(res => res.json())
-            .then(data => {
-                setJobs(data);
-            })
-            .catch(err => {
+        const fetchJobs = async () => {
+            try {
+                const [localJobs, remoteJobs] = await Promise.all([
+                    fetch("jobs.json").then(res => res.json()),
+                    fetch("http://localhost:3000/all-jobs").then(res => res.json())
+                ]);
+
+                // Combine the data from both sources
+                setJobs([...localJobs, ...remoteJobs]);
+            } catch (err) {
                 console.error('Failed to fetch jobs data:', err);
-            });
+            }
+        };
+
+        fetchJobs();
     }, []);
 
     // Handle input change in input field from banner (job title)
@@ -66,6 +72,9 @@ const JobSearch = () => {
                 job.datePosted === selected
             ));
         }
+
+        // Sort jobs based on datePosted (most recent job at top of jobs list)
+        filteredJobs.sort((a, b) => new Date(b.datePosted) - new Date(a.datePosted));
 
         console.log(filteredJobs);
         return filteredJobs.map((data, i) => <Card key={i} data={data}/>)
