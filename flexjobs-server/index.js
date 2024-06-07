@@ -1,8 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Import ObjectId
-require('dotenv').config();
 
 const port = process.env.PORT || 3000;
 
@@ -44,8 +44,6 @@ const sampleUsers = [
  const usersCollection = database.collection("user");
  await usersCollection.insertMany(sampleUsers);
  console.log("Sample users inserted successfully.");
-
-
 
       // Module 2 ---------------------------------------------------------------------------------------------------------
       const jobsCollection = database.collection("jobs");
@@ -172,11 +170,6 @@ const sampleUsers = [
         res.status(500).send('Error creating experience');
       }
     });
-
-    // Print the ID of the inserted document
-    console.log(`A document was inserted with the _id: ${result.insertedId}`);
-
-
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
