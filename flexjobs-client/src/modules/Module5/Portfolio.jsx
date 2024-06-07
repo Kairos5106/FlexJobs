@@ -5,7 +5,7 @@ import Skill from './Skill'
 import Honor from './Honor';
 import Organization from './Organization';
 import Profile from './Profile';
-const Module5Page = () => {
+const Portfolio = () => {
     return (
         <div>
             <Profile/>
@@ -19,4 +19,4 @@ const Module5Page = () => {
     )
 }
 
-export default Module5Page
+export default Portfolio
