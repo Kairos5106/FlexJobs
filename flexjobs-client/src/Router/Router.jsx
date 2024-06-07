@@ -50,7 +50,6 @@ const router = createBrowserRouter([
 // Routes for Module 3
         { path: "/Inbox", element: <Inbox/> },
         { path: "/Feedback", element: <Feedback/> },
-        { path: "/Module4Page", element: <Module4Page/> },
 
         // Routes for Module 4
         { path: "/Payments", element: <Payments/> },
