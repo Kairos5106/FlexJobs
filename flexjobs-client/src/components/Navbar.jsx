@@ -18,8 +18,8 @@ const Navbar = () => {
             { path: "/JobSearch", title: "Search Job" },
             { path: "/PostJob", title: "Post A Job" }
         ]},
-        { path: "/Module3Page", title: "Inbox", subItems: [
-            { path: "/Chat", title: "Chat" },
+        { path: "/Inbox", title: "Inbox", subItems: [
+            { path: "/Inbox", title: "Chat" },
             { path: "/Feedback", title: "Feedback" }
         ]},
         { path: "/Module6Page", title: "Forum" },
@@ -36,7 +36,7 @@ const Navbar = () => {
         <header>
             {/* Logo */}
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/images/logo.png" width="30px" height="30px" style={{ marginRight: '10px' }} alt="Logo" />
+                <img src="/images/logo.png" width="30px" height="30px" style={{ marginRight: '10px', marginBottom: '3px' }} alt="Logo" />
                 <h1 className="logo">FlexJobs</h1>
             </div>
 
@@ -84,7 +84,7 @@ const Navbar = () => {
 
                     {/* Login */}
                     <li>
-                        <Link to="/login" className='nav-item'>
+                        <Link to="/Login" className='nav-item'>
                             <i className="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Log in
                         </Link>
                     </li>
