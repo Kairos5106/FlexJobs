@@ -1,12 +1,13 @@
 import React from 'react';
 import EarningsOverview from './EarningsOverviewSeller';
 import PaymentsTable from './PaymentsTable';
-import './styles/payment-invoice.css';
 
 //image import
 import earningsImage from './images/earnings.png';
 import EarningsOverviewSeller from './EarningsOverviewSeller';
 import EarningsOverviewBuyer from './EarningsOverviewBuyer';
+import './styles/payment-invoice.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Payments extends React.Component {
 
@@ -17,11 +18,11 @@ class Payments extends React.Component {
 
   render() {
     return (
-        <div class="content">
-            <section class="transaction-history">
-                <div class="transaction-header">
-                    <h2 class="mb-0">Transaction History</h2>
-                    <button class="switch-button" type="button">Switch to buying</button>
+        <div className="content">
+            <section className="transaction-history">
+                <div className="flex justify-between items-center mb-0">
+                    <h2 className="mb-0">Transaction History</h2>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button">Switch to buying</button>
                 </div>
             </section>
 

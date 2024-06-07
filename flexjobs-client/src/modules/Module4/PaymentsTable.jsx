@@ -20,7 +20,7 @@ const PaymentsTable = () => {
           </div>
           <button class="btn btn-success btn-sm btn-rounded">Download invoices</button>
         </div>
-        <div class="container">
+        <div class="container-payments">
           <div class="card-body p-0">
             <table class="table table-group-divider mb-0" style={{borderTop: "none"}}>
               <thead id="invoice-table-head">

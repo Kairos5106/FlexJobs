@@ -44,11 +44,11 @@ const JobApplied = () => {
       {jobApplications.length > 0 ? (
         <div className="job-cards">
           {jobApplications.map((job, index) => (
-            <div className="card" key={index}>
-              <div className="card-header">
+            <div className="card-jobapplied" key={index}>
+              <div className="card-header-jobapplied">
                 {job.jobTitle}
               </div>
-              <div className="card-body">
+              <div className="card-body-jobapplied">
                 <p>Company: {job.companyName}</p>
                 <p>Location: {job.jobLocation}</p>
                 <p>

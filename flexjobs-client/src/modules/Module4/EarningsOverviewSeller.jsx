@@ -1,8 +1,9 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EarningsOverviewSeller = ({ totalEarnings, earningsPast30Days, averageDailyEarnings, earningsTrendImg }) => {
   return (
-    <div className="container my-4 mb-5">
+    <div className="container-payments my-4 mb-5 justify-center">
       <div className="row justify-content-center">
         <div className="col-md-8 card bg-light text-center earnings-overview">
           <div className="card-body row">
