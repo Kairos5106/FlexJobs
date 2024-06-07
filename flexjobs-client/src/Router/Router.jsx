@@ -6,14 +6,12 @@ import App from "../App";
 // Imports for Module 1
 import Home from "../modules/Module1/Home";
 import Signup from "../modules/Module1/Signup";
-import Signup2 from "../modules/Module1/Signup2";
 import Login from "../modules/Module1/Login";
 
 // Imports for Module 2
 import JobSearch from "../modules/Module2/JobSearch";
 
 // Imports for Module 3
-import Module3Page from "../modules/Module3/Module3Page";
 import Inbox from "../modules/Module3/Inbox";
 import Feedback from "../modules/Module3/Feedback";
 
