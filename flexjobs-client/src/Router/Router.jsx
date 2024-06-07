@@ -33,8 +33,9 @@ const router = createBrowserRouter([
       children: [
         // Routes for Module 1
         { path: "/", element: <Home/> },
-        { path: "/Login", element: <Login/>},
-        
+        { path: "/Login", element: <Login/> },
+        { path: "/Signup", element: <Signup/> },
+
         // Routes for Module 2
         { path: "/JobSearch", element: <JobSearch/> },
 

@@ -1,26 +1,46 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   return (
-        <div className="container bg-light text-md-left p-4 my-5 rounded-3 col-lg-6">
+        <div className="container bg-light">
           <h1 className="display-5 fw-bold text-center">Create an account</h1>
-          <form action="signup.php" method="post">
+          <form action="">
             <div className="container mt-4">
-              <label htmlFor="email"><b>Email</b></label>
-              <input type="email" id="email" placeholder="Your Email" name="email" required/>
-              
-              <label htmlFor="password"><b>Password</b></label>
-              <input type="password" id="password" placeholder="Your Password" name="password" required/>
-              
-              <label htmlFor="passwordConfirm"><b>Confirm Password</b></label>
-              <input type="password" id="passwordConfirm" placeholder="Enter your password again" name="passwordConfirm" required/>
-              
-              <label htmlFor="agreeTerms">
-                <input type="checkbox" id="agreeTerms" name="agreeTerms"/> 
-                I agree to the <strong>Terms and Conditions</strong> of FlexJobs
-              </label>
-              
-              <button type="submit" className="mt-4 btn-primary">Continue registration</button>
+
+              <div className="form-group">
+                <label for="email"><b>Email</b></label>
+                <input type="email" id="email" className="form-control" placeholder="Your Email" name="email" required/>
+              </div>
+
+              <div className="form-group">
+                <label for="email"><b>Status</b></label>
+                <input type="email" id="email" className="form-control" placeholder="Your Email" name="email" required/>
+              </div>
+
+              <div className="form-group">
+                <label for="email"><b>Phone Number</b></label>
+                <input type="email" id="email" className="form-control" placeholder="Your Email" name="email" required/>
+              </div>
+
+              <div className="form-group">
+                <label for="password"><b>Password</b></label>
+                <input type="password" id="password" className="form-control" placeholder="Your Password" name="password" required/>
+              </div>
+
+              <div className="form-group">
+                <label for="password"><b>Confirm Password</b></label>
+                <input type="password" id="password" className="form-control" placeholder="Your Password" name="password" required/>
+              </div>
+
+              <div className='form-group'>
+                <label htmlFor="agreeTerms">
+                  <input type="checkbox" id="agreeTerms" name="agreeTerms"/> 
+                  I agree to the <strong>Terms and Conditions</strong> of FlexJobs
+                </label>
+              </div>
+
+              <Link to="/Signup" className="mt-4 btn btn-primary">Register account</Link>
             </div>
           </form>      
         </div>
