@@ -14,6 +14,8 @@ import JobSearch from "../modules/Module2/JobSearch";
 
 // Imports for Module 3
 import Module3Page from "../modules/Module3/Module3Page";
+import Inbox from "../modules/Module3/Inbox";
+import Feedback from "../modules/Module3/Feedback";
 
 // Imports for Module 4
 import Module4Page from "../modules/Module4/Module4Page";
@@ -38,11 +40,8 @@ const router = createBrowserRouter([
 
         // Routes for Module 2
         { path: "/JobSearch", element: <JobSearch/> },
-
-        // Routes for Module 3
-        { path: "/Module3Page", element: <Module3Page/> },
-
-        // Routes for Module 4
+        { path: "/Inbox", element: <Inbox/> },
+        { path: "/Feedback", element: <Feedback/> },
         { path: "/Module4Page", element: <Module4Page/> },
 
         // Routes for Module 5
