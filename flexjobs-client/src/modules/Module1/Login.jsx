@@ -18,7 +18,9 @@ const Login = () => {
                 <input type="checkbox" id="rememberStatus" className="form-check-input" name="rememberStatus"/>
                 <label className="form-check-label" for="rememberStatus">Remember Me</label>
               </div>
-              <Link to="/Signup" className="mt-4 btn btn-primary">Log in</Link>
+              <button>Log in</button>
+
+              <Link to="/Signup" className="mt-4 btn btn-primary">I don't have an account</Link>
             </div>
         </form>   
     </div>
