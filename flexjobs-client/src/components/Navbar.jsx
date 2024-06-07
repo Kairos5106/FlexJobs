@@ -84,7 +84,7 @@ const Navbar = () => {
 
                     {/* Login */}
                     <li>
-                        <Link to="/login" className='nav-item'>
+                        <Link to="/Login" className='nav-item'>
                             <i className="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Log in
                         </Link>
                     </li>
