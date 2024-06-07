@@ -38,8 +38,12 @@ const router = createBrowserRouter([
 
         // Routes for Module 2
         { path: "/JobSearch", element: <JobSearch/> },
+        
+        // Routes for Module 3
         { path: "/Inbox", element: <Inbox/> },
         { path: "/Feedback", element: <Feedback/> },
+        
+        // Routes for Module 3
         { path: "/Module4Page", element: <Module4Page/> },
 
         // Routes for Module 5
