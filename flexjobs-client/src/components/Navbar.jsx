@@ -24,7 +24,7 @@ const Navbar = () => {
         ]},
         { path: "/Module6Page", title: "Forum" },
         { path: "/Module5Page", title: "Profile", subItems: [
-            { path: "/Module5Page", title: "Portfolio" },
+            { path: "/Portfolio", title: "Portfolio" },
             { path: "/CareerAssessInterest", title: "Career Access Interest" },
             { path: "/JobApplied", title: "Job Applied" },
             { path: "/Payments", title: "Payments" },
