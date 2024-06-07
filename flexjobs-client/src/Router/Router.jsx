@@ -19,7 +19,9 @@ import Feedback from "../modules/Module3/Feedback";
 import Module4Page from "../modules/Module4/Module4Page";
 
 // Imports for Module 5
-import Module5Page from "../modules/Module5/Module5Page";
+import Portfolio from "../modules/Module5/Portfolio";
+import CareerAssessInterest from "../modules/Module5/CareerAssessInterest";
+import JobApplied from "../modules/Module5/JobApplied";
 
 // Imports for Module 6
 import Module6Page from "../modules/Module6/Module6Page";
@@ -43,7 +45,9 @@ const router = createBrowserRouter([
         { path: "/Module4Page", element: <Module4Page/> },
 
         // Routes for Module 5
-        { path: "/Module5Page", element: <Module5Page/> },
+        { path: "/Portfolio", element: <Portfolio/> },
+        { path: "/CareerAssessInterest", element: <CareerAssessInterest/> },
+        { path: "/JobApplied", element: <JobApplied/> },
 
         // Routes for Module 6
         { path: "/Module6Page", element: <Module6Page/> }
