@@ -63,14 +63,14 @@ const Signup = () => {
 
               {/* Needs to be modified for phone number */}
               <div className="form-group">
-                <label htmlFor="email"><b>Phone Number</b></label>
+                <label htmlFor="phoneNo"><b>Phone Number</b></label>
                 <input 
-                  type="email" 
+                  type="tel" 
                   className="form-control" 
-                  placeholder="Your email" 
-                  name="email" 
+                  placeholder="Your phone number" 
+                  name="phoneNo" 
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setPhoneNo(e.target.value)}
                   />
               </div>
 
@@ -89,7 +89,7 @@ const Signup = () => {
               <div className="form-group">
                 <label htmlFor="passwordConfirm"><b>Confirm Password</b></label>
                 <input 
-                  type="passwordConfirm" 
+                  type="password" 
                   className="form-control" 
                   placeholder="Confirm your password" 
                   name="passwordConfirm" 
@@ -105,7 +105,7 @@ const Signup = () => {
                 </label>
               </div>
 
-              <Link to="/Signup" className="mt-4 btn btn-primary">Register account</Link>
+              <button type="submit" className="mt-4 btn btn-primary">Register account</button>
 
             </div>
           </form>      
