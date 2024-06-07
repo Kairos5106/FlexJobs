@@ -1,4 +1,6 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Module2.css';
 
 const SidePanel = ({handleChange}) => {
     return (
