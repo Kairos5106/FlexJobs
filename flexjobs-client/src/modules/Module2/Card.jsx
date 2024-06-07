@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Module2.css';
 
 const Card = ({ data }) => {
-    const { id, jobTitle, companyName, companyLogo, minSalary, maxSalary, jobLocation, experienceLevel, skills, aboutTheJob, datePosted } = data;
+    const { _id, jobTitle, companyName, companyLogo, minSalary, maxSalary, jobLocation, experienceLevel, skills, aboutTheJob, datePosted } = data;
 
     // Function to calculate the duration since the date posted
     const calculateDuration = () => {
@@ -22,7 +22,7 @@ const Card = ({ data }) => {
 
     return (
         <div>
-            <Link to={`/job/${id}`} className="job-card-link">
+            <Link to={`/job/${_id}`} className="job-card-link">
                 <div className="card-custom flex">
                     <div className="job-thumbnail-col">
                         <img className='job-thumbnail' id="job-thumbnail" src={companyLogo} alt={companyName} />

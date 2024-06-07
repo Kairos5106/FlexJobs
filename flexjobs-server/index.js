@@ -20,6 +20,7 @@ const client = new MongoClient(uri, {
   }
 });
 
+
 let database;
 
 // Function to connect to MongoDB and set up routes
@@ -31,6 +32,117 @@ async function run() {
 
     // Set up database
     database = client.db("flexjobs-database");
+
+// Sample Data for Users Collection
+const sampleUsers = [
+  { name: "John Doe", phone: "1234567890", email: "john@example.com" },
+  { name: "Jane Smith", phone: "9876543210", email: "jane@example.com" },
+  { name: "Alice Johnson", phone: "5555555555", email: "alice@example.com" }
+];
+
+ // Insert sample users into the users collection
+ const usersCollection = database.collection("user");
+ await usersCollection.insertMany(sampleUsers);
+ console.log("Sample users inserted successfully.");
+
+
+
+      // Module 2 ---------------------------------------------------------------------------------------------------------
+      const jobsCollection = database.collection("jobs");
+    
+      // Post a job
+      app.post("/post-job", async (req, res) => {
+        const body = req.body;
+        body.createdAt = new Date();
+        try {
+          const insertJob = await jobsCollection.insertOne(body);
+          if (insertJob.insertedId) {
+            return res.status(200).send(insertJob);
+          } else {
+            return res.status(404).send({
+              message: "Cannot insert. Try again later.",
+              status: false
+            });
+          }
+        } catch (error) {
+          return res.status(500).send({
+            message: "Internal Server Error",
+            status: false
+          });
+        }
+      });
+  
+      // Get all jobs
+      app.get("/all-jobs", async (req, res) => {
+        try {
+          const jobs = await jobsCollection.find({}).toArray();
+          res.send(jobs);
+        } catch (error) {
+          res.status(500).send({
+            message: "Internal Server Error",
+            status: false
+          });
+        }
+      });
+  
+      // Get a single job using id (to be displayed in JobDetails.jsx)
+      const { ObjectId } = require('mongodb');
+  
+      app.get("/all-jobs/:id", async (req, res) => {
+        try {
+          const id = req.params.id;
+          const job = await jobsCollection.findOne({
+            _id: new ObjectId(id)
+          });
+          res.send(job);
+        } catch (error) {
+          res.status(500).send({
+            message: "Internal Server Error",
+            status: false
+          });
+        }
+      });
+  
+      // Apply for job
+      const jobApplicationsCollection = database.collection("jobApplications");
+      app.post("/post-job-application", async (req, res) => {
+        const body = req.body;
+        body.createdAt = new Date();
+        try {
+          const insertApplication = await jobApplicationsCollection.insertOne(body);
+          if (insertApplication.insertedId) {
+            return res.status(200).send(insertApplication);
+          } else {
+            return res.status(404).send({
+              message: "Cannot insert. Try again later.",
+              status: false
+            });
+          }
+        } catch (error) {
+          return res.status(500).send({
+            message: "Internal Server Error",
+            status: false
+          });
+        }
+      });
+  
+      // Get all job application
+      app.get("/all-job-applications", async (req, res) => {
+        try {
+          const jobApplications = await jobApplicationsCollection.find({}).toArray();
+          res.send(jobApplications);
+        } catch (error) {
+          res.status(500).send({
+            message: "Internal Server Error",
+            status: false
+          });
+        }
+      });
+  
+  // Module 2 ---------------------------------------------------------------------------------------------------------
+  
+
+    // Module 5 ---------------------------------------------------------------------------------------------------------//
 
     const portfolioCollection = database.collection("portfolio-experience");
 
@@ -403,6 +515,30 @@ async function run() {
    }
  });
 
+ // Get job applications by email
+app.get("/job-applications/:email", async (req, res) => {
+  try {
+    const email = req.params.email;
+    const jobApplications = await jobApplicationsCollection.find({ email: email }).toArray();
+    if (jobApplications.length > 0) {
+      res.status(200).json(jobApplications);
+    } else {
+      res.status(404).send({
+        message: "No job applications found for this email",
+        status: false
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching job applications:', error);
+    res.status(500).send({
+      message: "Internal Server Error",
+      status: false
+    });
+  }
+});
+
+
+// Module 5 ---------------------------------------------------------------------------------------------------------
 
 
     // Start the server
@@ -416,3 +552,6 @@ async function run() {
 
 // Call the run function
 run().catch(console.error);
+
+
+

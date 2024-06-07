@@ -1,3 +1,11 @@
+body {
+    background-color:  #F7F2E7; 
+    font-family: 'Poppins', sans-serif;
+    padding-top: 100px; /* to give space for navbar before render webpage content */
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
 .section {
     padding-bottom: 40px;
 }
@@ -137,8 +145,194 @@
 
 
 
+
+
+
+
+/* Job Details ------------------------------------------------------------------------------------------------------------------------------*/
+.back-link-section {
+    padding: 0 0 10px 5px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #000;
+}
+
+.back-link:hover {
+    color: #3575E2;
+}
+
+.job-details {
+    background: #fefefe;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+.apply-job-button {
+    background-color: #40e0d0;
+    border: 1px solid #40e0d0;
+    color: #000;
+    margin: 15px 0;
+}
+
+.apply-job-button:hover {
+    border: 1px solid #000;
+    background: rgba(64, 224, 208, 0.8);
+    color: #000;
+}
+
+.job-small-details-jobdetails {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.about-company-panel {
+    background: #fefefe;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 0 0 0 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.read-more {
+    margin: 15px 0;
+    margin-top: 30px;
+}
+
+.read-more a {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+}
+
+.about-company-content img {
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border: 1px solid #000;
+}
+
+.about-company {
+    text-align: justify;
+}
+
+.job-details-section .row {
+    margin: 0;
+    justify-content: space-between;
+}
+
+
+/* Apply Job ------------------------------------------------------------------------------------------------------------------------------*/
+.apply-job {
+    display: flex;
+    justify-content: center;
+}
+
+.apply-job-form {
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+/* Post A Job ------------------------------------------------------------------------------------------------------------------------------*/
+.post-a-job-form {
+    padding: 20px;
+    background: rgba(204, 204, 204, 0.5);
+    border-radius: 10px;
+    box-shadow: 3px 5px 4px rgba(0, 0, 0, 0.1);
+}
+
+.job-form-row {
+    padding: 10px 0;
+}
+
+.dropdown-custom {
+    position: relative;
+}
+
+.dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    padding-right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Skills tag input */
+.skills-content ul {
+    display: flex;
+    height: fit-content;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px 5px;
+    margin: 7px 0;
+}
+
+.skills-content ul li {
+    list-style: none;
+    margin: 3px 5px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background: #f2f2f2;
+    border: 1px solid #878787;
+    display: flex;
+    align-items: center;
+}
+
+.skills-content ul li i {
+    font-size: 1rem;
+    margin: 0 0 0 8px;
+    padding: 4px 5px;
+    border-radius: 30%;
+    color: #dc3545;
+    background: #dfdfdf;
+    border: 1px solid #dc3545;
+    cursor: pointer;
+}
+
+.skills-content ul li i:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+.skills-content ul input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
 /* Responsive ------------------------------------------------------------------------------------------------------------------------------*/ 
 @media (width < 1000px) {
+    body {
+        background-color:  #F7F2E7; 
+        font-family: 'Poppins', sans-serif;
+        padding-top: 100px; /* to give space for navbar before render webpage content */
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
     .card-custom {
         width: 100%;
         text-align: center;
@@ -173,5 +367,13 @@
 
     .job-description {
         text-align: center;
+    }
+
+    .about-company-panel {
+        background: #fefefe;
+        border-radius: 20px;
+        padding: 30px;
+        margin: 20px 0 0 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
 }
