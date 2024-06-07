@@ -10,6 +10,9 @@ import Login from "../modules/Module1/Login";
 
 // Imports for Module 2
 import JobSearch from "../modules/Module2/JobSearch";
+import PostJob from "../modules/Module2/PostJob";
+import JobDetails from "../modules/Module2/JobDetails";
+import ApplyJob from "../modules/Module2/ApplyJob";
 
 // Imports for Module 3
 import Inbox from "../modules/Module3/Inbox";
@@ -40,6 +43,11 @@ const router = createBrowserRouter([
 
         // Routes for Module 2
         { path: "/JobSearch", element: <JobSearch/> },
+        { path: "/PostJob", element: <PostJob/> },
+        { path: "/job/:id", element: <JobDetails/> },
+        { path: "/ApplyJob", element: <ApplyJob/> },
+
+// Routes for Module 3
         { path: "/Inbox", element: <Inbox/> },
         { path: "/Feedback", element: <Feedback/> },
         { path: "/Module4Page", element: <Module4Page/> },
