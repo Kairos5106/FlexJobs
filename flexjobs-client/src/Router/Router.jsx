@@ -19,7 +19,6 @@ import Inbox from "../modules/Module3/Inbox";
 import Feedback from "../modules/Module3/Feedback";
 
 // Imports for Module 4
-import Module4Page from "../modules/Module4/Module4Page";
 
 // Imports for Module 5
 import Portfolio from "../modules/Module5/Portfolio";
@@ -53,13 +52,13 @@ const router = createBrowserRouter([
         { path: "/Feedback", element: <Feedback/> },
 
         // Routes for Module 4
-        { path: "/Module4Page", element: <Module4Page/> },
+
 
         // Routes for Module 5
         { path: "/Portfolio", element: <Portfolio/> },
         {path: "/CareerAssessInterest",element:<CareerAssessInterest/>},
-      { path: "/results", element: <Results /> },
-      {path:"/JobApplied",element:<JobApplied/>},
+        { path: "/results", element: <Results /> },
+        {path:"/JobApplied",element:<JobApplied/>},
 
         // Routes for Module 6
         { path: "/Module6Page", element: <Module6Page/> }
