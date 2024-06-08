@@ -4,10 +4,10 @@ import './style-feedback.css';
 // InputField class for form
 const InputField = ({ type, placeholder, required, iconClass, value, onChange }) => (
     <div className="id">
-        <input 
-            type={type} 
-            placeholder={placeholder} 
-            required={required} 
+        <input
+            type={type}
+            placeholder={placeholder}
+            required={required}
             value={value}
             onChange={onChange}
         />
@@ -37,23 +37,23 @@ const FeedbackForm = ({ formData, setFormData, handleSubmit, categories }) => (
     <form id="feedback-form" onSubmit={handleSubmit}>
         <h1>Feedback Form</h1>
         <InputField
-            type="text" 
-            placeholder="Name" 
-            required={true} 
+            type="text"
+            placeholder="Name"
+            required={true}
             iconClass="far fa-user profile-icon"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         />
 
         <InputField
-            type="email" 
-            placeholder="Email address" 
-            required={true} 
-            iconClass="far fa-envelope email-icon" 
+            type="email"
+            placeholder="Email address"
+            required={true}
+            iconClass="far fa-envelope email-icon"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
-        
+
         <label htmlFor="category" className="category">Category: </label>
         <select
             id="category"
@@ -99,8 +99,22 @@ const Feedback = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (event.target.checkValidity()) {
-            setFormData({ name: '', email: '', category: '', rating: 0, feedback: '' });
-            alert("Thank you for giving your feedback!");
+            axios.post('http://localhost:5173/feedback', formData)
+                .then(response => {
+                    console.log(response.data);
+                    alert("Thank you for giving your feedback!");
+                    setFormData({
+                        name: '',
+                        email: '',
+                        category: '',
+                        rating: 0,
+                        feedback: ''
+                    });
+                    console.log('Feedback submitted!')
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                });
         } else {
             alert("Please fill in all required fields.");
         }

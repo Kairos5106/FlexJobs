@@ -45,6 +45,22 @@ async function run() {
 
 
 
+    // Module 3
+    const feedbacks = database.collection("feedback");
+
+    app.post('/feedback', async (req, res) => {
+      const feedback = req.body;
+      try {
+        const feedbackResult = await feedbacks.insertOne(feedback);
+        console.log('Feedback inserted:', feedbackResult); // Debugging log
+        res.status(200).json({ message: 'Feedback added successfully!', feedbackId: feedbackResult.insertedId });
+      } catch (error) {
+        console.error('Error inserting feedback:', error); // Debugging log
+        res.status(404).json({ message: 'Error adding feedback', error });
+      }
+    });
+
+
     
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
