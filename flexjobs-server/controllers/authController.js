@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
+const { hashPassword, comparePassword } = require('../helpers/auth');
 
 // TEST ROUTE
 const test = (req, res) => {
@@ -48,12 +49,15 @@ const registerUser = async (req, res) => {
             })
         }
 
+        const hashedPassword = await hashPassword(password);
+        
+        // Create user in database
         const user = await User.create({
             name,
             email,
             identity,
             phoneNo,
-            password,
+            password: hashedPassword,
         })
 
         return res.json(user);

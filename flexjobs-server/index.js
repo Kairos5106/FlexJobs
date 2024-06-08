@@ -39,11 +39,11 @@ mongoose.connect(uriAlt)
 .then(() => console.log('Connected to MongoDB via Mongoose'))
 .catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
 
+
 let database;
 
 
-
-// Function to connect to MongoDB and set up routes
+// Connect to MongoDB and set up routes
 async function run() {
   try {
     // Connect the client to the server
