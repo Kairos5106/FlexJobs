@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const mongoose = require('mongoose');
 
 // POST a new user
 const registerNewUser = async (req, res) => {
@@ -16,19 +17,36 @@ const registerNewUser = async (req, res) => {
 const findExistingUser = async (req, res) => {
     const { email, password } = req.body;
     console.log("Finding user with email: ", email);
-    try{
-        await User.findOne({ email: email })
-        .then(user => {
-            if(user.password === password){
-                res.status(200).json("Success");
-            } else {
-                res.status(400).json({ error: "Invalid password" });
-            }
-        })
+
+    // Get the database name and collection names
+    const dbName = mongoose.connection.name;
+    const collections = mongoose.connection.collections;
+    const collectionNames = Object.keys(collections);
+    console.log(`Database name: ${dbName}`);
+    console.log(`Collections: ${collectionNames.join(', ')}`);
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            // If no user is found, send a 404 response
+            res.status(404).json({ error: "User not found" });
+            console.log("User not found for email: ", email);
+            return;
+        }
+
+        // Check if the password matches
+        if (user.password === password) {
+            res.status(200).json("Success");
+            console.log("User found: ", user);
+        } else {
+            res.status(400).json({ error: "Invalid password" });
+            console.log("Invalid password for user: ", user);
+        }
     } catch (error) {
-        console.log(error);
+        res.status(500).json({ error: "Internal server error" });
+        console.log("Error finding user: ", error);
     }
-}
+};
+
 
 // Exporting module
 module.exports = {
