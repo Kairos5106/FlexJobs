@@ -112,12 +112,12 @@ const Signup = () => {
                   />
               </div>
 
-              <div className='form-group'>
+              {/* <div className='form-group'>
                 <label htmlFor="agreeTerms">
                   <input type="checkbox" id="agreeTerms" name="agreeTerms"/>
                   I agree to the <strong>Terms and Conditions</strong> of FlexJobs
                 </label>
-              </div>
+              </div> */}
 
               <button type="submit" className="mt-4 btn btn-primary">Register account</button>
 

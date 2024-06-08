@@ -34,7 +34,8 @@ const client = new MongoClient(uri, {
 });
 
 // Mongoose connection
-mongoose.connect(uri)
+const uriAlt = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/flexjobs-database?retryWrites=true&w=majority`;
+mongoose.connect(uriAlt)
 .then(() => console.log('Connected to MongoDB via Mongoose'))
 .catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
 
