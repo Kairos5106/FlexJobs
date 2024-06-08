@@ -28,7 +28,6 @@ const Signup = () => {
                   className="form-control" 
                   placeholder="Your name" 
                   name="name" 
-                  required
                   value={data.name}
                   onChange={(e) => setEmail({...data, name: e.target.value})}
                   />
@@ -41,7 +40,6 @@ const Signup = () => {
                   className="form-control" 
                   placeholder="Your email" 
                   name="email" 
-                  required
                   value={data.email}
                   onChange={(e) => setEmail({...data, email: e.target.value})}
                   />
@@ -52,7 +50,6 @@ const Signup = () => {
                 <select 
                   className="form-control" 
                   name="identity" 
-                  required
                   value={data.identity}
                   onChange={(e) => setEmail({...data, identity: e.target.value})}
                 >
@@ -69,7 +66,6 @@ const Signup = () => {
                   className="form-control" 
                   placeholder="Your phone number" 
                   name="phoneNo" 
-                  required
                   value={data.phoneNo}
                   onChange={(e) => setEmail({...data, phoneNo: e.target.value})}
                   />
@@ -82,7 +78,6 @@ const Signup = () => {
                   className="form-control" 
                   placeholder="Enter a password" 
                   name="password" 
-                  required
                   value={data.password}
                   onChange={(e) => setEmail({...data, password: e.target.value})}
                   />
@@ -95,7 +90,6 @@ const Signup = () => {
                   className="form-control" 
                   placeholder="Confirm your password" 
                   name="passwordConfirm" 
-                  required
                   value={data.passwordConfirm}
                   onChange={(e) => setEmail({...data, passwordConfirm: e.target.value})}
                   />

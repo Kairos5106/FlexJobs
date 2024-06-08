@@ -11,10 +11,14 @@ router.use(cors({
 // Importing controller functions
 const { 
     test,
+    registerUser,
  } = require('../controllers/authController');
 
 // --------------------- ROUTES --------------------- //
 // TEST ROUTE
 router.get('/test', test);
+
+// REGISTER ROUTE
+router.post('/register', registerUser);
 
 module.exports = router;
