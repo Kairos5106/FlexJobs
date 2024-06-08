@@ -3,29 +3,22 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 const Signup = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [identity, setIdentity] = useState();
-  const [phoneNo, setPhoneNo] = useState();
-  const [password, setPassword] = useState()
-  const [passwordConfirm, setPasswordConfirm] = useState()
+  const [data, setData] = useState({
+    name: '',
+    email: '',
+    identity: '',
+    phoneNo: '',
+    password: '',
+  });
   
-  // Check the password and confirm password match
-
-
-
-  const handleSubmit = (e) => {
+  const registerUser = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
-    axios.post('http://localhost:3000/auth/register', {name, email, identity, phoneNo, password})
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
   }
 
   return (
         <div className="container bg-light">
           <h1 className="display-5 fw-bold text-center">Create an account</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={registerUser}>
             <div className="container mt-4">
 
               <div className="form-group">
@@ -36,7 +29,8 @@ const Signup = () => {
                   placeholder="Your name" 
                   name="name" 
                   required
-                  onChange={(e) => setName(e.target.value)}
+                  value={data.name}
+                  onChange={(e) => setEmail({...data, name: e.target.value})}
                   />
               </div>
 
@@ -48,7 +42,8 @@ const Signup = () => {
                   placeholder="Your email" 
                   name="email" 
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={data.email}
+                  onChange={(e) => setEmail({...data, email: e.target.value})}
                   />
               </div>
 
@@ -58,7 +53,8 @@ const Signup = () => {
                   className="form-control" 
                   name="identity" 
                   required
-                  onChange={(e) => setIdentity(e.target.value)}
+                  value={data.identity}
+                  onChange={(e) => setEmail({...data, identity: e.target.value})}
                 >
                   <option value="">Who are you?</option>
                   <option value="freelancer">Freelancer</option>
@@ -74,7 +70,8 @@ const Signup = () => {
                   placeholder="Your phone number" 
                   name="phoneNo" 
                   required
-                  onChange={(e) => setPhoneNo(e.target.value)}
+                  value={data.phoneNo}
+                  onChange={(e) => setEmail({...data, phoneNo: e.target.value})}
                   />
               </div>
 
@@ -86,7 +83,8 @@ const Signup = () => {
                   placeholder="Enter a password" 
                   name="password" 
                   required
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={data.password}
+                  onChange={(e) => setEmail({...data, password: e.target.value})}
                   />
               </div>
 
@@ -98,7 +96,8 @@ const Signup = () => {
                   placeholder="Confirm your password" 
                   name="passwordConfirm" 
                   required
-                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                  value={data.passwordConfirm}
+                  onChange={(e) => setEmail({...data, passwordConfirm: e.target.value})}
                   />
               </div>
 

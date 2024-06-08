@@ -4,27 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const navigate = useNavigate();
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  });
   
-  const handleSubmit = (e) => {
+  const loginUser = (e) => {
     e.preventDefault();
-    console.log("Information obtained from form");
-    axios.post('http://localhost:3000/auth/login', { email, password })
-    .then(result => {
-      console.log(result)
-      if(result.data === "Success"){
-        navigate('/');
-      }
-    })
-    .catch(err => console.log(err))
+
   }
 
   return (
     <div>
         <h1 className="display-5 fw-bold text-center">Login</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={loginUser}>
             <div className="container mt-4">
               <div className="form-group">
                 <label htmlFor="email"><b>Email</b></label>
@@ -34,7 +27,8 @@ const Login = () => {
                   placeholder="Your email" 
                   name="email" 
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={data.email}
+                  onChange={(e) => setEmail({...data, email: e.target.value})}
                   />
               </div>
               <div className="form-group">
@@ -45,7 +39,8 @@ const Login = () => {
                   placeholder="Enter a password" 
                   name="password" 
                   required
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={data.password}
+                  onChange={(e) => setPassword({...data, password: e.target.value})}
                   />
               </div>
               
@@ -54,7 +49,7 @@ const Login = () => {
                 <label className="form-check-label" for="rememberStatus">Remember Me</label>
               </div> */}
 
-              <button>Log in</button>
+              <button type='submit'>Log in</button>
 
               <Link to="/Signup" className="mt-4 btn btn-primary">I don't have an account</Link>
             </div>
