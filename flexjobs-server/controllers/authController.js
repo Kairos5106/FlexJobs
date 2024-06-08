@@ -1,13 +1,14 @@
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
 const { hashPassword, comparePassword } = require('../helpers/auth');
+const jwt = require('jsonwebtoken');
 
 // TEST ROUTE
 const test = (req, res) => {
     res.json('test is working');  
 }
 
-// REGISTER ROUTE
+// REGISTER ENDPOINT
 const registerUser = async (req, res) => {
     try{
         const {name, email, identity, phoneNo, password} = req.body;
@@ -66,21 +67,30 @@ const registerUser = async (req, res) => {
     }
 }
 
-// LOGIN ROUTE
+// LOGIN ENDPOINT
 const loginUser = async (req, res) => {
     try{
         const { email, password } = req.body;
-        // Check if email exists
+        // Check if user exists
         const user = await User.findOne({email});
         if(!user){
             return res.json({
-                error: 'Email does not exist'
+                error: 'User with corresponding email does not exist'
             })
         }
         // Check if password matches email
         const match = await comparePassword(password, user.password);
         if(match){
-            res.json('Logged in successfully');
+            jwt.sign({_id: user._id, email: user.email}, process.env.JWTPRIVATEKEY, { expiresIn: '7d' }, (error, token) => {
+                    if(error) throw error; {
+                        console.log(error);
+                    }
+                    res.cookie('token', token, {
+                    }).json(user)
+                }
+            );
+        } else {
+            res.json('Incorrect password');
         }
     } catch (error) {
         console.log(error);

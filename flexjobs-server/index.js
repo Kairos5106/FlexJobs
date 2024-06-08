@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Import ObjectId
 const dotenv = require('dotenv').config();
+const cookieParser = require('cookie-parser');
 
 // Imports for Module 1
 const userAuthRoutes = require('./routes/auth');
@@ -22,6 +23,8 @@ app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,
 }));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 
 // MongoDB Setup
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/?retryWrites=true&w=majority`;
