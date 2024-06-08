@@ -9,12 +9,30 @@ const test = (req, res) => {
 // REGISTER ROUTE
 const registerUser = async (req, res) => {
     try{
-        const {name, email, password} = req.body;
+        const {name, email, identity, phoneNo, password} = req.body;
         // Check if name was entered
         if(!name){
             return res.json({
                 error: 'Name is required'
             })
+        }
+        // Check if email was entered
+        if(!email){
+            return res.json({
+                error: 'Email is required'
+            });
+        }
+        // Check if identity was selected
+        if(identity === ''){
+            return res.json({
+                error: 'Please choose your identity'
+            });
+        }
+        // Check if phone number was entered
+        if(!phoneNo){
+            return res.json({
+                error: 'Phone number is required'
+            });
         }
         // Check if password is good
         if(!password || password.length < 6){
@@ -39,8 +57,8 @@ const registerUser = async (req, res) => {
         })
 
         return res.json(user);
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 }
 // Exporting module

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -11,8 +13,23 @@ const Signup = () => {
     password: '',
   });
   
-  const registerUser = (e) => {
+  const registerUser = async (e) => {
     e.preventDefault();
+    const {name, email, identity, phoneNo, password} = data
+    try{
+      const {data} = await axios.post('/auth/register', {
+        name, email, identity, phoneNo, password
+      });
+      if(data.error){
+        toast.error(data.error);
+      } else {
+        setData({})
+        toast.success('Register successful! Welcome ' + data.name);
+        navigate('/Login')
+      }
+    } catch (error){
+      console.log(error);
+    }
   }
 
   return (
@@ -29,7 +46,7 @@ const Signup = () => {
                   placeholder="Your name" 
                   name="name" 
                   value={data.name}
-                  onChange={(e) => setEmail({...data, name: e.target.value})}
+                  onChange={(e) => setData({...data, name: e.target.value})}
                   />
               </div>
 
@@ -41,7 +58,7 @@ const Signup = () => {
                   placeholder="Your email" 
                   name="email" 
                   value={data.email}
-                  onChange={(e) => setEmail({...data, email: e.target.value})}
+                  onChange={(e) => setData({...data, email: e.target.value})}
                   />
               </div>
 
@@ -51,7 +68,7 @@ const Signup = () => {
                   className="form-control" 
                   name="identity" 
                   value={data.identity}
-                  onChange={(e) => setEmail({...data, identity: e.target.value})}
+                  onChange={(e) => setData({...data, identity: e.target.value})}
                 >
                   <option value="">Who are you?</option>
                   <option value="freelancer">Freelancer</option>
@@ -67,7 +84,7 @@ const Signup = () => {
                   placeholder="Your phone number" 
                   name="phoneNo" 
                   value={data.phoneNo}
-                  onChange={(e) => setEmail({...data, phoneNo: e.target.value})}
+                  onChange={(e) => setData({...data, phoneNo: e.target.value})}
                   />
               </div>
 
@@ -79,7 +96,7 @@ const Signup = () => {
                   placeholder="Enter a password" 
                   name="password" 
                   value={data.password}
-                  onChange={(e) => setEmail({...data, password: e.target.value})}
+                  onChange={(e) => setData({...data, password: e.target.value})}
                   />
               </div>
 
@@ -91,7 +108,7 @@ const Signup = () => {
                   placeholder="Confirm your password" 
                   name="passwordConfirm" 
                   value={data.passwordConfirm}
-                  onChange={(e) => setEmail({...data, passwordConfirm: e.target.value})}
+                  onChange={(e) => setData({...data, passwordConfirm: e.target.value})}
                   />
               </div>
 

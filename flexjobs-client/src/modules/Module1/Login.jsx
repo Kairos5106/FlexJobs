@@ -27,7 +27,7 @@ const Login = () => {
                   placeholder="Your email" 
                   name="email" 
                   value={data.email}
-                  onChange={(e) => setEmail({...data, email: e.target.value})}
+                  onChange={(e) => setData({...data, email: e.target.value})}
                   />
               </div>
               <div className="form-group">
@@ -38,7 +38,7 @@ const Login = () => {
                   placeholder="Enter a password" 
                   name="password" 
                   value={data.password}
-                  onChange={(e) => setPassword({...data, password: e.target.value})}
+                  onChange={(e) => setData({...data, password: e.target.value})}
                   />
               </div>
               

@@ -6,6 +6,7 @@ const dotenv = require('dotenv').config();
 
 // Imports for Module 1
 const userAuthRoutes = require('./routes/auth');
+const { default: mongoose } = require('mongoose');
 
 const app = express();
 
@@ -17,7 +18,10 @@ app.listen(port, () => {
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
 
 // MongoDB Setup
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/?retryWrites=true&w=majority`;
@@ -29,6 +33,10 @@ const client = new MongoClient(uri, {
   }
 });
 
+// Mongoose connection
+mongoose.connect(uri)
+.then(() => console.log('Connected to MongoDB via Mongoose'))
+.catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
 
 let database;
 
@@ -537,8 +545,8 @@ async function run() {
       }
     });
     // Module 5 ---------------------------------------------------------------------------------------------------------
-  } catch (err) {
-    console.error('Failed to connect to MongoDB:', err);
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
   }
 }
 
