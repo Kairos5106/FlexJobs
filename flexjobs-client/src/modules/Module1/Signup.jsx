@@ -5,14 +5,19 @@ import axios from 'axios'
 const Signup = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
-  const [status, setStatus] = useState();
+  const [identity, setIdentity] = useState();
   const [phoneNo, setPhoneNo] = useState();
   const [password, setPassword] = useState()
   const [passwordConfirm, setPasswordConfirm] = useState()
   
+  // Check the password and confirm password match
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('', {name, email, status, phoneNo, password, passwordConfirm})
+    console.log("Form submitted");
+    axios.post('http://localhost:3000/auth/register', {name, email, identity, phoneNo, password})
     .then(result => console.log(result))
     .catch(err => console.log(err))
   }
@@ -48,20 +53,19 @@ const Signup = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="status"><b>Status</b></label>
+                <label htmlFor="identity"><b>Identity</b></label>
                 <select 
                   className="form-control" 
-                  name="status" 
+                  name="identity" 
                   required
-                  onChange={(e) => setStatus(e.target.value)}
+                  onChange={(e) => setIdentity(e.target.value)}
                 >
                   <option value="">Who are you?</option>
-                  <option value="student">Freelancer</option>
-                  <option value="professional">Employer</option>
+                  <option value="freelancer">Freelancer</option>
+                  <option value="employer">Employer</option>
                 </select>
               </div>
 
-              {/* Needs to be modified for phone number */}
               <div className="form-group">
                 <label htmlFor="phoneNo"><b>Phone Number</b></label>
                 <input 
