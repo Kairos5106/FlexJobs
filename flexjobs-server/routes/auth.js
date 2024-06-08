@@ -13,6 +13,7 @@ const {
     test,
     registerUser,
     loginUser,
+    getProfile,
  } = require('../controllers/authController');
 
 // --------------------- ROUTES --------------------- //
@@ -24,5 +25,8 @@ router.post('/register', registerUser);
 
 // LOGIN ROUTE
 router.post('/login', loginUser);
+
+// PROFILE ROUTE
+router.get('/profile', getProfile);
 
 module.exports = router;
