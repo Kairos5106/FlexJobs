@@ -11,7 +11,7 @@ const Login = () => {
   
   const loginUser = (e) => {
     e.preventDefault();
-
+    axios.get('/auth/test');
   }
 
   return (
@@ -26,7 +26,6 @@ const Login = () => {
                   className="form-control" 
                   placeholder="Your email" 
                   name="email" 
-                  required
                   value={data.email}
                   onChange={(e) => setEmail({...data, email: e.target.value})}
                   />
@@ -38,7 +37,6 @@ const Login = () => {
                   className="form-control" 
                   placeholder="Enter a password" 
                   name="password" 
-                  required
                   value={data.password}
                   onChange={(e) => setPassword({...data, password: e.target.value})}
                   />

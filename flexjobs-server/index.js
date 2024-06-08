@@ -1,15 +1,19 @@
 // Import the required modules
 const express = require('express');
-const app = express();
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Import ObjectId
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 
 // Imports for Module 1
 const userAuthRoutes = require('./routes/auth');
 
-// Server port
+const app = express();
+
 const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 // Middleware
 app.use(express.json());
@@ -531,13 +535,8 @@ async function run() {
           status: false
         });
       }
+    });
     // Module 5 ---------------------------------------------------------------------------------------------------------
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
   } catch (err) {
     console.error('Failed to connect to MongoDB:', err);
   }
