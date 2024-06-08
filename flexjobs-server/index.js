@@ -1,9 +1,14 @@
+// Import the required modules
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Import ObjectId
 require('dotenv').config();
 
+// Imports for Module 1
+const userAuthRoutes = require('./routes/auth');
+
+// Server port
 const port = process.env.PORT || 3000;
 
 // Middleware
@@ -23,6 +28,8 @@ const client = new MongoClient(uri, {
 
 let database;
 
+
+
 // Function to connect to MongoDB and set up routes
 async function run() {
   try {
@@ -33,113 +40,102 @@ async function run() {
     // Set up database
     database = client.db("flexjobs-database");
 
-// Sample Data for Users Collection
-const sampleUsers = [
-  { name: "John Doe", phone: "1234567890", email: "john@example.com" },
-  { name: "Jane Smith", phone: "9876543210", email: "jane@example.com" },
-  { name: "Alice Johnson", phone: "5555555555", email: "alice@example.com" }
-];
+    // Module 1 Routes
+    app.use('/auth', userAuthRoutes);
 
- // Insert sample users into the users collection
- const usersCollection = database.collection("user");
- await usersCollection.insertMany(sampleUsers);
- console.log("Sample users inserted successfully.");
+    // Module 2 ---------------------------------------------------------------------------------------------------------
+    const jobsCollection = database.collection("jobs");
+  
+    // Post a job
+    app.post("/post-job", async (req, res) => {
+      const body = req.body;
+      body.createdAt = new Date();
+      try {
+        const insertJob = await jobsCollection.insertOne(body);
+        if (insertJob.insertedId) {
+          return res.status(200).send(insertJob);
+        } else {
+          return res.status(404).send({
+            message: "Cannot insert. Try again later.",
+            status: false
+          });
+        }
+      } catch (error) {
+        return res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
 
+    // Get all jobs
+    app.get("/all-jobs", async (req, res) => {
+      try {
+        const jobs = await jobsCollection.find({}).toArray();
+        res.send(jobs);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
 
+    // Get a single job using id (to be displayed in JobDetails.jsx)
+    const { ObjectId } = require('mongodb');
 
-      // Module 2 ---------------------------------------------------------------------------------------------------------
-      const jobsCollection = database.collection("jobs");
-    
-      // Post a job
-      app.post("/post-job", async (req, res) => {
-        const body = req.body;
-        body.createdAt = new Date();
-        try {
-          const insertJob = await jobsCollection.insertOne(body);
-          if (insertJob.insertedId) {
-            return res.status(200).send(insertJob);
-          } else {
-            return res.status(404).send({
-              message: "Cannot insert. Try again later.",
-              status: false
-            });
-          }
-        } catch (error) {
-          return res.status(500).send({
-            message: "Internal Server Error",
+    app.get("/all-jobs/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const job = await jobsCollection.findOne({
+          _id: new ObjectId(id)
+        });
+        res.send(job);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
+    // Apply for job
+    const jobApplicationsCollection = database.collection("jobApplications");
+    app.post("/post-job-application", async (req, res) => {
+      const body = req.body;
+      body.createdAt = new Date();
+      try {
+        const insertApplication = await jobApplicationsCollection.insertOne(body);
+        if (insertApplication.insertedId) {
+          return res.status(200).send(insertApplication);
+        } else {
+          return res.status(404).send({
+            message: "Cannot insert. Try again later.",
             status: false
           });
         }
-      });
+      } catch (error) {
+        return res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
+    // Get all job application
+    app.get("/all-job-applications", async (req, res) => {
+      try {
+        const jobApplications = await jobApplicationsCollection.find({}).toArray();
+        res.send(jobApplications);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
   
-      // Get all jobs
-      app.get("/all-jobs", async (req, res) => {
-        try {
-          const jobs = await jobsCollection.find({}).toArray();
-          res.send(jobs);
-        } catch (error) {
-          res.status(500).send({
-            message: "Internal Server Error",
-            status: false
-          });
-        }
-      });
-  
-      // Get a single job using id (to be displayed in JobDetails.jsx)
-      const { ObjectId } = require('mongodb');
-  
-      app.get("/all-jobs/:id", async (req, res) => {
-        try {
-          const id = req.params.id;
-          const job = await jobsCollection.findOne({
-            _id: new ObjectId(id)
-          });
-          res.send(job);
-        } catch (error) {
-          res.status(500).send({
-            message: "Internal Server Error",
-            status: false
-          });
-        }
-      });
-  
-      // Apply for job
-      const jobApplicationsCollection = database.collection("jobApplications");
-      app.post("/post-job-application", async (req, res) => {
-        const body = req.body;
-        body.createdAt = new Date();
-        try {
-          const insertApplication = await jobApplicationsCollection.insertOne(body);
-          if (insertApplication.insertedId) {
-            return res.status(200).send(insertApplication);
-          } else {
-            return res.status(404).send({
-              message: "Cannot insert. Try again later.",
-              status: false
-            });
-          }
-        } catch (error) {
-          return res.status(500).send({
-            message: "Internal Server Error",
-            status: false
-          });
-        }
-      });
-  
-      // Get all job application
-      app.get("/all-job-applications", async (req, res) => {
-        try {
-          const jobApplications = await jobApplicationsCollection.find({}).toArray();
-          res.send(jobApplications);
-        } catch (error) {
-          res.status(500).send({
-            message: "Internal Server Error",
-            status: false
-          });
-        }
-      });
-  
-  // Module 2 ---------------------------------------------------------------------------------------------------------
+    // Module 2 ---------------------------------------------------------------------------------------------------------
   
 
     // Module 5 ---------------------------------------------------------------------------------------------------------//
@@ -375,176 +371,173 @@ const sampleUsers = [
 
     const honorCollection = database.collection("portfolio-honor");
 
- // Create a new honor
- app.post('/honor', async (req, res) => {
-   try {
-     const newHonor = req.body;
-     const result = await honorCollection.insertOne(newHonor);
-     res.status(201).send(`Honor created with ID: ${result.insertedId}`);
-   } catch (error) {
-     console.error('Error creating honor:', error);
-     res.status(500).send('Error creating honor');
-   }
- });
-
- // Get all honors
- app.get('/honor', async (req, res) => {
-   try {
-     const honor = await honorCollection.find().toArray();
-     res.status(200).json(honor);
-   } catch (error) {
-     console.error('Error fetching honor:', error);
-     res.status(500).send('Error fetching honor');
-   }
- });
-
- // Get a specific honor by ID
- app.get('/honor/:id', async (req, res) => {
-   try {
-     const honor = await honorCollection.findOne({ _id: new ObjectId(req.params.id) });
-     if (!honor) {
-       return res.status(404).send('Honor not found');
-     }
-     res.status(200).json(honor);
-   } catch (error) {
-     console.error('Error fetching honor:', error);
-     res.status(500).send('Error fetching honor');
-   }
- });
-
- // Update honor
- app.put('/honor/:id', async (req, res) => {
-   try {
-     const updatedHonor = req.body;
-     const result = await honorCollection.updateOne(
-       { _id: new ObjectId(req.params.id) },
-       { $set: updatedHonor }
-     );
-     if (result.matchedCount === 0) {
-       return res.status(404).send('Honor not found');
-     }
-     res.status(200).send('Honor updated');
-   } catch (error) {
-     console.error('Error updating honor:', error);
-     res.status(500).send('Error updating honor');
-   }
- });
-
- // Delete honor
- app.delete('/honor/:id', async (req, res) => {
-   try {
-     const result = await honorCollection.deleteOne({ _id: new ObjectId(req.params.id) });
-     if (result.deletedCount === 0) {
-       return res.status(404).send('Honor not found');
-     }
-     res.status(200).send('Honor deleted');
-   } catch (error) {
-     console.error('Error deleting honor:', error);
-     res.status(500).send('Error deleting honor');
-   }
- });
-
- const organizationCollection = database.collection("portfolio-organization");
-
- // Create a new organization
- app.post('/organization', async (req, res) => {
-   try {
-     const newOrganization = req.body;
-     const result = await organizationCollection.insertOne(newOrganization);
-     res.status(201).send(`Organization created with ID: ${result.insertedId}`);
-   } catch (error) {
-     console.error('Error creating organization:', error);
-     res.status(500).send('Error creating organization');
-   }
- });
-
- // Get all organizations
- app.get('/organization', async (req, res) => {
-   try {
-     const organization = await organizationCollection.find().toArray();
-     res.status(200).json(organization);
-   } catch (error) {
-     console.error('Error fetching organization:', error);
-     res.status(500).send('Error fetching organization');
-   }
- });
-
- // Get a specific organization by ID
- app.get('/organization/:id', async (req, res) => {
-   try {
-     const organization = await organizationCollection.findOne({ _id: new ObjectId(req.params.id) });
-     if (!organization) {
-       return res.status(404).send('organization not found');
-     }
-     res.status(200).json(organization);
-   } catch (error) {
-     console.error('Error fetching organization:', error);
-     res.status(500).send('Error fetching organization');
-   }
- });
-
- // Update organization
- app.put('/organization/:id', async (req, res) => {
-   try {
-     const updatedOrganization = req.body;
-     const result = await organizationCollection.updateOne(
-       { _id: new ObjectId(req.params.id) },
-       { $set: updatedOrganization }
-     );
-     if (result.matchedCount === 0) {
-       return res.status(404).send('Organization not found');
-     }
-     res.status(200).send('Organization updated');
-   } catch (error) {
-     console.error('Error updating organization:', error);
-     res.status(500).send('Error updating organization');
-   }
- });
-
- // Delete organization
- app.delete('/organization/:id', async (req, res) => {
-   try {
-     const result = await organizationCollection.deleteOne({ _id: new ObjectId(req.params.id) });
-     if (result.deletedCount === 0) {
-       return res.status(404).send('organization not found');
-     }
-     res.status(200).send('organization deleted');
-   } catch (error) {
-     console.error('Error deleting organization:', error);
-     res.status(500).send('Error deleting organization');
-   }
- });
-
- // Get job applications by email
-app.get("/job-applications/:email", async (req, res) => {
-  try {
-    const email = req.params.email;
-    const jobApplications = await jobApplicationsCollection.find({ email: email }).toArray();
-    if (jobApplications.length > 0) {
-      res.status(200).json(jobApplications);
-    } else {
-      res.status(404).send({
-        message: "No job applications found for this email",
-        status: false
-      });
-    }
-  } catch (error) {
-    console.error('Error fetching job applications:', error);
-    res.status(500).send({
-      message: "Internal Server Error",
-      status: false
+    // Create a new honor
+    app.post('/honor', async (req, res) => {
+      try {
+        const newHonor = req.body;
+        const result = await honorCollection.insertOne(newHonor);
+        res.status(201).send(`Honor created with ID: ${result.insertedId}`);
+      } catch (error) {
+        console.error('Error creating honor:', error);
+        res.status(500).send('Error creating honor');
+      }
     });
-  }
+  
+    // Get all honors
+    app.get('/honor', async (req, res) => {
+      try {
+        const honor = await honorCollection.find().toArray();
+        res.status(200).json(honor);
+      } catch (error) {
+        console.error('Error fetching honor:', error);
+        res.status(500).send('Error fetching honor');
+      }
+    });
+  
+    // Get a specific honor by ID
+    app.get('/honor/:id', async (req, res) => {
+      try {
+        const honor = await honorCollection.findOne({ _id: new ObjectId(req.params.id) });
+        if (!honor) {
+          return res.status(404).send('Honor not found');
+        }
+        res.status(200).json(honor);
+      } catch (error) {
+        console.error('Error fetching honor:', error);
+        res.status(500).send('Error fetching honor');
+      }
+    });
+  
+    // Update honor
+    app.put('/honor/:id', async (req, res) => {
+      try {
+        const updatedHonor = req.body;
+        const result = await honorCollection.updateOne(
+          { _id: new ObjectId(req.params.id) },
+          { $set: updatedHonor }
+        );
+        if (result.matchedCount === 0) {
+          return res.status(404).send('Honor not found');
+        }
+        res.status(200).send('Honor updated');
+      } catch (error) {
+        console.error('Error updating honor:', error);
+        res.status(500).send('Error updating honor');
+      }
+    });
+  
+    // Delete honor
+    app.delete('/honor/:id', async (req, res) => {
+      try {
+        const result = await honorCollection.deleteOne({ _id: new ObjectId(req.params.id) });
+        if (result.deletedCount === 0) {
+          return res.status(404).send('Honor not found');
+        }
+        res.status(200).send('Honor deleted');
+      } catch (error) {
+        console.error('Error deleting honor:', error);
+        res.status(500).send('Error deleting honor');
+      }
+    });
+  
+    const organizationCollection = database.collection("portfolio-organization");
+  
+    // Create a new organization
+    app.post('/organization', async (req, res) => {
+      try {
+        const newOrganization = req.body;
+        const result = await organizationCollection.insertOne(newOrganization);
+        res.status(201).send(`Organization created with ID: ${result.insertedId}`);
+      } catch (error) {
+        console.error('Error creating organization:', error);
+        res.status(500).send('Error creating organization');
+      }
+    });
+  
+    // Get all organizations
+    app.get('/organization', async (req, res) => {
+      try {
+        const organization = await organizationCollection.find().toArray();
+        res.status(200).json(organization);
+      } catch (error) {
+        console.error('Error fetching organization:', error);
+        res.status(500).send('Error fetching organization');
+      }
+    });
+  
+    // Get a specific organization by ID
+    app.get('/organization/:id', async (req, res) => {
+      try {
+        const organization = await organizationCollection.findOne({ _id: new ObjectId(req.params.id) });
+        if (!organization) {
+          return res.status(404).send('organization not found');
+        }
+        res.status(200).json(organization);
+      } catch (error) {
+        console.error('Error fetching organization:', error);
+        res.status(500).send('Error fetching organization');
+      }
+    });
+  
+    // Update organization
+    app.put('/organization/:id', async (req, res) => {
+      try {
+        const updatedOrganization = req.body;
+        const result = await organizationCollection.updateOne(
+          { _id: new ObjectId(req.params.id) },
+          { $set: updatedOrganization }
+        );
+        if (result.matchedCount === 0) {
+          return res.status(404).send('Organization not found');
+        }
+        res.status(200).send('Organization updated');
+      } catch (error) {
+        console.error('Error updating organization:', error);
+        res.status(500).send('Error updating organization');
+      }
+    });
+  
+    // Delete organization
+    app.delete('/organization/:id', async (req, res) => {
+      try {
+        const result = await organizationCollection.deleteOne({ _id: new ObjectId(req.params.id) });
+        if (result.deletedCount === 0) {
+          return res.status(404).send('organization not found');
+        }
+        res.status(200).send('organization deleted');
+      } catch (error) {
+        console.error('Error deleting organization:', error);
+        res.status(500).send('Error deleting organization');
+      }
+    });
+  
+    // Get job applications by email
+    app.get("/job-applications/:email", async (req, res) => {
+      try {
+        const email = req.params.email;
+        const jobApplications = await jobApplicationsCollection.find({ email: email }).toArray();
+        if (jobApplications.length > 0) {
+          res.status(200).json(jobApplications);
+        } else {
+          res.status(404).send({
+            message: "No job applications found for this email",
+            status: false
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching job applications:', error);
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    // Module 5 ---------------------------------------------------------------------------------------------------------
 });
 
-
-// Module 5 ---------------------------------------------------------------------------------------------------------
-
-
-    // Start the server
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
   } catch (err) {
     console.error('Failed to connect to MongoDB:', err);
   }
@@ -552,6 +545,3 @@ app.get("/job-applications/:email", async (req, res) => {
 
 // Call the run function
 run().catch(console.error);
-
-
-
