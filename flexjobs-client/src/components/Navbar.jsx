@@ -23,7 +23,7 @@ const Navbar = () => {
             { path: "/Feedback", title: "Feedback" }
         ]},
         { path: "/Module6Page", title: "Forum" },
-        { path: "/Module5Page", title: "Profile", subItems: [
+        { path: "/", title: "Profile", subItems: [
             { path: "/Portfolio", title: "Portfolio" },
             { path: "/CareerAssessInterest", title: "Career Access Interest" },
             { path: "/JobApplied", title: "Job Applied" },

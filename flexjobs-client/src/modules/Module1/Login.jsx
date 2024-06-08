@@ -2,16 +2,33 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     email: '',
     password: '',
   });
   
-  const loginUser = (e) => {
+  const loginUser = async (e) => {
     e.preventDefault();
-    axios.get('/auth/test');
+    const { email, password } = data;
+    try{
+      const {data} = await axios.post('/auth/login', {
+        email, 
+        password
+      });
+      if(data.error){
+        toast.error(data.error);
+      } else {
+        setData({});
+        navigate('/');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

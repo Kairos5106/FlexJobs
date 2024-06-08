@@ -50,7 +50,7 @@ const registerUser = async (req, res) => {
         }
 
         const hashedPassword = await hashPassword(password);
-        
+
         // Create user in database
         const user = await User.create({
             name,
@@ -65,8 +65,31 @@ const registerUser = async (req, res) => {
         console.log(error);
     }
 }
+
+// LOGIN ROUTE
+const loginUser = async (req, res) => {
+    try{
+        const { email, password } = req.body;
+        // Check if email exists
+        const user = await User.findOne({email});
+        if(!user){
+            return res.json({
+                error: 'Email does not exist'
+            })
+        }
+        // Check if password matches email
+        const match = await comparePassword(password, user.password);
+        if(match){
+            res.json('Logged in successfully');
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // Exporting module
 module.exports = {
     test,
     registerUser,
+    loginUser,
 }

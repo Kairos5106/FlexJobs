@@ -5,6 +5,8 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const navigate = useNavigate();
+  
   const [data, setData] = useState({
     name: '',
     email: '',

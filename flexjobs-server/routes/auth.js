@@ -12,6 +12,7 @@ router.use(cors({
 const { 
     test,
     registerUser,
+    loginUser,
  } = require('../controllers/authController');
 
 // --------------------- ROUTES --------------------- //
@@ -20,5 +21,8 @@ router.get('/test', test);
 
 // REGISTER ROUTE
 router.post('/register', registerUser);
+
+// LOGIN ROUTE
+router.post('/login', loginUser);
 
 module.exports = router;

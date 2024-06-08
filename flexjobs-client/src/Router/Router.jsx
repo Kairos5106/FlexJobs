@@ -57,8 +57,8 @@ const router = createBrowserRouter([
         // Routes for Module 5
         { path: "/Portfolio", element: <Portfolio/> },
         {path: "/CareerAssessInterest",element:<CareerAssessInterest/>},
-      { path: "/results", element: <Results /> },
-      {path:"/JobApplied",element:<JobApplied/>},
+        { path: "/results", element: <Results /> },
+        {path:"/JobApplied",element:<JobApplied/>},
 
         // Routes for Module 6
         { path: "/Module6Page", element: <Module6Page/> }
