@@ -137,6 +137,25 @@ async function run() {
   
     // Module 2 ---------------------------------------------------------------------------------------------------------
   
+    
+    // Module 3 ---------------------------------------------------------------------------------------------------------
+    const feedbacks = database.collection("feedback");
+
+    app.post('/feedback', async (req, res) => {
+      const feedback = req.body;
+      try {
+        const feedbackResult = await feedbacks.insertOne(feedback);
+        console.log('Feedback inserted:', feedbackResult); // Debugging log
+        res.status(200).json({ message: 'Feedback added successfully!', feedbackId: feedbackResult.insertedId });
+      } catch (error) {
+        console.error('Error inserting feedback:', error); // Debugging log
+        res.status(404).json({ message: 'Error adding feedback', error });
+      }
+    });
+
+
+    // Module 3 ---------------------------------------------------------------------------------------------------------
+
 
     // Module 5 ---------------------------------------------------------------------------------------------------------//
 
