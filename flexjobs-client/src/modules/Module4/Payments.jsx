@@ -10,6 +10,27 @@ import './styles/payment-invoice.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Payments extends React.Component {
+  testProjectPayments = async () => {
+    try {
+      const response = await fetch('/test-project-payment');
+
+      // Check if the content type is JSON
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        console.log('Received non-JSON response');
+        const text = await response.text();
+        console.log(text);
+      }
+  
+      console.log('hi');
+    } catch (error) {
+      console.log('hi');
+      console.error('Error:', error);
+    }
+  };
 
 
   switchPage = () => {
@@ -22,7 +43,7 @@ class Payments extends React.Component {
             <section className="transaction-history">
                 <div className="flex items-center transaction-header">
                     <h2 className="mb-0">Transaction History</h2>
-                    <button className="switch-button" type="button">Switch to buying</button>
+                    <button className="switch-button" type="button" onClick={this.testProjectPayments}>Test button</button>
                 </div>
             </section>
 

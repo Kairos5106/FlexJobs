@@ -11,7 +11,7 @@ const PaymentsTable = () => {
         <div className="card-header d-flex justify-content-between align-items-center filter-content">
           <div className="tw-flex tw-items-center">
             <div className="input-icon-payments">
-              <input aria-label="date" type="text" className=" form-control form-control-sm" value="Mar 1, 2024 - Apr 10, 2024" readonly/>
+              <input aria-label="date" type="text" className=" form-control form-control-sm" defaultValue="Mar 1, 2024 - Apr 10, 2024" readOnly/>
               <i className="fa-regular fa-calendar"></i>
             </div>
             <div className="filter-icon">
@@ -60,7 +60,7 @@ const PaymentsTable = () => {
                 {/* pagination */}
               <tfoot id='table-data-payments-footer'>
                 <tr>
-                  <td colspan="6" className="pt-3 pb-0">
+                  <td colSpan="6" className="pt-3 pb-0">
                     <nav aria-label="Page navigation example" className="d-flex justify-content-end">
                       <ul className="pagination justify-content-center">
                         <li className="page-item"><a className="page-link" href="#">Previous</a></li>
