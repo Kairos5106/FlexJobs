@@ -1,19 +1,30 @@
 // Import the required modules
 const express = require('express');
-const app = express();
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Import ObjectId
-require('dotenv').config();
+const dotenv = require('dotenv').config();
+const cookieParser = require('cookie-parser');
 
 // Imports for Module 1
 const userAuthRoutes = require('./routes/auth');
+const { default: mongoose } = require('mongoose');
 
-// Server port
+const app = express();
+
 const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 
 // MongoDB Setup
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/?retryWrites=true&w=majority`;
@@ -25,12 +36,17 @@ const client = new MongoClient(uri, {
   }
 });
 
+// Mongoose connection
+const uriAlt = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/flexjobs-database?retryWrites=true&w=majority`;
+mongoose.connect(uriAlt)
+.then(() => console.log('Connected to MongoDB via Mongoose'))
+.catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
+
 
 let database;
 
 
-
-// Function to connect to MongoDB and set up routes
+// Connect to MongoDB and set up routes
 async function run() {
   try {
     // Connect the client to the server
@@ -531,15 +547,10 @@ async function run() {
           status: false
         });
       }
+    });
     // Module 5 ---------------------------------------------------------------------------------------------------------
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-  } catch (err) {
-    console.error('Failed to connect to MongoDB:', err);
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
   }
 }
 
