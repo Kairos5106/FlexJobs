@@ -1,17 +1,32 @@
 const express = require('express');
-const User = require('../models/userModel');
+const router = express.Router();
+const cors = require('cors');
+
+// Middleware
+router.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}));
+
+// Importing controller functions
 const { 
-    registerNewUser
+    test,
+    registerUser,
+    loginUser,
+    getProfile,
  } = require('../controllers/authController');
 
-const router = express.Router();
+// --------------------- ROUTES --------------------- //
+// TEST ROUTE
+router.get('/test', test);
 
-// POST a new user 
-router.post('/registerNewUser', registerNewUser);
+// REGISTER ROUTE
+router.post('/register', registerUser);
 
-// Testing routing
-router.post('/test', async (req, res) => {
-    res.json({ message: 'Hello from server!' });
-});
+// LOGIN ROUTE
+router.post('/login', loginUser);
+
+// PROFILE ROUTE
+router.get('/profile', getProfile);
 
 module.exports = router;
