@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 // import './style-inbox.css';
 import Chat from './Chat';
+import DirectChat from './DirectChat';
 
 const Inbox = () => {
 
+    const [showDirectChat, setShowDirectChat] = useState(false);
+
     return (
         <div>
-            <Chat/>
+            <Chat />
+            {/* Toggle DirectChat for demonstration
+            <button onClick={() => setShowDirectChat(!showDirectChat)}>
+                {showDirectChat ? 'Hide Direct Chat' : 'Show Direct Chat'}
+            </button>
+            {showDirectChat && <DirectChat />} */}
         </div>
     );
     // const [rows, setRows] = useState([
