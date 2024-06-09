@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style-feedback.css';
+import axios from 'axios';
 
 // InputField class for form
 const InputField = ({ type, placeholder, required, iconClass, value, onChange }) => (
@@ -99,7 +100,7 @@ const Feedback = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (event.target.checkValidity()) {
-            axios.post('http://localhost:5173/feedback', formData)
+            axios.post('http://localhost:3000/feedback', formData)
                 .then(response => {
                     console.log(response.data);
                     alert("Thank you for giving your feedback!");
