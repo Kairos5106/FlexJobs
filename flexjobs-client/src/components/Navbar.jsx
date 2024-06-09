@@ -18,12 +18,12 @@ const Navbar = () => {
             { path: "/JobSearch", title: "Search Job" },
             { path: "/PostJob", title: "Post A Job" }
         ]},
-        { path: "/Inbox", title: "Inbox", subItems: [
-            { path: "/Inbox", title: "Chat" },
+        { path: "/Chat", title: "Inbox", subItems: [
+            { path: "/Chat", title: "Chat" },
             { path: "/Feedback", title: "Feedback" }
         ]},
         { path: "/Module6Page", title: "Forum" },
-        { path: "/", title: "Profile", subItems: [
+        { path: "/Portfolio", title: "Profile", subItems: [
             { path: "/Portfolio", title: "Portfolio" },
             { path: "/CareerAssessInterest", title: "Career Access Interest" },
             { path: "/JobApplied", title: "Job Applied" },
