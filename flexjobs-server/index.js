@@ -157,27 +157,15 @@ async function run() {
     // Module 3 ---------------------------------------------------------------------------------------------------------
     const feedbacksCollection = database.collection("feedback");
 
-    // app.post('/feedback', async (req, res) => {
-    //   const feedback = req.body;
-    //   try {
-    //     const feedbackResult = await feedbacksCollection.insertOne(feedback);
-    //     console.log('Feedback inserted:', feedbackResult); // Debugging log
-    //     res.status(200).json({ message: 'Feedback added successfully!', feedbackId: feedbackResult.insertedId });
-    //   } catch (error) {
-    //     console.error('Error inserting feedback:', error); // Debugging log
-    //     res.status(404).json({ message: 'Error adding feedback', error });
-    //   }
-    // });
-
     app.post('/feedback', async (req, res) => {
       const feedback = req.body;
-      console.log('Received feedback:', feedback); // Debugging log
+      // console.log('Received feedback:', feedback); // Debugging log
       try {
         const feedbackResult = await feedbacksCollection.insertOne(feedback);
-        console.log('Feedback inserted:', feedbackResult); // Debugging log
+        // console.log('Feedback inserted:', feedbackResult); // Debugging log
         res.status(200).json({ message: 'Feedback added successfully!', feedbackId: feedbackResult.insertedId });
       } catch (error) {
-        console.error('Error inserting feedback:', error); // Debugging log
+        // console.error('Error inserting feedback:', error); // Debugging log
         res.status(500).json({ message: 'Error adding feedback', error });
       }
     });

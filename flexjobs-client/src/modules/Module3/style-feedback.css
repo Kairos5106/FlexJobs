@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3% 0;
+    padding: 0;
 }
 
 .section-feedback::before {
@@ -37,9 +37,6 @@
     
 } 
 
-#feedback-form {
-    
-}
 
 .container-feedback form {
     width: 100%;
@@ -48,7 +45,7 @@
 }
 
 form h1 {
-    padding: 10px 0;
+    padding: 0;
     color: #181717;
 }
 
@@ -64,9 +61,6 @@ form .id {
     transform: translateY(-50%);
 }
 
-#job {
-
-}
 
 form input {
     width: 100%;
@@ -134,17 +128,17 @@ form input:focus + i {
 }
 
 form select {
-    padding: 8px;
+    padding: 4px;
     font-size: 16px;
 }
 
 .category {
     font-size: 20px;
-    margin-left: 4px;
+    padding-left: 4px;
 }
 
 #category {
-    margin: 12px 8px;
+    padding: 12px 8px;
 }
 
 
@@ -156,8 +150,9 @@ form select {
 }
 
 .rating-text {
-    margin-left: 4px;
-    margin-right: 40px;
+    padding-top: 10px;
+    padding-left: 4px;
+    padding-right: 40px;
 }
 
 .star {
