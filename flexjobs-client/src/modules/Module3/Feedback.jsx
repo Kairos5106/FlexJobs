@@ -55,18 +55,20 @@ const FeedbackForm = ({ formData, setFormData, handleSubmit, categories }) => (
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
 
-        <label htmlFor="category" className="category">Category: </label>
-        <select
-            id="category"
-            value={formData.category}
-            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-            required
-        >
-            <option value="">Select a category</option>
-            {categories.map((category, index) => (
-                <option key={index} value={category}>{category}</option>
-            ))}
-        </select>
+        <div className="category-container">
+            <label htmlFor="category" className="category">Category:</label>
+            <select
+                id="category"
+                value={formData.category}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                required
+            >
+                <option value="">Select a category</option>
+                {categories.map((category, index) => (
+                    <option key={index} value={category}>{category}</option>
+                ))}
+            </select>
+        </div>
 
         <StarRating rating={formData.rating} setRating={(value) => setFormData({ ...formData, rating: value })} />
 
@@ -93,8 +95,8 @@ const Feedback = () => {
     });
 
     const categories = [
-        "Website UI", "Home", "Jobs", "Chat",
-        "Career Test Assessment", "Payment", "Others"
+        "Home", "Jobs", "Chat", "Forum", "Portfolio",
+        "Career Access Interest", "Payment", "Others"
     ];
 
     const handleSubmit = (event) => {

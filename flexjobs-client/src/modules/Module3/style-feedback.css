@@ -47,6 +47,7 @@
 form h1 {
     padding: 0;
     color: #181717;
+    padding-top: 3%;
 }
 
 form .id {
@@ -129,16 +130,24 @@ form input:focus + i {
 
 form select {
     padding: 4px;
-    font-size: 16px;
+    font-size: 18px;
+}
+
+.category-container {
+    display: flex;
+    align-items: left; /* Align items vertically centered */
+    padding: 15px 0 5px 0;
 }
 
 .category {
     font-size: 20px;
     padding-left: 4px;
+    padding-top: 5px;
+    padding-right: 10px;
 }
 
 #category {
-    padding: 12px 8px;
+    padding: 0px 8px;
 }
 
 
