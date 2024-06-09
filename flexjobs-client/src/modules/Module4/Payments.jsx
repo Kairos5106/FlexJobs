@@ -18,11 +18,11 @@ class Payments extends React.Component {
 
   render() {
     return (
-        <div className="content">
+        <div className="payments-content">
             <section className="transaction-history">
-                <div className="flex justify-between items-center mb-0">
+                <div className="flex items-center transaction-header">
                     <h2 className="mb-0">Transaction History</h2>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button">Switch to buying</button>
+                    <button className="switch-button" type="button">Switch to buying</button>
                 </div>
             </section>
 
