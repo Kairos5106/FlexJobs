@@ -63,96 +63,98 @@ const ModifyJobs = () => {
     };
 
     return (
-        <div className="modify-job-module2 section" id="modify-job-module2">
-            {/* Search bar */}
-            <form className='section'>
-                <div className="flex row g-3 justify-content-center">
+        <div className='body-module2'>
+            <div className="modify-job-module2 section" id="modify-job-module2">
+                {/* Search bar */}
+                <form className='section'>
+                    <div className="flex row g-3 justify-content-center">
 
-                    {/* Input field for location */}
-                    <div className="flex col-sm-6">
-                        <span className="input-icon"><i className="fa-solid fa-magnifying-glass"></i></span>
-                        <input
-                            type="text"
-                            name="query-search-posted-job"
-                            id="query-search-posted-job"
-                            className="form-control input-field"
-                            placeholder="Enter job title"
-                            value={searchText}
-                            onChange={(e) => setSearchText(e.target.value)}
-                        />
+                        {/* Input field for location */}
+                        <div className="flex col-sm-6">
+                            <span className="input-icon"><i className="fa-solid fa-magnifying-glass"></i></span>
+                            <input
+                                type="text"
+                                name="query-search-posted-job"
+                                id="query-search-posted-job"
+                                className="form-control input-field"
+                                placeholder="Enter job title"
+                                value={searchText}
+                                onChange={(e) => setSearchText(e.target.value)}
+                            />
+                        </div>
+
+                        {/* Search button */}
+                        <div className="col-auto">
+                            <button type="button" className="btn btn-primary" onClick={handleSearch}>Search</button>
+                        </div>
                     </div>
+                </form>
 
-                    {/* Search button */}
-                    <div className="col-auto">
-                        <button type="button" className="btn btn-primary" onClick={handleSearch}>Search</button>
-                    </div>
-                </div>
-            </form>
-
-            {/* Jobs posted table */}
-            <div className='table-responsive'>
-                <table className="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col" colSpan="6">
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <div>
-                                        All Jobs
+                {/* Jobs posted table */}
+                <div className='table-responsive'>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" colSpan="6">
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <div>
+                                            All Jobs
+                                        </div>
+                                        <div>
+                                            <Link to="/PostJob">
+                                                <button className='btn btn-secondary'>
+                                                    Post New Job
+                                                </button>
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <Link to="/PostJob">
-                                            <button className='btn btn-secondary'>
-                                                Post New Job
-                                            </button>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="col">JOB ID</th>
-                            <th scope="col">JOB TITLE</th>
-                            <th scope="col">COMPANY NAME</th>
-                            <th scope="col">POSTED ON</th>
-                            <th scope="col">EDIT</th>
-                            <th scope="col">DELETE</th>
-                        </tr>
-                    </thead>
-                    <tbody id="user-jobs-list">
-                        {filteredJobs.map(job => (
-                            <tr key={job._id}>
-                                <th scope="row">{job._id}</th>
-                                <td>{job.jobTitle}</td>
-                                <td>{job.companyName}</td>
-                                <td>{new Date(job.datePosted).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
-                                <td className="modify-job-button">
-                                    <button
-                                        type="button"
-                                        className="btn btn-outline-warning w-100"
-                                        onClick={() => handleEdit(job._id)}
-                                    >
-                                        Edit
-                                    </button>
-                                </td>
-                                <td className="modify-job-button">
-                                    <button
-                                        type="button"
-                                        className="btn btn-outline-danger w-100"
-                                        onClick={() => handleDelete(job._id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            
-            {/* Total number of jobs posted */}
-            <div className='d-flex justify-content-end'>
-                <br></br>
-                Total Jobs: {jobs.length}
+                            <tr>
+                                <th scope="col">JOB ID</th>
+                                <th scope="col">JOB TITLE</th>
+                                <th scope="col">COMPANY NAME</th>
+                                <th scope="col">POSTED ON</th>
+                                <th scope="col">EDIT</th>
+                                <th scope="col">DELETE</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-jobs-list">
+                            {filteredJobs.map(job => (
+                                <tr key={job._id}>
+                                    <th scope="row">{job._id}</th>
+                                    <td>{job.jobTitle}</td>
+                                    <td>{job.companyName}</td>
+                                    <td>{new Date(job.datePosted).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+                                    <td className="modify-job-button">
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-warning w-100"
+                                            onClick={() => handleEdit(job._id)}
+                                        >
+                                            Edit
+                                        </button>
+                                    </td>
+                                    <td className="modify-job-button">
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-danger w-100"
+                                            onClick={() => handleDelete(job._id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                
+                {/* Total number of jobs posted */}
+                <div className='d-flex justify-content-end'>
+                    <br></br>
+                    Total Jobs: {jobs.length}
+                </div>
             </div>
         </div>
     )

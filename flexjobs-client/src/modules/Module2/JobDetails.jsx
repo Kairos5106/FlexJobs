@@ -46,7 +46,7 @@ const JobDetails = () => {
     };
 
     return (
-        <div>
+        <div className='body-module2'>
             {/* Top Section */}
             <div className="back-link-section">
                 <a href="#" className="back-link" onClick={() => window.history.back()}>

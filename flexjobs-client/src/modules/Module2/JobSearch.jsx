@@ -83,7 +83,7 @@ const JobSearch = () => {
     const jobCount = result.length;
 
     return (
-        <>
+        <div className='body-module2'>
             {/* Banner */}
             <Banner
                 query={query}
@@ -104,7 +104,7 @@ const JobSearch = () => {
                     <Jobs result={result} jobCount={jobCount}/> 
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
