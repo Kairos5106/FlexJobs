@@ -5,7 +5,7 @@ import DirectChat from './DirectChat';
 
 const Inbox = () => {
 
-    const [showDirectChat, setShowDirectChat] = useState(false);
+    // const [showDirectChat, setShowDirectChat] = useState(false);
 
     return (
         <div>
