@@ -1,0 +1,728 @@
+* {
+   
+    font-family: 'Poppins', sans-serif;
+}
+
+.forum-header-and-section {
+    background-color: #F7F2E7;
+    top: 0;    
+    left: 0;
+    overflow: auto; 
+    position: relative;
+
+}
+
+body{
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0%;
+}
+
+
+/* Header bar on top of each webpage */
+.header-scrolled {
+    background: #1F3051;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #24375D;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 1000;
+}
+
+
+header .logo {
+    color: #06FED0;
+    padding-left: 2%;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+header .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100 
+}
+
+header .navbar ul {
+    list-style: none;
+}
+
+header .navbar ul li {
+    position: relative;
+    float: left;
+    margin-right: 10px;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    display: block;
+}
+
+header ul li i {
+    padding-left: 7px;
+}
+
+header .navbar ul li a:hover,
+header .navbar ul li a.active {
+    background: #fff;
+    color: #1F3051;
+    border-radius: 20px;
+}
+
+header .navbar ul li ul {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background: #1F3051;
+    display: none;
+}
+
+header .navbar ul li ul li {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+header .navbar ul li ul li a {
+    padding: 15px;
+}
+
+header .navbar ul li:hover > ul {
+    display: initial;
+}
+
+/* Menu toggler */
+#menu-toggler,
+#hamburger-button {
+    display: none;
+}
+
+@media (width < 980px) {
+    header {
+        position: fixed;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    header .navbar ul li {
+        width: 100%;
+        padding: 0 0 15px 0;
+    }
+
+    header .navbar ul li a {
+        padding: 10px 15px;
+    }
+
+    header .navbar ul li ul {
+        position: relative;
+        width: 100%;
+    }
+
+    header .navbar ul li ul li {
+        width: 100%;
+        padding: 0 0 0 30px;
+        background: #1F3051;
+    }
+
+    .navbar .nav-links {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        display: block;
+        background: #1F3051;
+        width: 250px;
+        padding-top: 30px;
+        left: -100%;
+        transition: all 0.4s ease;
+    }
+
+    #menu-toggler:checked ~ .nav-links {
+        left: 0;
+    }
+
+    #hamburger-button {
+        display: block;
+        color: #fff;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    section .cards .card {
+        width: calc(100% - 15px);
+        margin: 10px;
+    }
+}
+
+
+
+/* Forum Main Page*/
+#discussion-forum-title {
+    text-align: left; 
+    color: #24375D;
+    font-size: 2.2em;
+    margin-top: 20vh;
+    margin-left: 5%;
+    
+}
+
+.forum-and-post{
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar {
+    padding-left: 5%;
+    border: 0; /* Remove default border */
+    align-items: center;
+    color: white;
+    position: relative; /* Ensure the container is positioned relative to its parent */
+    height: 5%;
+}
+
+
+
+.search-bar:focus-within #search-results {
+    display: block; /* Display search results when search bar is focused */
+}
+
+#search-input {
+    padding: 0.8%;
+    margin-top: 2%;
+    width: 95%;
+    font-size: 1.2em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow to the input field */
+    border: 0; /* Remove default border */
+    border-radius:5px;
+    color: black;
+    background-color: white;
+    position: relative;
+}
+
+.add-post-button{
+    color: #fff;
+    padding: 0.8%;
+    width: 30%;
+    font-size: 1.2em;
+    background-color: #24375D;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow to the input field */
+    border: 0; /* Remove default border */
+    border-radius:5px;
+    text-align: center;
+    align-items: center;
+    margin-top: 20vh;
+    margin-right: 5%;
+    text-decoration: none;
+}
+
+.add-post-button:hover{
+    background-color: #0056b3;
+}
+
+.topics-title{
+    text-align: start; 
+    color: #24375D;
+    font-size: 1.8em;
+    margin-left: 5.1%;
+}
+
+.topics-title-popular{
+    margin-top: 5%;
+    text-align: start; 
+    color: #24375D;
+    font-size: 1.8em;
+    margin-left: 5.1%;
+    z-index: 1;
+}
+
+
+.search-results-dropdown {
+    position: absolute;
+    top: 16%; /* Position below the search bar */
+    left: 5%;
+    right: 5%;
+    z-index: 999; /* Ensure it appears above other elements */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    width: 90%;
+    max-height: 200px; /* Adjust as needed */
+    overflow-y: auto;
+}
+
+.recycler-view-popular-topics{
+    margin-left: 5%;
+    width: 90%;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-bottom: 7%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto; /* Add scrollbars when content overflows */
+    max-height: 500px; /* Set a maximum height */
+}
+
+
+.topics-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 8vh;
+    margin-top: 3%;
+    padding: 2%;
+}
+
+
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align children to start (top) */
+    align-items: flex-start;
+    flex:6
+}
+
+
+.middle{
+    flex: 1.5;
+}
+
+.right{
+    flex: 1;
+}
+
+.topics{
+    font-size: 0.2em;
+    color: #24375D;
+    text-decoration: none;
+    text-align: left;
+}
+
+.author{
+    font-size: 1.0em;
+    color: #24375D;
+}
+
+.username {
+    color: #06FED0; /* Color for the username */
+}
+
+.latestby{
+    font-size: 1.2em;
+    color: #24375D;
+    text-align: center;
+}
+
+.latestauthor{
+    font-size: 1.5em;
+    color: #06FED0;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+}
+
+.latesttime{
+    font-size: 1.3em;
+    color: #24375D;
+    margin-bottom: 0;
+    margin-top: 0;
+    
+}
+
+.searched-item {
+    width: 100%;
+    /* margin-left: 5%; */
+    position: static;
+    z-index: 100; /* Ensure it appears on top of other elements */
+    background-color: #f8f6f6; /* Optional: add a background color */
+    border: 1px solid #ffffff; /* Optional: add border for visual separation */
+}
+
+
+.searched-title {
+    float: left; /* Align title to the left */
+    font-size: 24px;
+    margin-left: 3vw;
+}
+
+.searched-date {
+    float: right;
+    margin-right: 5vw; 
+    font-size: 20px;
+}
+
+/*Forum Details Page*/
+
+.username-details{
+    font-size: 1em ;
+}
+.topic-details-box{
+    background-color: #fff;
+    width: 90%;
+    margin-left: 5%;
+    padding-left: 2%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin-bottom: 7%;
+    display: flex;
+    flex-direction: column;
+}
+
+.topic-details-box h1{
+    color: #24375D;
+    width: 90%;
+}
+
+.topic-details-box h2{
+    font-size: 1.3em;
+    color: #24375D;
+    width: 90%;
+}
+
+.topic-details-box h3{
+    align-self: flex-end;
+    color: #24375D;
+    width: auto;
+    padding-right: 3%;
+}
+
+.sorting-page-newpost-container{
+    display: flex;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 5%;
+    width: 20%;
+    margin-bottom: 7%;
+
+}
+
+.dropdown-btn {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #24375D;
+    width: 200px; /* Adjust width as needed */
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute; /* Change position to absolute */
+    background-color: #f9f9f9;
+    width: 200px; /* Match the width of the button */
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%; /* Position the dropdown below the button */
+    left: 0; /* Align the dropdown with the left edge of the button */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+.page-number{
+    background-color: #24375D;
+    display: inline-block;
+    padding: 8px 12px;
+    margin-right: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    width: 3vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.newpost{
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.post {
+    margin-left: 5%;
+    display: flex; /* Display children in a row */
+    align-items: flex-start; /* Align items at the start vertically */
+}
+
+.profilepic-name {
+    display: flex; /* Use flexbox for inner elements */
+    flex-direction: column;
+    align-items: center; /* Align items vertically */
+    margin-right: 10px; /* Add margin to create space between the image and the username */
+}
+
+.profilepic {
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+}
+
+.post-username {
+    font-size: 1.5em;
+    color: #24375D;
+    font-weight: 500;
+    margin: 0; /* Reset margin to remove any default margin */
+    margin-right: 10px; /* Add margin between the image and the username */
+}
+
+.post-content-container {
+    padding: 1%;
+    background-color: #fff;
+    margin-right: 5%;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    display: flex; /* Use flex display */
+    flex-direction: column; /* Arrange children horizontally */
+    margin-bottom: 5%;
+}
+
+.post-content{
+    align-items: left;
+    text-align: left;
+}
+
+.post-content-details-container {
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    justify-content: flex-end;
+}
+
+.time{
+    color: #06FED0;
+    font-size: 1.0em;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+
+.quote{
+    border: none;
+    font-size: 1.1em;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+
+}
+
+.upvote{
+    color: green;
+    border: none;
+    font-size: 1.1em;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.downvote{
+    color: red;
+    border: none;
+    border-radius: 5px;
+
+    font-size: 1.1em;
+    background-color: rgba(0, 0, 0, 0);   
+}
+
+.numbering{
+    background-color: #f1f1f1;
+    margin-left: 20px;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+.quote:hover,
+.upvote:hover,
+.downvote:hover {
+    background-color: #a7a7a7;
+}
+
+.post-content-details-container > span {
+    margin-right: 10px; 
+}
+
+.post-content-details-container > button {
+    margin-right: 5px; 
+}
+
+
+#paragraph-input{
+    margin-left: 5%;
+    width: 90%;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 1%;
+    background-color: white;
+}
+
+#file-input{
+    margin-left: 5%;
+
+}
+
+.submit{
+    margin-left: 5%;
+    margin-top: 1%;
+    background-color: #24375D;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 6%;
+    width: 10%;
+}
+
+.submit:hover{
+    background-color: #0056b3;
+}
+.upload-section {
+    margin-right: 1vw;
+    min-width: 5vw;
+    min-height: 2vh;
+    border: none;
+    border-radius: 5px;
+    background-color: #24375D;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    align-items: center;
+}
+
+/* #file-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+} */
+
+
+.forum-toolbar {
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 1%;
+    
+}
+
+.attachment-button{
+    text-align: center;
+}
+
+.toolbar-button {
+    padding: 5px 15px;
+    margin-right: 1vw;
+    min-width: 5vw;
+    min-height: 2vh;
+    border: none;
+    border-radius: 5px;
+    background-color: #24375D;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.toolbar-button:hover {
+    background-color: #0056b3;
+}
+
+.formatting-toolbar {
+    display: flex;
+}
+
+.options-fontsize{
+    background-color: #24375D;
+    min-width: 5vw;border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.formatting-toolbar .toolbar-button {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #24375D;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.scroll-to-top-btn:hover {
+    background-color: #0056b3;
+}
+/*New Forum*/
+
+
+#topic-title{
+    margin-left: 1%;
+    border: none;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    width: 60%;
+    padding: 1% 1%;
+    border-radius: 15px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    background-color: white;
+}
+
+/* Footer */
+.footer {
+    background: #1F3051;
+    padding: 20px 80px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    align-items: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #fff;
+}
