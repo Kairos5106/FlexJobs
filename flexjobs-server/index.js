@@ -619,5 +619,208 @@ async function run() {
   }
 }
 
+// Module 6 ------------------------------------------------------------------------------------------------------
+// Create a new collection for the forum
+
+    const forumCollection = database.collection("forum");
+
+          // Post a forum topic
+            
+      app.post("/post-forum-topic", async (req, res) => {
+        const { title, content } = req.body;
+        const newPost = {
+          title,
+          content,
+          upvote: 0,
+          downvote: 0,
+          timestamp: new Date(),
+        };
+
+        try {
+          const insertPost = await forumCollection.insertOne(newPost);
+          if (insertPost.insertedId) {
+            return res.status(200).send(insertPost);
+          } else {
+            return res.status(404).send({
+              message: "Cannot insert. Try again later.",
+              status: false,
+            });
+          }
+        } catch (error) {
+          return res.status(500).send({
+            message: "Internal Server Error",
+            status: false,
+          });
+        }
+      });
+          
+
+
+       // Popular Topics Endpoint
+    app.get("/popular-topics", async (req, res) => {
+      try {
+        const popularTopics = await database.collection("forum").find().sort({ upvotes: -1 }).toArray();
+        res.status(200).json(popularTopics);
+      } catch (error) {
+        console.error('Error fetching popular topics:', error);
+        res.status(500).send('Error fetching popular topics');
+      }
+    });
+
+    // Featured Topics Endpoint
+    app.get("/featured-topics", async (req, res) => {
+      try {
+        const featuredTopics = await database.collection("forum").find().sort({ timestamp: 1 }).toArray();
+        res.status(200).json(featuredTopics);
+      } catch (error) {
+        console.error('Error fetching featured topics:', error);
+        res.status(500).send('Error fetching featured topics');
+      }
+    });
+
+      // Route to get a specific forum post by ID
+      app.get("/forum/posts/:id", async (req, res) => {
+        try {
+          const id = req.params.id;
+          const forumPost = await forumCollection.findOne({ _id: new ObjectId(id) });
+          if (forumPost) {
+            res.send(forumPost);
+          } else {
+            res.status(404).send({
+              message: "Forum post not found",
+              status: false
+            });
+          }
+        } catch (error) {
+          res.status(500).send({
+            message: "Internal Server Error",
+            status: false
+          });
+        }
+      });
+
+      
+      const forumCommentCollection = database.collection("forumComments");
+
+      // comments part
+      app.post("/post-forum-comments", async (req, res) => {
+        const {forumId, content } = req.body;
+        const newPost = {
+          forumId,
+          content,
+          upvote: 0,
+          downvote: 0,
+          timestamp: new Date(),
+        };
+
+        try {
+          const insertPost = await forumCommentCollection.insertOne(newPost);
+          if (insertPost.insertedId) {
+            return res.status(200).send(insertPost);
+          } else {
+            return res.status(404).send({
+              message: "Cannot insert. Try again later.",
+              status: false,
+            });
+          }
+        } catch (error) {
+          return res.status(500).send({
+            message: "Internal Server Error",
+            status: false,
+          });
+        }
+      });
+
+      
+      // Endpoint to get all comments
+      app.get('/forum-comments', async (req, res) => {
+        try {
+            // Retrieve all comments
+            const comments = await database.collection('forumComments').find({}).toArray();
+            res.status(200).send(comments);
+            
+        } catch (error) {
+            console.error('Error fetching comments:', error);
+            res.status(500).send({ message: 'Internal server error' });
+        }
+      });
+
+     // Upvote a comment
+     app.patch('/upvote-comment/:id', async (req, res) => {
+      const { id } = req.params;
+     
+      try {
+        // findOneAndUpdate operation
+        const comment = await forumCommentCollection.findOneAndUpdate(
+            { _id: new ObjectId(id) },
+            { $inc: { upvote: 1 } },
+            { new: true }
+        );
+        // Rest of the code...
+    } catch (error) {
+        console.error("Error updating comment:", error); // Log any errors
+        res.status(500).json({ message: "Internal server error" }); // Send an appropriate error response
+    }
+    
+    });
+    
+    // Upvote a comment
+    app.patch('/downvote-comment/:id', async (req, res) => {
+      const { id } = req.params;
+      console.log(id);
+      try {
+        // findOneAndUpdate operation
+        const comment = await forumCommentCollection.findOneAndUpdate(
+            { _id: new ObjectId(id) },
+            { $inc: { downvote: 1 } },
+            { new: true }
+        );
+        // Rest of the code...
+    } catch (error) {
+        console.error("Error updating comment:", error); // Log any errors
+        res.status(500).json({ message: "Internal server error" }); // Send an appropriate error response
+    }
+    
+    });
+    // Remove upvote from a comment
+app.patch('/remove-upvote-comment/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      // Update the comment to decrement the upvote count and remove user from upvotedBy array
+      const comment = await forumCommentCollection.findOneAndUpdate(
+        { _id: new ObjectId(id) },
+        { $inc: { downvote: -1 }},
+        { new: true }
+    );
+  } catch (error) {
+      console.error("Error removing upvote from comment:", error);
+      res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// Remove downvote from a comment
+app.patch('/remove-downvote-comment/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      // Update the comment to decrement the downvote count and remove user from downvotedBy array
+      const updatedComment = await forumCommentCollection.findOneAndUpdate(
+          { _id: new ObjectId(id) },
+          { $inc: { downvote: -1 }},
+          { new: true }
+      );
+
+      res.json(updatedComment);
+  } catch (error) {
+      console.error("Error removing downvote from comment:", error);
+      res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+
+
+
+// End of module 6 -----------------------------------
+
 // Call the run function
 run().catch(console.error);
