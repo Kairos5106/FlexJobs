@@ -78,6 +78,12 @@ const loginUser = async (req, res) => {
                 error: 'User with corresponding email does not exist'
             })
         }
+        // Prompt user to enter password if password is not entered
+        if(!password){
+            return res.json({
+                error: 'Please enter your password'
+            })
+        }
         // Check if password matches email
         const match = await comparePassword(password, user.password);
         if(match){
@@ -89,8 +95,11 @@ const loginUser = async (req, res) => {
                     }).json(user)
                 }
             );
+            return res.json('Password matches email. Logging user in...');
         } else {
-            res.json('Incorrect password');
+            return res.json({
+                error: 'Password does not match email'
+            });
         }
     } catch (error) {
         console.log(error);
