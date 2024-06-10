@@ -9,7 +9,6 @@
 }
 
 body{
-  background-color:  rgb(240, 240, 240); 
   padding-top: 70px; /* to give space for navbar before render webpage content */
   padding-left: 0px;
   padding-right: 0px;
@@ -80,18 +79,27 @@ body{
 
 
 /* Chat FEED */
-.chat-feed {
-  height: 100%;
-  width: 100%;
-  padding: 2% 4%;
-  overflow: scroll auto;
+.chat-feed-container {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(240, 240, 240);
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent scrolling on the main container */
+}
+
+
+.chat-feed {
+  padding: 2% 2%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 24px;
 }
 
 .chat-title-container {
   width: calc(100%);
   padding: 18px;
   text-align: center;
+  background-color: white;
 }
 
 .chat-title {
@@ -161,7 +169,7 @@ body{
   margin: 1.5px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 14px;
+  background-size: 16px;
 }
 
 
