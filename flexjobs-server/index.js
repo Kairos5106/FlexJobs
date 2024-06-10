@@ -614,14 +614,8 @@ async function run() {
       }
     });
     // Module 5 ---------------------------------------------------------------------------------------------------------
-  } catch (error) {
-    console.error('Failed to connect to MongoDB:', error);
-  }
-}
-
 // Module 6 ------------------------------------------------------------------------------------------------------
 // Create a new collection for the forum
-
     const forumCollection = database.collection("forum");
 
           // Post a forum topic
@@ -821,6 +815,14 @@ app.patch('/remove-downvote-comment/:id', async (req, res) => {
 
 
 // End of module 6 -----------------------------------
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
+  }
+}
+
+
+
+    
 
 // Call the run function
 run().catch(console.error);
