@@ -4,7 +4,8 @@ const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Import ObjectId
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
-const { Experience } = require('./models/educationModel'); // Ensure you import your models correctly
+
+
 
 const app = express();
 
@@ -13,7 +14,6 @@ const port = process.env.PORT || 3000;
 // Imports for Module 1
 const userAuthRoutes = require('./routes/auth');
 const { default: mongoose } = require('mongoose');
-const educationRoutes = require('./routes/educationRoutes');
 
 //Imports for Module 4
 const transactionRoutes = require('./routes/transactionRoutes');
@@ -186,7 +186,9 @@ async function run() {
 
     // Module 4 Test ---------------------------------------------------------------------------------------------------------
     
-
+//Module 5 test
+//const { Experience } = require('./models/educationModel'); // Ensure you import your models correctly
+//const educationRoutes = require('./routes/educationRoutes');
 
     // Module 5 ---------------------------------------------------------------------------------------------------------//
 
@@ -345,77 +347,77 @@ async function run() {
       }
     });
 
-    // const educationCollection = database.collection("portfolio-education");
+    const educationCollection = database.collection("portfolio-education");
 
 
-    //  // Create a new education
-    //  app.post('/education', async (req, res) => {
-    //   try {
-    //     const newEducation = req.body;
-    //     const result = await educationCollection.insertOne(newEducation);
-    //     res.status(201).send(`Education created with ID: ${result.insertedId}`);
-    //   } catch (error) {
-    //     console.error('Error creating education:', error);
-    //     res.status(500).send('Error creating education');
-    //   }
-    // });
+     // Create a new education
+     app.post('/education', async (req, res) => {
+      try {
+        const newEducation = req.body;
+        const result = await educationCollection.insertOne(newEducation);
+        res.status(201).send(`Education created with ID: ${result.insertedId}`);
+      } catch (error) {
+        console.error('Error creating education:', error);
+        res.status(500).send('Error creating education');
+      }
+    });
 
-    // // Get all education
-    // app.get('/education', async (req, res) => {
-    //   try {
-    //     const education = await educationCollection.find().toArray();
-    //     res.status(200).json(education);
-    //   } catch (error) {
-    //     console.error('Error fetching education:', error);
-    //     res.status(500).send('Error fetching education');
-    //   }
-    // });
+    // Get all education
+    app.get('/education', async (req, res) => {
+      try {
+        const education = await educationCollection.find().toArray();
+        res.status(200).json(education);
+      } catch (error) {
+        console.error('Error fetching education:', error);
+        res.status(500).send('Error fetching education');
+      }
+    });
 
-    // // Get a specific education by ID
-    // app.get('/education/:id', async (req, res) => {
-    //   try {
-    //     const education = await educationCollection.findOne({ _id: new ObjectId(req.params.id) });
-    //     if (!education) {
-    //       return res.status(404).send('Education not found');
-    //     }
-    //     res.status(200).json(education);
-    //   } catch (error) {
-    //     console.error('Error fetching education:', error);
-    //     res.status(500).send('Error fetching education');
-    //   }
-    // });
+    // Get a specific education by ID
+    app.get('/education/:id', async (req, res) => {
+      try {
+        const education = await educationCollection.findOne({ _id: new ObjectId(req.params.id) });
+        if (!education) {
+          return res.status(404).send('Education not found');
+        }
+        res.status(200).json(education);
+      } catch (error) {
+        console.error('Error fetching education:', error);
+        res.status(500).send('Error fetching education');
+      }
+    });
 
-    // // Update an education
-    // app.put('/education/:id', async (req, res) => {
-    //   try {
-    //     const updatedEducation = req.body;
-    //     const result = await educationCollection.updateOne(
-    //       { _id: new ObjectId(req.params.id) },
-    //       { $set: updatedEducation }
-    //     );
-    //     if (result.matchedCount === 0) {
-    //       return res.status(404).send('Education not found');
-    //     }
-    //     res.status(200).send('Education updated');
-    //   } catch (error) {
-    //     console.error('Error updating education:', error);
-    //     res.status(500).send('Error updating education');
-    //   }
-    // });
+    // Update an education
+    app.put('/education/:id', async (req, res) => {
+      try {
+        const updatedEducation = req.body;
+        const result = await educationCollection.updateOne(
+          { _id: new ObjectId(req.params.id) },
+          { $set: updatedEducation }
+        );
+        if (result.matchedCount === 0) {
+          return res.status(404).send('Education not found');
+        }
+        res.status(200).send('Education updated');
+      } catch (error) {
+        console.error('Error updating education:', error);
+        res.status(500).send('Error updating education');
+      }
+    });
 
-    // // Delete an education
-    // app.delete('/education/:id', async (req, res) => {
-    //   try {
-    //     const result = await educationCollection.deleteOne({ _id: new ObjectId(req.params.id) });
-    //     if (result.deletedCount === 0) {
-    //       return res.status(404).send('Education not found');
-    //     }
-    //     res.status(200).send('Education deleted');
-    //   } catch (error) {
-    //     console.error('Error deleting education:', error);
-    //     res.status(500).send('Error deleting education');
-    //   }
-    // });
+    // Delete an education
+    app.delete('/education/:id', async (req, res) => {
+      try {
+        const result = await educationCollection.deleteOne({ _id: new ObjectId(req.params.id) });
+        if (result.deletedCount === 0) {
+          return res.status(404).send('Education not found');
+        }
+        res.status(200).send('Education deleted');
+      } catch (error) {
+        console.error('Error deleting education:', error);
+        res.status(500).send('Error deleting education');
+      }
+    });
 
     app.post('/experience', async (req, res) => {
       try {
