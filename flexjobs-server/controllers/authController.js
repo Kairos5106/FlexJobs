@@ -11,7 +11,7 @@ const test = (req, res) => {
 // REGISTER ENDPOINT
 const registerUser = async (req, res) => {
     try{
-        const {name, email, identity, phoneNo, password} = req.body;
+        const {name, email, identity, phoneNo, password, passwordConfirm} = req.body;
         // Check if name was entered
         if(!name){
             return res.json({
@@ -40,6 +40,12 @@ const registerUser = async (req, res) => {
         if(!password || password.length < 6){
             return res.json({
                 error: 'Password is required and should be at least 6 characters long'
+            })
+        }
+        // Check if confirm password matches initial password
+        if(password != passwordConfirm){
+            return res.json({
+                error: 'Passwords do not match'
             })
         }
         // Check if email is valid
@@ -74,27 +80,51 @@ const loginUser = async (req, res) => {
         // Check if user exists
         const user = await User.findOne({email});
         if(!user){
-            return res.json({
+            return res.status(401).json({ // 401 is for unauthorized
                 error: 'User with corresponding email does not exist'
+            })
+        }
+        // Prompt user to enter password if password is not entered
+        if(!password){
+            return res.json({
+                error: 'Please enter your password'
             })
         }
         // Check if password matches email
         const match = await comparePassword(password, user.password);
         if(match){
-            jwt.sign({_id: user._id, name: user.name, email: user.email}, process.env.JWTPRIVATEKEY, { expiresIn: '7d' }, (error, token) => {
-                    if(error) throw error; {
-                        console.log(error);
-                    }
-                    res.cookie('token', token, {
-                    }).json(user)
+            jwt.sign(
+                {_id: user._id}, 
+                process.env.JWTPRIVATEKEY, {}, 
+                (error, token) => {
+
+                    if(error) throw error;
+
+                    res.cookie('token', token).json(user)
+                    
+                    console.log(token);
+
                 }
+
             );
+            res.json('Password matches email. Logging user in...');
         } else {
-            res.json('Incorrect password');
+            return res.json({
+                error: 'Password does not match email'
+            });
         }
     } catch (error) {
         console.log(error);
     }
+}
+
+// LOGOUT ENDPOINT
+const logoutUser = async (req, res) => {
+    res.clearCookie('token').json('Logged out');
+    res.json('Logged out');
+    console.log('Logged out');
+    res.redirect('/Login');
+    console.log('Redirected to login page');
 }
 
 // PROFILE ENDPOINT
@@ -113,5 +143,6 @@ module.exports = {
     test,
     registerUser,
     loginUser,
+    logoutUser,
     getProfile,
 }

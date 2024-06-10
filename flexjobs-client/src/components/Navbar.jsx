@@ -3,8 +3,11 @@ import '../App.css';
 import { NavLink, Link } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { UserContext } from '../context/userContext';
+import { useContext } from 'react';
 
 const Navbar = () => {
+    const { user } = useContext(UserContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const handleMenuToggler = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -87,6 +90,10 @@ const Navbar = () => {
                         <Link to="/Login" className='nav-item'>
                             <i className="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Log in
                         </Link>
+                    </li>
+
+                    <li>
+                        {!!user && (<h2 style={{color: 'white'}}>Hi {user._id}!</h2>)}
                     </li>
                 </ul>
             </nav>
