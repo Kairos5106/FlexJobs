@@ -169,24 +169,35 @@ async function run() {
     // Edit/Update a job
     app.patch("/update-job/:id", async (req, res) => {
       try {
-        const id = req.params.id;
-        const jobData = req.body;
-        const filter = {_id: new ObjectId(id)}
-        const options = {upsert: true};
-        const updateDoc = {
-          $set: {
-            ...jobData
-          },
-        };
-        const result = await jobsCollection.updateOne(filter, updateDoc, options);
-        res.send(result);
+          const id = req.params.id;
+          const jobData = req.body;
+          const filter = { _id: new ObjectId(id) };
+          const options = { upsert: false };
+          const updateDoc = {
+              $set: {
+                  ...jobData
+              },
+          };
+          const result = await jobsCollection.updateOne(filter, updateDoc, options);
+          if (result.modifiedCount === 1) {
+              res.status(200).send({
+                  message: "Job updated successfully",
+                  status: true
+              });
+          } else {
+              res.status(404).send({
+                  message: "Job not found",
+                  status: false
+              });
+          }
       } catch (error) {
-        res.status(500).send({
-          message: "Internal Server Error",
-          status: false
-        });
+          res.status(500).send({
+              message: "Internal Server Error",
+              status: false
+          });
       }
     });
+
 
 
     // Module 2 ---------------------------------------------------------------------------------------------------------

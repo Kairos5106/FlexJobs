@@ -47,7 +47,7 @@ const UpdateJob = () => {
                 experienceLevel: experienceLevel,
                 aboutTheJob: aboutTheJob,
                 postedBy: postedBy,
-                companyLogo: null, // Assume user might upload a new logo
+                companyLogo: null,
             });
             setTags(skills);
         }
@@ -115,7 +115,7 @@ const UpdateJob = () => {
 
         try {
             const response = await fetch(`http://localhost:3000/update-job/${id}`, {
-                method: "PUT",
+                method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(updatedJobData)
             });
