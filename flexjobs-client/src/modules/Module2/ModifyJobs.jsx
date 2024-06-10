@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Module2.css';
+import { Link } from 'react-router-dom';
 
 const ModifyJobs = () => {
-    const email = "admin@gmail.com"
+    const email = "admin@gmail.com";
     const [jobs, setJobs] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const [filteredJobs, setFilteredJobs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     // Fetch jobs posted by a user based on email using the route
@@ -13,19 +15,28 @@ const ModifyJobs = () => {
         setIsLoading(true);
         fetch(`http://localhost:3000/my-jobs/${email}`)
             .then(res => res.json())
-            .then(data => setJobs(data))
+            .then(data => {
+                setJobs(data);
+                setFilteredJobs(data); // Set filtered jobs initially
+                setIsLoading(false);
+            })
             .catch(err => console.error('Failed to fetch job details:', err));
-    }, [])
+    }, []);
 
     // Search for a particular job based on keyword
     const handleSearch = () => {
         const filteredJobs = jobs.filter(job =>
             job.jobTitle.toLowerCase().includes(searchText.toLowerCase())
         );
-        console.log(filteredJobs);
-        setJobs(filteredJobs);
-        setIsLoading(false);
+        setFilteredJobs(filteredJobs); // Update filtered jobs
     };
+
+    // Reset filtered jobs when search input is empty
+    useEffect(() => {
+        if (searchText === "") {
+            setFilteredJobs(jobs);
+        }
+    }, [searchText, jobs]);
 
     return (
         <div className="modify-job-module2 section" id="modify-job-module2">
@@ -41,14 +52,15 @@ const ModifyJobs = () => {
                             name="query-search-posted-job"
                             id="query-search-posted-job"
                             className="form-control input-field"
-                            placeholder="Enter keyword"
+                            placeholder="Enter job title"
+                            value={searchText}
                             onChange={(e) => setSearchText(e.target.value)}
                         />
                     </div>
 
                     {/* Search button */}
                     <div className="col-auto">
-                        <button type="submit" className="btn btn-primary" onClick={handleSearch}>Search</button>
+                        <button type="button" className="btn btn-primary" onClick={handleSearch}>Search</button>
                     </div>
                 </div>
             </form>
@@ -57,6 +69,22 @@ const ModifyJobs = () => {
             <div className='table-responsive'>
                 <table className="table table-bordered">
                     <thead>
+                        <tr>
+                            <th scope="col" colSpan="6">
+                                <div className='d-flex justify-content-between align-items-center'>
+                                    <div>
+                                        All Jobs
+                                    </div>
+                                    <div>
+                                        <Link to="/PostJob">
+                                            <button className='btn btn-secondary'>
+                                                Post New Job
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
                         <tr>
                             <th scope="col">JOB ID</th>
                             <th scope="col">JOB TITLE</th>
@@ -67,7 +95,7 @@ const ModifyJobs = () => {
                         </tr>
                     </thead>
                     <tbody id="user-jobs-list">
-                        {jobs.map(job => (
+                        {filteredJobs.map(job => (
                             <tr key={job._id}>
                                 <th scope="row">{job._id}</th>
                                 <td>{job.jobTitle}</td>
@@ -76,7 +104,7 @@ const ModifyJobs = () => {
                                 <td className="modify-job-button">
                                     <button
                                         type="button"
-                                        className="normal-button edit-button"
+                                        className="btn btn-outline-warning"
                                         onClick={() => handleEdit(job._id)}
                                     >
                                         Edit
@@ -85,7 +113,7 @@ const ModifyJobs = () => {
                                 <td className="modify-job-button">
                                     <button
                                         type="button"
-                                        className="normal-button delete-button"
+                                        className="btn btn-outline-danger"
                                         onClick={() => handleDelete(job._id)}
                                     >
                                         Delete
@@ -99,10 +127,11 @@ const ModifyJobs = () => {
             
             {/* Total number of jobs posted */}
             <div className='d-flex justify-content-end'>
+                <br></br>
                 Total Jobs: {jobs.length}
             </div>
         </div>
     )
 }
 
-export default ModifyJobs
+export default ModifyJobs;
