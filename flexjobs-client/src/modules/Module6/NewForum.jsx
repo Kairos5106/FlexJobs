@@ -99,27 +99,26 @@ const NewForum = () => {
 
             {/* Forum toolbar */}
             <div className="forum-toolbar">
-                <div className="upload-section">
-                    <label htmlFor="file-upload" className="toolbar-button attachment-button">Attachment</label>
-                    <input id="file-upload" type="file" style={{ display: 'none' }} />
-                </div>
-                <button className="toolbar-button emoji-button">😊</button>
+                
                 <div className="formatting-toolbar">
+                
                 <button className="toolbar-button bold-button" onClick={makeTextBold}>B</button>
                     <button className="toolbar-button italic-button" onClick={makeTextItalic}>I</button>
                     <button className="toolbar-button bullets-button" onClick={insertBulletList}>Bullets</button>
                     <button className="toolbar-button numbering-button" onClick={insertNumberedList}>Numbering</button>
                     <button className="toolbar-button heading1-button" onClick={makeTextHeading1}>H1</button>
                     <button className="toolbar-button link-button" onClick={insertLink}>Link</button>
-                    <select onChange={handleChangeFontSize} value={fontSize}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                    <option value={6}>6</option>
+                    <select className='options-fontsize' onChange={handleChangeFontSize} value={fontSize}>
+                    <option value={1}> Font Size : 1 </option>
+                    <option value={2}> Font Size : 2 </option>
+                    <option value={3}> Font Size : 3 </option>
+                    <option value={4}> Font Size : 4 </option>
+                    <option value={5}> Font Size : 5 </option>
+                    <option value={6}> Font Size : 6 </option>
+                    <option value={7}> Font Size : 7 </option>
                     {/* Add more font sizes as needed */}
-                </select>                </div>
+                </select>                
+                </div>
             </div>
 
             {/* Textarea for entering post content */}

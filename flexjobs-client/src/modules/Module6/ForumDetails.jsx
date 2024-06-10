@@ -9,7 +9,7 @@ const forumDetails = () => {
     const [content, setContent] = useState('');
     const [comments, setComments] = useState([]);
     const [fontSize, setFontSize] = useState(16); // Default font size
-    const [sortBy, setSortBy] = useState('newest');
+    const [sortBy, setSortBy] = useState('oldest');
     const [upvotedComments, setUpvotedComments] = useState({});
     const [downvotedComments, setDownvotedComments] = useState({});
 
@@ -147,8 +147,7 @@ const forumDetails = () => {
    
 
 
-    
-    const sortComments = (comments) => {
+    const sortComments = (comments, sortBy) => {
         switch (sortBy) {
             case 'newest':
                 return [...comments].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
@@ -175,11 +174,14 @@ const forumDetails = () => {
             default:
                 break;
         }
+        const sortedComments = sortComments(comments, value);
+        setComments(sortedComments);
         setSortBy(text);
+        console.log('Sorted by:', sortBy);
+console.log('Comments:', comments);
     };
 
-console.log('Sorted by:', sortBy);
-console.log('Comments:', comments);
+
 
     
     const makeTextBold = () => {
@@ -246,7 +248,8 @@ console.log('Comments:', comments);
             // Make a POST request to your backend API endpoint to create a new forum topic
             const response = await axios.post('http://localhost:3000/post-forum-comments', newPost); // Update the URL to point to the new route
             console.log(response.data); // Log the response data
-            alert('Forum topic created successfully');
+            alert('Forum comment created successfully');
+            window.location.reload();
             // Optionally, you can redirect the user to another page
         } catch (error) {
             console.error('Error creating forum topic:', error);
@@ -279,7 +282,7 @@ console.log('Comments:', comments);
             <div className="topic-details-box">
                 <h1>{forum.title}</h1>
                 <div dangerouslySetInnerHTML={{ __html: forum.content }}></div>
-                <h3>by <span className="username">{forum.username}</span></h3>
+                <h3>by <span className="username">{forum.username ? forum.username : 'Anonymous'}</span></h3>
             </div>
 
 
@@ -293,23 +296,15 @@ console.log('Comments:', comments);
                         <a href="#" onClick={() => handleChangeSortBy('mostUpvote')}>Most Upvote</a>
                     </div>
                 </div>
-                <div className="page-selector">
-                    <a href="#" className="page-number">&lt;&lt;</a>
-                    <a href="#" className="page-number">&lt;</a>
-                    <a href="#" className="page-number">1</a>
-                    <a href="#" className="page-number">2</a>
-                    <a href="#" className="page-number">3</a>
-                    <a href="#" className="page-number">4</a>
-                    <a href="#" className="page-number">&gt;</a>
-                    <a href="#" className="page-number">&gt;&gt;</a>
-                </div>
+                
             </div>
         
             
             {comments.map((comment, index) => (
             <div key={index} className="post">
                 <div className="profilepic-name">
-                    <img className="profilepic" src="images/profile_picture.png" alt="Profile Picture" />
+                    <img className="profilepic" src={forum.username ? forum.username : 'https://i.pinimg.com/736x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'} alt="Profile Picture" />
+                    <h1 className='username-details'>{forum.username ? forum.username : 'Anonymous'}</h1>
                 </div>
                 
                 <div className="post-content-container">
@@ -319,9 +314,7 @@ console.log('Comments:', comments);
                         </div> 
                 <div className="post-content-details-container">
                 <span className="time">{comment.timeAgo}</span>
-                    <button className="quote">
-                        ❞
-                    </button>
+                  
                     
 
                     <button className="upvote" onClick={() => toggleUp(comment._id)}
@@ -343,29 +336,28 @@ console.log('Comments:', comments);
             
 
             
-            {/* Forum toolbar */}
-            <div className="forum-toolbar">
-                <div className="upload-section">
-                    <label htmlFor="file-upload" className="toolbar-button attachment-button">Attachment</label>
-                    <input id="file-upload" type="file" style={{ display: 'none' }} />
-                </div>
-                <button className="toolbar-button emoji-button">😊</button>
+           {/* Forum toolbar */}
+           <div className="forum-toolbar">
+                
                 <div className="formatting-toolbar">
+                
                 <button className="toolbar-button bold-button" onClick={makeTextBold}>B</button>
                     <button className="toolbar-button italic-button" onClick={makeTextItalic}>I</button>
                     <button className="toolbar-button bullets-button" onClick={insertBulletList}>Bullets</button>
                     <button className="toolbar-button numbering-button" onClick={insertNumberedList}>Numbering</button>
                     <button className="toolbar-button heading1-button" onClick={makeTextHeading1}>H1</button>
                     <button className="toolbar-button link-button" onClick={insertLink}>Link</button>
-                    <select onChange={handleChangeFontSize} value={fontSize}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                    <option value={6}>6</option>
+                    <select className='options-fontsize' onChange={handleChangeFontSize} value={fontSize}>
+                    <option value={1}> Font Size : 1 </option>
+                    <option value={2}> Font Size : 2 </option>
+                    <option value={3}> Font Size : 3 </option>
+                    <option value={4}> Font Size : 4 </option>
+                    <option value={5}> Font Size : 5 </option>
+                    <option value={6}> Font Size : 6 </option>
+                    <option value={7}> Font Size : 7 </option>
                     {/* Add more font sizes as needed */}
-                </select>                </div>
+                </select>                
+                </div>
             </div>
             <div
                 id="paragraph-input"
