@@ -80,7 +80,7 @@ const loginUser = async (req, res) => {
         // Check if user exists
         const user = await User.findOne({email});
         if(!user){
-            return res.json({
+            return res.status(401).json({ // 401 is for unauthorized
                 error: 'User with corresponding email does not exist'
             })
         }
@@ -93,15 +93,21 @@ const loginUser = async (req, res) => {
         // Check if password matches email
         const match = await comparePassword(password, user.password);
         if(match){
-            jwt.sign({_id: user._id, name: user.name, email: user.email}, process.env.JWTPRIVATEKEY, { expiresIn: '7d' }, (error, token) => {
-                    if(error) throw error; {
-                        console.log(error);
-                    }
-                    res.cookie('token', token, {
-                    }).json(user)
+            jwt.sign(
+                {_id: user._id}, 
+                process.env.JWTPRIVATEKEY, {}, 
+                (error, token) => {
+
+                    if(error) throw error;
+
+                    res.cookie('token', token).json(user)
+                    
+                    console.log(token);
+
                 }
+
             );
-            return res.json('Password matches email. Logging user in...');
+            res.json('Password matches email. Logging user in...');
         } else {
             return res.json({
                 error: 'Password does not match email'
