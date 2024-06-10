@@ -128,7 +128,7 @@ const ModifyJobs = () => {
                                 <td className="modify-job-button">
                                     <button
                                         type="button"
-                                        className="btn btn-outline-warning"
+                                        className="btn btn-outline-warning w-100"
                                         onClick={() => handleEdit(job._id)}
                                     >
                                         Edit
@@ -137,7 +137,7 @@ const ModifyJobs = () => {
                                 <td className="modify-job-button">
                                     <button
                                         type="button"
-                                        className="btn btn-outline-danger"
+                                        className="btn btn-outline-danger w-100"
                                         onClick={() => handleDelete(job._id)}
                                     >
                                         Delete
