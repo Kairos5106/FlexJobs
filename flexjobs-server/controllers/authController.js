@@ -118,6 +118,15 @@ const loginUser = async (req, res) => {
     }
 }
 
+// LOGOUT ENDPOINT
+const logoutUser = async (req, res) => {
+    res.clearCookie('token').json('Logged out');
+    res.json('Logged out');
+    console.log('Logged out');
+    res.redirect('/Login');
+    console.log('Redirected to login page');
+}
+
 // PROFILE ENDPOINT
 const getProfile = async (req, res) => {
     const {token} = req.cookies;
@@ -134,5 +143,6 @@ module.exports = {
     test,
     registerUser,
     loginUser,
+    logoutUser,
     getProfile,
 }
