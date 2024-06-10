@@ -166,6 +166,28 @@ async function run() {
       }
     });
 
+    // Edit/Update a job
+    app.patch("/update-job/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const jobData = req.body;
+        const filter = {_id: new ObjectId(id)}
+        const options = {upsert: true};
+        const updateDoc = {
+          $set: {
+            ...jobData
+          },
+        };
+        const result = await jobsCollection.updateOne(filter, updateDoc, options);
+        res.send(result);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
 
     // Module 2 ---------------------------------------------------------------------------------------------------------
 
