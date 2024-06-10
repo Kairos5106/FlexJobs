@@ -17,9 +17,90 @@ const ModifyJobs = () => {
             .catch(err => console.error('Failed to fetch job details:', err));
     }, [])
 
+    // Search for a particular job based on keyword
+    const handleSearch = () => {
+        const filteredJobs = jobs.filter(job =>
+            job.jobTitle.toLowerCase().includes(searchText.toLowerCase())
+        );
+        console.log(filteredJobs);
+        setJobs(filteredJobs);
+        setIsLoading(false);
+    };
+
     return (
-        <div className="modify-job-module2" id="modify-job-module2">
-            MyJobs: {jobs.length}
+        <div className="modify-job-module2 section" id="modify-job-module2">
+            {/* Search bar */}
+            <form className='section'>
+                <div className="flex row g-3 justify-content-center">
+
+                    {/* Input field for location */}
+                    <div className="flex col-sm-6">
+                        <span className="input-icon"><i className="fa-solid fa-magnifying-glass"></i></span>
+                        <input
+                            type="text"
+                            name="query-search-posted-job"
+                            id="query-search-posted-job"
+                            className="form-control input-field"
+                            placeholder="Enter keyword"
+                            onChange={(e) => setSearchText(e.target.value)}
+                        />
+                    </div>
+
+                    {/* Search button */}
+                    <div className="col-auto">
+                        <button type="submit" className="btn btn-primary" onClick={handleSearch}>Search</button>
+                    </div>
+                </div>
+            </form>
+
+            {/* Jobs posted table */}
+            <div className='table-responsive'>
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">JOB ID</th>
+                            <th scope="col">JOB TITLE</th>
+                            <th scope="col">COMPANY NAME</th>
+                            <th scope="col">POSTED ON</th>
+                            <th scope="col">EDIT</th>
+                            <th scope="col">DELETE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-jobs-list">
+                        {jobs.map(job => (
+                            <tr key={job._id}>
+                                <th scope="row">{job._id}</th>
+                                <td>{job.jobTitle}</td>
+                                <td>{job.companyName}</td>
+                                <td>{new Date(job.datePosted).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+                                <td className="modify-job-button">
+                                    <button
+                                        type="button"
+                                        className="normal-button edit-button"
+                                        onClick={() => handleEdit(job._id)}
+                                    >
+                                        Edit
+                                    </button>
+                                </td>
+                                <td className="modify-job-button">
+                                    <button
+                                        type="button"
+                                        className="normal-button delete-button"
+                                        onClick={() => handleDelete(job._id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            
+            {/* Total number of jobs posted */}
+            <div className='d-flex justify-content-end'>
+                Total Jobs: {jobs.length}
+            </div>
         </div>
     )
 }
