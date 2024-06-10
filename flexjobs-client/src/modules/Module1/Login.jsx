@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { UserContext } from '../../context/userContext';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,6 +31,25 @@ const Login = () => {
       console.log(error);
     }
   }
+
+    // const loginUser = async (e) => {
+    //   e.preventDefault();
+    //   const { email, password } = data;
+    //   try{
+    //     const {data} = await axios.post('/auth/login', {
+    //       email, 
+    //       password
+    //     });
+    //     if(data.error){
+    //       // handle error
+    //     } else {
+    //       setUser(data); // set user data in UserContext
+    //       navigate('/'); // navigate to home or dashboard
+    //     }
+    //   } catch (error) {
+    //     // handle error
+    //   }
+    // };
 
   return (
     <div>

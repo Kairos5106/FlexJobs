@@ -62,7 +62,7 @@ async function run() {
 
     // Module 1 Routes
     app.use('/auth', userAuthRoutes);
-    app.use('/api/education', educationRoutes); // Add education routes
+    // app.use('/api/education', educationRoutes); // Add education routes
 
     // Module 2 ---------------------------------------------------------------------------------------------------------
     const jobsCollection = database.collection("jobs");

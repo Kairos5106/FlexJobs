@@ -92,22 +92,36 @@ const loginUser = async (req, res) => {
         }
         // Check if password matches email
         const match = await comparePassword(password, user.password);
+        // if(match){
+        //     jwt.sign(
+        //         {_id: user._id}, 
+        //         process.env.JWTPRIVATEKEY, {}, 
+        //         (error, token) => {
+
+        //             if(error) throw error;
+
+        //             res.cookie('token', token).json(user)
+                    
+        //             console.log(token);
+
+        //         }
+
+        //     );
+        //     res.json('Password matches email. Logging user in...');
         if(match){
             jwt.sign(
                 {_id: user._id}, 
                 process.env.JWTPRIVATEKEY, {}, 
                 (error, token) => {
-
                     if(error) throw error;
-
-                    res.cookie('token', token).json(user)
-                    
+        
                     console.log(token);
-
+                    res.cookie('token', token).json({
+                        message: 'Password matches email. Logging user in...',
+                        user
+                    });
                 }
-
             );
-            res.json('Password matches email. Logging user in...');
         } else {
             return res.json({
                 error: 'Password does not match email'

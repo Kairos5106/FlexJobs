@@ -1,7 +1,5 @@
 const Project = require('../models/projectModel'); // Import your Project model
 
-
-
 // TEST ROUTE
 const testProjectPayments = (req, res) => {
   try {
@@ -19,14 +17,43 @@ const testProjectPayments = (req, res) => {
   }
 }
 
-//Get User projects
-const getUserProjects = async (req, res) => {
+//Create project
+const createProject = async (req, res) => {
   try {
-
+    const project = req.body;
+    const newProject = new Project(project);
+    await newProject.save();
+    
+    res.json(project);
   } catch (error) {
-
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to create project' });
   }
+}
 
+//Get User projects
+const getAllProjects = async (req, res) => {
+  try {
+    const projects = await Project.find();
+    res.json(projects);
+    console.log(res)
+  } catch (error) {
+    console.log('hi')
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to fetch projects' });
+  }
+}
+
+//Get projects by user id
+const getProjectsByUserId = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const projects = await Project.find({ $or: [{ clientId: userId }, { freelancerId: userId }] });
+    res.json(projects);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to fetch projects' });
+  }
 }
 
 // app.get('/api/transactions/:userId', async (req, res) => {
@@ -66,6 +93,9 @@ const getUserProjects = async (req, res) => {
 
 module.exports = {
   testProjectPayments,
+  createProject,
+  getAllProjects,
+  getProjectsByUserId,
 };
 
 
