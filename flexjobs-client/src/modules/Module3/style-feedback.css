@@ -6,13 +6,20 @@
     outline: none;
 }
 
+body{
+    background-color:  #F7F2E7; 
+    padding-top: 70px; /* to give space for navbar before render webpage content */
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .section-feedback {
+    padding-top: 40px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3% 0;
 }
 
 .section-feedback::before {
@@ -37,9 +44,6 @@
     
 } 
 
-#feedback-form {
-    
-}
 
 .container-feedback form {
     width: 100%;
@@ -48,8 +52,9 @@
 }
 
 form h1 {
-    padding: 10px 0;
+    padding: 0;
     color: #181717;
+    padding-top: 3%;
 }
 
 form .id {
@@ -64,9 +69,6 @@ form .id {
     transform: translateY(-50%);
 }
 
-#job {
-
-}
 
 form input {
     width: 100%;
@@ -134,17 +136,25 @@ form input:focus + i {
 }
 
 form select {
-    padding: 8px;
-    font-size: 16px;
+    padding: 4px;
+    font-size: 18px;
+}
+
+.category-container {
+    display: flex;
+    align-items: left; /* Align items vertically centered */
+    padding: 15px 0 5px 0;
 }
 
 .category {
     font-size: 20px;
-    margin-left: 4px;
+    padding-left: 4px;
+    padding-top: 5px;
+    padding-right: 10px;
 }
 
 #category {
-    margin: 12px 8px;
+    padding: 0px 8px;
 }
 
 
@@ -156,8 +166,9 @@ form select {
 }
 
 .rating-text {
-    margin-left: 4px;
-    margin-right: 40px;
+    padding-top: 10px;
+    padding-left: 4px;
+    padding-right: 40px;
 }
 
 .star {

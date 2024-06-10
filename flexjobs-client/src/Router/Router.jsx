@@ -15,7 +15,7 @@ import JobDetails from "../modules/Module2/JobDetails";
 import ApplyJob from "../modules/Module2/ApplyJob";
 
 // Imports for Module 3
-import Inbox from "../modules/Module3/Inbox";
+import Chat from "../modules/Module3/Inbox";
 import Feedback from "../modules/Module3/Feedback";
 
 // Imports for Module 4
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         { path: "/ApplyJob", element: <ApplyJob/> },
 
         // Routes for Module 3
-        { path: "/Inbox", element: <Inbox/> },
+        { path: "/Chat", element: <Chat/> },
         { path: "/Feedback", element: <Feedback/> },
 
         // Routes for Module 4

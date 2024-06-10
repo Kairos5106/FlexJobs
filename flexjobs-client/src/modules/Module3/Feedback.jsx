@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './style-feedback.css';
+import axios from 'axios';
 
 // InputField class for form
 const InputField = ({ type, placeholder, required, iconClass, value, onChange }) => (
     <div className="id">
-        <input 
-            type={type} 
-            placeholder={placeholder} 
-            required={required} 
+        <input
+            type={type}
+            placeholder={placeholder}
+            required={required}
             value={value}
             onChange={onChange}
         />
@@ -37,35 +38,37 @@ const FeedbackForm = ({ formData, setFormData, handleSubmit, categories }) => (
     <form id="feedback-form" onSubmit={handleSubmit}>
         <h1>Feedback Form</h1>
         <InputField
-            type="text" 
-            placeholder="Name" 
-            required={true} 
+            type="text"
+            placeholder="Name"
+            required={true}
             iconClass="far fa-user profile-icon"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         />
 
         <InputField
-            type="email" 
-            placeholder="Email address" 
-            required={true} 
-            iconClass="far fa-envelope email-icon" 
+            type="email"
+            placeholder="Email address"
+            required={true}
+            iconClass="far fa-envelope email-icon"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
-        
-        <label htmlFor="category" className="category">Category: </label>
-        <select
-            id="category"
-            value={formData.category}
-            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-            required
-        >
-            <option value="">Select a category</option>
-            {categories.map((category, index) => (
-                <option key={index} value={category}>{category}</option>
-            ))}
-        </select>
+
+        <div className="category-container">
+            <label htmlFor="category" className="category">Category:</label>
+            <select
+                id="category"
+                value={formData.category}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                required
+            >
+                <option value="">Select a category</option>
+                {categories.map((category, index) => (
+                    <option key={index} value={category}>{category}</option>
+                ))}
+            </select>
+        </div>
 
         <StarRating rating={formData.rating} setRating={(value) => setFormData({ ...formData, rating: value })} />
 
@@ -92,15 +95,29 @@ const Feedback = () => {
     });
 
     const categories = [
-        "Website UI", "Home", "Jobs", "Chat",
-        "Career Test Assessment", "Payment", "Others"
+        "Home", "Jobs", "Chat", "Forum", "Portfolio",
+        "Career Access Interest", "Payment", "Others"
     ];
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (event.target.checkValidity()) {
-            setFormData({ name: '', email: '', category: '', rating: 0, feedback: '' });
-            alert("Thank you for giving your feedback!");
+            axios.post('http://localhost:3000/feedback', formData)
+                .then(response => {
+                    console.log(response.data);
+                    alert("Thank you for giving your feedback!");
+                    setFormData({
+                        name: '',
+                        email: '',
+                        category: '',
+                        rating: 0,
+                        feedback: ''
+                    });
+                    console.log('Feedback submitted!')
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                });
         } else {
             alert("Please fill in all required fields.");
         }
