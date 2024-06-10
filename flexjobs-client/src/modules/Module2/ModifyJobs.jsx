@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Module2.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ModifyJobs = () => {
     const email = "admin@gmail.com";
@@ -9,6 +9,7 @@ const ModifyJobs = () => {
     const [searchText, setSearchText] = useState("");
     const [filteredJobs, setFilteredJobs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     // Fetch jobs posted by a user based on email using the route
     useEffect(() => {
@@ -60,6 +61,11 @@ const ModifyJobs = () => {
             })
             .catch(err => console.error('Failed to delete job:', err));
         }
+    };
+
+    // Function to navigate to the UpdateJob component
+    const handleEdit = (jobId) => {
+        navigate(`/edit-job/${jobId}`);
     };
 
     return (
@@ -126,7 +132,7 @@ const ModifyJobs = () => {
                                     <td>{job.jobTitle}</td>
                                     <td>{job.companyName}</td>
                                     <td>{new Date(job.datePosted).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
-                                    <td className="modify-job-button">
+                                    <td className="edit-job-button">
                                         <button
                                             type="button"
                                             className="btn btn-outline-warning w-100"
@@ -135,7 +141,7 @@ const ModifyJobs = () => {
                                             Edit
                                         </button>
                                     </td>
-                                    <td className="modify-job-button">
+                                    <td className="delete-job-button">
                                         <button
                                             type="button"
                                             className="btn btn-outline-danger w-100"
