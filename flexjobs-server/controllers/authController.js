@@ -94,20 +94,26 @@ const loginUser = async (req, res) => {
         const match = await comparePassword(password, user.password);
         if(match){
             jwt.sign(
-                {_id: user._id}, 
-                process.env.JWTPRIVATEKEY, {}, 
+                {
+                    _id: user._id,
+                    name: user.name,
+                    email: user.email
+                }, 
+                process.env.JWTPRIVATEKEY, { expiresIn: '7d' }, 
                 (error, token) => {
 
                     if(error) throw error;
 
-                    res.cookie('token', token).json(user)
-                    
                     console.log(token);
+
+                    res.cookie('token', token).json({
+                        message: 'Logged in successfully',
+                        user: user
+                    });
 
                 }
 
             );
-            res.json('Password matches email. Logging user in...');
         } else {
             return res.json({
                 error: 'Password does not match email'
@@ -124,7 +130,7 @@ const logoutUser = async (req, res) => {
     .cookie('token', "", {
         expires: new Date(0),
     })
-    .send();
+    .json("Logged out successfully");
 }
 
 // PROFILE ENDPOINT

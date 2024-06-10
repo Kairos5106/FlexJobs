@@ -28,7 +28,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 // LOGOUT ROUTE
-router.post('/logout', logoutUser);
+router.get('/logout', logoutUser);
 
 // PROFILE ROUTE
 router.get('/profile', getProfile);

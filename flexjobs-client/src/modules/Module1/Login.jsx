@@ -25,6 +25,7 @@ const Login = () => {
       } else {
         setData({});
         navigate('/');
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
