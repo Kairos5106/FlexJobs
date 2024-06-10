@@ -13,14 +13,15 @@ const Signup = () => {
     identity: '',
     phoneNo: '',
     password: '',
+    passwordConfirm: '',
   });
   
   const registerUser = async (e) => {
     e.preventDefault();
-    const {name, email, identity, phoneNo, password} = data
+    const {name, email, identity, phoneNo, password, passwordConfirm} = data
     try{
       const {data} = await axios.post('/auth/register', {
-        name, email, identity, phoneNo, password
+        name, email, identity, phoneNo, password, passwordConfirm
       });
       if(data.error){
         toast.error(data.error);

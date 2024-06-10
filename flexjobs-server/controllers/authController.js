@@ -11,7 +11,7 @@ const test = (req, res) => {
 // REGISTER ENDPOINT
 const registerUser = async (req, res) => {
     try{
-        const {name, email, identity, phoneNo, password} = req.body;
+        const {name, email, identity, phoneNo, password, passwordConfirm} = req.body;
         // Check if name was entered
         if(!name){
             return res.json({
@@ -40,6 +40,12 @@ const registerUser = async (req, res) => {
         if(!password || password.length < 6){
             return res.json({
                 error: 'Password is required and should be at least 6 characters long'
+            })
+        }
+        // Check if confirm password matches initial password
+        if(password != passwordConfirm){
+            return res.json({
+                error: 'Passwords do not match'
             })
         }
         // Check if email is valid
