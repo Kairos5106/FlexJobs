@@ -141,7 +141,6 @@ async function run() {
     // Get all jobs
     app.get("/my-jobs/:email", async (req, res) => {
       try {
-        console.log(req.params.email)
         const jobs = await jobsCollection.find({postedBy : req.params.email}).toArray();
         res.send(jobs);
       } catch (error) {
@@ -151,6 +150,22 @@ async function run() {
         });
       }
     });
+
+    // Delete a posted job
+    app.delete("/delete-job/:id", async(req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = {_id: new ObjectId(id)}
+        const result = await jobsCollection.deleteOne(filter);
+        res.send(result)
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
 
     // Module 2 ---------------------------------------------------------------------------------------------------------
 

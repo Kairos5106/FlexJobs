@@ -38,6 +38,30 @@ const ModifyJobs = () => {
         }
     }, [searchText, jobs]);
 
+    // Function to delete a job
+    const handleDelete = (jobId) => {
+        console.log("To be deleted: ", jobId);
+        // Display confirmation modal
+        if (window.confirm("Are you sure you want to delete this job?")) {
+            fetch(`http://localhost:3000/delete-job/${jobId}`, {
+                method: "DELETE"
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    alert("Job deleted successfully.");
+                    // Remove the deleted job from the state
+                    const updatedJobs = jobs.filter(job => job._id !== jobId);
+                    setJobs(updatedJobs);
+                    setFilteredJobs(updatedJobs);
+                } else {
+                    alert("Failed to delete job.");
+                }
+            })
+            .catch(err => console.error('Failed to delete job:', err));
+        }
+    };
+
     return (
         <div className="modify-job-module2 section" id="modify-job-module2">
             {/* Search bar */}
