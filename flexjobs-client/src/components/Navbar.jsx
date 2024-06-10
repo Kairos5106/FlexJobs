@@ -7,7 +7,7 @@ import { UserContext } from '../context/userContext';
 import { useContext } from 'react';
 
 const Navbar = () => {
-    const { user } = useContext(UserContext);
+    const { user } = useContext(UserContext); // contains user ID, email and name
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const handleMenuToggler = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -86,15 +86,21 @@ const Navbar = () => {
                     ))}
 
                     {/* Login */}
-                    <li>
+                    {!user && (
+                        <li>
                         <Link to="/Login" className='nav-item'>
                             <i className="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Log in
                         </Link>
                     </li>
-
-                    <li>
-                        {!!user && (<h2 style={{color: 'white'}}>Hi {user._id}!</h2>)}
-                    </li>
+                    )}
+                    {/* Logout */}
+                    {!!user && (
+                        <li>
+                            <Link to="/Logout" className='nav-item'>
+                                <i className="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Log out
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </nav>
         </header>
