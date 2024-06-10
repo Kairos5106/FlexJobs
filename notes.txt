@@ -1,0 +1,76 @@
+# processes executed:
+
+# create react app:
+npm create vite@latest flexjobs-client -- --template react
+
+# install node package manager:
+cd flexjobs-client
+npm install
+npm run dev
+# development server has started
+# ctrl+click on the given localhost link to open app on browser
+
+# install bootstrap
+npm install bootstrap
+
+# then put this line in component file to use bootstrap classes --> import 'bootstrap/dist/css/bootstrap.min.css';
+
+# setup react router dom in main.jsx and Router.jsx, reference: https://reactrouter.com/en/main/start/tutorial
+
+# example of how is the file structure to store codes and assets of different modules of the app:
+<#
+flexjobs-client/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   └── images/
+│       └── logo.png
+├── src/
+│   ├── assets/
+│   │   ├── images/
+│   │   │   ├── module1/
+│   │   │   │   └── image1.png
+│   │   │   ├── module2/
+│   │   │   │   └── image2.png
+│   │   └── styles/
+│   │       ├── main.css
+│   │       ├── module1.css
+│   │       └── module2.css
+│   ├── components/
+│   │   ├── Header.js
+│   │   ├── Footer.js
+│   │   └── common/
+│   │       ├── Button.js
+│   │       └── Input.js
+│   ├── modules/
+│   │   ├── Module1/
+│   │   │   ├── components/
+│   │   │   │   ├── Component1.js
+│   │   │   │   └── Component2.js
+│   │   │   ├── pages/
+│   │   │   │   └── Module1Page.js
+│   │   │   └── styles/
+│   │   │       └── Module1.css
+│   │   ├── Module2/
+│   │   │   ├── components/
+│   │   │   │   ├── Component1.js
+│   │   │   │   └── Component2.js
+│   │   │   ├── pages/
+│   │   │   │   └── Module2Page.js
+│   │   │   └── styles/
+│   │   │       └── Module2.css
+│   ├── App.js
+│   ├── index.js
+│   └── routes/
+│       └── AppRoutes.js
+├── package.json
+├── README.md
+└── .gitignore
+#>
+
+# install font awesome
+npm install @fortawesome/fontawesome-free
+
+# to use font awesome icons in components, put this code: import '@fortawesome/fontawesome-free/css/all.min.css';
+
+# to configure/reconfigure the hyperlink to your module's page, configure at Router/Router.jsx and components/Navbar.jsx

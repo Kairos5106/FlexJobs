@@ -1,0 +1,379 @@
+body {
+    background-color:  #F7F2E7; 
+    font-family: 'Poppins', sans-serif;
+    padding-top: 100px; /* to give space for navbar before render webpage content */
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.section {
+    padding-bottom: 40px;
+}
+
+/* Search Job ------------------------------------------------------------------------------------------------------------------------------*/ 
+/* Banner */
+.banner-h1 {
+    font-size: 2.5em;
+}
+
+.blue-text {
+    color: #3575E2;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    padding-left: 15px;
+    color: #ccc;
+    font-size: 1.2rem;
+}
+
+.input-field {
+    padding: 10px 15px 10px 50px;
+}
+
+.btn-primary {
+    background-color: #1F3051;
+    padding: 10px 15px;
+    border: 1px solid #1F3051;
+}
+
+.btn-primary:hover {
+    background-color: #3575E2;
+    border: 1px solid #1F3051;
+    color: #fff;
+}
+
+/* Centre panel */
+.jobs-panel {
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+.number-of-jobs {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0;
+}
+
+.card-custom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 15px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    height: fit-content;
+}
+
+.job-card-link {
+    text-decoration: none;
+    color: #000;
+}
+
+.job-thumbnail-col {
+    width: 170px;
+}
+
+.card-custom img {
+    height: 150px;
+    width: 150px;
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+.job-details-col {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.job-small-details {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.job-small-details-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.job-small-details-item .input-icon {
+    padding: 0;
+    font-size: 1rem;
+}
+
+.word-beside-icon {
+    padding-left: 20px;
+}
+
+.job-description {
+    text-align: justify;
+}
+
+
+/* Side panel */
+.filter-panel {
+    background: #fafafa;
+    border-radius: 8px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+/* Job Details ------------------------------------------------------------------------------------------------------------------------------*/
+.back-link-section {
+    padding: 0 0 10px 5px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #000;
+}
+
+.back-link:hover {
+    color: #3575E2;
+}
+
+.job-details {
+    background: #fefefe;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+.apply-job-button {
+    background-color: #40e0d0;
+    border: 1px solid #40e0d0;
+    color: #000;
+    margin: 15px 0;
+}
+
+.apply-job-button:hover {
+    border: 1px solid #000;
+    background: rgba(64, 224, 208, 0.8);
+    color: #000;
+}
+
+.job-small-details-jobdetails {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.about-company-panel {
+    background: #fefefe;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 0 0 0 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.read-more {
+    margin: 15px 0;
+    margin-top: 30px;
+}
+
+.read-more a {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+}
+
+.about-company-content img {
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border: 1px solid #000;
+}
+
+.about-company {
+    text-align: justify;
+}
+
+.job-details-section .row {
+    margin: 0;
+    justify-content: space-between;
+}
+
+
+/* Apply Job ------------------------------------------------------------------------------------------------------------------------------*/
+.apply-job {
+    display: flex;
+    justify-content: center;
+}
+
+.apply-job-form {
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+/* Post A Job ------------------------------------------------------------------------------------------------------------------------------*/
+.post-a-job-form {
+    padding: 20px;
+    background: rgba(204, 204, 204, 0.5);
+    border-radius: 10px;
+    box-shadow: 3px 5px 4px rgba(0, 0, 0, 0.1);
+}
+
+.job-form-row {
+    padding: 10px 0;
+}
+
+.dropdown-custom {
+    position: relative;
+}
+
+.dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    padding-right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Skills tag input */
+.skills-content ul {
+    display: flex;
+    height: fit-content;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px 5px;
+    margin: 7px 0;
+}
+
+.skills-content ul li {
+    list-style: none;
+    margin: 3px 5px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background: #f2f2f2;
+    border: 1px solid #878787;
+    display: flex;
+    align-items: center;
+}
+
+.skills-content ul li i {
+    font-size: 1rem;
+    margin: 0 0 0 8px;
+    padding: 4px 5px;
+    border-radius: 30%;
+    color: #dc3545;
+    background: #dfdfdf;
+    border: 1px solid #dc3545;
+    cursor: pointer;
+}
+
+.skills-content ul li i:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+.skills-content ul input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+/* Responsive ------------------------------------------------------------------------------------------------------------------------------*/ 
+@media (width < 1000px) {
+    body {
+        background-color:  #F7F2E7; 
+        font-family: 'Poppins', sans-serif;
+        padding-top: 100px; /* to give space for navbar before render webpage content */
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .card-custom {
+        width: 100%;
+        text-align: center;
+        list-style: none;
+        background-color: #fff;
+        padding: 20px 15px;
+        border-radius: 15px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 20px 0;
+        height: fit-content;
+    }
+
+    .job-details-col {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .job-small-details {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+
+    .job-description {
+        text-align: center;
+    }
+
+    .about-company-panel {
+        background: #fefefe;
+        border-radius: 20px;
+        padding: 30px;
+        margin: 20px 0 0 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+}
