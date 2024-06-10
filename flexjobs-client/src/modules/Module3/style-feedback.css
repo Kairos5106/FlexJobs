@@ -6,13 +6,20 @@
     outline: none;
 }
 
+body{
+    background-color:  #F7F2E7; 
+    padding-top: 70px; /* to give space for navbar before render webpage content */
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .section-feedback {
+    padding-top: 40px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0;
 }
 
 .section-feedback::before {

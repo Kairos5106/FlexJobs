@@ -77,6 +77,7 @@ const MessageForm = (props) => {
                 </div>
             ) : (
                 <input
+                    id="message-input"
                     className="message-input"
                     placeholder="Send a message ..."
                     value={value}
