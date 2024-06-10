@@ -5,13 +5,17 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Impor
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 
+const app = express();
+
+const port = process.env.PORT || 3000;
+
 // Imports for Module 1
 const userAuthRoutes = require('./routes/auth');
 const { default: mongoose } = require('mongoose');
 
-const app = express();
+//Imports for Module 4
+const transactionRoutes = require('./routes/transactionRoutes');
 
-const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
@@ -42,9 +46,7 @@ mongoose.connect(uriAlt)
 .then(() => console.log('Connected to MongoDB via Mongoose'))
 .catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
 
-
 let database;
-
 
 // Connect to MongoDB and set up routes
 async function run() {
@@ -153,7 +155,6 @@ async function run() {
   
     // Module 2 ---------------------------------------------------------------------------------------------------------
   
-    
     // Module 3 ---------------------------------------------------------------------------------------------------------
     const feedbacksCollection = database.collection("feedback");
 
@@ -173,6 +174,13 @@ async function run() {
 
     // Module 3 ---------------------------------------------------------------------------------------------------------
 
+    // Module 4 Test ---------------------------------------------------------------------------------------------------------
+
+    app.use('/Payments', transactionRoutes);
+
+
+    // Module 4 Test ---------------------------------------------------------------------------------------------------------
+    
 
     // Module 5 ---------------------------------------------------------------------------------------------------------//
 

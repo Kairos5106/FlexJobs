@@ -19,6 +19,7 @@ import Chat from "../modules/Module3/Inbox";
 import Feedback from "../modules/Module3/Feedback";
 
 // Imports for Module 4
+import Payments from "../modules/Module4/Payments";
 
 // Imports for Module 5
 import Portfolio from "../modules/Module5/Portfolio";
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
         { path: "/Feedback", element: <Feedback/> },
 
         // Routes for Module 4
-
+        { path: "/Payments", element: <Payments/> },
 
         // Routes for Module 5
         { path: "/Portfolio", element: <Portfolio/> },
