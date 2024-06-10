@@ -6,10 +6,11 @@ import './Module2.css';
 import SidePanel from './SidePanel';
 
 const JobSearch = () => {
-    const [selectedCategory, setSelectedCategory] = useState(null);
     const [jobs, setJobs] = useState([]);
     const [query, setQuery] = useState("");
     const [locationQuery, setLocationQuery] = useState("");
+    const [selectedSalary, setSelectedSalary] = useState(null);
+    const [selectedExperienceLevel, setSelectedExperienceLevel] = useState(null);
 
     // Fetch data from jobs.json and http://localhost:3000/all-jobs
     useEffect(() => {
@@ -44,32 +45,41 @@ const JobSearch = () => {
         console.log(event.target.value);
     };
 
-    // Radio filtering for side panel
+    // Radio filtering for side panel (salary)
     const handleChange = (event) => {
-        setSelectedCategory(event.target.value);
+        setSelectedSalary(event.target.value);
+    }
+
+    // Radio filtering for side panel (experience level)
+    const handleChangeExperienceLevel = (event) => {
+        setSelectedExperienceLevel(event.target.value);
     }
 
     // Main function to filter data
-    const filteredData = (jobs, selected, query, locationQuery) => {
+    const filteredData = (jobs, query, locationQuery, selectedSalary, selectedExperienceLevel) => {
         let filteredJobs = jobs;
 
         // Filter jobs based on input field query
         if(query) {
-            const filteredByTitle = jobs.filter((job) => job.jobTitle.toLowerCase().includes(query.toLowerCase()));
-            filteredJobs = filteredByTitle;
+            filteredJobs = filteredJobs.filter((job) => job.jobTitle.toLowerCase().includes(query.toLowerCase()));
         }
 
         // Filter jobs based on input field location
         if(locationQuery) {
-            const filteredByLocation = jobs.filter((job) => job.jobLocation.toLowerCase().includes(locationQuery.toLowerCase()));
-            filteredJobs = filteredByLocation;
+            filteredJobs = filteredJobs.filter((job) => job.jobLocation.toLowerCase().includes(locationQuery.toLowerCase()));
         }
 
-        // Filter jobs based on side panel
-        if(selected) {
+        // Filter jobs based on salary
+        if(selectedSalary) {
             filteredJobs = filteredJobs.filter(job => (
-                parseInt(job.minSalary) === parseInt(selected) || 
-                job.datePosted === selected
+                parseInt(job.maxSalary) <= parseInt(selectedSalary)
+            ));
+        }
+
+        // Filter jobs based on experience level
+        if (selectedExperienceLevel) {
+            filteredJobs = filteredJobs.filter(job => (
+                job.experienceLevel.toLowerCase() === selectedExperienceLevel.toLowerCase()
             ));
         }
 
@@ -79,7 +89,8 @@ const JobSearch = () => {
         console.log(filteredJobs);
         return filteredJobs.map((data, i) => <Card key={i} data={data}/>)
     }
-    const result = filteredData(jobs, selectedCategory, query, locationQuery);
+
+    const result = filteredData(jobs, query, locationQuery, selectedSalary, selectedExperienceLevel);
     const jobCount = result.length;
 
     return (
@@ -96,7 +107,7 @@ const JobSearch = () => {
             <div className='section row mx-0'>
                 {/* Side panel - filters */}
                 <div className='col-md-3 filter-panel'>
-                    <SidePanel handleChange={handleChange} />
+                    <SidePanel handleChange={handleChange} handleChangeExperienceLevel={handleChangeExperienceLevel}/>
                 </div>
 
                 {/* Centre panel - jobs card */}

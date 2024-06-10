@@ -1,14 +1,27 @@
 Features
 
 1. Search job
+    - READ jobs data from database and retrieve it to display into the cards
     - jobs list displayed in order of most recent at the top
-    - retrieve data from both jobs.json and database
-    - filter based on position, location, salary, experienceLevel
+    - filter based on position, location, salary, experienceLevel and will re-render
+    - user can click on a particular job to view full details of the job 
+        - job details is READ and retrieved from database based on job ID
 
 2. Apply job
-    - 
+    - fill in a form
+    - will CREATE a new application and insert to database 
+    - distinguish using application id and email
+    - reset form ui after successful submission
 
-3. Post job
-    - tags tokens
-    - alert and form reset upon successfully posting the newly added job to database
-    - input type verification
+3. Job posting 
+    - myjobs page
+    - can search a job from this list of jobs you have posted using job title
+    - READ jobs posted data from database based on current user's email to display the jobs posted in myjobs page
+    - post a new job
+        - tags tokens
+        - CREATE a new job and insert to database 
+        - alert and form reset upon successfully posting the newly added job to database
+        - input type verification
+    - modify job
+        - DELETE a job from database based on jobId
+        - UPDATE a job and patch the database record based on jobId
