@@ -137,6 +137,21 @@ async function run() {
       }
     });
 
+    // Modify jobs - get jobs by email
+    // Get all jobs
+    app.get("/my-jobs/:email", async (req, res) => {
+      try {
+        console.log(req.params.email)
+        const jobs = await jobsCollection.find({postedBy : req.params.email}).toArray();
+        res.send(jobs);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
     // Module 2 ---------------------------------------------------------------------------------------------------------
 
 
