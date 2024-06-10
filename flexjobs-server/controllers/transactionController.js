@@ -1,5 +1,7 @@
 const Project = require('../models/projectModel'); // Import your Project model
 
+
+
 // TEST ROUTE
 const testProjectPayments = (req, res) => {
   try {
@@ -17,58 +19,53 @@ const testProjectPayments = (req, res) => {
   }
 }
 
-// Controller function for getting transactions
-const getUserTransactions = async (req, res) => {
+//Get User projects
+const getUserProjects = async (req, res) => {
   try {
-    const userId = req.user._id; // Assuming you have authentication middleware 
-    const { fromDate, toDate, paymentStatus } = req.query; // Get filters
-
-    // 1. Build the Query (start with base query)
-    let query = { 
-        $or: [ // Query for projects where the user is either client or freelancer
-          { clientId: userId },
-          { freelancerId: userId }
-        ]
-    };
-
-    // 2. Apply Filters (if provided in the request)
-    if (fromDate && toDate) {
-      query.completionDate = { // Add date range filter
-        $gte: new Date(fromDate),
-        $lte: new Date(toDate) 
-      };
-    }
-    if (paymentStatus) {
-      query.paymentStatus = paymentStatus;
-    }
-
-    // 3. Fetch Projects with Population
-    const projects = await Project.find(query)
-                                  .populate('clientId', 'firstName lastName') // Populate client info
-                                  .populate('freelancerId', 'firstName lastName'); // Populate freelancer info
-
-    // 4. Format Data for Frontend (you can customize the structure)
-    const transactions = projects.map(project => ({
-      projectId: project._id,
-      projectTitle: project.title,
-      clientName: project.clientId.firstName + ' ' + project.clientId.lastName,
-      freelancerName: project.freelancerId.firstName + ' ' + project.freelancerId.lastName,
-      completionDate: project.completionDate,
-      paymentStatus: project.paymentStatus,
-      paymentAmount: project.budget.amount, // Adjust based on your project model
-      currency: project.budget.currency,  // Adjust based on your project model
-      // ... add other necessary fields ...
-    }));
-
-    res.json(transactions); // Send the formatted data as JSON
 
   } catch (error) {
-    console.error('Error fetching transactions:', error);
-    res.status(500).json({ error: 'Failed to fetch transactions' });
+
   }
-};
+
+}
+
+// app.get('/api/transactions/:userId', async (req, res) => {
+//   try {
+//     const userId = req.params.userId;
+
+//     // 1. Fetch Projects Relevant to the User (Buyer or Seller)
+//     const projects = await Project.find({ 
+//       $or: [{ clientId: userId }, { freelancerId: userId }],
+//     });
+
+//     // 2. Extract and Format Transactions from Projects
+//     const transactions = projects.reduce((allTransactions, project) => {
+//       // Iterate through the transactions array within each project
+//       return allTransactions.concat(project.transactions.map(transaction => ({
+//         // Spread the existing transaction data
+//         ...transaction._doc, 
+//         // Add project-related details for the transaction list view
+//         projectId: project._id,
+//         projectTitle: project.title, 
+//         buyerId: project.clientId,
+//         sellerId: project.freelancerId, 
+//         completionDate: project.completionDate,
+//       })));
+//     }, []);
+
+//     // 3. Sort Transactions (Optional, but recommended)
+//     transactions.sort((a, b) => b.timestamp - a.timestamp); // Newest to oldest
+
+//     res.json(transactions); 
+
+//   } catch (error) {
+//     console.error('Fetch Transactions Error:', error);
+//     res.status(500).json({ error: 'Failed to fetch transactions' });
+//   }
+// });
 
 module.exports = {
-  getUserTransactions,
   testProjectPayments,
 };
+
+

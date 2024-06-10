@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class Payments extends React.Component {
   testProjectPayments = async () => {
     try {
-      const response = await fetch('/test-project-payment');
+      const response = await fetch('http://localhost:3000/Payments/test-message');
 
       // Check if the content type is JSON
       const contentType = response.headers.get("content-type");
