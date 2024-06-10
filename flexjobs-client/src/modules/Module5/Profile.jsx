@@ -5,9 +5,9 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileSection() {
   const [profileData, setProfileData] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
-    phone: "123-456-7890",
+    name: "",
+    email: "",
+    phone: "",
     photo: null,
   });
 
@@ -51,7 +51,7 @@ function ProfileSection() {
           onChange={handlePhotoChange}
         />
         <label htmlFor="photo-upload" className="photo-upload-label">
-          <FontAwesomeIcon icon={faEdit} /> Upload photo
+          <FontAwesomeIcon icon={faEdit} /> Edit profile pic
         </label>
       </div>
       <div className="profile-details">

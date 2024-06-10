@@ -4,6 +4,7 @@ const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Import ObjectId
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
+const { Experience } = require('./models/educationModel'); // Ensure you import your models correctly
 
 const app = express();
 
@@ -12,6 +13,7 @@ const port = process.env.PORT || 3000;
 // Imports for Module 1
 const userAuthRoutes = require('./routes/auth');
 const { default: mongoose } = require('mongoose');
+const educationRoutes = require('./routes/educationRoutes');
 
 //Imports for Module 4
 const transactionRoutes = require('./routes/transactionRoutes');
@@ -43,8 +45,8 @@ const client = new MongoClient(uri, {
 // Mongoose connection
 const uriAlt = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/flexjobs-database?retryWrites=true&w=majority`;
 mongoose.connect(uriAlt)
-.then(() => console.log('Connected to MongoDB via Mongoose'))
-.catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
+  .then(() => console.log('Connected to MongoDB via Mongoose'))
+  .catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
 
 let database;
 
@@ -60,10 +62,11 @@ async function run() {
 
     // Module 1 Routes
     app.use('/auth', userAuthRoutes);
+    app.use('/api/education', educationRoutes); // Add education routes
 
     // Module 2 ---------------------------------------------------------------------------------------------------------
     const jobsCollection = database.collection("jobs");
-  
+
     // Post a job
     app.post("/post-job", async (req, res) => {
       const body = req.body;
@@ -152,7 +155,9 @@ async function run() {
         });
       }
     });
-  
+
+
+
     // Module 2 ---------------------------------------------------------------------------------------------------------
   
     // Module 3 ---------------------------------------------------------------------------------------------------------
@@ -182,25 +187,24 @@ async function run() {
     // Module 4 Test ---------------------------------------------------------------------------------------------------------
     
 
+
     // Module 5 ---------------------------------------------------------------------------------------------------------//
 
+    // 5.2 Set up route to save results
+    app.post('/save-results', async (req, res) => {
+      try {
+        const resultsCollection = database.collection("result");
+        const { results } = req.body;
+        const newResult = { results, date: new Date() };
+        const result = await resultsCollection.insertOne(newResult);
+        res.status(200).send(`Result saved with ID: ${result.insertedId}`);
+      } catch (error) {
+        console.error('Error saving results:', error);
+        res.status(500).send('Error saving results');
+      }
+    });
+
     const portfolioCollection = database.collection("portfolio-experience");
-
-       // Set up route to save results
-       app.post('/save-results', async (req, res) => {
-        try {
-          const resultsCollection = database.collection("result");
-          const { username, results } = req.body;
-          const newResult = { username, results, date: new Date() };
-          const result = await resultsCollection.insertOne(newResult);
-          res.status(200).send(`Result saved with ID: ${result.insertedId}`);
-        } catch (error) {
-          console.error('Error saving results:', error);
-          res.status(500).send('Error saving results');
-        }
-      });
-  
-
     // Create a new experience
     app.post('/experience', async (req, res) => {
       try {
@@ -283,7 +287,7 @@ async function run() {
         res.status(500).send('Error creating skill');
       }
     });
-   
+
     // Get all skill
     app.get('/skill', async (req, res) => {
       try {
@@ -294,7 +298,7 @@ async function run() {
         res.status(500).send('Error fetching skill');
       }
     });
-   
+
     // Get a specific skill by ID
     app.get('/skill/:id', async (req, res) => {
       try {
@@ -308,7 +312,7 @@ async function run() {
         res.status(500).send('Error fetching skill');
       }
     });
-   
+
     // Update skill
     app.put('/skill/:id', async (req, res) => {
       try {
@@ -326,7 +330,7 @@ async function run() {
         res.status(500).send('Error updating skill');
       }
     });
-   
+
     // Delete skill
     app.delete('/skill/:id', async (req, res) => {
       try {
@@ -341,75 +345,106 @@ async function run() {
       }
     });
 
-    const educationCollection = database.collection("portfolio-education");
+    // const educationCollection = database.collection("portfolio-education");
 
 
-     // Create a new education
-     app.post('/education', async (req, res) => {
+    //  // Create a new education
+    //  app.post('/education', async (req, res) => {
+    //   try {
+    //     const newEducation = req.body;
+    //     const result = await educationCollection.insertOne(newEducation);
+    //     res.status(201).send(`Education created with ID: ${result.insertedId}`);
+    //   } catch (error) {
+    //     console.error('Error creating education:', error);
+    //     res.status(500).send('Error creating education');
+    //   }
+    // });
+
+    // // Get all education
+    // app.get('/education', async (req, res) => {
+    //   try {
+    //     const education = await educationCollection.find().toArray();
+    //     res.status(200).json(education);
+    //   } catch (error) {
+    //     console.error('Error fetching education:', error);
+    //     res.status(500).send('Error fetching education');
+    //   }
+    // });
+
+    // // Get a specific education by ID
+    // app.get('/education/:id', async (req, res) => {
+    //   try {
+    //     const education = await educationCollection.findOne({ _id: new ObjectId(req.params.id) });
+    //     if (!education) {
+    //       return res.status(404).send('Education not found');
+    //     }
+    //     res.status(200).json(education);
+    //   } catch (error) {
+    //     console.error('Error fetching education:', error);
+    //     res.status(500).send('Error fetching education');
+    //   }
+    // });
+
+    // // Update an education
+    // app.put('/education/:id', async (req, res) => {
+    //   try {
+    //     const updatedEducation = req.body;
+    //     const result = await educationCollection.updateOne(
+    //       { _id: new ObjectId(req.params.id) },
+    //       { $set: updatedEducation }
+    //     );
+    //     if (result.matchedCount === 0) {
+    //       return res.status(404).send('Education not found');
+    //     }
+    //     res.status(200).send('Education updated');
+    //   } catch (error) {
+    //     console.error('Error updating education:', error);
+    //     res.status(500).send('Error updating education');
+    //   }
+    // });
+
+    // // Delete an education
+    // app.delete('/education/:id', async (req, res) => {
+    //   try {
+    //     const result = await educationCollection.deleteOne({ _id: new ObjectId(req.params.id) });
+    //     if (result.deletedCount === 0) {
+    //       return res.status(404).send('Education not found');
+    //     }
+    //     res.status(200).send('Education deleted');
+    //   } catch (error) {
+    //     console.error('Error deleting education:', error);
+    //     res.status(500).send('Error deleting education');
+    //   }
+    // });
+
+    app.post('/experience', async (req, res) => {
       try {
-        const newEducation = req.body;
-        const result = await educationCollection.insertOne(newEducation);
-        res.status(201).send(`Education created with ID: ${result.insertedId}`);
+        const { token } = req.cookies;
+        if (!token) return res.status(401).send('Unauthorized');
+    
+        const user = jwt.verify(token, process.env.JWTPRIVATEKEY);
+        const newExperience = new Experience({ ...req.body, userId: user._id });
+    
+        await newExperience.save();
+        res.status(201).send('Experience created successfully');
       } catch (error) {
-        console.error('Error creating education:', error);
-        res.status(500).send('Error creating education');
+        console.error('Error creating experience:', error);
+        res.status(500).send('Error creating experience');
       }
     });
 
-    // Get all education
-    app.get('/education', async (req, res) => {
+    app.get('/experience', async (req, res) => {
       try {
-        const education = await educationCollection.find().toArray();
-        res.status(200).json(education);
+        const { token } = req.cookies;
+        if (!token) return res.status(401).send('Unauthorized');
+    
+        const user = jwt.verify(token, process.env.JWTPRIVATEKEY);
+        const experiences = await Experience.find({ userId: user._id });
+    
+        res.status(200).json(experiences);
       } catch (error) {
-        console.error('Error fetching education:', error);
-        res.status(500).send('Error fetching education');
-      }
-    });
-
-    // Get a specific education by ID
-    app.get('/education/:id', async (req, res) => {
-      try {
-        const education = await educationCollection.findOne({ _id: new ObjectId(req.params.id) });
-        if (!education) {
-          return res.status(404).send('Education not found');
-        }
-        res.status(200).json(education);
-      } catch (error) {
-        console.error('Error fetching education:', error);
-        res.status(500).send('Error fetching education');
-      }
-    });
-
-    // Update an education
-    app.put('/education/:id', async (req, res) => {
-      try {
-        const updatedEducation = req.body;
-        const result = await educationCollection.updateOne(
-          { _id: new ObjectId(req.params.id) },
-          { $set: updatedEducation }
-        );
-        if (result.matchedCount === 0) {
-          return res.status(404).send('Education not found');
-        }
-        res.status(200).send('Education updated');
-      } catch (error) {
-        console.error('Error updating education:', error);
-        res.status(500).send('Error updating education');
-      }
-    });
-
-    // Delete an education
-    app.delete('/education/:id', async (req, res) => {
-      try {
-        const result = await educationCollection.deleteOne({ _id: new ObjectId(req.params.id) });
-        if (result.deletedCount === 0) {
-          return res.status(404).send('Education not found');
-        }
-        res.status(200).send('Education deleted');
-      } catch (error) {
-        console.error('Error deleting education:', error);
-        res.status(500).send('Error deleting education');
+        console.error('Error fetching experiences:', error);
+        res.status(500).send('Error fetching experiences');
       }
     });
 
@@ -426,7 +461,7 @@ async function run() {
         res.status(500).send('Error creating honor');
       }
     });
-  
+
     // Get all honors
     app.get('/honor', async (req, res) => {
       try {
@@ -437,7 +472,7 @@ async function run() {
         res.status(500).send('Error fetching honor');
       }
     });
-  
+
     // Get a specific honor by ID
     app.get('/honor/:id', async (req, res) => {
       try {
@@ -451,7 +486,7 @@ async function run() {
         res.status(500).send('Error fetching honor');
       }
     });
-  
+
     // Update honor
     app.put('/honor/:id', async (req, res) => {
       try {
@@ -469,7 +504,7 @@ async function run() {
         res.status(500).send('Error updating honor');
       }
     });
-  
+
     // Delete honor
     app.delete('/honor/:id', async (req, res) => {
       try {
@@ -483,9 +518,9 @@ async function run() {
         res.status(500).send('Error deleting honor');
       }
     });
-  
+
     const organizationCollection = database.collection("portfolio-organization");
-  
+
     // Create a new organization
     app.post('/organization', async (req, res) => {
       try {
@@ -497,7 +532,7 @@ async function run() {
         res.status(500).send('Error creating organization');
       }
     });
-  
+
     // Get all organizations
     app.get('/organization', async (req, res) => {
       try {
@@ -508,7 +543,7 @@ async function run() {
         res.status(500).send('Error fetching organization');
       }
     });
-  
+
     // Get a specific organization by ID
     app.get('/organization/:id', async (req, res) => {
       try {
@@ -522,7 +557,7 @@ async function run() {
         res.status(500).send('Error fetching organization');
       }
     });
-  
+
     // Update organization
     app.put('/organization/:id', async (req, res) => {
       try {
@@ -540,7 +575,7 @@ async function run() {
         res.status(500).send('Error updating organization');
       }
     });
-  
+
     // Delete organization
     app.delete('/organization/:id', async (req, res) => {
       try {
@@ -554,8 +589,8 @@ async function run() {
         res.status(500).send('Error deleting organization');
       }
     });
-  
-    // Get job applications by email
+
+    // 5.3 Job Applied- Get job applications by email
     app.get("/job-applications/:email", async (req, res) => {
       try {
         const email = req.params.email;
