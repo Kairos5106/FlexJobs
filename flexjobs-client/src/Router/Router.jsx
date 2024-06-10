@@ -28,7 +28,9 @@ import Results from "../modules/Module5/Result";
 import JobApplied from "../modules/Module5/JobApplied";
 
 // Imports for Module 6
-import Module6Page from "../modules/Module6/Module6Page";
+import Module6Page from "../modules/Module6/ForumMain";
+import NewForum from "../modules/Module6/NewForum";
+import ForumDetails from "../modules/Module6/ForumDetails";
 
 // Modules Page Navigation (the path to the page)
 // Please configure/reconfigure here and include the import
@@ -62,7 +64,10 @@ const router = createBrowserRouter([
         {path:"/JobApplied",element:<JobApplied/>},
 
         // Routes for Module 6
-        { path: "/Module6Page", element: <Module6Page/> }
+        // Routes for Module 6
+        { path: "/Module6Page", element: <Module6Page/> },
+        { path: "/NewForum", element: <NewForum/> },
+        { path: "/forum/:id", element: <ForumDetails/> }, // Add the route for ForumDetails with a parameter for the forum ID
       ]
     },
   ]);
