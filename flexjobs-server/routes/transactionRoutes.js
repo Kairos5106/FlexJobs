@@ -14,4 +14,6 @@ router.post('/createProject', transactionController.createProject);
 
 router.get('/getProjectsByUserId/:userId', transactionController.getProjectsByUserId);
 
+router.get('/getUsernameById/:userId', transactionController.getUserNameById);
+
 module.exports = router;

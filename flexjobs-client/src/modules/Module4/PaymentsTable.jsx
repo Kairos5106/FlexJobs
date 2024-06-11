@@ -1,6 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const PaymentsTable = ({ projects }) => {
+  const [usernames, setUsernames] = useState([]);
+
+  const getUserNameById = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/Payments/getUserNameById/${userId}`);
+      const data = await response.json();
+      return data
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchUsernames = async () => {
+      const newNames = {};
+      const promises = projects.map(async project => {
+        const username = await getUserNameById(project.clientId);
+        newNames[project.clientId] = username;
+      });
+  
+      await Promise.all(promises);
+      setUsernames(newNames);
+    };
+  
+    fetchUsernames();
+  }, [projects]);
+
+
+
   return (
     <div className="content-wrapper table-payments my-4">
       <div className="card card-rounded">
@@ -11,7 +40,7 @@ const PaymentsTable = ({ projects }) => {
         <div className="card-header d-flex justify-content-between align-items-center filter-content">
           <div className="tw-flex tw-items-center">
             <div className="input-icon-payments">
-              <input aria-label="date" type="text" className=" form-control form-control-sm" defaultValue="Mar 1, 2024 - Apr 10, 2024" readOnly/>
+              <input aria-label="date" type="text" className=" form-control form-control-sm" defaultValue="Mar 1, 2024 - Jun 11, 2024" readOnly/>
               <i className="fa-regular fa-calendar"></i>
             </div>
             <div className="filter-icon">
@@ -39,13 +68,18 @@ const PaymentsTable = ({ projects }) => {
                 <tbody id='table-data-payments'>
                     {projects?.map(project => (
                         <tr key={project._id}>
-                            <td style={{paddingLeft: "16px"}}>{project.completionDate}</td>
+                            <td style={{paddingLeft: "16px"}}>
+                              {project.completionDate 
+                              ? new Date(project.completionDate).toLocaleDateString() 
+                              : "Unpaid"}
+                            </td>
                             <td>{project.paymentStatus}</td>
                             <td>{project.title}</td>
-                            <td>{project.freelancerId}</td>
+                            <td>{usernames[project.clientId]}</td>
+                            {/* <td>{ project.freelancerId}</td> */}
                             <td className="text-success">+RM{project.totalAmountPaid}</td>
                             <td>
-                                <a href="./images/invoice_FRE1020150.pdf" target="_blank">{project._id}</a>
+                                <a href="https://us1.pdfgeneratorapi.com/api/v4/documents/55858/a69110b65ed8edfe4c032226eef4d8ea/share" target="_blank">{project._id}</a>
                             </td>
                         </tr>
                     ))}

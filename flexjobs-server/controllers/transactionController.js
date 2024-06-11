@@ -1,4 +1,5 @@
-const Project = require('../models/projectModel'); // Import your Project model
+const Project = require('../models/projectModel');// Import your Project model
+const User =  require('../models/userModel');
 
 // TEST ROUTE
 const testProjectPayments = (req, res) => {
@@ -56,6 +57,20 @@ const getProjectsByUserId = async (req, res) => {
   }
 }
 
+
+//Get username by id
+const getUserNameById = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const user = await User.findById(userId);
+    res.json(user.name);
+  }
+  catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to fetch username' });
+  }
+}
+
 // app.get('/api/transactions/:userId', async (req, res) => {
 //   try {
 //     const userId = req.params.userId;
@@ -96,6 +111,7 @@ module.exports = {
   createProject,
   getAllProjects,
   getProjectsByUserId,
+  getUserNameById,
 };
 
 
