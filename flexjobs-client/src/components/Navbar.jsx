@@ -31,7 +31,6 @@ const Navbar = () => {
             { path: "/Portfolio", title: "Portfolio" },
             { path: "/CareerAssessInterest", title: "Career Access Interest" },       
             { path: "/Payments", title: "Payments" },
-            { path: "/Settings", title: "Settings" }
         ]}
     ];
 
