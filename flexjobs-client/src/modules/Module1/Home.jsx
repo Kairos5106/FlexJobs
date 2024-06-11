@@ -3,10 +3,17 @@ import React from 'react'
 const Home = () => {
     return (
         <div>
-            <div id="landing-page">
-            <h2 id="homepage-title">Where Talent Meets Opportunity</h2>
-            <a href="#homepage-description" className="big-button" id="learn-more">Explore</a>
-            </div>
+            {/* Hero section */}
+            <section>
+              <div className="container">
+                <div className="row align-items-center justify-content-center">
+                  <div className='col-12 col-lg-6'>
+                    <h1 className='display-4 fw-bold align-items-center'>FlexJobs</h1>
+                    <p className='lead text-center'>Where <span className='text-primary'>Talent</span> Meets Opportunity</p>
+                  </div>
+                </div>
+              </div>
+            </section>
 
             {/* Homepage description */}
             <section className="homepage-description" id="homepage-description">
@@ -23,34 +30,6 @@ const Home = () => {
                     Your profile on FlexJobs is more than just a resume – it's your professional identity. Showcase your skills, portfolio, and experience to stand out to potential clients. Additionally, our vibrant forum feature fosters community engagement, allowing freelancers to share insights, seek advice, and connect with like-minded individuals in their field.
                   </p>
                 </div>
-              </div>
-            </section>
-
-            {/* Feature overview */}
-            <section className="feature-overview alternate-section" id="feature-overview">
-              <div className="container">
-                <ul className="cards flex">
-                  <li className="card" id="feature-jobs">
-                    <h2>CONNECT</h2>
-                    <p>Post jobs as a client or find opportunities as a freelancer across diverse industries. Collaboration made easy for mutual success.</p>
-                    <a href="module2/post-a-job.html" className="normal-button">Go to Jobs</a>
-                  </li>
-                  <li className="card" id="feature-forum">
-                    <h2>DISCUSS</h2>
-                    <p>Engage in vibrant discussions, seek advice, and connect with fellow freelancers and employers in our dynamic forum.</p>
-                    <a href="module6/forumMain.html" className="normal-button">Go to Forum</a>
-                  </li>
-                  <li className="card" id="feature-inbox">
-                    <h2>COMMUNICATE</h2>
-                    <p>Streamline your communication process with our intuitive messaging system.</p>
-                    <a href="module3/inbox.html" className="normal-button">Go to Inbox</a>
-                  </li>
-                  <li className="card" id="feature-profiling">
-                    <h2>SHOWCASE</h2>
-                    <p>Put your best work forward. Display your portfolio, highlight your skills, and impress potential clients with your expertise.</p>
-                    <a href="module5/5.1 portfolio.html" className="normal-button">Go to Portfolio</a>
-                  </li>
-                </ul>
               </div>
             </section>
         </div>

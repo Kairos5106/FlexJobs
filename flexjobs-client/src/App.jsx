@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 import { UserContextProvider } from './context/userContext';
+import Footer from './components/Footer';
 
 axios.defaults.baseURL = 'http://localhost:3000';
 axios.defaults.withCredentials = true;
@@ -18,6 +19,7 @@ function App() {
       <Navbar />
       <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
       <Outlet />
+      {/* <Footer /> */}
     </UserContextProvider>
   )
 }
