@@ -286,7 +286,7 @@ console.log('Comments:', comments);
     
             {/* Discussion Forum title */}
             <div>
-                <h1 id="discussion-forum-title">{comments.content}</h1>
+                <h1 id="space-forum">{comments.content}</h1>
             </div>
 
             {/* Topic */}

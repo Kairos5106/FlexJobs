@@ -91,7 +91,7 @@ const NewForum = () => {
         <div className="forum-header-and-section">
             {/* Discussion Forum title */}
             <div>
-                <h1 id="discussion-forum-title">New Topic</h1>
+                <h1 id="space-forum">New Topic</h1>
             </div>
 
             {/* Topic title input */}

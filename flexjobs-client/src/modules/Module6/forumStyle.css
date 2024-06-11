@@ -172,7 +172,15 @@ header .navbar ul li:hover > ul {
     text-align: left; 
     color: #24375D;
     font-size: 2.2em;
-    margin-top: 20vh;
+    margin-top: 25vh;
+    margin-left: 5%;
+    
+}
+#space-forum {
+    text-align: left; 
+    color: #24375D;
+    font-size: 2.2em;
+    margin-top: 5vh;
     margin-left: 5%;
     
 }
@@ -212,6 +220,7 @@ header .navbar ul li:hover > ul {
 
 .add-post-button{
     color: #fff;
+    height: 15%;
     padding: 0.8%;
     width: 30%;
     font-size: 1.2em;
@@ -221,7 +230,7 @@ header .navbar ul li:hover > ul {
     border-radius:5px;
     text-align: center;
     align-items: center;
-    margin-top: 20vh;
+    margin-top: 28vh;
     margin-right: 5%;
     text-decoration: none;
 }
@@ -296,6 +305,8 @@ header .navbar ul li:hover > ul {
 
 .middle{
     flex: 1.5;
+    display: flex;
+    
 }
 
 .right{
@@ -478,7 +489,9 @@ header .navbar ul li:hover > ul {
     display: flex; /* Use flexbox for inner elements */
     flex-direction: column;
     align-items: center; /* Align items vertically */
-    margin-right: 10px; /* Add margin to create space between the image and the username */
+    margin-right: 10px;
+    margin-bottom: 2%;
+    /* Add margin to create space between the image and the username */
 }
 
 .profilepic {
