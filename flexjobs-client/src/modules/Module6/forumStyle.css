@@ -1,8 +1,3 @@
-* {
-   
-    font-family: 'Poppins', sans-serif;
-}
-
 .forum-header-and-section {
     background-color: #F7F2E7;
     top: 0;    
@@ -12,12 +7,12 @@
 
 }
 
-body{
+/* body{
     top: 0;
     left: 0;
     margin: 0;
     padding: 0%;
-}
+} */
 
 
 /* Header bar on top of each webpage */
