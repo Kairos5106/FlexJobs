@@ -66,7 +66,7 @@ async function run() {
 
     // Module 2 ---------------------------------------------------------------------------------------------------------
     const jobsCollection = database.collection("jobs");
-
+    
     // Post a job
     app.post("/post-job", async (req, res) => {
       const body = req.body;
@@ -156,9 +156,70 @@ async function run() {
       }
     });
 
+    // Modify jobs - get jobs by email
+    // Get all jobs
+    app.get("/my-jobs/:email", async (req, res) => {
+      try {
+        const jobs = await jobsCollection.find({postedBy : req.params.email}).toArray();
+        res.send(jobs);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
+    // Delete a posted job
+    app.delete("/delete-job/:id", async(req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = {_id: new ObjectId(id)}
+        const result = await jobsCollection.deleteOne(filter);
+        res.send(result)
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
+    // Edit/Update a job
+    app.patch("/update-job/:id", async (req, res) => {
+      try {
+          const id = req.params.id;
+          const jobData = req.body;
+          const filter = { _id: new ObjectId(id) };
+          const options = { upsert: false };
+          const updateDoc = {
+              $set: {
+                  ...jobData
+              },
+          };
+          const result = await jobsCollection.updateOne(filter, updateDoc, options);
+          if (result.modifiedCount === 1) {
+              res.status(200).send({
+                  message: "Job updated successfully",
+                  status: true
+              });
+          } else {
+              res.status(404).send({
+                  message: "Job not found",
+                  status: false
+              });
+          }
+      } catch (error) {
+          res.status(500).send({
+              message: "Internal Server Error",
+              status: false
+          });
+      }
+    });
 
 
-    // Module 2 ---------------------------------------------------------------------------------------------------------
+
+    // End of Module 2 ---------------------------------------------------------------------------------------------------------
   
     // Module 3 ---------------------------------------------------------------------------------------------------------
     const feedbacksCollection = database.collection("feedback");

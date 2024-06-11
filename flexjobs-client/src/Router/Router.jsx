@@ -13,6 +13,8 @@ import JobSearch from "../modules/Module2/JobSearch";
 import PostJob from "../modules/Module2/PostJob";
 import JobDetails from "../modules/Module2/JobDetails";
 import ApplyJob from "../modules/Module2/ApplyJob";
+import ModifyJobs from "../modules/Module2/ModifyJobs";
+import UpdateJob from "../modules/Module2/UpdateJob";
 
 // Imports for Module 3
 import Chat from "../modules/Module3/Inbox";
@@ -49,6 +51,8 @@ const router = createBrowserRouter([
         { path: "/PostJob", element: <PostJob/> },
         { path: "/job/:id", element: <JobDetails/> },
         { path: "/ApplyJob", element: <ApplyJob/> },
+        { path: "/ModifyJobs", element: <ModifyJobs/> },
+        { path: "edit-job/:id", element: <UpdateJob/>, loader: ({params}) => fetch(`http://localhost:3000/all-jobs/${params.id}`) },
 
         // Routes for Module 3
         { path: "/Chat", element: <Chat/> },
