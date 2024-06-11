@@ -258,7 +258,7 @@ header .navbar ul li:hover > ul {
 
 .search-results-dropdown {
     position: absolute;
-    top: 16%; /* Position below the search bar */
+    top: 19%; /* Position below the search bar */
     left: 5%;
     right: 5%;
     z-index: 999; /* Ensure it appears above other elements */
