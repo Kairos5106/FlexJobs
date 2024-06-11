@@ -97,7 +97,7 @@ header .navbar ul li:hover > ul {
   background-color: #f7f2e7;
 } 
 .payments-content .transaction-history {
-  padding: 100px 80px 40px 80px;
+  padding: 0px 80px 0px 80px;
   margin: 20px 0;
 }
 .payments-content .transaction-history h2 {

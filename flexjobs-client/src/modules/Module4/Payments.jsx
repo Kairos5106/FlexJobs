@@ -9,7 +9,13 @@ import EarningsOverviewBuyer from './EarningsOverviewBuyer';
 import './styles/payment-invoice.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+//User context
+import { UserContext } from '../../context/userContext';
+
+
 class Payments extends React.Component {
+  static contextType = UserContext;
+
   testProjectPayments = async () => {
     try {
       const response = await fetch('http://localhost:3000/Payments/test-message');
@@ -31,6 +37,36 @@ class Payments extends React.Component {
       console.error('Error:', error);
     }
   };
+
+  state = {
+    // state variables
+    projects: [],
+  };
+
+  // componentDidMount() {
+  //   fetch('http://localhost:3000/Payments/getAllProjects')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       this.setState({ projects: data });
+  //     })
+  //     .catch(error => {
+  //       console.error('Error:', error);
+  //     });
+  // }
+  componentDidMount() {
+    const { user } = this.context;
+
+    if (user) {
+      fetch(`http://localhost:3000/Payments/getProjectsByUserId/${user._id}`)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ projects: data });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  }
 
 
   switchPage = () => {
@@ -54,7 +90,7 @@ class Payments extends React.Component {
                 earningsTrendImg={earningsImage}
             />
 
-            <PaymentsTable />
+            <PaymentsTable projects={this.state.projects}/>
         </div>
     );
   }

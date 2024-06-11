@@ -8,7 +8,7 @@ const projectSchema = new Schema({
   freelancerId: ObjectId,
   status: String,
   budget: {
-    type: String,
+    sort: String,
     amount: Number,
     currency: String
   },

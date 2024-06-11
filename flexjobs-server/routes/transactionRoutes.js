@@ -8,4 +8,10 @@ const transactionController = require('../controllers/transactionController'); /
 // TEST ROUTE
 router.get('/test-message', transactionController.testProjectPayments);
 
+router.get('/getAllProjects', transactionController.getAllProjects);
+
+router.post('/createProject', transactionController.createProject);
+
+router.get('/getProjectsByUserId/:userId', transactionController.getProjectsByUserId);
+
 module.exports = router;

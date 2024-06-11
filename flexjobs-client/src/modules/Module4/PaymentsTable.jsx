@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PaymentsTable = () => {
+const PaymentsTable = ({ projects }) => {
   return (
     <div className="content-wrapper table-payments my-4">
       <div className="card card-rounded">
@@ -24,10 +24,10 @@ const PaymentsTable = () => {
         {/* payment data */}
         <div className="container-payments">
           <div className="card-body p-0">
-            <table id='table-data-payments' className="table table-group-divider mb-0" style={{borderTop: "none"}}>
+            <table id='table-data-payments' className="table table-group-divider tw-mb-0 tw-border-t-0">
               <thead id="invoice-table-head">
                 <tr className="table-warning">
-                  <th className="first-column">Date</th>
+                  <th style={{paddingLeft: "16px"}}>Date</th>
                   <th>Type</th>
                   <th>Description</th>
                   <th>From</th>
@@ -35,8 +35,21 @@ const PaymentsTable = () => {
                   <th>Reference ID</th>
                 </tr>
               </thead>
+              {/* payment table data */}
                 <tbody id='table-data-payments'>
-                    <tr>
+                    {projects?.map(project => (
+                        <tr key={project._id}>
+                            <td style={{paddingLeft: "16px"}}>{project.completionDate}</td>
+                            <td>{project.paymentStatus}</td>
+                            <td>{project.title}</td>
+                            <td>{project.freelancerId}</td>
+                            <td className="text-success">+RM{project.totalAmountPaid}</td>
+                            <td>
+                                <a href="./images/invoice_FRE1020150.pdf" target="_blank">{project._id}</a>
+                            </td>
+                        </tr>
+                    ))}
+                    {/* <tr>
                         <td className="first-column">Apr 5, 2024</td>
                         <td>Cash payment</td>
                         <td>Order</td>
@@ -55,7 +68,7 @@ const PaymentsTable = () => {
                         <td>
                             <a href="./images/invoice_FRE1020150.pdf" target="_blank">FRE1020150</a>
                         </td>
-                    </tr>
+                    </tr> */}
                 </tbody>
                 {/* pagination */}
               <tfoot id='table-data-payments-footer'>

@@ -101,7 +101,6 @@ const loginUser = async (req, res) => {
                 }, 
                 process.env.JWTPRIVATEKEY, { expiresIn: '7d' }, 
                 (error, token) => {
-
                     if(error) throw error;
 
                     console.log(token);
@@ -112,7 +111,6 @@ const loginUser = async (req, res) => {
                     });
 
                 }
-
             );
         } else {
             return res.json({
