@@ -107,7 +107,7 @@ const ForumMain = () => {
                             </div>
                             <div className="middle">
                                 <h3 className="latestby">By</h3>
-                                <h1 className="latestauthor">{topic.username ? topic.username : 'Anonymous'}</h1>
+                                <h1 className="latestauthor">{topic.name ? topic.name : 'Anonymous'}</h1>
                             </div>
                             <div className="right">
                                 {/* Convert the timestamp to a human-readable format */}
@@ -131,7 +131,7 @@ const ForumMain = () => {
                             </div>
                             <div className="middle">
                                 <h3 className="latestby">By</h3>
-                                <h1 className="latestauthor">{topic.username ? topic.username : 'Anonymous'}</h1>
+                                <h1 className="latestauthor">{topic.name ? topic.name : 'Anonymous'}</h1>
                             </div>
                             <div className="right">
                                 
