@@ -73,12 +73,12 @@ function SkillSection() {
           )}
         </div>
       </div>
-      <div className="button">
+      <div className="uniquebutton">
         <button onClick={() => toggleEditSkill(skill._id)}>
           <FontAwesomeIcon icon={faEdit} />
         </button>
         </div>
-        <div className="button">
+        <div className="uniquebutton">
         <button onClick={() => deleteSkill(skill._id)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>

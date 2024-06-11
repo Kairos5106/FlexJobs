@@ -1,20 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Module2.css';
+import { useLoaderData, useParams } from 'react-router-dom';
 
-const PostJob = () => {
-    const [tags, setTags] = useState([]);
+const UpdateJob = () => {
+    const {id} = useParams();
+    console.log("Job to be edited: ", id);
+
+    const jobData = useLoaderData();
+    const {
+        _id,
+        jobTitle,
+        companyName,
+        minSalary,
+        maxSalary,
+        jobLocation,
+        experienceLevel,
+        aboutTheJob,
+        postedBy,
+        companyLogo,
+        skills
+    } = jobData;
+
+    const [tags, setTags] = useState(skills || []);
     const [formData, setFormData] = useState({
-        jobTitle: '',
-        companyName: '',
-        minSalary: '',
-        maxSalary: '',
-        jobLocation: '',
-        experienceLevel: '',
-        aboutTheJob: '',
-        postedBy: '',
+        jobTitle: jobTitle || '',
+        companyName: companyName || '',
+        minSalary: minSalary || '',
+        maxSalary: maxSalary || '',
+        jobLocation: jobLocation || '',
+        experienceLevel: experienceLevel || '',
+        aboutTheJob: aboutTheJob || '',
+        postedBy: postedBy || '',
         companyLogo: null,
     });
+
+    // Set initial form data and tags when component mounts
+    useEffect(() => {
+        if (jobData) {
+            setFormData({
+                jobTitle: jobTitle,
+                companyName: companyName,
+                minSalary: minSalary,
+                maxSalary: maxSalary,
+                jobLocation: jobLocation,
+                experienceLevel: experienceLevel,
+                aboutTheJob: aboutTheJob,
+                postedBy: postedBy,
+                companyLogo: null,
+            });
+            setTags(skills);
+        }
+    }, [jobData, jobTitle, companyName, minSalary, maxSalary, jobLocation, experienceLevel, aboutTheJob, postedBy, skills]);
 
     // Add new skill tag
     const handleAddTag = (e) => {
@@ -74,19 +111,19 @@ const PostJob = () => {
             companyLogoBase64 = await convertToBase64(formData.companyLogo);
         }
 
-        const jobData = { ...formData, skills: tags, companyLogo: companyLogoBase64, datePosted: new Date().toISOString() };
+        const updatedJobData = { ...formData, skills: tags, companyLogo: companyLogoBase64 };
 
         try {
-            const response = await fetch("http://localhost:3000/post-job", {
-                method: "POST",
-                headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify(jobData)
+            const response = await fetch(`http://localhost:3000/update-job/${id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedJobData)
             });
 
             const result = await response.json();
             if (response.ok) {
-                console.log('Job posted successfully:', result);
-                alert('Job posted successfully!');
+                console.log('Job updated successfully:', result);
+                alert('Job updated successfully!');
                 // Clear form and tags
                 setFormData({
                     jobTitle: '',
@@ -101,17 +138,25 @@ const PostJob = () => {
                 });
                 setTags([]);
             } else {
-                console.error('Error posting job:', result);
-                alert('Error posting job: ' + result.message);
+                console.error('Error updating job:', result);
+                alert('Error updating job: ' + result.message);
             }
         } catch (error) {
-            console.error('Error posting job:', error);
-            alert('Error posting job: ' + error.message);
+            console.error('Error updating job:', error);
+            alert('Error updating job: ' + error.message);
         }
     };
 
     return (
         <div className='body-module2'>
+            {/* Back button */}
+            <div className="back-link-section">
+                <a href="#" className="back-link" onClick={() => window.history.back()}>
+                    <i className="fa-solid fa-left-long"></i> Go Back
+                </a>
+            </div>
+
+            {/* Edit job */}
             <div className="post-a-job section" id="post-a-job">
                 <form className="post-a-job-form" id="post-a-job-form" onSubmit={onSubmit}>
                     {/* Job title and company name */}
@@ -205,4 +250,4 @@ const PostJob = () => {
     );
 };
 
-export default PostJob;
+export default UpdateJob;

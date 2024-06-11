@@ -1,18 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Profile.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import { UserContext } from '../../context/userContext'; 
 
 function ProfileSection() {
+  const { user } = useContext(UserContext);
+
   const [profileData, setProfileData] = useState({
     name: "",
     email: "",
-    phone: "",
+    phoneNo: "",
     photo: null,
   });
 
   const [editProfile, setEditProfile] = useState(false);
   const [photoPreview, setPhotoPreview] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      setProfileData({
+        name: user.name,
+        email: user.email,
+        phoneNo: user.phoneNo,
+        // Assuming you have a user photo field, set it here if available
+        photo: user.photo || null,
+      });
+    }
+  }, [user]);
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
@@ -40,7 +56,7 @@ function ProfileSection() {
     <div className="container profile-container">
       <div className="profile-photo">
         <img
-          src={photoPreview || "./images/default-profile.jpg"}
+          src="./images/profiledefault.png"
           alt="Profile"
           className="photo-circle"
         />
@@ -73,8 +89,8 @@ function ProfileSection() {
             />
             <input
               type="tel"
-              name="phone"
-              value={profileData.phone}
+              name="phoneNo"
+              value={profileData.phoneNo}
               onChange={handleInputChange}
               placeholder="Phone"
             />
@@ -84,14 +100,14 @@ function ProfileSection() {
           <>
             <p><strong>{profileData.name}</strong></p>
             <p>{profileData.email}</p>
-            <p>{profileData.phone}</p>
+            <p>{profileData.phoneNo}</p>
             
           </>
         )}
       </div>
       <button onClick={() => setEditProfile(true)}>
-              <FontAwesomeIcon icon={faEdit} />
-            </button>
+        <FontAwesomeIcon icon={faEdit} />
+      </button>
     </div>
   );
 }

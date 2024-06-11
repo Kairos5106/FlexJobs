@@ -1,3 +1,7 @@
+.footer-space {
+  padding-top: 120px;
+}
+
 #root {
   width: 100%;
   min-height: 100vh;

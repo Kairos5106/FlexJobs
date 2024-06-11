@@ -1,7 +1,7 @@
-body {
+.body-module2 {
     background-color:  #F7F2E7; 
     font-family: 'Poppins', sans-serif;
-    padding-top: 100px; /* to give space for navbar before render webpage content */
+    padding-top: 20px; /* to give space for navbar before render webpage content */
     padding-left: 80px;
     padding-right: 80px;
 }
@@ -138,6 +138,7 @@ body {
     border-radius: 8px;
     margin-right: 20px;
     margin-bottom: 20px;
+    padding: 10px;
     height: 100%;
 }
 
@@ -163,7 +164,7 @@ body {
     color: #3575E2;
 }
 
-.job-details {
+.job-details-panel {
     background: #fefefe;
     border-radius: 20px;
     padding: 30px;
@@ -315,7 +316,7 @@ body {
     width: 100%;
 }
 
-
+/* Modify Jobs ------------------------------------------------------------------------------------------------------------------------------*/
 
 
 
@@ -325,10 +326,10 @@ body {
 
 /* Responsive ------------------------------------------------------------------------------------------------------------------------------*/ 
 @media (width < 1000px) {
-    body {
+    .body-module2 {
         background-color:  #F7F2E7; 
         font-family: 'Poppins', sans-serif;
-        padding-top: 100px; /* to give space for navbar before render webpage content */
+        padding-top: 20px; /* to give space for navbar before render webpage content */
         padding-left: 40px;
         padding-right: 40px;
     }
