@@ -6,12 +6,12 @@
     outline: none;
 }
 
-body{
+/* body{
     background-color:  #F7F2E7; 
-    padding-top: 70px; /* to give space for navbar before render webpage content */
+    padding-top: 70px; to give space for navbar before render webpage content
     padding-left: 0px;
     padding-right: 0px;
-}
+} */
 
 .section-feedback {
     padding-top: 40px;
@@ -51,13 +51,13 @@ body{
     padding: 10% 20px;
 }
 
-form h1 {
+.feedback-form h1 {
     padding: 0;
     color: #181717;
     padding-top: 3%;
 }
 
-form .id {
+.feedback-form .id {
     position: relative;
 }
 
@@ -69,8 +69,7 @@ form .id {
     transform: translateY(-50%);
 }
 
-
-form input {
+.feedback-form input {
     width: 100%;
     height: 50px;
     margin: 4px 0;
@@ -83,7 +82,7 @@ form input {
     color: #181717;
 }
 
-form textarea {
+.feedback-form textarea {
     padding: 5px 15px;
     border: 1px solid #5C5C5C;
     border-radius: 3px;
@@ -95,7 +94,7 @@ form textarea {
     resize: none;
 }
 
-form button {
+.feedback-form button {
     margin-top: 5px;
     border: none;
     background: #f1c158;
@@ -108,21 +107,21 @@ form button {
     border-radius: 3px;
 }
 
-form input:focus,
-form textarea:focus {
+.feedback-form input:focus,
+.feedback-form textarea:focus {
     border: 1px solid #181717;
     color: #181717;
     transition: all 0.3s ease;
 }
 
-form input:focus::placeholder,
-form textarea:focus::placeholder {
+.feedback-form input:focus::placeholder,
+.feedback-form textarea:focus::placeholder {
     padding-left: 4px;
     color: #181717;
     transition: all 0.3s ease;
 }
 
-form input:focus + i {
+.feedback-form input:focus + i {
     color: #181717;
     transition: all 0.3s ease;
 }
@@ -135,7 +134,7 @@ form input:focus + i {
     color: #1817178f;
 }
 
-form select {
+.feedback-form select {
     padding: 4px;
     font-size: 18px;
 }
