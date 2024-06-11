@@ -142,9 +142,9 @@ class Payments extends React.Component {
             </section>
 
             <EarningsOverviewSeller 
-                totalEarnings="RM5200.00" 
-                earningsPast30Days="RM2700.00" 
-                averageDailyEarnings="RM90.00" 
+                totalEarnings="RM7000.00" 
+                earningsPast30Days="RM51.36" 
+                averageDailyEarnings="RM77.78" 
                 earningsTrendImg={earningsImage}
             />
 {/* 
