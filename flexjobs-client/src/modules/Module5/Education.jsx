@@ -80,12 +80,12 @@ function EducationSection() {
           )}
         </div>
       </div>
-      <div className="button">
+      <div className="uniquebutton">
       <button onClick={() => toggleEditEducation(education._id)}>
           <FontAwesomeIcon icon={faEdit} />
         </button>
         </div>
-        <div className="button">
+        <div className="uniquebutton">
         <button onClick={() => deleteEducation(education._id)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>

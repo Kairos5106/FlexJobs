@@ -78,7 +78,7 @@ function OrganizationSection() {
             </>
           )}
          </div>
-         <div className="button">
+         <div className="uniquebutton">
         <button onClick={() => toggleEditOrganization(organization._id)}>
           <FontAwesomeIcon icon={faEdit} />
         </button>
