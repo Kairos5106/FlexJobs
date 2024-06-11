@@ -81,12 +81,12 @@ function HonorSection() {
           )}
         </div>
       </div>
-       <div className="button">
+       <div className="uniquebutton">
         <button onClick={() => toggleEditHonor(honor._id)}>
           <FontAwesomeIcon icon={faEdit} />
         </button>
         </div>
-        <div className="button">
+        <div className="uniquebutton">
         <button onClick={() => deleteHonor(honor._id)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>

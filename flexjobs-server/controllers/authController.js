@@ -92,34 +92,24 @@ const loginUser = async (req, res) => {
         }
         // Check if password matches email
         const match = await comparePassword(password, user.password);
-        // if(match){
-        //     jwt.sign(
-        //         {_id: user._id}, 
-        //         process.env.JWTPRIVATEKEY, {}, 
-        //         (error, token) => {
-
-        //             if(error) throw error;
-
-        //             res.cookie('token', token).json(user)
-                    
-        //             console.log(token);
-
-        //         }
-
-        //     );
-        //     res.json('Password matches email. Logging user in...');
         if(match){
             jwt.sign(
-                {_id: user._id}, 
-                process.env.JWTPRIVATEKEY, {}, 
+                {
+                    _id: user._id,
+                    name: user.name,
+                    email: user.email
+                }, 
+                process.env.JWTPRIVATEKEY, { expiresIn: '7d' }, 
                 (error, token) => {
                     if(error) throw error;
-        
+
                     console.log(token);
+
                     res.cookie('token', token).json({
-                        message: 'Password matches email. Logging user in...',
-                        user
+                        message: 'Logged in successfully',
+                        user: user
                     });
+
                 }
             );
         } else {
@@ -134,11 +124,11 @@ const loginUser = async (req, res) => {
 
 // LOGOUT ENDPOINT
 const logoutUser = async (req, res) => {
-    res.clearCookie('token').json('Logged out');
-    res.json('Logged out');
-    console.log('Logged out');
-    res.redirect('/Login');
-    console.log('Redirected to login page');
+    res
+    .cookie('token', "", {
+        expires: new Date(0),
+    })
+    .json("Logged out successfully");
 }
 
 // PROFILE ENDPOINT
