@@ -26,30 +26,12 @@ const Login = () => {
       } else {
         setData({});
         navigate('/');
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
     }
   }
-
-    // const loginUser = async (e) => {
-    //   e.preventDefault();
-    //   const { email, password } = data;
-    //   try{
-    //     const {data} = await axios.post('/auth/login', {
-    //       email, 
-    //       password
-    //     });
-    //     if(data.error){
-    //       // handle error
-    //     } else {
-    //       setUser(data); // set user data in UserContext
-    //       navigate('/'); // navigate to home or dashboard
-    //     }
-    //   } catch (error) {
-    //     // handle error
-    //   }
-    // };
 
   return (
     <div>
