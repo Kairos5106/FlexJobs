@@ -80,12 +80,12 @@ function ExperienceSection() {
           )}
         </div>
       </div>
-      <div className="button">
+      <div className="uniquebutton">
         <button onClick={() => toggleEditExperience(experience._id)}>
           <FontAwesomeIcon icon={faEdit} />
         </button>
         </div>
-        <div className="button">
+        <div className="uniquebutton">
         <button onClick={() => deleteExperience(experience._id)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>

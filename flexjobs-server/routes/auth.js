@@ -13,6 +13,7 @@ const {
     test,
     registerUser,
     loginUser,
+    logoutUser,
     getProfile,
  } = require('../controllers/authController');
 
@@ -25,6 +26,9 @@ router.post('/register', registerUser);
 
 // LOGIN ROUTE
 router.post('/login', loginUser);
+
+// LOGOUT ROUTE
+router.get('/logout', logoutUser);
 
 // PROFILE ROUTE
 router.get('/profile', getProfile);

@@ -30,21 +30,21 @@ const Card = ({ data }) => {
                     
                     <div className="job-details-col">
                         <p className="company-name">{companyName}</p>
-                        <h2 className="job-title">{jobTitle}</h2>
+                        <h2 className="job-title h2 px-0 py-2">{jobTitle}</h2>
                         <div className="job-small-details">
-                            <div className="job-small-details-item location">
+                            <div className="job-small-details-item job-small-details-item-location">
                                 <span className="input-icon"><i className="fa-solid fa-location-dot"></i></span>
                                 <span className="word-beside-icon" id="job-location">{jobLocation}</span>
                             </div>
-                            <div className="job-small-details-item experience-level">
+                            <div className="job-small-details-item job-small-details-item-experience-level">
                                 <span className="input-icon"><i className="fa-solid fa-briefcase"></i></span>
                                 <span className="word-beside-icon" id="job-experience-level">{experienceLevel}</span>
                             </div>
-                            <div className="job-small-details-item salary">
+                            <div className="job-small-details-item job-small-details-item-salary">
                                 <span className="input-icon"><i className="fa-solid fa-dollar-sign"></i></span>
                                 <span className="word-beside-icon" id="job-salary">{minSalary}-{maxSalary}</span>
                             </div>
-                            <div className="job-small-details-item time">
+                            <div className="job-small-details-item job-small-details-item-time">
                                 <span className="input-icon"><i className="fa-solid fa-clock"></i></span>
                                 <span className="word-beside-icon" id="date-posted">{calculateDuration()}</span>
                             </div>

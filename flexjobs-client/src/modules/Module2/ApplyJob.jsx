@@ -74,53 +74,55 @@ const ApplyJob = () => {
     };
 
     return (
-        <div className="section apply-job">
-            <div className="col-md-6" id="apply-job">
-                {/* Top Section */}
-                <div className="back-link-section">
-                    <a href="#" className="back-link" onClick={() => window.history.back()}>
-                        <i className="fa-solid fa-left-long"></i> Go Back
-                    </a>
+        <div className='body-module2'>
+            <div className="section apply-job">
+                <div className="col-md-6" id="apply-job">
+                    {/* Top Section */}
+                    <div className="back-link-section">
+                        <a href="#" className="back-link" onClick={() => window.history.back()}>
+                            <i className="fa-solid fa-left-long"></i> Go Back
+                        </a>
+                    </div>
+                    
+                    <form className="apply-job-form" id="apply-job-form" onSubmit={onSubmit}>
+                        {/* Full name */}
+                        <div className="row g-2 job-form-row">
+                            <div className="col-sm-12">
+                                <label htmlFor="fullName">Full Name</label>
+                                <input type="text" className="form-control" id="fullName" name="fullName" placeholder="" required value={applicationFormData.fullName} onChange={handleChange} />
+                            </div>
+                        </div>
+
+                        {/* Contact number */}
+                        <div className="row g-2 job-form-row">
+                            <div className="col-sm-12">
+                                <label htmlFor="contactNumber">Contact Number</label>
+                                <input type="text" className="form-control" id="contactNumber" name="contactNumber" placeholder="" required value={applicationFormData.contactNumber} onChange={handleChange} />
+                            </div>
+                        </div>
+
+                        {/* Email */}
+                        <div className="row g-2 job-form-row">
+                            <div className="col-sm-12">
+                                <label htmlFor="email">Email</label>
+                                <input type="email" className="form-control" id="email" name="email" placeholder="" required value={applicationFormData.email} onChange={handleChange} />
+                            </div>
+                        </div>
+
+                        {/* Resume */}
+                        <div className="row g-2 job-form-row">
+                            <div className="col-sm-12">
+                                <label htmlFor="resume">Upload Resume</label>
+                                <input type="file" className="form-control" id="resume" accept=".pdf,.doc,.docx" required onChange={handleFileChange}/>
+                            </div>
+                        </div>
+
+                        {/* Submit button */}
+                        <div className="submit-button-postajob d-flex justify-content-end">
+                            <button className="btn btn-primary" id="submit-button-postajob" type="submit">Submit</button>
+                        </div>
+                    </form>
                 </div>
-                
-                <form className="apply-job-form" id="apply-job-form" onSubmit={onSubmit}>
-                    {/* Full name */}
-                    <div className="row g-2 job-form-row">
-                        <div className="col-sm-12">
-                            <label htmlFor="fullName">Full Name</label>
-                            <input type="text" className="form-control" id="fullName" name="fullName" placeholder="" required value={applicationFormData.fullName} onChange={handleChange} />
-                        </div>
-                    </div>
-
-                    {/* Contact number */}
-                    <div className="row g-2 job-form-row">
-                        <div className="col-sm-12">
-                            <label htmlFor="contactNumber">Contact Number</label>
-                            <input type="text" className="form-control" id="contactNumber" name="contactNumber" placeholder="" required value={applicationFormData.contactNumber} onChange={handleChange} />
-                        </div>
-                    </div>
-
-                    {/* Email */}
-                    <div className="row g-2 job-form-row">
-                        <div className="col-sm-12">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" className="form-control" id="email" name="email" placeholder="" required value={applicationFormData.email} onChange={handleChange} />
-                        </div>
-                    </div>
-
-                    {/* Resume */}
-                    <div className="row g-2 job-form-row">
-                        <div className="col-sm-12">
-                            <label htmlFor="resume">Upload Resume</label>
-                            <input type="file" className="form-control" id="resume" accept=".pdf,.doc,.docx" required onChange={handleFileChange}/>
-                        </div>
-                    </div>
-
-                    {/* Submit button */}
-                    <div className="submit-button-postajob d-flex justify-content-end">
-                        <button className="btn btn-primary" id="submit-button-postajob" type="submit">Submit</button>
-                    </div>
-                </form>
             </div>
         </div>
     )

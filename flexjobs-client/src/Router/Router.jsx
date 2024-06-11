@@ -13,6 +13,8 @@ import JobSearch from "../modules/Module2/JobSearch";
 import PostJob from "../modules/Module2/PostJob";
 import JobDetails from "../modules/Module2/JobDetails";
 import ApplyJob from "../modules/Module2/ApplyJob";
+import ModifyJobs from "../modules/Module2/ModifyJobs";
+import UpdateJob from "../modules/Module2/UpdateJob";
 
 // Imports for Module 3
 import Chat from "../modules/Module3/Inbox";
@@ -28,7 +30,9 @@ import Results from "../modules/Module5/Result";
 import JobApplied from "../modules/Module5/JobApplied";
 
 // Imports for Module 6
-import Module6Page from "../modules/Module6/Module6Page";
+import Module6Page from "../modules/Module6/ForumMain";
+import NewForum from "../modules/Module6/NewForum";
+import ForumDetails from "../modules/Module6/ForumDetails";
 
 // Modules Page Navigation (the path to the page)
 // Please configure/reconfigure here and include the import
@@ -47,6 +51,8 @@ const router = createBrowserRouter([
         { path: "/PostJob", element: <PostJob/> },
         { path: "/job/:id", element: <JobDetails/> },
         { path: "/ApplyJob", element: <ApplyJob/> },
+        { path: "/ModifyJobs", element: <ModifyJobs/> },
+        { path: "edit-job/:id", element: <UpdateJob/>, loader: ({params}) => fetch(`http://localhost:3000/all-jobs/${params.id}`) },
 
         // Routes for Module 3
         { path: "/Chat", element: <Chat/> },
@@ -62,7 +68,10 @@ const router = createBrowserRouter([
         {path:"/JobApplied",element:<JobApplied/>},
 
         // Routes for Module 6
-        { path: "/Module6Page", element: <Module6Page/> }
+        // Routes for Module 6
+        { path: "/Module6Page", element: <Module6Page/> },
+        { path: "/NewForum", element: <NewForum/> },
+        { path: "/forum/:id", element: <ForumDetails/> }, // Add the route for ForumDetails with a parameter for the forum ID
       ]
     },
   ]);

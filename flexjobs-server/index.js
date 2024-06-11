@@ -5,6 +5,8 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb'); // Impor
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 
+
+
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -43,8 +45,8 @@ const client = new MongoClient(uri, {
 // Mongoose connection
 const uriAlt = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@flexjobs.73fxfs7.mongodb.net/flexjobs-database?retryWrites=true&w=majority`;
 mongoose.connect(uriAlt)
-.then(() => console.log('Connected to MongoDB via Mongoose'))
-.catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
+  .then(() => console.log('Connected to MongoDB via Mongoose'))
+  .catch((error) => console.log('Error connecting to MongoDB via Mongoose:', error));
 
 let database;
 
@@ -60,10 +62,11 @@ async function run() {
 
     // Module 1 Routes
     app.use('/auth', userAuthRoutes);
+    // app.use('/api/education', educationRoutes); // Add education routes
 
     // Module 2 ---------------------------------------------------------------------------------------------------------
     const jobsCollection = database.collection("jobs");
-  
+    
     // Post a job
     app.post("/post-job", async (req, res) => {
       const body = req.body;
@@ -152,8 +155,71 @@ async function run() {
         });
       }
     });
-  
-    // Module 2 ---------------------------------------------------------------------------------------------------------
+
+    // Modify jobs - get jobs by email
+    // Get all jobs
+    app.get("/my-jobs/:email", async (req, res) => {
+      try {
+        const jobs = await jobsCollection.find({postedBy : req.params.email}).toArray();
+        res.send(jobs);
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
+    // Delete a posted job
+    app.delete("/delete-job/:id", async(req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = {_id: new ObjectId(id)}
+        const result = await jobsCollection.deleteOne(filter);
+        res.send(result)
+      } catch (error) {
+        res.status(500).send({
+          message: "Internal Server Error",
+          status: false
+        });
+      }
+    });
+
+    // Edit/Update a job
+    app.patch("/update-job/:id", async (req, res) => {
+      try {
+          const id = req.params.id;
+          const jobData = req.body;
+          const filter = { _id: new ObjectId(id) };
+          const options = { upsert: false };
+          const updateDoc = {
+              $set: {
+                  ...jobData
+              },
+          };
+          const result = await jobsCollection.updateOne(filter, updateDoc, options);
+          if (result.modifiedCount === 1) {
+              res.status(200).send({
+                  message: "Job updated successfully",
+                  status: true
+              });
+          } else {
+              res.status(404).send({
+                  message: "Job not found",
+                  status: false
+              });
+          }
+      } catch (error) {
+          res.status(500).send({
+              message: "Internal Server Error",
+              status: false
+          });
+      }
+    });
+
+
+
+    // End of Module 2 ---------------------------------------------------------------------------------------------------------
   
     // Module 3 ---------------------------------------------------------------------------------------------------------
     const feedbacksCollection = database.collection("feedback");
@@ -181,26 +247,27 @@ async function run() {
 
     // Module 4 Test ---------------------------------------------------------------------------------------------------------
     
+//Module 5 test
+//const { Experience } = require('./models/educationModel'); // Ensure you import your models correctly
+//const educationRoutes = require('./routes/educationRoutes');
 
     // Module 5 ---------------------------------------------------------------------------------------------------------//
 
+    // 5.2 Set up route to save results
+    app.post('/save-results', async (req, res) => {
+      try {
+        const resultsCollection = database.collection("result");
+        const { results } = req.body;
+        const newResult = { results, date: new Date() };
+        const result = await resultsCollection.insertOne(newResult);
+        res.status(200).send(`Result saved with ID: ${result.insertedId}`);
+      } catch (error) {
+        console.error('Error saving results:', error);
+        res.status(500).send('Error saving results');
+      }
+    });
+
     const portfolioCollection = database.collection("portfolio-experience");
-
-       // Set up route to save results
-       app.post('/save-results', async (req, res) => {
-        try {
-          const resultsCollection = database.collection("result");
-          const { username, results } = req.body;
-          const newResult = { username, results, date: new Date() };
-          const result = await resultsCollection.insertOne(newResult);
-          res.status(200).send(`Result saved with ID: ${result.insertedId}`);
-        } catch (error) {
-          console.error('Error saving results:', error);
-          res.status(500).send('Error saving results');
-        }
-      });
-  
-
     // Create a new experience
     app.post('/experience', async (req, res) => {
       try {
@@ -283,7 +350,7 @@ async function run() {
         res.status(500).send('Error creating skill');
       }
     });
-   
+
     // Get all skill
     app.get('/skill', async (req, res) => {
       try {
@@ -294,7 +361,7 @@ async function run() {
         res.status(500).send('Error fetching skill');
       }
     });
-   
+
     // Get a specific skill by ID
     app.get('/skill/:id', async (req, res) => {
       try {
@@ -308,7 +375,7 @@ async function run() {
         res.status(500).send('Error fetching skill');
       }
     });
-   
+
     // Update skill
     app.put('/skill/:id', async (req, res) => {
       try {
@@ -326,7 +393,7 @@ async function run() {
         res.status(500).send('Error updating skill');
       }
     });
-   
+
     // Delete skill
     app.delete('/skill/:id', async (req, res) => {
       try {
@@ -413,6 +480,37 @@ async function run() {
       }
     });
 
+    app.post('/experience', async (req, res) => {
+      try {
+        const { token } = req.cookies;
+        if (!token) return res.status(401).send('Unauthorized');
+    
+        const user = jwt.verify(token, process.env.JWTPRIVATEKEY);
+        const newExperience = new Experience({ ...req.body, userId: user._id });
+    
+        await newExperience.save();
+        res.status(201).send('Experience created successfully');
+      } catch (error) {
+        console.error('Error creating experience:', error);
+        res.status(500).send('Error creating experience');
+      }
+    });
+
+    app.get('/experience', async (req, res) => {
+      try {
+        const { token } = req.cookies;
+        if (!token) return res.status(401).send('Unauthorized');
+    
+        const user = jwt.verify(token, process.env.JWTPRIVATEKEY);
+        const experiences = await Experience.find({ userId: user._id });
+    
+        res.status(200).json(experiences);
+      } catch (error) {
+        console.error('Error fetching experiences:', error);
+        res.status(500).send('Error fetching experiences');
+      }
+    });
+
     const honorCollection = database.collection("portfolio-honor");
 
     // Create a new honor
@@ -426,7 +524,7 @@ async function run() {
         res.status(500).send('Error creating honor');
       }
     });
-  
+
     // Get all honors
     app.get('/honor', async (req, res) => {
       try {
@@ -437,7 +535,7 @@ async function run() {
         res.status(500).send('Error fetching honor');
       }
     });
-  
+
     // Get a specific honor by ID
     app.get('/honor/:id', async (req, res) => {
       try {
@@ -451,7 +549,7 @@ async function run() {
         res.status(500).send('Error fetching honor');
       }
     });
-  
+
     // Update honor
     app.put('/honor/:id', async (req, res) => {
       try {
@@ -469,7 +567,7 @@ async function run() {
         res.status(500).send('Error updating honor');
       }
     });
-  
+
     // Delete honor
     app.delete('/honor/:id', async (req, res) => {
       try {
@@ -483,9 +581,9 @@ async function run() {
         res.status(500).send('Error deleting honor');
       }
     });
-  
+
     const organizationCollection = database.collection("portfolio-organization");
-  
+
     // Create a new organization
     app.post('/organization', async (req, res) => {
       try {
@@ -497,7 +595,7 @@ async function run() {
         res.status(500).send('Error creating organization');
       }
     });
-  
+
     // Get all organizations
     app.get('/organization', async (req, res) => {
       try {
@@ -508,7 +606,7 @@ async function run() {
         res.status(500).send('Error fetching organization');
       }
     });
-  
+
     // Get a specific organization by ID
     app.get('/organization/:id', async (req, res) => {
       try {
@@ -522,7 +620,7 @@ async function run() {
         res.status(500).send('Error fetching organization');
       }
     });
-  
+
     // Update organization
     app.put('/organization/:id', async (req, res) => {
       try {
@@ -540,7 +638,7 @@ async function run() {
         res.status(500).send('Error updating organization');
       }
     });
-  
+
     // Delete organization
     app.delete('/organization/:id', async (req, res) => {
       try {
@@ -554,8 +652,8 @@ async function run() {
         res.status(500).send('Error deleting organization');
       }
     });
-  
-    // Get job applications by email
+
+    // 5.3 Job Applied- Get job applications by email
     app.get("/job-applications/:email", async (req, res) => {
       try {
         const email = req.params.email;
@@ -577,10 +675,215 @@ async function run() {
       }
     });
     // Module 5 ---------------------------------------------------------------------------------------------------------
+// Module 6 ------------------------------------------------------------------------------------------------------
+// Create a new collection for the forum
+    const forumCollection = database.collection("forum");
+
+          // Post a forum topic
+            
+      app.post("/post-forum-topic", async (req, res) => {
+        const { title, content } = req.body;
+        const newPost = {
+          title,
+          content,
+          upvote: 0,
+          downvote: 0,
+          timestamp: new Date(),
+        };
+
+        try {
+          const insertPost = await forumCollection.insertOne(newPost);
+          if (insertPost.insertedId) {
+            return res.status(200).send(insertPost);
+          } else {
+            return res.status(404).send({
+              message: "Cannot insert. Try again later.",
+              status: false,
+            });
+          }
+        } catch (error) {
+          return res.status(500).send({
+            message: "Internal Server Error",
+            status: false,
+          });
+        }
+      });
+          
+
+
+       // Popular Topics Endpoint
+    app.get("/popular-topics", async (req, res) => {
+      try {
+        const popularTopics = await database.collection("forum").find().sort({ upvotes: -1 }).toArray();
+        res.status(200).json(popularTopics);
+      } catch (error) {
+        console.error('Error fetching popular topics:', error);
+        res.status(500).send('Error fetching popular topics');
+      }
+    });
+
+    // Featured Topics Endpoint
+    app.get("/featured-topics", async (req, res) => {
+      try {
+        const featuredTopics = await database.collection("forum").find().sort({ timestamp: 1 }).toArray();
+        res.status(200).json(featuredTopics);
+      } catch (error) {
+        console.error('Error fetching featured topics:', error);
+        res.status(500).send('Error fetching featured topics');
+      }
+    });
+
+      // Route to get a specific forum post by ID
+      app.get("/forum/posts/:id", async (req, res) => {
+        try {
+          const id = req.params.id;
+          const forumPost = await forumCollection.findOne({ _id: new ObjectId(id) });
+          if (forumPost) {
+            res.send(forumPost);
+          } else {
+            res.status(404).send({
+              message: "Forum post not found",
+              status: false
+            });
+          }
+        } catch (error) {
+          res.status(500).send({
+            message: "Internal Server Error",
+            status: false
+          });
+        }
+      });
+
+      
+      const forumCommentCollection = database.collection("forumComments");
+
+      // comments part
+      app.post("/post-forum-comments", async (req, res) => {
+        const {forumId, content } = req.body;
+        const newPost = {
+          forumId,
+          content,
+          upvote: 0,
+          downvote: 0,
+          timestamp: new Date(),
+        };
+
+        try {
+          const insertPost = await forumCommentCollection.insertOne(newPost);
+          if (insertPost.insertedId) {
+            return res.status(200).send(insertPost);
+          } else {
+            return res.status(404).send({
+              message: "Cannot insert. Try again later.",
+              status: false,
+            });
+          }
+        } catch (error) {
+          return res.status(500).send({
+            message: "Internal Server Error",
+            status: false,
+          });
+        }
+      });
+
+      
+      // Endpoint to get all comments
+      app.get('/forum-comments', async (req, res) => {
+        try {
+            // Retrieve all comments
+            const comments = await database.collection('forumComments').find({}).toArray();
+            res.status(200).send(comments);
+            
+        } catch (error) {
+            console.error('Error fetching comments:', error);
+            res.status(500).send({ message: 'Internal server error' });
+        }
+      });
+
+     // Upvote a comment
+     app.patch('/upvote-comment/:id', async (req, res) => {
+      const { id } = req.params;
+     
+      try {
+        // findOneAndUpdate operation
+        const comment = await forumCommentCollection.findOneAndUpdate(
+            { _id: new ObjectId(id) },
+            { $inc: { upvote: 1 } },
+            { new: true }
+        );
+        // Rest of the code...
+    } catch (error) {
+        console.error("Error updating comment:", error); // Log any errors
+        res.status(500).json({ message: "Internal server error" }); // Send an appropriate error response
+    }
+    
+    });
+    
+    // Upvote a comment
+    app.patch('/downvote-comment/:id', async (req, res) => {
+      const { id } = req.params;
+      console.log(id);
+      try {
+        // findOneAndUpdate operation
+        const comment = await forumCommentCollection.findOneAndUpdate(
+            { _id: new ObjectId(id) },
+            { $inc: { downvote: 1 } },
+            { new: true }
+        );
+        // Rest of the code...
+    } catch (error) {
+        console.error("Error updating comment:", error); // Log any errors
+        res.status(500).json({ message: "Internal server error" }); // Send an appropriate error response
+    }
+    
+    });
+    // Remove upvote from a comment
+app.patch('/remove-upvote-comment/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      // Update the comment to decrement the upvote count and remove user from upvotedBy array
+      const comment = await forumCommentCollection.findOneAndUpdate(
+        { _id: new ObjectId(id) },
+        { $inc: { downvote: -1 }},
+        { new: true }
+    );
+  } catch (error) {
+      console.error("Error removing upvote from comment:", error);
+      res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// Remove downvote from a comment
+app.patch('/remove-downvote-comment/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      // Update the comment to decrement the downvote count and remove user from downvotedBy array
+      const updatedComment = await forumCommentCollection.findOneAndUpdate(
+          { _id: new ObjectId(id) },
+          { $inc: { downvote: -1 }},
+          { new: true }
+      );
+
+      res.json(updatedComment);
+  } catch (error) {
+      console.error("Error removing downvote from comment:", error);
+      res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+
+
+
+// End of module 6 -----------------------------------
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error);
   }
 }
+
+
+
+    
 
 // Call the run function
 run().catch(console.error);

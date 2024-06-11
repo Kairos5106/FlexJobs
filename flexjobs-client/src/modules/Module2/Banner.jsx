@@ -5,7 +5,7 @@ const Banner = ({query, locationQuery, handleInputChange, handleLocationInputCha
     return (
         <div className="section">
             {/* Title */}
-            <h1 className="lh-lg fw-bold banner-h1">Find your <span className="blue-text">new job</span> today</h1>
+            <h1 className="lh-lg fw-bold banner-h1 d-flex">Find your&nbsp;<span className="blue-text">new job</span>&nbsp;today</h1>
             <p>Explore a wide range of job opportunities from multiple companies and take the next step in your career journey.</p>
 
             {/* Input fields */}

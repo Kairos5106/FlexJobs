@@ -5,7 +5,7 @@ import './5.2 Result.css';
 const Results = () => {
     const location = useLocation();
     const [results, setResults] = useState({});
-    const username = "sample_username"; // Replace with actual username or get from user context
+    const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
@@ -14,23 +14,24 @@ const Results = () => {
             resultsObj[key] = parseInt(value);
         }
         setResults(resultsObj);
+        setSubmitted(true); 
     }, [location.search]);
 
     useEffect(() => {
-        if (Object.keys(results).length > 0) {
+        if (Object.keys(results).length > 0 && submitted) {
             // Send results to the backend
-            saveResults(username, results);
+            saveResults(results);
         }
-    }, [results]); // Only call saveResults when results change
+    }, [results, submitted]); 
 
-    const saveResults = async (username, results) => {
+    const saveResults = async (results) => {
         try {
             const response = await fetch('http://localhost:3000/save-results', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, results }),
+                body: JSON.stringify({ results }),
             });
 
             if (!response.ok) {
@@ -43,8 +44,8 @@ const Results = () => {
             console.error('Error:', error); // Handle error
         }
     };
-    return (
 
+    return (
         <div>
             <h1 className="Assesstitle">Assessment Results</h1>
             <div className="main-content">
@@ -62,9 +63,9 @@ const Results = () => {
                     ))}
                 </div>
             </div>
-
-            <h1 className="Careertitle">Career Interest Areas</h1>
-            <p class="custom-paragraph">
+            <div>
+                <h1 className="Careertitle">Career Interest Areas</h1>
+                <p class="custom-paragraph">
                 A. Arts, A/V Technology and Communications: Interest in creative or performing arts, communication or A/V technology.
             </p>
             <p class="custom-paragraph">
@@ -118,8 +119,10 @@ const Results = () => {
             <p class="custom-paragraph">
                 R. Transportation, Distribution and Logistics: Interest in the movement of people, materials and goods by road, pipeline, air, railroad or water.
             </p>
+            </div>
         </div>
     );
 };
 
 export default Results;
+
