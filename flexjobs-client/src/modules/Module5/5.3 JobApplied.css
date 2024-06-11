@@ -75,3 +75,13 @@
     color: red;
     margin-left: 5px;
 }
+
+.email-prompt {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+  
+
+.email-prompt h1 {
+    padding-top: 20px;
+  }

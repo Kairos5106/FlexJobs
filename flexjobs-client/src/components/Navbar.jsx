@@ -20,7 +20,9 @@ const Navbar = () => {
         { path: "/", title: "Home" },
         { path: "/JobSearch", title: "Jobs", subItems: [
             { path: "/JobSearch", title: "Search Job" },
-            { path: "/ModifyJobs", title: "Manage Job Post" }
+            { path: "/ModifyJobs", title: "Manage Job Post" },
+            { path: "/JobApplied", title: "Job Applied" },
+
         ]},
         { path: "/Chat", title: "Inbox", subItems: [
             { path: "/Chat", title: "Chat" },
