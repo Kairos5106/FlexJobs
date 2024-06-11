@@ -46,7 +46,7 @@ const JobDetails = () => {
     };
 
     return (
-        <div>
+        <div className='body-module2'>
             {/* Top Section */}
             <div className="back-link-section">
                 <a href="#" className="back-link" onClick={() => window.history.back()}>
@@ -58,11 +58,11 @@ const JobDetails = () => {
             <div className="job-details-section">
                 <div className="section row mx-0">
                     {/* Job Details */}
-                    <div className="job-details col-md-9">
+                    <div className="job-details-panel col-md-9">
                         <div className="job-details-content">
                             <div>
                                 {/* Job title */}
-                                <h1 className="h1" id="job-title">{job.jobTitle}</h1>
+                                <h1 className="h1 d-flex" id="job-title">{job.jobTitle}</h1>
 
                                 {/* Apply button */}
                                 <button onClick={handleApplyClick} className="btn btn-primary apply-job-button">
@@ -74,19 +74,19 @@ const JobDetails = () => {
 
                             {/* Job small details */}
                             <div className="job-small-details job-small-details-jobdetails">
-                                <div className="job-small-details-item location">
+                                <div className="job-small-details-item job-small-details-item-location">
                                     <span className="input-icon"><i className="fa-solid fa-location-dot"></i></span>
                                     <span className="word-beside-icon" id="job-location">{job.jobLocation}</span>
                                 </div>
-                                <div className="job-small-details-item experience-level">
+                                <div className="job-small-details-item job-small-details-item-experience-level">
                                     <span className="input-icon"><i className="fa-solid fa-briefcase"></i></span>
                                     <span className="word-beside-icon" id="job-experience-level">{job.experienceLevel}</span>
                                 </div>
-                                <div className="job-small-details-item salary">
+                                <div className="job-small-details-item job-small-details-item-salary">
                                     <span className="input-icon"><i className="fa-solid fa-dollar-sign"></i></span>
                                     <span className="word-beside-icon" id="job-salary">{job.minSalary}-{job.maxSalary}</span>
                                 </div>
-                                <div className="job-small-details-item time">
+                                <div className="job-small-details-item job-small-details-item-time">
                                     <span className="input-icon"><i className="fa-solid fa-clock"></i></span>
                                     <span className="word-beside-icon" id="date-posted">{calculateDuration()}</span>
                                 </div>

@@ -1,13 +1,23 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Module2.css';
+import FilterSalary from './FilterSalary';
+import FilterExperienceLevel from './FilterExperienceLevel';
 
-const SidePanel = ({handleChange}) => {
+const SidePanel = ({handleChange, handleChangeExperienceLevel}) => {
     return (
-        <>
-            Filter panel
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus earum iste ipsum consectetur! Fugiat veritatis sapiente corrupti iste est? Odit aliquam consectetur eos facilis, dolorem eaque error veritatis magni architecto?
-        </>
+        <div>
+            {/* Side panel heading */}
+            <div class="col-heading filters-col-heading">
+                <h3>Filters</h3>
+            </div>
+
+            {/* Filter based on salary */}
+            <FilterSalary handleChange={handleChange} />
+
+            {/* Filter based on experienceLevel */}
+            <FilterExperienceLevel handleChangeExperienceLevel={handleChangeExperienceLevel} />
+        </div>
     )
 }
 
