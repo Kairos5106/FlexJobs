@@ -682,8 +682,9 @@ async function run() {
           // Post a forum topic
             
       app.post("/post-forum-topic", async (req, res) => {
-        const { title, content } = req.body;
+        const { title, content, name } = req.body;
         const newPost = {
+          name,
           title,
           content,
           upvote: 0,
@@ -759,8 +760,9 @@ async function run() {
 
       // comments part
       app.post("/post-forum-comments", async (req, res) => {
-        const {forumId, content } = req.body;
+        const {forumId, content, name } = req.body;
         const newPost = {
+          name,
           forumId,
           content,
           upvote: 0,

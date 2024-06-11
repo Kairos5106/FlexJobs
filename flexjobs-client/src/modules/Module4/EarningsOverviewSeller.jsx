@@ -22,12 +22,12 @@ const EarningsOverviewSeller = ({ totalEarnings, earningsPast30Days, averageDail
           </div>
         </div>
         <div className="col-md-1 custom-earnings-width"></div>
-        <div className="col-md-2 card bg-light text-center">
+        {/* <div className="col-md-2 card bg-light text-center">
           <div className="col-md-12">
             <h4 className="mb-2 mt-2">Earnings Trend</h4>
             <img src={earningsTrendImg} alt="Earnings Trend" className="img-fluid" style={{ maxWidth: "80%", height: "auto" }} />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

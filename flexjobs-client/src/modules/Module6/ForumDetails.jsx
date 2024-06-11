@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { UserContext } from '../../context/userContext'; // Import the UserContext
+
 import './forumStyle.css'; // Import the CSS file for styling
 import axios from 'axios'; // Import axios for making HTTP requests
+
 
 const forumDetails = () => {
     const { id } = useParams(); // Access the URL parameter
@@ -12,7 +15,14 @@ const forumDetails = () => {
     const [sortBy, setSortBy] = useState('oldest');
     const [upvotedComments, setUpvotedComments] = useState({});
     const [downvotedComments, setDownvotedComments] = useState({});
+    const { user } = useContext(UserContext); // Get user data from context
 
+    useEffect(() => {
+        // This effect runs once when the component mounts and any time the user changes
+        if (user) {
+            console.log('User:', user);
+        }
+    }, [user]);
 
     useEffect(() => {
         
@@ -237,6 +247,7 @@ console.log('Comments:', comments);
         }
     
         const newPost = {
+            name: user ? user.name : 'Anonymous', // Add username to newPost
             forumId: id,
             content,
             upvote: 0,
@@ -275,14 +286,14 @@ console.log('Comments:', comments);
     
             {/* Discussion Forum title */}
             <div>
-                <h1 id="discussion-forum-title">{comments.content}</h1>
+                <h1 id="space-forum">{comments.content}</h1>
             </div>
 
             {/* Topic */}
             <div className="topic-details-box">
                 <h1>{forum.title}</h1>
                 <div dangerouslySetInnerHTML={{ __html: forum.content }}></div>
-                <h3>by <span className="username">{forum.username ? forum.username : 'Anonymous'}</span></h3>
+                <h3>by <span className="username">{forum.name ? forum.name : 'Anonymous'}</span></h3>
             </div>
 
 
@@ -304,7 +315,7 @@ console.log('Comments:', comments);
             <div key={index} className="post">
                 <div className="profilepic-name">
                     <img className="profilepic" src={forum.username ? forum.username : 'https://i.pinimg.com/736x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'} alt="Profile Picture" />
-                    <h1 className='username-details'>{forum.username ? forum.username : 'Anonymous'}</h1>
+                    <h1 className='username-details'>{comment ? comment.name : 'Anonymous'}</h1>
                 </div>
                 
                 <div className="post-content-container">

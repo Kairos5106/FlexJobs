@@ -1,28 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Module2.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/userContext'; // Import UserContext
 
 const ModifyJobs = () => {
-    const email = "admin@gmail.com";
+    const { user } = useContext(UserContext); // Access user from UserContext
     const [jobs, setJobs] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [filteredJobs, setFilteredJobs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
-    // Fetch jobs posted by a user based on email using the route
+    // Fetch jobs posted by the logged-in user using user.email
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:3000/my-jobs/${email}`)
-            .then(res => res.json())
-            .then(data => {
-                setJobs(data);
-                setFilteredJobs(data); // Set filtered jobs initially
-                setIsLoading(false);
-            })
-            .catch(err => console.error('Failed to fetch job details:', err));
-    }, []);
+        if (user) {
+            fetch(`http://localhost:3000/my-jobs/${user.email}`) // Use user.email
+                .then(res => res.json())
+                .then(data => {
+                    setJobs(data);
+                    setFilteredJobs(data); // Set filtered jobs initially
+                    setIsLoading(false);
+                })
+                .catch(err => console.error('Failed to fetch job details:', err));
+        }
+    }, [user]); // Trigger effect when user changes
 
     // Search for a particular job based on keyword
     const handleSearch = () => {

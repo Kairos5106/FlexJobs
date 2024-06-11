@@ -15,6 +15,7 @@ const projectSchema = new Schema({
   completionDate: Date,
   paymentStatus: String,
   totalAmountPaid: Number,
+  paymentLink: String,
   transactions: [
     {
       transactionId: String,

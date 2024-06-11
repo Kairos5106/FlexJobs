@@ -20,7 +20,9 @@ const Navbar = () => {
         { path: "/", title: "Home" },
         { path: "/JobSearch", title: "Jobs", subItems: [
             { path: "/JobSearch", title: "Search Job" },
-            { path: "/ModifyJobs", title: "Manage Job Post" }
+            { path: "/ModifyJobs", title: "Manage Job Post" },
+            { path: "/JobApplied", title: "Job Applied" },
+
         ]},
         { path: "/Chat", title: "Inbox", subItems: [
             { path: "/Chat", title: "Chat" },
@@ -31,7 +33,6 @@ const Navbar = () => {
             { path: "/Portfolio", title: "Portfolio" },
             { path: "/CareerAssessInterest", title: "Career Access Interest" },       
             { path: "/Payments", title: "Payments" },
-            { path: "/Settings", title: "Settings" }
         ]}
     ];
 

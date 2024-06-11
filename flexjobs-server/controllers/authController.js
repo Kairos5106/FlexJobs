@@ -97,7 +97,8 @@ const loginUser = async (req, res) => {
                 {
                     _id: user._id,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    phoneNo: user.phoneNo
                 }, 
                 process.env.JWTPRIVATEKEY, { expiresIn: '7d' }, 
                 (error, token) => {
