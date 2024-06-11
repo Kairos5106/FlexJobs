@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Chat from './Chat'
+import Chat from '../Chat'
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
 
 const DirectChat = () => {

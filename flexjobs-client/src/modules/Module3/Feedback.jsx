@@ -35,7 +35,7 @@ const StarRating = ({ rating, setRating }) => (
 
 // Feedback Form Component
 const FeedbackForm = ({ formData, setFormData, handleSubmit, categories }) => (
-    <form id="feedback-form" onSubmit={handleSubmit}>
+    <form className="feedback-form" id="feedback-form" onSubmit={handleSubmit}>
         <h1>Feedback Form</h1>
         <InputField
             type="text"

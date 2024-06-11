@@ -8,11 +8,11 @@
   padding: 0;
 }
 
-body{
-  padding-top: 70px; /* to give space for navbar before render webpage content */
+/* body{
+  padding-top: 70px; to give space for navbar before render webpage content
   padding-left: 0px;
   padding-right: 0px;
-}
+} */
 
 .ce-chat-list {
   background-color: rgb(240, 240, 240) !important;
@@ -74,7 +74,7 @@ body{
 }
 
 .ce-chat-avatars-row {
-  display: flex !important;
+  display: none;
 }
 
 
@@ -289,7 +289,7 @@ body{
   font-size: 62, 5%;
 }
 
-.wrapper {
+/* .wrapper {
   height: 100vh;
   width: 100%;
   background: rgb(117, 84, 160);
@@ -367,4 +367,4 @@ body{
 .button:hover span:after {
   opacity: 1;
   right: 0;
-}
+} */
