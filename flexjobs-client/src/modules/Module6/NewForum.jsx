@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext , useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/userContext'; // Import the UserContext
 import './forumStyle.css'; // Import the CSS file for styling
 
 const NewForum = () => {
@@ -8,6 +9,15 @@ const NewForum = () => {
     const [content, setContent] = useState('');
     const [fontSize, setFontSize] = useState(16); // Default font size
     const navigate = useNavigate();
+    const { user } = useContext(UserContext); // Get user data from context
+
+
+    useEffect(() => {
+        // This effect runs once when the component mounts and any time the user changes
+        if (user) {
+            console.log('User:', user);
+        }
+    }, [user]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,6 +29,7 @@ const NewForum = () => {
         }
     
         const newPost = {
+            name: user ? user.name : 'Anonymous', // Add username to newPost
             title,
             content,
             upvote: 0,
@@ -80,7 +91,7 @@ const NewForum = () => {
         <div className="forum-header-and-section">
             {/* Discussion Forum title */}
             <div>
-                <h1 id="discussion-forum-title">New Topic</h1>
+                <h1 id="space-forum">New Topic</h1>
             </div>
 
             {/* Topic title input */}

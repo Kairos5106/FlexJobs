@@ -242,11 +242,11 @@ th {
 .input-icon-payments {
   position: relative;
   display: inline-block;
-  width: 13em;
+  width: 14em;
 }
 .input-icon-payments .fa-calendar {
   position: absolute;
-  left: 11.5em;
+  left: 12.5em;
   top: 50%;
   transform: translateY(-50%);
 }

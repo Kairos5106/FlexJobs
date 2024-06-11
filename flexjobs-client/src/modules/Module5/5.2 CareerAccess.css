@@ -25,7 +25,8 @@
 h1 {
     text-align: center;
     color: #333;
-    font-weight: bold;   
+    font-weight: bold; 
+    padding-top: 30px;  
 }
 
 h2 {
@@ -116,3 +117,4 @@ input[type="checkbox"] {
 .question-container input[type="checkbox"] {
     margin-right: 10px; 
 }
+
