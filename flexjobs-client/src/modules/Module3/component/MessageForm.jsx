@@ -28,7 +28,8 @@ const MessageForm = (props) => {
             sendMessage(creds, chatId, { files: [preview] });
             setPreview(null);
         }
-            
+        
+        window.location.reload();
     }
 
     const handleChange = (event) => {

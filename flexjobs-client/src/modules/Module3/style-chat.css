@@ -23,8 +23,8 @@
 }
 
 .ce-active-chat-card {
-  background-color: #F9E0AB !important;
-  border: 4px solid #F9E0AB !important;
+  background-color: #D9F6FF !important;
+  border: 4px solid #D9F6FF !important;
   border-radius: 0px !important;
 }
 
@@ -37,14 +37,14 @@
 }
 
 .ce-text-input {
-  border-radius: 6px !important;
-  border: 1px solid #F9E0AB !important;
+  border-radius: 6px #1F3051 !important;
+  border: 1px solid #1F3051 !important;
 }
 
 .ce-primary-button {
   border-radius: 6px !important;
-  background-color: #F9E0AB !important;
-  color: #5a5959 !important;
+  background-color: #1F3051 !important;
+  color: #fff !important;
   position: relative;
   bottom: 1px;
 }
@@ -136,6 +136,13 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 48px;
+}
+
+.default-message {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+  font-size: 16px;
 }
 
 .message {
@@ -278,6 +285,19 @@
 .image-preview button:hover {
   background-color: #ff7875;
 }
+
+
+
+.message-sender-name {
+  font-weight: 800;
+  margin-right: 8px;
+  font-size: 10px;
+  color:#4d4f5a;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
 
 /* FORM STYLES */
 *,
