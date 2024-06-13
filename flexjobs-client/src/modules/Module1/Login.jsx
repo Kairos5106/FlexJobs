@@ -22,6 +22,7 @@ const Login = () => {
         password
       });
       if(data.error){
+        console.log("Error: ", data.error);
         toast.error(data.error);
       } else {
         setData({});

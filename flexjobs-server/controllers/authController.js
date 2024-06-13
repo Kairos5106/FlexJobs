@@ -80,15 +80,15 @@ const loginUser = async (req, res) => {
         // Check if user exists
         const user = await User.findOne({email});
         if(!user){
-            return res.status(401).json({ // 401 is for unauthorized
+            return res.json({ // 401 is for unauthorized
                 error: 'User with corresponding email does not exist'
-            })
+            });
         }
         // Prompt user to enter password if password is not entered
         if(!password){
             return res.json({
                 error: 'Please enter your password'
-            })
+            });
         }
         // Check if password matches email
         const match = await comparePassword(password, user.password);
