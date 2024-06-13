@@ -14,13 +14,18 @@
     border-radius: 20px;
     width: calc(33.33% - 20px); /* One-third of the available width with a gap of 20px */
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .card-header-jobapplied {
-
+    background-color: #f1e8e8;
     font-size: 24px;
     font-weight: bold;
+    padding:10px;
+}
+
+.card-body-jobapplied  {
+    padding:10px;
 }
 
 .card-body-jobapplied p {
@@ -77,11 +82,51 @@
 }
 
 .email-prompt {
-    padding-left: 100px;
-    padding-right: 100px;
+    max-width: 600px; 
+    margin: 100px auto; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-
-.email-prompt h1 {
-    padding-top: 20px;
+  .email-prompt h1 {
+    text-align: center; 
+    margin-top: 0;
+    color: #333; 
+    padding-bottom: 20px;
   }
+  
+  .email-prompt form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .email-prompt input[type="email"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .email-prompt input[type="email"]:focus {
+    outline: none;
+    border-color: #66afe9; 
+  }
+  
+  .email-prompt button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .email-prompt button[type="submit"]:hover {
+    background-color:#1F3051; 
+  }
+  
