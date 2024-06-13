@@ -1,14 +1,37 @@
+import React from 'react';
+
 const TheirMessage = ({ lastMessage, message }) => {
     const isFirstMessageByUser = !lastMessage || lastMessage.sender.username !== message.sender.username;
+
+    const getInitials = (name) => {
+        const initials = name.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
+        return initials;
+    };
+
+    const avatar = message?.sender?.avatar || null;
+    const initials = getInitials(message.sender.username);
 
     return (
         <div className="message-row">
             {isFirstMessageByUser && (
-                <div>
-                    <div
-                        className="message-avatar"
-                        style={{ backgroundImage: `url(${message?.sender?.avatar})` }}
-                    />
+                <div className="message-avatar">
+                    {avatar ? (
+                        <div
+                            className="avatar-image"
+                            style={{ 
+                                backgroundImage: `url(${avatar})`,
+                                backgroundSize: 'cover', // Ensure the image covers the div
+                                backgroundPosition: 'center', // Center the image in the div
+                                width: '40px', // Adjust size as needed
+                                height: '40px', // Adjust size as needed
+                                borderRadius: '50%' // Make it a circle
+                            }}
+                        />
+                    ) : (
+                        <div className="initials-avatar">
+                            {initials}
+                        </div>
+                    )}
                 </div>
             )}
             {message?.attachments?.length > 0
@@ -27,7 +50,6 @@ const TheirMessage = ({ lastMessage, message }) => {
                         {message.text}
                     </div>
                 )
-
             }
         </div>
     );

@@ -4,8 +4,7 @@ import MyMessage from "./MyMessage";
 import TheirMessage from "./TheirMessage";
 
 const ChatFeed = (props) => {
-    const { chats, activeChat, userName, messages, setActiveChat, createChat } = props;
-    const [newChatTitle, setNewChatTitle] = useState("");
+    const { chats, activeChat, userName, messages, setActiveChat} = props;
     const [messageIds, setMessageIds] = useState([]);
     const [localMessages, setLocalMessages] = useState({});
 
@@ -32,19 +31,6 @@ const ChatFeed = (props) => {
 
     const chat = chats && chats[activeChat];
 
-    const renderReadReceipts = (message, isMyMessage) => {
-        return chat.people.map((person, index) => person.last_read === message.id && (
-            <div
-                key={`read_${index}`}
-                className="read-receipt"
-                style={{
-                    float: isMyMessage ? 'right' : 'left',
-                    backgroundImage: `url(${person?.person?.avatar})`
-                }}
-            />
-        ));
-    };
-
     const renderMessages = () => {
         return messageIds.map((messageId, index) => {
             const message = localMessages[messageId];
@@ -58,21 +44,9 @@ const ChatFeed = (props) => {
                             ? <MyMessage message={message} />
                             : <TheirMessage message={message} lastMessage={lastMessage} />}
                     </div>
-                    {!isMyMessage && (
-                        <div className="read-receipts" style={{ marginRight: isMyMessage ? '18px' : '0px', marginLeft: isMyMessage ? '0px' : '68px' }}>
-                            {renderReadReceipts(message, isMyMessage)}
-                        </div>
-                    )}
                 </div>
             );
         });
-    };
-
-    const handleCreateChat = () => {
-        if (newChatTitle.trim()) {
-            createChat(newChatTitle);
-            setNewChatTitle("");
-        }
     };
 
     const handleSendMessage = (message) => {
