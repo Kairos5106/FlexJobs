@@ -50,7 +50,8 @@
 }
 
 .ce-danger-button {
-  background-color: white !important;
+  background-color: #ff4d4f !important;
+  color: white !important;  
   border-radius: 22px !important;
 }
 

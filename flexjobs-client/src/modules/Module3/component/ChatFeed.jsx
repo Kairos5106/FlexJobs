@@ -1,11 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MessageForm from "./MessageForm";
 import MyMessage from "./MyMessage";
 import TheirMessage from "./TheirMessage";
 
 const ChatFeed = (props) => {
-    const { chats, activeChat, userName, messages, createChat } = props;
+    const { chats, activeChat, userName, messages, setActiveChat, createChat } = props;
     const [newChatTitle, setNewChatTitle] = useState("");
+    const [messageIds, setMessageIds] = useState([]);
+    const [localMessages, setLocalMessages] = useState({});
+
+    const chatFeedRef = useRef(null);
+
+    useEffect(() => {
+        if (chats && !activeChat) {
+            const firstChatId = Object.keys(chats)[0];
+            setActiveChat(firstChatId);
+        }
+    }, [chats, activeChat, setActiveChat]);
+
+    useEffect(() => {
+        setLocalMessages(messages);
+        setMessageIds(Object.keys(messages));
+        scrollToBottom();
+    }, [messages]);
+
+    const scrollToBottom = () => {
+        if (chatFeedRef.current) {
+            chatFeedRef.current.scrollTop = chatFeedRef.current.scrollHeight;
+        }
+    };
 
     const chat = chats && chats[activeChat];
 
@@ -23,25 +46,23 @@ const ChatFeed = (props) => {
     };
 
     const renderMessages = () => {
-        const keys = Object.keys(messages);
-
-        return keys.map((key, index) => {
-            const message = messages[key];
-            const lastMessageKey = index === 0 ? null : keys[index - 1];
-            const isMyMessage = userName === message.sender.username;
+        return messageIds.map((messageId, index) => {
+            const message = localMessages[messageId];
+            const lastMessage = index === 0 ? null : localMessages[messageIds[index - 1]];
+            const isMyMessage = message.sender.username === userName;
 
             return (
-                <div key={`msg_${index}`} style={{ width: '100%' }} >
+                <div key={messageId} style={{ width: '100%' }}>
                     <div className="message-block">
-                        {
-                            isMyMessage
-                                ? <MyMessage message={message} />
-                                : <TheirMessage message={message} lastMessage={messages[lastMessageKey]} />
-                        }
+                        {isMyMessage
+                            ? <MyMessage message={message} />
+                            : <TheirMessage message={message} lastMessage={lastMessage} />}
                     </div>
-                    <div className="read-receipts" style={{ marginRight: isMyMessage ? '18px' : '0px', marginLeft: isMyMessage ? '0px' : '68px' }} >
-                        {renderReadReceipts(message, isMyMessage)}
-                    </div>
+                    {!isMyMessage && (
+                        <div className="read-receipts" style={{ marginRight: isMyMessage ? '18px' : '0px', marginLeft: isMyMessage ? '0px' : '68px' }}>
+                            {renderReadReceipts(message, isMyMessage)}
+                        </div>
+                    )}
                 </div>
             );
         });
@@ -54,6 +75,15 @@ const ChatFeed = (props) => {
         }
     };
 
+    const handleSendMessage = (message) => {
+        setLocalMessages((prevMessages) => ({
+            ...prevMessages,
+            [message.id]: message
+        }));
+        setMessageIds((prevIds) => [...prevIds, message.id]);
+        scrollToBottom();
+    };
+
     return (
         <div className="chat-feed-container">
             {chats && Object.keys(chats).length > 0 ? (
@@ -62,14 +92,14 @@ const ChatFeed = (props) => {
                         <div className="chat-title-container">
                             <div className="chat-title">{chat.title}</div>
                             <div className="chat-subtitle">
-                                {chat.people.map((person) => `${person.person.username}`).join(', ')}
+                                {chat.people.map((person) => person.person.username).join(', ')}
                             </div>
                         </div>
-                        <div className="chat-feed">
+                        <div className="chat-feed" ref={chatFeedRef}>
                             {renderMessages()}
                             <div style={{ height: '100px' }} />
                             <div className="message-form-container">
-                                <MessageForm {...props} chatId={activeChat} />
+                                <MessageForm {...props} chatId={activeChat} onSendMessage={handleSendMessage} />
                             </div>
                         </div>
                     </>
@@ -80,19 +110,11 @@ const ChatFeed = (props) => {
                 )
             ) : (
                 <div className="default-message">
-                    <p>Loading...</p> <br/><br /><br />
-                    <p>No chats available? Create a new chat to start chatting!</p>
-                    <input
-                        type="text"
-                        value={newChatTitle}
-                        onChange={(e) => setNewChatTitle(e.target.value)}
-                        placeholder="Enter chat title"
-                    />
-                    <button onClick={handleCreateChat}>Create Chat</button>
+                    <p>Loading...</p>
                 </div>
             )}
         </div>
     );
-}
+};
 
 export default ChatFeed;
