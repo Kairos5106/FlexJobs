@@ -33,17 +33,39 @@ const ChatFeed = (props) => {
     const chat = chats && chats[activeChat];
 
     const renderReadReceipts = (message, isMyMessage) => {
-        return chat.people.map((person, index) => person.last_read === message.id && (
-            <div
-                key={`read_${index}`}
-                className="read-receipt"
-                style={{
-                    float: isMyMessage ? 'right' : 'left',
-                    backgroundImage: `url(${person?.person?.avatar})`
-                }}
-            />
-        ));
+        return chat.people.map((person, index) => {
+            if (person.last_read === message.id) {
+                const avatar = person?.person?.avatar;
+                const initials = person.person.username.charAt(0).toUpperCase(); // Assuming the username is available
+                return (
+                    <div
+                        key={`read_${index}`}
+                        className="read-receipt"
+                        style={{
+                            float: isMyMessage ? 'right' : 'left',
+                            backgroundImage: avatar ? `url(${avatar})` : 'none',
+                            backgroundSize: 'cover', // Ensure the image covers the div
+                            backgroundPosition: 'center', // Center the image in the div
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontWeight: 'bold',
+                            fontSize: '12px',
+                            backgroundColor: 'gray', // Background color for initials
+                            width: '24px', // Adjust size as needed
+                            height: '24px', // Adjust size as needed
+                            borderRadius: '50%' // Make it a circle
+                        }}
+                    >
+                        {!avatar && initials}
+                    </div>
+                );
+            }
+            return null;
+        });
     };
+    
 
     const renderMessages = () => {
         return messageIds.map((messageId, index) => {

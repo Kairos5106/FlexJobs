@@ -299,6 +299,19 @@
 
 
 
+.initials-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: gray;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
 
 /* FORM STYLES */
 *,
