@@ -62,7 +62,7 @@ const JobDetails = () => {
                         <div className="job-details-content">
                             <div>
                                 {/* Job title */}
-                                <h1 className="h1 d-flex" id="job-title">{job.jobTitle}</h1>
+                                <h1 className="h1 d-flex py-0 text-start" id="job-title">{job.jobTitle}</h1>
 
                                 {/* Apply button */}
                                 <button onClick={handleApplyClick} className="btn btn-primary apply-job-button">
