@@ -121,9 +121,9 @@ const Navbar = () => {
                     {/* Logout */}
                     {!!user && (
                         <li>
-                            <button className='nav-item' onClick={handleLogout}>
+                            <Link className='nav-item logout-button' onClick={handleLogout}>
                                 <i className="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Log out
-                            </button>
+                            </Link>
                         </li>
                     )}
                 </ul>
