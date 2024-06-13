@@ -16,13 +16,15 @@ const JobSearch = () => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const [localJobs, remoteJobs] = await Promise.all([
-                    fetch("jobs.json").then(res => res.json()),
+                const [remoteJobs] = await Promise.all([
+                //const [localJobs, remoteJobs] = await Promise.all([
+                    //fetch("jobs.json").then(res => res.json()),
                     fetch("http://localhost:3000/all-jobs").then(res => res.json())
                 ]);
 
                 // Combine the data from both sources
-                setJobs([...localJobs, ...remoteJobs]);
+                //setJobs([...localJobs, ...remoteJobs]);
+                setJobs([...remoteJobs]);
             } catch (err) {
                 console.error('Failed to fetch jobs data:', err);
             }
