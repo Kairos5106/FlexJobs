@@ -17,6 +17,7 @@ const { default: mongoose } = require('mongoose');
 
 //Imports for Module 4
 const transactionRoutes = require('./routes/transactionRoutes');
+const { handlePaymentSucceess } = require('./controllers/transactionController');
 
 
 app.listen(port, () => {
@@ -883,9 +884,50 @@ app.patch('/remove-downvote-comment/:id', async (req, res) => {
   }
 }
 
-
-
-    
-
 // Call the run function
 run().catch(console.error);
+
+//Setip stripe
+const stripe = require('stripe')('sk_test_51P7MjjC3M1MsOJ0dVN49NCa1mc3lfaMgXEfy4ofirJncmcebrQJQxX8qa795z6UvEhR9MR3Vj1xfneklcodX5N7c00MWDhgKaF');
+
+const endpointSecret = "whsec_b9f6f7c9e1f06dff86c3819ddfd31d1223b28645878e48f63f0978c79541ee82";
+
+// async function retrieveSession() {
+//   const session = stripe.checkout.sessions.retrieve(
+//     'sk_test_51P7MjjC3M1MsOJ0dVN49NCa1mc3lfaMgXEfy4ofirJncmcebrQJQxX8qa795z6UvEhR9MR3Vj1xfneklcodX5N7c00MWDhgKaF',
+//     {
+//       expand: ['line_items'],
+//     }
+//   );
+//   console.log(session);
+// }
+
+//Setup stripe webhook
+app.post('/webhook', async (request, response) => {
+  const event = request.body;
+
+  // Handle the event
+  switch (event.type) {
+    case 'checkout.session.completed':
+      // console.log(retrieveSession());
+      const session = event.data.object;
+      const { line_items } = await stripe.checkout.sessions.retrieve(
+        session.id,
+        { expand: ['line_items'] }
+      );
+
+      const paymentIntentSucceeded = event.data.object;
+      handlePaymentSucceess(line_items);
+      console.log(`CHECKOUT ${paymentIntentSucceeded}`)
+      break;
+      // Then define and call a function to handle the event payment_intent.succeeded
+    // ... handle other event types
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+
+  console.log('Success:', event.data.object);
+
+  // Return a 200 response to acknowledge receipt of the event
+  response.send();
+});

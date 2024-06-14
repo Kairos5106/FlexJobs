@@ -53,25 +53,12 @@ class Payments extends React.Component {
     }
   };
 
-  //
-
   state = {
-    // state variables
     projects: [],
     totalEarned: 0,
     totalProjects: 0,
   };
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3000/Payments/getAllProjects')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       this.setState({ projects: data });
-  //     })
-  //     .catch(error => {
-  //       console.error('Error:', error);
-  //     });
-  // }
   componentDidMount() {
     const { user } = this.context;
 
@@ -85,17 +72,12 @@ class Payments extends React.Component {
           console.error('Error:', error);
         });
     }
-
+    console.log(this.state.projects)
     //Calling method 
-    this.getTotalEarned();
-
+    this.getTotalEarned()
     
   }
 
-
-  switchPage = () => {
-    // logic to switch page
-  };
 
   render() {
     return (

@@ -16,6 +16,7 @@ const projectSchema = new Schema({
   paymentStatus: String,
   totalAmountPaid: Number,
   paymentLink: String,
+  pdfLink: String,
   transactions: [
     {
       transactionId: String,

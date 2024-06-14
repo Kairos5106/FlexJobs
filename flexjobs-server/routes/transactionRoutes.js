@@ -6,18 +6,15 @@ const transactionController = require('../controllers/transactionController'); /
 // router.get('/', transactionController.getUserTransactions); // Handle GET requests 
 
 // TEST ROUTE
-router.get('/test-message', transactionController.testProjectPayments);
-
 router.get('/getAllProjects', transactionController.getAllProjects);
-
-router.post('/createProject', transactionController.createProject);
 
 router.get('/getProjectsByUserId/:userId', transactionController.getProjectsByUserId);
 
 router.get('/getUsernameById/:userId', transactionController.getUserNameById);
 
-
 // get user totalEarned
 router.get('/getTotalEarned/:userId', transactionController.getTotalEarned);
+
+
 
 module.exports = router;

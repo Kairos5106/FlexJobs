@@ -12,7 +12,7 @@ const EarningsOverviewSeller = ({ totalEarnings, earningsPast30Days, averageEarn
               <p className="mb-0 fw-bold text-center fs-2">RM {totalEarnings}</p>
             </div>
             <div className="col-md-4 earnings-border">
-              <h4 className="mb-4 mt-4">Earnings Past 30 Days</h4>
+              <h4 className="mb-4 mt-4">Average monthly earning</h4>
               <p className="mb-0 fw-bold text-center fs-2">RM {earningsPast30Days}</p>
             </div>
             <div className="col-md-4">

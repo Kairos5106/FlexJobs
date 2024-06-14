@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 const PaymentsTable = ({ projects }) => {
   const [usernames, setUsernames] = useState([]);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [filteredProjects, setFilteredProjects] = useState([]);
+  
 
   const getUserNameById = async (userId) => {
     try {
@@ -14,11 +18,25 @@ const PaymentsTable = ({ projects }) => {
   };
 
   useEffect(() => {
+    const newProjects = projects.filter(project => {
+      const projectDate = new Date(project.completionDate ? project.completionDate : project.createdAt);
+      if (startDate && projectDate < new Date(startDate)) return false;
+      if (endDate && projectDate > new Date(endDate)) return false;
+      console.log(startDate, endDate)
+      return true;
+    });
+  
+    setFilteredProjects(newProjects); // Use the state here
+    console.log('filtered projects', newProjects)
+  }, [projects, startDate, endDate]);
+
+  useEffect(() => {
     const fetchUsernames = async () => {
       const newNames = {};
       const promises = projects.map(async project => {
         const username = await getUserNameById(project.clientId);
         newNames[project.clientId] = username;
+        return username; // Return the promise here
       });
   
       await Promise.all(promises);
@@ -39,16 +57,18 @@ const PaymentsTable = ({ projects }) => {
         </div>
         <div className="card-header d-flex justify-content-between align-items-center filter-content">
           <div className="tw-flex tw-items-center">
-            <div className="input-icon-payments">
-              <input aria-label="date" type="text" className=" form-control form-control-sm" defaultValue="Mar 1, 2024 - Jun 11, 2024" readOnly/>
-              <i className="fa-regular fa-calendar"></i>
-            </div>
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+              <span className="tw-mx-4">Start date</span>
+              <input aria-label="start date" type="date" className="tw-bg-white tw-text-black" onChange={e => setStartDate(e.target.value)}/>
+              <span className="tw-mx-4">End date</span>
+              <input aria-label="end date" type="date" className="tw-bg-white tw-text-black" onChange={e => setEndDate(e.target.value)} />
+          </div>
             {/* <div className="filter-icon">
               <i className="fa-solid fa-sliders"></i>
               <button type="button" className="btn btn-sm ms-3">Filters</button>
             </div> */}
           </div>
-          <button className="btn btn-success btn-sm btn-rounded">Download invoices</button>
+          {/* <button className="btn btn-success btn-sm btn-rounded">Download invoices</button> */}
         </div>
         {/* payment data */}
         <div className="container-payments">
@@ -66,12 +86,14 @@ const PaymentsTable = ({ projects }) => {
               </thead>
               {/* payment table data */}
                 <tbody id='table-data-payments'>
-                    {projects?.map(project => (
+                    {filteredProjects?.map(project => (
                         <tr key={project._id}>
                             <td style={{paddingLeft: "16px"}}>
-                              {project.completionDate 
-                              ? new Date(project.completionDate).toLocaleDateString() 
-                              : "Unpaid"}
+                            {
+                              project.completionDate 
+                                ? new Date(project.completionDate).toLocaleDateString() 
+                                : new Date(project.createdAt).toLocaleDateString()
+                            }
                             </td>
                             <td>{project.paymentStatus}</td>
                             <td>{project.title}</td>
@@ -79,7 +101,7 @@ const PaymentsTable = ({ projects }) => {
                             {/* <td>{ project.freelancerId}</td> */}
                             <td className="text-success">+RM{project.totalAmountPaid}</td>
                             <td>
-                                <a href="https://us1.pdfgeneratorapi.com/api/v4/documents/55858/a69110b65ed8edfe4c032226eef4d8ea/share" target="_blank">{project._id}</a>
+                                <a href={project.pdfLink} target="_blank">{project._id}</a>
                             </td>
                         </tr>
                     ))}
