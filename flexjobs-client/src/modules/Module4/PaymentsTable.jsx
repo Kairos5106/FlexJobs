@@ -43,10 +43,10 @@ const PaymentsTable = ({ projects }) => {
               <input aria-label="date" type="text" className=" form-control form-control-sm" defaultValue="Mar 1, 2024 - Jun 11, 2024" readOnly/>
               <i className="fa-regular fa-calendar"></i>
             </div>
-            <div className="filter-icon">
+            {/* <div className="filter-icon">
               <i className="fa-solid fa-sliders"></i>
               <button type="button" className="btn btn-sm ms-3">Filters</button>
-            </div>
+            </div> */}
           </div>
           <button className="btn btn-success btn-sm btn-rounded">Download invoices</button>
         </div>
@@ -112,8 +112,6 @@ const PaymentsTable = ({ projects }) => {
                       <ul className="pagination justify-content-center">
                         <li className="page-item"><a className="page-link" href="#">Previous</a></li>
                         <li className="page-item"><a className="page-link" href="#">1</a></li>
-                        <li className="page-item"><a className="page-link" href="#">2</a></li>
-                        <li className="page-item"><a className="page-link" href="#">3</a></li>
                         <li className="page-item"><a className="page-link" href="#">Next</a></li>
                       </ul>
                     </nav>

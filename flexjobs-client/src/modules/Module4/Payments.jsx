@@ -16,89 +16,50 @@ import { UserContext } from '../../context/userContext';
 class Payments extends React.Component {
   static contextType = UserContext;
 
-  testProjectPayments = async () => {
-    // try {
-    //   const response = await fetch('http://localhost:3000/Payments/test-message');
-
-    //   // Check if the content type is JSON
-    //   const contentType = response.headers.get("content-type");
-    //   if (contentType && contentType.indexOf("application/json") !== -1) {
-    //     const data = await response.json();
-    //     console.log(data);
-    //   } else {
-    //     console.log('Received non-JSON response');
-    //     const text = await response.text();
-    //     console.log(text);
-    //   }
+  getTotalEarned = async () => {
+    try {
+      //get user projects
+      const response = await fetch(`http://localhost:3000/Payments/getProjectsByUserId/${this.context.user._id}`);
   
-    //   console.log('hi');
-    // } catch (error) {s
-    //   console.log('hi');
-    //   console.error('Error:', error);
-    // }
-    const response = await fetch('https://us1.pdfgeneratorapi.com/api/v4/documents/generate', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI3YTgwNzNhYTYwNmI0ZDk2MmM0MDZlZjExYWNjNzVmNjVlYmUyZTIyODIxNjBiODAwNTdkYjc3NDRkYjhhZTYwIiwic3ViIjoienlsenlsbG1hb0BnbWFpbC5jb20iLCJleHAiOjE3MTgwODkyMDZ9.Db54wXOEnODpvpLkG-749F7v8hh0JdedXXy6-5CMpsc',
-        'Content-Type': 'application/json'
-      },
-      // include the body of the request if necessary
-      body: JSON.stringify({
-        template: {
-          id: 1093619,
-          data: {
-            name: "John Smith",
-            invoice_number: "sre123"
+      // Check if the content type is JSON
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        const projects = await response.json();
+        console.log(projects)
+  
+        // Calculate total earned from projects and projcts completed
+        let totalEarned = 0;
+        let totalProjects = 0;
+        projects.forEach(project => {
+          const projectTotal = project.totalAmountPaid;
+          totalEarned += projectTotal;
+
+          if (project.paymentStatus === 'Paid') {
+            totalProjects++;
           }
-        },
-        format: "pdf",
-        output: "url",
-        name: "certificate 123"
-      })
-    });
+        });
 
-    console.log(response)
-
-    if (!response.ok) {
-      console.log(response);
-      throw new Error(`HTTP error! status: ${response.status}`);
-      
-    }
-
-    // Check if the content type is PDF
-    const contentType = response.headers.get("content-type");
-    if (contentType && contentType.indexOf("application/pdf") !== -1) {
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      window.open(url, '_blank');
-    } else {
-      console.log('Received non-PDF response');
+        this.setState({ totalEarned });
+        this.setState({ totalProjects });
+  
+        console.log(`Total earned: ${totalEarned}`);
+      } else {
+        console.log('Received non-JSON response');
+        const text = await response.text();
+        console.log(text);
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
-  async getDocuments() {
-    const url = 'https://us1.pdfgeneratorapi.com/api/v4/documents?start_date=2022-08-01T12:00:00&end_date=2024-06-11T06:36:34';
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI3YTgwNzNhYTYwNmI0ZDk2MmM0MDZlZjExYWNjNzVmNjVlYmUyZTIyODIxNjBiODAwNTdkYjc3NDRkYjhhZTYwIiwic3ViIjoienlsenlsbG1hb0BnbWFpbC5jb20iLCJleHAiOjE3MTgwODkyMDZ9.Db54wXOEnODpvpLkG-749F7v8hh0JdedXXy6-5CMpsc',
-      },
-    });
-
-    console.log(response.headers)
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-  
-    const data = await response.json();
-    console.log(data);
-  }
+  //
 
   state = {
     // state variables
     projects: [],
+    totalEarned: 0,
+    totalProjects: 0,
   };
 
   // componentDidMount() {
@@ -124,6 +85,11 @@ class Payments extends React.Component {
           console.error('Error:', error);
         });
     }
+
+    //Calling method 
+    this.getTotalEarned();
+
+    
   }
 
 
@@ -142,9 +108,9 @@ class Payments extends React.Component {
             </section>
 
             <EarningsOverviewSeller 
-                totalEarnings="RM7000.00" 
-                earningsPast30Days="RM51.36" 
-                averageDailyEarnings="RM77.78" 
+                totalEarnings= {this.state.totalEarned.toFixed(2)} 
+                earningsPast30Days={(this.state.totalEarned / 30).toFixed(2)} 
+                averageEarningsPerProject={(this.state.totalEarned / this.state.totalProjects).toFixed(2)} 
                 earningsTrendImg={earningsImage}
             />
 {/* 

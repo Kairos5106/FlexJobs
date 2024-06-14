@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const EarningsOverviewSeller = ({ totalEarnings, earningsPast30Days, averageDailyEarnings, earningsTrendImg }) => {
+const EarningsOverviewSeller = ({ totalEarnings, earningsPast30Days, averageEarningsPerProject, earningsTrendImg }) => {
   return (
     <div className="container-payments my-4 mb-5 justify-center">
       <div className="row justify-content-center">
@@ -9,15 +9,15 @@ const EarningsOverviewSeller = ({ totalEarnings, earningsPast30Days, averageDail
           <div className="card-body row">
             <div className="col-md-4 earnings-border">
               <h4 className="mb-4 mt-4">Total Earnings</h4>
-              <p className="mb-0 fw-bold text-center fs-2">{totalEarnings}</p>
+              <p className="mb-0 fw-bold text-center fs-2">RM {totalEarnings}</p>
             </div>
             <div className="col-md-4 earnings-border">
               <h4 className="mb-4 mt-4">Earnings Past 30 Days</h4>
-              <p className="mb-0 fw-bold text-center fs-2">{earningsPast30Days}</p>
+              <p className="mb-0 fw-bold text-center fs-2">RM {earningsPast30Days}</p>
             </div>
             <div className="col-md-4">
-              <h4 className="mb-4 mt-4">Average Daily Earnings</h4>
-              <p className="mb-0 fw-bold text-center fs-2">{averageDailyEarnings}</p>
+              <h4 className="mb-4 mt-4">Average Earning/Project</h4>
+              <p className="mb-0 fw-bold text-center fs-2">RM {averageEarningsPerProject}</p>
             </div>
           </div>
         </div>

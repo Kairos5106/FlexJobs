@@ -16,4 +16,8 @@ router.get('/getProjectsByUserId/:userId', transactionController.getProjectsByUs
 
 router.get('/getUsernameById/:userId', transactionController.getUserNameById);
 
+
+// get user totalEarned
+router.get('/getTotalEarned/:userId', transactionController.getTotalEarned);
+
 module.exports = router;

@@ -71,6 +71,20 @@ const getUserNameById = async (req, res) => {
   }
 }
 
+//get user totalEarned fromm User collection
+const getTotalEarned = async (req, res) => {
+  try {
+    const userId = req.params.userId;s
+    const user = await User.findById(userId);
+    res.json(user.totalEarned);
+  }
+  catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to fetch total earned' });
+  }
+}
+
+
 // app.get('/api/transactions/:userId', async (req, res) => {
 //   try {
 //     const userId = req.params.userId;
@@ -112,6 +126,7 @@ module.exports = {
   getAllProjects,
   getProjectsByUserId,
   getUserNameById,
+  getTotalEarned,
 };
 
 
